@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-shell data-library-page">
+    <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
+    {% include "_page_header.html" %}
+    <section class="dataset-library" aria-labelledby="dataset-library-title">
+      <header class="section-heading">
+        <p class="eyebrow">CSV library</p>
+        <h2 id="dataset-library-title">Complete generated data</h2>
+      </header>
+      <div class="dataset-card-grid">
+        {% for dataset in datasets %}
+          <article class="dataset-card">
+            <div>
+              <p class="row-count">{{ dataset.record_count }} records</p>
+              <h3>{{ dataset.title }}</h3>
+              <p>{{ dataset.description }}</p>
+            </div>
+            <a class="download-link" href="{{ dataset.filename }}" download>Download CSV <span aria-hidden="true">↓</span></a>
+          </article>
+        {% else %}
+          <p class="empty-state">No CSV datasets are available for this edition.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}

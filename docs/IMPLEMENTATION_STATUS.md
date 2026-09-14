@@ -6,7 +6,7 @@ until the previous stage is committed, tagged, and marked complete here.
 ## Current stage
 
 - Stage: 3 — User-friendly information architecture
-- State: slice 3A complete
+- State: slice 3B complete
 - Objective: replace the dataset-led reading experience with a visual annual
   overview and decision-led monthly field guides
 - Design specification: `docs/STAGE_3_DESIGN_SPEC.md`
@@ -82,6 +82,63 @@ Results:
   changed.
 - Checkpoint tag: `stage-3a-contracts`.
 
+## Slice 3B — Identity and landing page
+
+Objective:
+
+- make the Devanagari name and Sanskrit motto one primary identity block;
+- render a no-JavaScript root page for choosing a horizon and available year;
+- add a browsable data-library route that links to complete CSV files.
+
+Affected files:
+
+- `src/paa/render/html.py`
+- `src/paa/render/templates/_site_header.html`
+- `src/paa/render/templates/_site_footer.html`
+- `src/paa/render/templates/landing.html`
+- `src/paa/render/templates/data_library.html`
+- `src/paa/render/static/styles.css`
+- `tests/test_brand_shell.py`
+- `tests/test_render_paths.py`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- The Sanskrit motto is directly beneath the Devanagari name in markup and layout.
+- English identity text is grouped as a visibly subordinate translation.
+- The root landing page lists all three locations and links every locally available
+  edition without JavaScript.
+- Every rendered site/year has a data-library index with record counts and direct
+  CSV links; legacy source CSVs are copied into the canonical site tree.
+- Annual, monthly, data, and root navigation use valid relative links.
+- Existing scientific and CLI tests remain green.
+
+Focused test command:
+
+```bash
+PYTHONPATH=src .venv/bin/pytest -q tests/test_brand_shell.py tests/test_render_paths.py
+```
+
+Results:
+
+- Focused tests: 8 passed.
+- Full regression suite: 42 passed.
+- Ruff passed for the changed renderer and tests.
+- `git diff --check` passed.
+- Real-data render: the 2026 SE Queensland edition produced the root landing page,
+  canonical CSV copies, and data-library index successfully.
+- Visual QA: the landing page, corrected identity hierarchy, annual navigation, and
+  data-library page were inspected at a narrow browser width in the light theme.
+- Scientific calculations, scores, and CLI command signatures were not changed.
+- Checkpoint tag: `stage-3b-landing`.
+
+Resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_brand_shell.py tests/test_render_paths.py
+```
+
 ## Verification
 
 - Focused test command: `PYTHONPATH=src .venv/bin/pytest -q tests/test_render_paths.py tests/test_brand_shell.py`
@@ -106,6 +163,10 @@ Results:
   `PYTHONPATH=src .venv/bin/pytest -q tests/test_paths.py tests/test_view_models.py`
 - Stage 3A focused result: 20 passed.
 - Stage 3A full result: 40 passed.
+- Stage 3B focused test command:
+  `PYTHONPATH=src .venv/bin/pytest -q tests/test_brand_shell.py tests/test_render_paths.py`
+- Stage 3B focused result: 8 passed.
+- Stage 3B full result: 42 passed.
 
 ## Resume
 
@@ -119,7 +180,8 @@ PYTHONPATH=src .venv/bin/pytest -q
 ```
 
 Stage 2 remains complete at tag `stage-2-brand-shell`. Stage 3A is complete at tag
-`stage-3a-contracts`. Do not begin slice 3B until the user authorizes it.
+`stage-3a-contracts`, and Stage 3B is complete at tag `stage-3b-landing`. Do not
+begin slice 3C until the user authorizes it.
 
 ## External setup
 

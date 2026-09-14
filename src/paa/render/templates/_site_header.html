@@ -1,15 +1,19 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="identity" href="{{ annual_href }}" aria-label="Nabhastala annual almanac">
-      <span class="identity__devanagari" lang="sa-Deva">{{ identity_devanagari }}</span>
-      <span class="identity__english">{{ identity_english }}</span>
-      <span class="identity__sanskrit" lang="sa-Latn">{{ motto_sanskrit }}</span>
-      <span class="identity__motto">{{ motto_english }}</span>
+    <a class="identity" href="{{ identity_href }}" aria-label="Nabhastala home">
+      <span class="identity__primary">
+        <span class="identity__devanagari" lang="sa-Deva">{{ identity_devanagari }}</span>
+        <span class="identity__sanskrit" lang="sa-Latn">{{ motto_sanskrit }}</span>
+      </span>
+      <span class="identity__translation" aria-label="English translation">
+        <span class="identity__english">{{ identity_english }}</span>
+        <span class="identity__motto">{{ motto_english }}</span>
+      </span>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="{{ annual_href }}"{% if active_month is none %} aria-current="page"{% endif %}>Annual</a>
-      <a href="{% if active_month is none %}months/01.html{% else %}01.html{% endif %}"{% if active_month is not none %} aria-current="page"{% endif %}>Months</a>
-      <a href="https://chipsncode.com/">Chips’nCode</a>
+      {% for item in nav_items %}
+        <a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
       <button class="theme-toggle js-only" type="button" data-theme-toggle aria-label="Change colour theme" title="Change colour theme">◐</button>
     </nav>
   </div>

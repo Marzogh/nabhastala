@@ -42,6 +42,9 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert not (legacy / "almanac.html").exists()
     assert (rendered.parent / "months" / "01.html").exists()
     assert (rendered.parent / "charts" / "milky_way_windows.png").read_bytes() == b"fixture-chart"
+    assert (rendered.parent / "data" / "moon_phase.csv").exists()
+    assert (rendered.parent / "data" / "index.html").exists()
+    assert (output / "index.html").exists()
     html = rendered.read_text(encoding="utf-8")
     assert "Moon illumination" in html
     assert "27%" in html

@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from importlib import resources
 from pathlib import Path
 
-from paa.render.html import render_annual_html
+from paa.render.html import render_annual_html, render_landing_html
 
 
 class _LandmarkParser(HTMLParser):
@@ -43,6 +43,12 @@ def test_exact_identity_and_semantic_landmarks_are_rendered(tmp_path: Path) -> N
     assert {"header", "nav", "main", "footer", "table", "caption"}.issubset(parser.tags)
     assert "main-content" in parser.ids
 
+    devanagari = html.index('<span class="identity__devanagari"')
+    sanskrit = html.index('<span class="identity__sanskrit"')
+    translation = html.index('<span class="identity__translation"')
+    english = html.index('<span class="identity__english"')
+    assert devanagari < sanskrit < translation < english
+
 
 def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path: Path) -> None:
     annual = _render_fixture(tmp_path)
@@ -52,6 +58,7 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert '../assets/styles.css' in html
     assert '../assets/theme.js' in html
     assert 'href="../almanac.html"' in html
+    assert 'href="../data/index.html"' in html
     assert "Sun and twilight" in html
     assert "1 Jan 2027" in html
     assert len(list((annual.parent / "months").glob("*.html"))) == 12
@@ -78,4 +85,35 @@ def test_templates_and_static_assets_are_package_resources() -> None:
     package = resources.files("paa.render")
     assert package.joinpath("templates", "annual.html").is_file()
     assert package.joinpath("templates", "monthly.html").is_file()
+    assert package.joinpath("templates", "landing.html").is_file()
+    assert package.joinpath("templates", "data_library.html").is_file()
     assert package.joinpath("static", "styles.css").is_file()
+
+
+def test_landing_page_lists_horizons_and_available_local_editions(tmp_path: Path) -> None:
+    annual = _render_fixture(tmp_path)
+    landing = annual.parents[2] / "index.html"
+    html = landing.read_text(encoding="utf-8")
+
+    assert landing == render_landing_html(tmp_path / "output")
+    assert "South East Queensland, Australia" in html
+    assert "Southern Tasmania, Australia" in html
+    assert "Malabar Coast, India" in html
+    assert 'href="se_qld/2027/almanac.html"' in html
+    assert "No local edition generated yet." in html
+    assert "<table" not in html
+    assert 'href="#horizons"' in html
+
+
+def test_data_library_links_complete_csv_without_rendering_its_rows(tmp_path: Path) -> None:
+    annual = _render_fixture(tmp_path)
+    library = annual.parent / "data" / "index.html"
+    html = library.read_text(encoding="utf-8")
+
+    assert library.exists()
+    assert "Sun and twilight" in html
+    assert "1 records" in html
+    assert 'href="sun_twilight.csv" download' in html
+    assert "2027-01-01T19:14:00+10:00" not in html
+    assert 'href="../almanac.html"' in html
+    assert 'href="../../../index.html"' in html

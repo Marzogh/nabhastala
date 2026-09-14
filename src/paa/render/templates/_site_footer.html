@@ -5,8 +5,8 @@
       <span>Local, reproducible astronomy planning.</span>
     </div>
     <div class="site-footer__meta">
-      <span>{{ site_name }}</span>
-      <span>{{ year }}</span>
+      {% if site_name %}<span>{{ site_name }}</span>{% endif %}
+      {% if year %}<span>{{ year }}</span>{% endif %}
       <a href="https://chipsncode.com/">A Chips’nCode project</a>
     </div>
   </div>
