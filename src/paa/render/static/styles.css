@@ -1009,6 +1009,361 @@ tbody tr:hover {
   text-decoration: none;
 }
 
+.monthly-guide {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.monthly-guide .back-link {
+  margin-bottom: calc(-1 * var(--space-5));
+}
+
+.monthly-guide .month-nav {
+  margin-block: calc(-1 * var(--space-5)) 0;
+}
+
+.monthly-verdict {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 0.75fr);
+  gap: var(--space-7);
+  align-items: end;
+  padding: var(--space-7);
+  border-left: 4px solid var(--tone, var(--accent));
+  background: var(--surface);
+}
+
+.monthly-verdict h2 {
+  max-width: 27ch;
+  margin-top: var(--space-2);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.monthly-verdict dl {
+  margin: 0;
+}
+
+.monthly-verdict dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.monthly-verdict dt,
+.monthly-verdict dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.monthly-verdict dt {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.guide-nav {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  overflow-x: auto;
+  border-block: 1px solid var(--border-strong);
+  background: var(--header-bg);
+  scrollbar-width: thin;
+}
+
+.guide-nav a {
+  flex: 1 0 auto;
+  padding: var(--space-2) var(--space-4);
+  border-right: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.guide-nav a:hover {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.monthly-editorial-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+  gap: var(--space-7) var(--space-6);
+  align-items: start;
+}
+
+.monthly-editorial-grid > section {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-strong);
+  scroll-margin-top: 4rem;
+}
+
+.night-plan,
+.deep-sky-panel,
+.other-opportunities {
+  grid-column: 1;
+}
+
+.month-highlights,
+.moon-panel,
+.planet-panel {
+  grid-column: 2;
+}
+
+.month-highlights { grid-row: 1 / span 2; }
+.moon-panel { grid-row: 3; }
+.planet-panel { grid-row: 4 / span 2; }
+
+.twilight-band {
+  display: grid;
+  grid-template-columns: auto minmax(5rem, 1fr) auto;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #20262d;
+  color: #f4efe5;
+}
+
+.twilight-band div {
+  display: grid;
+}
+
+.twilight-band div:last-child { text-align: right; }
+
+.twilight-band small {
+  color: #beb6a5;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.twilight-band span {
+  height: 1px;
+  background: linear-gradient(90deg, #b47760, #f1dfb2 8%, #657181 18%, #303842 50%, #657181 82%, #f1dfb2 92%, #b47760);
+}
+
+.session-list,
+.compact-highlights,
+.other-opportunities ul,
+.planet-periods ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.session-list {
+  border-top: 1px solid var(--border);
+}
+
+.session-list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5rem minmax(10rem, 1fr) auto;
+  gap: var(--space-4);
+  align-items: baseline;
+  padding: var(--space-3) var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.session-list time,
+.session-list span,
+.compact-highlights time,
+.compact-highlights small,
+.other-opportunities time {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.session-list span { text-align: right; }
+
+.context-link {
+  justify-self: start;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.compact-highlights {
+  counter-reset: month-highlight;
+}
+
+.compact-highlights li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4) 0 var(--space-4) var(--space-3);
+  border-top: 1px solid var(--border);
+  counter-increment: month-highlight;
+}
+
+.compact-highlights li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--tone, var(--border-strong));
+  content: "";
+}
+
+.compact-highlights time::before {
+  display: block;
+  color: var(--accent);
+  content: counter(month-highlight, decimal-leading-zero);
+}
+
+.compact-highlights h3 { margin-top: var(--space-1); }
+
+.compact-highlights p {
+  margin: var(--space-1) 0 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.moon-progression {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.moon-progression > div {
+  display: grid;
+  place-items: center;
+  gap: var(--space-1);
+}
+
+.moon-disc {
+  --moon-fill: 0%;
+  display: block;
+  width: clamp(2rem, 4vw, 2.8rem);
+  aspect-ratio: 1;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--ink) var(--moon-fill), var(--surface-raised) 0);
+}
+
+.moon-progression time,
+.moon-progression small {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+
+.field-note {
+  margin: 0;
+  padding: var(--space-4);
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.milky-sessions li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--tone, var(--border-strong));
+  content: "";
+}
+
+.planet-periods {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.planet-periods h3 {
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.planet-periods li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 var(--space-2);
+  padding: var(--space-2) 0 var(--space-2) var(--space-2);
+  border-top: 1px solid var(--border);
+  border-left: 3px solid var(--tone, var(--border-strong));
+}
+
+.planet-periods li span,
+.planet-periods li small {
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+}
+
+.planet-periods li small {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.other-opportunities li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.other-opportunities li div { display: grid; }
+.other-opportunities li span { color: var(--ink-soft); }
+
+.monthly-data {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
+  gap: var(--space-7);
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  scroll-margin-top: 4rem;
+}
+
+.monthly-data h2 { margin-top: var(--space-1); }
+
+.monthly-data p:not(.eyebrow) {
+  margin: var(--space-3) 0 0;
+  color: var(--ink-soft);
+}
+
+.monthly-downloads {
+  display: grid;
+  align-content: start;
+}
+
+.monthly-downloads a {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.monthly-downloads span {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
 figure {
   margin: 0;
 }
@@ -1095,6 +1450,22 @@ figcaption {
   .month-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .monthly-verdict,
+  .monthly-editorial-grid,
+  .monthly-data {
+    grid-template-columns: 1fr;
+  }
+
+  .night-plan,
+  .deep-sky-panel,
+  .other-opportunities,
+  .month-highlights,
+  .moon-panel,
+  .planet-panel {
+    grid-column: 1;
+    grid-row: auto;
+  }
 }
 
 @media (max-width: 36rem) {
@@ -1176,9 +1547,27 @@ figcaption {
   }
 
   .data-callout,
-  .planet-seasons {
+  .planet-seasons,
+  .monthly-verdict,
+  .monthly-data {
     padding: var(--space-5);
   }
+
+  .session-list li {
+    grid-template-columns: 4rem 1fr;
+    gap: var(--space-1) var(--space-3);
+  }
+
+  .session-list span {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .twilight-band {
+    grid-template-columns: 1fr;
+  }
+
+  .twilight-band div:last-child { text-align: left; }
 
   .data-section__header {
     align-items: flex-start;

@@ -7,8 +7,10 @@ from paa.render.view_models import (
     OpportunityView,
     escape_display,
     format_display_value,
+    format_duration_minutes,
     format_local_date,
     format_local_datetime,
+    format_local_time,
     humanize_label,
     opportunity_is_eligible,
     rank_opportunities,
@@ -25,6 +27,8 @@ def test_iso_datetime_is_presented_for_people() -> None:
     assert format_local_datetime("2027-01-01T19:14:00+10:00") == "1 Jan 2027, 7:14 pm UTC+10:00"
     assert format_local_date("2027-01-01T19:14:00+10:00") == "1 Jan"
     assert format_local_date("2027-01-01", include_year=True) == "1 Jan 2027"
+    assert format_local_time("2027-01-01T19:14:00+10:00") == "7:14 pm"
+    assert format_duration_minutes(470) == "7h 50m"
 
 
 def test_display_values_handle_missing_boolean_fraction_and_rating() -> None:

@@ -91,6 +91,53 @@ class PlanetSeasonView:
 
 
 @dataclass(frozen=True)
+class NightWindowView:
+    date: str
+    start_local: str
+    end_local: str
+    duration_minutes: float
+    moon_illumination: float | None
+
+
+@dataclass(frozen=True)
+class MilkyWaySessionView:
+    date: str
+    start_local: str
+    end_local: str
+    duration_minutes: float
+    max_altitude_deg: float
+    rating: str
+
+
+@dataclass(frozen=True)
+class MoonSampleView:
+    date: str
+    illumination: float
+
+
+@dataclass(frozen=True)
+class PlanetMonthView:
+    planet: str
+    best_date: str
+    best_time_local: str
+    altitude_deg: float
+    rating: str
+    period: str
+
+
+@dataclass(frozen=True)
+class PlanetGroupView:
+    period: str
+    planets: tuple[PlanetMonthView, ...]
+
+
+@dataclass(frozen=True)
+class DownloadView:
+    label: str
+    filename: str
+
+
+@dataclass(frozen=True)
 class MonthGuideView:
     year: int
     month: int
@@ -98,6 +145,20 @@ class MonthGuideView:
     site_slug: str
     verdict: str
     highlights: tuple[OpportunityView, ...] = ()
+    rating: str = "unavailable"
+    month_name: str = ""
+    new_moon_date: str | None = None
+    full_moon_date: str | None = None
+    representative_date: str | None = None
+    dusk_local: str | None = None
+    dawn_local: str | None = None
+    moon_samples: tuple[MoonSampleView, ...] = ()
+    dark_windows: tuple[NightWindowView, ...] = ()
+    milky_way_sessions: tuple[MilkyWaySessionView, ...] = ()
+    planet_groups: tuple[PlanetGroupView, ...] = ()
+    other_opportunities: tuple[OpportunityView, ...] = ()
+    data_notes: tuple[str, ...] = ()
+    downloads: tuple[DownloadView, ...] = ()
 
     def __post_init__(self) -> None:
         _validate_month(self.month)
@@ -194,6 +255,23 @@ def format_local_date(value: object, *, include_year: bool = False) -> str:
         return text
     rendered = f"{parsed.day} {parsed.strftime('%b')}"
     return f"{rendered} {parsed.year}" if include_year else rendered
+
+
+def format_local_time(value: object) -> str:
+    text = str(value).strip()
+    if text.lower() in MISSING_VALUES:
+        return "—"
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return text
+    hour = parsed.strftime("%I").lstrip("0") or "0"
+    return f"{hour}:{parsed.strftime('%M %p').lower()}"
+
+
+def format_duration_minutes(value: float) -> str:
+    hours, minutes = divmod(round(value), 60)
+    return f"{hours}h {minutes:02d}m" if hours else f"{minutes}m"
 
 
 def rating_tone(value: object) -> str:

@@ -1,12 +1,96 @@
 {% extends "base.html" %}
-{% from "_table.html" import render_table %}
 {% block content %}
-  <div class="page-shell">
+  <div class="page-shell monthly-guide">
     <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
     {% include "_page_header.html" %}
     {% include "_month_nav.html" %}
-    <div class="dataset-list">
-      {% for table in tables %}{{ render_table(table) }}{% endfor %}
+
+    <section class="monthly-verdict tone-{{ rating_tone(guide.rating) }}" aria-labelledby="monthly-verdict-title">
+      <div><p class="eyebrow">The month in one sentence</p><h2 id="monthly-verdict-title">{{ guide.verdict }}</h2></div>
+      <dl>
+        <div><dt>New Moon</dt><dd>{{ format_local_date(guide.new_moon_date) if guide.new_moon_date else "Unavailable" }}</dd></div>
+        <div><dt>Full Moon</dt><dd>{{ format_local_date(guide.full_moon_date) if guide.full_moon_date else "Unavailable" }}</dd></div>
+        <div><dt>Best dark window</dt><dd>{% if guide.dark_windows %}{{ format_local_date(guide.dark_windows[0].date) }} · {{ format_duration_minutes(guide.dark_windows[0].duration_minutes) }}{% else %}Unavailable{% endif %}</dd></div>
+      </dl>
+    </section>
+
+    <nav class="guide-nav" aria-label="Sections in {{ guide.month_name }}">
+      <a href="#night-plan">Night plan</a><a href="#highlights">Highlights</a><a href="#deep-sky">Deep sky</a><a href="#planets">Planets</a><a href="#downloads">Data</a>
+    </nav>
+
+    <div class="monthly-editorial-grid">
+      <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
+        <header class="section-heading">
+          <p class="eyebrow">Night-planning overview</p><h2 id="night-plan-title">Darkness first.</h2>
+          {% if guide.representative_date %}<p>A representative night around {{ format_local_date(guide.representative_date) }}.</p>{% endif %}
+        </header>
+        <div class="twilight-band" aria-label="Representative astronomical darkness">
+          <div><small>Astronomical dusk</small><strong>{{ format_local_time(guide.dusk_local) }}</strong></div>
+          <span aria-hidden="true"><i></i></span>
+          <div><small>Astronomical dawn</small><strong>{{ format_local_time(guide.dawn_local) }}</strong></div>
+        </div>
+        {% if guide.dark_windows %}
+          <ol class="session-list">
+            {% for window in guide.dark_windows %}
+              <li><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><strong>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</strong><span>{{ format_duration_minutes(window.duration_minutes) }}{% if window.moon_illumination is not none %} · {{ (window.moon_illumination * 100)|round|int }}% Moon{% endif %}</span></li>
+            {% endfor %}
+          </ol>
+        {% else %}<p class="empty-state">No Moon-free dark window is available.</p>{% endif %}
+        <a class="context-link" href="../data/moon_dark_windows.csv" download>Complete dark-window data →</a>
+      </section>
+
+      <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
+        <header class="section-heading"><p class="eyebrow">Field shortlist</p><h2 id="month-highlights-title">What deserves attention.</h2></header>
+        {% if guide.highlights %}<ol class="compact-highlights">
+          {% for item in guide.highlights %}
+            <li class="tone-{{ rating_tone(item.rating) }}"><time datetime="{{ item.date_local }}">{{ format_local_date(item.date_local) }}</time><div><small>{{ item.category }}</small><h3>{{ item.title }}</h3><p>{{ item.reason }}</p></div></li>
+          {% endfor %}
+        </ol>{% else %}<p class="empty-state">No trustworthy highlight is available.</p>{% endif %}
+      </section>
+
+      <section class="moon-panel" aria-labelledby="moon-panel-title">
+        <header class="section-heading"><p class="eyebrow">Moon and darkness</p><h2 id="moon-panel-title">Read the lunar month.</h2></header>
+        {% if guide.moon_samples %}<div class="moon-progression">
+          {% for sample in guide.moon_samples %}
+            <div><span class="moon-disc" style="--moon-fill: {{ (sample.illumination * 100)|round|int }}%" aria-label="{{ (sample.illumination * 100)|round|int }}% illuminated"></span><time datetime="{{ sample.date }}">{{ format_local_date(sample.date) }}</time><small>{{ (sample.illumination * 100)|round|int }}%</small></div>
+          {% endfor %}
+        </div>{% else %}<p class="empty-state">Moon phase data is unavailable.</p>{% endif %}
+        <p class="field-note">Prefer minimum illumination for faint targets; bright lunar observing belongs near the fullest phase.</p>
+        <a class="context-link" href="../data/moon_phase.csv" download>Complete lunar data →</a>
+      </section>
+
+      <section class="deep-sky-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <header class="section-heading"><p class="eyebrow">Milky Way and deep sky</p><h2 id="deep-sky-title">Recommended core sessions.</h2></header>
+        {% if guide.milky_way_sessions %}<ol class="session-list milky-sessions">
+          {% for session in guide.milky_way_sessions %}
+            <li class="tone-{{ rating_tone(session.rating) }}"><time datetime="{{ session.date }}">{{ format_local_date(session.date) }}</time><strong>{{ format_local_time(session.start_local) }}–{{ format_local_time(session.end_local) }}</strong><span>{{ format_duration_minutes(session.duration_minutes) }} · core to {{ session.max_altitude_deg|round|int }}°</span></li>
+          {% endfor %}
+        </ol>{% else %}<p class="empty-state">No recommended Milky Way core session is available this month.</p>{% endif %}
+        <a class="context-link" href="../data/milky_way_windows.csv" download>Complete Milky Way data →</a>
+      </section>
+
+      <section class="planet-panel" id="planets" aria-labelledby="planet-panel-title">
+        <header class="section-heading"><p class="eyebrow">Planet visibility</p><h2 id="planet-panel-title">Useful at twilight.</h2></header>
+        {% if guide.planet_groups %}<div class="planet-periods">
+          {% for group in guide.planet_groups %}<section><h3>{{ group.period }}</h3><ul>
+            {% for planet in group.planets %}<li class="tone-{{ rating_tone(planet.rating) }}"><strong>{{ planet.planet }}</strong><span>{{ format_local_date(planet.best_date) }} · {{ format_local_time(planet.best_time_local) }}</span><small>{{ planet.altitude_deg|round|int }}° · {{ planet.rating|title }}</small></li>{% endfor %}
+          </ul></section>{% endfor %}
+        </div>{% else %}<p class="empty-state">No planet has a useful altitude at twilight in the available summary.</p>{% endif %}
+        <a class="context-link" href="../data/planet_visibility_daily.csv" download>Complete planet data →</a>
+      </section>
+
+      {% if guide.other_opportunities %}<section class="other-opportunities" aria-labelledby="other-opportunities-title">
+        <header class="section-heading"><p class="eyebrow">Other opportunities</p><h2 id="other-opportunities-title">Events worth noting.</h2></header>
+        <ul>{% for item in guide.other_opportunities %}<li><time>{{ format_local_date(item.date_local) }}</time><div><strong>{{ item.title }}</strong><span>{{ item.reason }}</span></div></li>{% endfor %}</ul>
+      </section>{% endif %}
     </div>
+
+    <section class="monthly-data" id="downloads" aria-labelledby="monthly-data-title">
+      <div><p class="eyebrow">Data notes</p><h2 id="monthly-data-title">Complete records stay available.</h2>{% for note in guide.data_notes %}<p>{{ note }}</p>{% endfor %}</div>
+      <div class="monthly-downloads">
+        {% for download in guide.downloads %}<a href="../data/{{ download.filename }}" download>{{ download.label }} <span>CSV ↓</span></a>{% endfor %}
+        <a href="../data/index.html">Browse all datasets <span>→</span></a>
+      </div>
+    </section>
   </div>
 {% endblock %}

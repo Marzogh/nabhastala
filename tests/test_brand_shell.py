@@ -72,8 +72,10 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert '../assets/theme.js' in html
     assert 'href="../almanac.html"' in html
     assert 'href="../data/index.html"' in html
-    assert "Sun and twilight" in html
-    assert "1 Jan 2027" in html
+    assert "Night-planning overview" in html
+    assert "Darkness first." in html
+    assert "1 Jan" in html
+    assert "<table" not in html
     assert len(list((annual.parent / "months").glob("*.html"))) == 12
 
 

@@ -11,10 +11,12 @@ from pathlib import Path
 from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescape
 
 from paa.paths import public_site_slug, resolve_site_year_dir, site_year_dir
-from paa.render.almanac_views import build_annual_overview
+from paa.render.almanac_views import build_annual_overview, build_month_guide
 from paa.render.view_models import (
     format_display_value,
+    format_duration_minutes,
     format_local_date,
+    format_local_time,
     humanize_label,
     rating_tone,
 )
@@ -176,6 +178,8 @@ def _environment() -> Environment:
     )
     environment.globals["rating_tone"] = rating_tone
     environment.globals["format_local_date"] = format_local_date
+    environment.globals["format_local_time"] = format_local_time
+    environment.globals["format_duration_minutes"] = format_duration_minutes
     return environment
 
 
@@ -327,9 +331,6 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     _copy_static_assets(year_dir)
     _copy_data_files(data_dir, year_dir / "data")
 
-    source_tables = [
-        (filename, title, *_read_csv(data_dir / filename)) for filename, title in SECTIONS
-    ]
     month_links = [
         {
             "number": month,
@@ -347,17 +348,14 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     environment = _environment()
 
     for month in range(1, 13):
-        tables = [
-            _table_view(title, headers, _month_filter(headers, rows, month), max_rows=200)
-            for _, title, headers, rows in source_tables
-        ]
+        guide = build_month_guide(year, month, site_id, data_dir)
         page = environment.get_template("monthly.html").render(
             **common,
             document_title=f"{calendar.month_name[month]} {year} — Nabhastala",
             page_title=f"{calendar.month_name[month]} {year}",
             page_eyebrow="Monthly field almanac",
             page_description=f"Observing reference for {common['site_name']}.",
-            tables=tables,
+            guide=guide,
             month_links=[
                 {**item, "href": f"{item['number']:02d}.html"} for item in month_links
             ],

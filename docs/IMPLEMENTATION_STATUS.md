@@ -6,7 +6,7 @@ until the previous stage is committed, tagged, and marked complete here.
 ## Current stage
 
 - Stage: 3 — User-friendly information architecture
-- State: slice 3C complete; paused before slice 3D
+- State: slice 3D complete; paused before slice 3E
 - Objective: replace the dataset-led reading experience with a visual annual
   overview and decision-led monthly field guides
 - Design specification: `docs/STAGE_3_DESIGN_SPEC.md`
@@ -190,6 +190,63 @@ Results:
 - Scientific calculations, scores, and CLI command signatures were not changed.
 - Checkpoint tag: `stage-3c-annual`.
 
+## Slice 3D — Monthly field guide
+
+Objective:
+
+- replace monthly dataset dumps with a decision-led field-guide composition;
+- summarise twilight, lunar conditions, dark windows, Milky Way sessions, planets,
+  and trustworthy events from existing values without recalculation;
+- link every editorial section to the complete source CSV while keeping core
+  information available without JavaScript.
+
+Affected files:
+
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/html.py`
+- `src/paa/render/view_models.py`
+- `src/paa/render/templates/monthly.html`
+- `src/paa/render/static/styles.css`
+- `tests/test_monthly_guide.py`
+- `tests/test_brand_shell.py`
+- `tests/test_view_models.py`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Monthly pages contain no generic dataset sequence or exhaustive table initially.
+- A visitor can identify representative darkness, Moon conditions, recommended
+  sessions, useful planets, and noteworthy events in under a minute.
+- Failed and incomplete records appear only as a concise data note, never as a
+  recommendation.
+- Local dates and times lead; contextual links reach the complete CSV files.
+- Narrow layouts preserve document order and horizontal month navigation.
+- Existing scientific and CLI tests remain green.
+
+Focused test and resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_monthly_guide.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py
+```
+
+Results:
+
+- Focused tests: 20 passed.
+- Full regression suite: 47 passed.
+- Ruff passed for all changed Python and test files; `git diff --check` passed.
+- Real-data render: all twelve 2026 SE Queensland monthly pages and the annual page
+  rendered successfully in about 3 seconds.
+- Visual QA: January was inspected at a narrow browser width across its title,
+  verdict, night-planning, highlight, Milky Way, and planet sections. Document order,
+  navigation overflow, local-time emphasis, and contextual downloads render cleanly.
+- Planet recommendations require a positive altitude at the source-provided twilight
+  time, preventing daytime-only maxima from appearing as field recommendations.
+- Annual and monthly pages contain no initial dataset table; full CSV files remain
+  linked and unchanged.
+- Scientific calculations, scores, schemas, and CLI signatures were not changed.
+- Checkpoint tag: `stage-3d-monthly`.
+
 ## Verification
 
 - Focused test command: `PYTHONPATH=src .venv/bin/pytest -q tests/test_render_paths.py tests/test_brand_shell.py`
@@ -222,6 +279,10 @@ Results:
   `PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py`
 - Stage 3C focused result: 20 passed.
 - Stage 3C full result: 45 passed.
+- Stage 3D focused test command:
+  `PYTHONPATH=src .venv/bin/pytest -q tests/test_monthly_guide.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py`
+- Stage 3D focused result: 20 passed.
+- Stage 3D full result: 47 passed.
 
 ## Resume
 
@@ -236,7 +297,8 @@ PYTHONPATH=src .venv/bin/pytest -q
 
 Stage 2 remains complete at tag `stage-2-brand-shell`. Stage 3A is complete at tag
 `stage-3a-contracts`, Stage 3B at tag `stage-3b-landing`, and Stage 3C at tag
-`stage-3c-annual`. Do not begin slice 3D until the user authorizes it.
+`stage-3c-annual`. Stage 3D is complete at tag `stage-3d-monthly`. Do not begin
+slice 3E until the user authorizes it.
 
 ## External setup
 

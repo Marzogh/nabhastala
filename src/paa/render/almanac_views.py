@@ -9,8 +9,15 @@ from paa.paths import public_site_slug
 from paa.render.view_models import (
     RATING_PRIORITY,
     AnnualOverviewView,
+    DownloadView,
+    MilkyWaySessionView,
+    MonthGuideView,
     MonthSummaryView,
+    MoonSampleView,
+    NightWindowView,
     OpportunityView,
+    PlanetGroupView,
+    PlanetMonthView,
     PlanetSeasonView,
     rank_opportunities,
 )
@@ -309,4 +316,214 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
         months=tuple(months),
         highlights=highlights,
         planet_seasons=_planet_seasons(data_dir),
+    )
+
+
+def _month_rows(data_dir: Path, filename: str, year: int, month: int) -> list[dict[str, str]]:
+    prefix = f"{year}-{month:02d}"
+    rows = _read_rows(data_dir, filename)
+    date_fields = ("date", "month", "peak_date_local", "best_date", "datetime_local")
+    return [
+        row
+        for row in rows
+        if any(row.get(field, "").startswith(prefix) for field in date_fields)
+    ]
+
+
+def _observation_period(value: str) -> str:
+    try:
+        hour = int(value[11:13])
+    except (ValueError, IndexError):
+        return "Overnight"
+    if 17 <= hour < 22:
+        return "Evening"
+    if hour >= 22 or hour < 4:
+        return "Overnight"
+    return "Predawn"
+
+
+def build_month_guide(
+    year: int,
+    month: int,
+    site_id: str,
+    data_dir: Path,
+) -> MonthGuideView:
+    candidates = _candidate_rows(data_dir)
+    month_candidates = [
+        candidate
+        for candidate in candidates
+        if candidate.date_local[5:7] == f"{month:02d}"
+    ]
+    highlights = rank_diverse_opportunities(month_candidates, limit=5)
+
+    moon_rows = _month_rows(data_dir, "moon_phase.csv", year, month)
+    moon_values = [
+        (row, _number(row.get("moon_illumination_fraction"))) for row in moon_rows
+    ]
+    moon_values = [(row, value) for row, value in moon_values if value is not None]
+    new_moon = min(moon_values, key=lambda item: item[1])[0] if moon_values else None
+    full_moon = max(moon_values, key=lambda item: item[1])[0] if moon_values else None
+    moon_samples = tuple(
+        MoonSampleView(row.get("date", ""), value)
+        for row, value in moon_values[::7][:5]
+    )
+
+    twilight_rows = _month_rows(data_dir, "sun_twilight.csv", year, month)
+    representative = min(
+        twilight_rows,
+        key=lambda row: abs(int(row.get("date", "00")[-2:]) - 15),
+    ) if twilight_rows else None
+
+    dark_rows = _month_rows(data_dir, "moon_dark_windows.csv", year, month)
+    dark_rows.sort(
+        key=lambda row: (-(_number(row.get("duration_minutes")) or 0), row.get("date", ""))
+    )
+    dark_windows = tuple(
+        NightWindowView(
+            date=row.get("date", ""),
+            start_local=row.get("start_local", ""),
+            end_local=row.get("end_local", ""),
+            duration_minutes=_number(row.get("duration_minutes")) or 0,
+            moon_illumination=_number(row.get("moon_illumination_fraction")),
+        )
+        for row in dark_rows[:3]
+    )
+
+    milky_rows = _month_rows(data_dir, "milky_way_windows.csv", year, month)
+    milky_rows = [
+        row
+        for row in milky_rows
+        if row.get("quality", "").lower() in {"excellent", "useful"}
+        and _number(row.get("duration_minutes")) is not None
+        and _number(row.get("max_altitude_deg")) is not None
+    ]
+    milky_rows.sort(
+        key=lambda row: (
+            -RATING_PRIORITY["excellent" if row["quality"].lower() == "excellent" else "good"],
+            -(_number(row.get("duration_minutes")) or 0),
+            -(_number(row.get("max_altitude_deg")) or 0),
+            row.get("date", ""),
+        )
+    )
+    milky_sessions = tuple(
+        MilkyWaySessionView(
+            date=row.get("date", ""),
+            start_local=row.get("start_local", ""),
+            end_local=row.get("end_local", ""),
+            duration_minutes=_number(row.get("duration_minutes")) or 0,
+            max_altitude_deg=_number(row.get("max_altitude_deg")) or 0,
+            rating="excellent" if row["quality"].lower() == "excellent" else "good",
+        )
+        for row in milky_rows[:3]
+    )
+
+    daily_planets = {
+        (row.get("planet", ""), row.get("date", "")): row
+        for row in _month_rows(data_dir, "planet_visibility_daily.csv", year, month)
+    }
+    planet_buckets: dict[str, list[PlanetMonthView]] = defaultdict(list)
+    for row in _month_rows(data_dir, "planet_visibility_monthly_summary.csv", year, month):
+        daily = daily_planets.get((row.get("planet", ""), row.get("best_date", "")))
+        if not daily:
+            continue
+        altitude = _number(daily.get("twilight_max_altitude_deg"))
+        best_time = daily.get("twilight_best_time_local", "")
+        rating = row.get("rating", "").lower()
+        if altitude is None or altitude <= 0 or rating not in RATING_PRIORITY:
+            continue
+        period = _observation_period(best_time)
+        planet_buckets[period].append(
+            PlanetMonthView(
+                planet=row.get("planet", ""),
+                best_date=row.get("best_date", ""),
+                best_time_local=best_time,
+                altitude_deg=altitude,
+                rating=rating,
+                period=period,
+            )
+        )
+    planet_groups = tuple(
+        PlanetGroupView(
+            period=period,
+            planets=tuple(
+                sorted(
+                    planet_buckets[period],
+                    key=lambda item: (-RATING_PRIORITY[item.rating], -item.altitude_deg, item.planet),
+                )
+            ),
+        )
+        for period in ("Evening", "Overnight", "Predawn")
+        if planet_buckets[period]
+    )
+
+    other = rank_diverse_opportunities(
+        [
+            candidate
+            for candidate in month_candidates
+            if candidate.category not in {"Milky Way", "Planets"}
+        ],
+        limit=3,
+    )
+    data_notes: list[str] = []
+    failed_comets = sum(
+        row.get("calc_status", "").lower() == "query_failed"
+        for row in _read_rows(data_dir, "comets.csv")
+    )
+    if failed_comets:
+        data_notes.append(
+            f"{failed_comets} comet calculations are unavailable; they remain in the data library."
+        )
+    if not _month_rows(data_dir, "lunar_occultations.csv", year, month):
+        data_notes.append("No lunar occultation is listed for this month.")
+
+    rating = highlights[0].rating.lower() if highlights else "unavailable"
+    if milky_sessions:
+        verdict = (
+            f"{calendar.month_name[month]} offers {len(milky_rows)} recommended Milky Way "
+            f"sessions, led by {highlights[0].title if highlights else 'the longest dark window'}."
+        )
+        rating = milky_sessions[0].rating
+    elif highlights:
+        verdict = f"{highlights[0].title} is the clearest observing opportunity this month."
+    elif dark_windows:
+        verdict = "Plan general observing around the longest Moon-free window."
+        rating = "fair"
+    else:
+        verdict = "No strong observing recommendation is supported by the available data."
+
+    download_names = (
+        ("Twilight", "sun_twilight.csv"),
+        ("Moon phases", "moon_phase.csv"),
+        ("Dark windows", "moon_dark_windows.csv"),
+        ("Milky Way", "milky_way_windows.csv"),
+        ("Planets", "planet_visibility_daily.csv"),
+        ("Events", "meteor_showers.csv"),
+    )
+    downloads = tuple(
+        DownloadView(label, filename)
+        for label, filename in download_names
+        if (data_dir / filename).exists()
+    )
+
+    return MonthGuideView(
+        year=year,
+        month=month,
+        site_id=site_id,
+        site_slug=public_site_slug(site_id),
+        verdict=verdict,
+        highlights=highlights,
+        rating=rating,
+        month_name=calendar.month_name[month],
+        new_moon_date=new_moon.get("date") if new_moon else None,
+        full_moon_date=full_moon.get("date") if full_moon else None,
+        representative_date=representative.get("date") if representative else None,
+        dusk_local=representative.get("dusk_astronomical_local") if representative else None,
+        dawn_local=representative.get("dawn_astronomical_local") if representative else None,
+        moon_samples=moon_samples,
+        dark_windows=dark_windows,
+        milky_way_sessions=milky_sessions,
+        planet_groups=planet_groups,
+        other_opportunities=other,
+        data_notes=tuple(data_notes),
+        downloads=downloads,
     )
