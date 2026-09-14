@@ -5,29 +5,31 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 2 — Nabhastala brand foundation
-- State: complete
-- Objective: replace string-built documents with a reusable, accessible Nabhastala page shell
-- Started: 2026-09-14
+- Stage: 3 — User-friendly information architecture
+- State: reference study complete; implementation not started
+- Objective: replace the dataset-led reading experience with a visual annual
+  overview and decision-led monthly field guides
+- Design specification: `docs/STAGE_3_DESIGN_SPEC.md`
+- Study date: 2026-09-14
 
-## Stage 2 work
+## Stage 3 design checkpoint
 
-Expected areas:
+Affected files:
 
-- packaged Jinja templates and reusable renderer view models
-- shared CSS tokens, local font assets, and minimal theme script
-- annual and monthly semantic page shells
-- renderer, packaging, accessibility, and visual smoke tests
+- `.gitignore`
+- `docs/STAGE_3_DESIGN_SPEC.md`
 - `docs/IMPLEMENTATION_STATUS.md`
 
-Acceptance checks:
+Acceptance checks for this checkpoint:
 
-- Exact supplied identity appears on annual and monthly pages.
-- Templates and assets work from an installed package and direct file URLs.
-- Light, dark, focus, reduced-motion, narrow-screen, and print treatments exist.
-- Core content and navigation work without JavaScript.
-- Full regression suite passes.
-- Work is committed and tagged `stage-2-brand-shell`.
+- Supplied 2025 and 2026 almanacs and Joe Cali's location-specific handbook were
+  studied across representative annual, monthly, diagram, event, and data pages.
+- The user's identity hierarchy and criticism of exhaustive tables are explicit
+  design requirements.
+- Annual, monthly, landing, and dataset-library responsibilities are specified.
+- Complete data remains accessible without occupying the primary reading flow.
+- Stage 3 is split into independently committable implementation slices.
+- No rendering, styling, CLI, or scientific code changes are included.
 
 ## Verification
 
@@ -47,6 +49,8 @@ Acceptance checks:
 - Note: this machine's pre-existing editable virtualenv intermittently omits the
   project `.pth` after a Homebrew Python patch upgrade. Prefix local commands with
   `PYTHONPATH=src` until the virtualenv is recreated; the built wheel is complete.
+- Stage 3 design checkpoint: documentation-only; `git diff --check` passed. No code
+  tests were required for the reference study.
 
 ## Resume
 
@@ -59,7 +63,8 @@ git describe --tags --exact-match
 PYTHONPATH=src .venv/bin/pytest -q
 ```
 
-Stage 2 is complete. Do not begin Stage 3 until the user authorizes it.
+Stage 2 remains complete at tag `stage-2-brand-shell`. The Stage 3 reference study
+is complete. Do not begin implementation slice 3A until the user authorizes it.
 
 ## External setup
 

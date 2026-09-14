@@ -9,6 +9,7 @@ __pycache__/
 .ruff_cache/
 build/
 dist/
+tmp/
 *.db
 *.sqlite
 *.sqlite3
@@ -18,4 +19,3 @@ output/
 
 # Reviewed GitHub Pages artifacts are intentionally committed.
 !site/
-
