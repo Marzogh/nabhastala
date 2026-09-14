@@ -1,29 +1,124 @@
 {% extends "base.html" %}
-{% from "_table.html" import render_table %}
 {% block content %}
-  <div class="page-shell">
+  <div class="page-shell annual-overview">
     {% include "_page_header.html" %}
     {% include "_month_nav.html" %}
-    {% if charts %}
-      <section class="chart-section" aria-labelledby="annual-charts-title">
-        <header class="data-section__header">
-          <div>
-            <p class="eyebrow">Figures</p>
-            <h2 id="annual-charts-title">Annual charts</h2>
-          </div>
-        </header>
-        <div class="chart-grid">
-          {% for chart in charts %}
-            <figure>
-              <img src="{{ chart.src }}" alt="{{ chart.alt }}">
-              <figcaption>{{ chart.title }}</figcaption>
-            </figure>
+
+    <section class="year-glance" aria-labelledby="year-glance-title">
+      <header class="section-heading">
+        <p class="eyebrow">Year at a glance</p>
+        <h2 id="year-glance-title">Choose when to look up.</h2>
+        <p>Each month shows its strongest planning theme and the darkest lunar date in the available local data.</p>
+      </header>
+      <div class="glance-grid">
+        {% for month in overview.months %}
+          <a class="glance-month tone-{{ rating_tone(month.rating) }}" href="{{ month.href }}">
+            <span class="glance-month__number">{{ "%02d"|format(month.month) }}</span>
+            <strong>{{ month.month_name }}</strong>
+            <span class="moon-marker"{% if month.moon_illumination is not none %} style="--moon-fill: {{ (month.moon_illumination * 100)|round|int }}%"{% endif %} aria-label="{{ month.moon_state }}"></span>
+            <span>{{ month.lead_category }}</span>
+            <small>{{ month.rating|replace("_", " ")|title }}</small>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="annual-highlights" aria-labelledby="annual-highlights-title">
+      <header class="section-heading">
+        <p class="eyebrow">Best of {{ year }}</p>
+        <h2 id="annual-highlights-title">Start with these opportunities.</h2>
+      </header>
+      {% if overview.highlights %}
+        <ol class="highlight-list">
+          {% for highlight in overview.highlights %}
+            <li class="tone-{{ rating_tone(highlight.rating) }}">
+              <div class="highlight-list__date">
+                <span>{{ format_local_date(highlight.date_local) }}</span>
+                <small>{{ highlight.category }}</small>
+              </div>
+              <div>
+                <h3>{{ highlight.title }}</h3>
+                <p>{{ highlight.reason }}</p>
+              </div>
+              <span class="rating-label">{{ highlight.rating|replace("_", " ")|title }}</span>
+            </li>
           {% endfor %}
+        </ol>
+      {% else %}
+        <p class="empty-state">No complete, observable highlights are available for this edition.</p>
+      {% endif %}
+    </section>
+
+    <section class="seasonal-sky" aria-labelledby="seasonal-sky-title">
+      <header class="section-heading">
+        <p class="eyebrow">Seasonal sky</p>
+        <h2 id="seasonal-sky-title">See the year as a changing horizon.</h2>
+      </header>
+      <div class="seasonal-grid">
+        {% for chart in charts %}
+          <figure class="seasonal-chart">
+            <img src="{{ chart.src }}" alt="{{ chart.alt }}">
+            <figcaption>
+              <strong>{{ chart.title }}</strong>
+              Use this annual view to compare the height of the Galactic Centre during Moon-free dark windows.
+            </figcaption>
+          </figure>
+        {% endfor %}
+        <div class="planet-seasons">
+          <p class="eyebrow">Planet seasons</p>
+          <h3>Best monthly date by planet</h3>
+          {% if overview.planet_seasons %}
+            <ul>
+              {% for planet in overview.planet_seasons %}
+                <li>
+                  <strong>{{ planet.planet }}</strong>
+                  <span>{{ format_local_date(planet.best_date) }}{% if planet.best_altitude_deg is not none %} · {{ planet.best_altitude_deg|round|int }}°{% endif %}</span>
+                  <small class="tone-{{ rating_tone(planet.rating) }}">{{ planet.rating|title }}</small>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>Planet summary data is unavailable.</p>
+          {% endif %}
         </div>
-      </section>
-    {% endif %}
-    <div class="dataset-list">
-      {% for table in tables %}{{ render_table(table) }}{% endfor %}
-    </div>
+      </div>
+    </section>
+
+    <section class="month-index" aria-labelledby="month-index-title">
+      <header class="section-heading">
+        <p class="eyebrow">Monthly field guides</p>
+        <h2 id="month-index-title">Plan one month at a time.</h2>
+      </header>
+      <div class="month-card-grid">
+        {% for month in overview.months %}
+          <article class="month-card tone-{{ rating_tone(month.rating) }}">
+            <header>
+              <span class="month-card__number">{{ "%02d"|format(month.month) }}</span>
+              <div><p>{{ month.rating|replace("_", " ")|title }}</p><h3>{{ month.month_name }}</h3></div>
+            </header>
+            <p class="month-card__verdict">{{ month.verdict }}</p>
+            <dl>
+              <div><dt>Moon</dt><dd>{{ month.moon_state }}</dd></div>
+              <div><dt>Longest dark window</dt><dd>{{ month.best_dark_window or "Not available" }}</dd></div>
+            </dl>
+            {% if month.highlights %}
+              <ul>
+                {% for highlight in month.highlights %}<li>{{ highlight.title }} — {{ highlight.reason }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+            <a href="{{ month.href }}">Open {{ month.month_name }} field guide <span aria-hidden="true">→</span></a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <aside class="data-callout" aria-labelledby="data-callout-title">
+      <div>
+        <p class="eyebrow">Reference and provenance</p>
+        <h2 id="data-callout-title">Need every generated value?</h2>
+        <p>The complete datasets—including unavailable results—remain downloadable for inspection and analysis.</p>
+      </div>
+      <a href="data/index.html">Browse data and downloads <span aria-hidden="true">→</span></a>
+    </aside>
   </div>
 {% endblock %}

@@ -11,7 +11,13 @@ from pathlib import Path
 from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescape
 
 from paa.paths import public_site_slug, resolve_site_year_dir, site_year_dir
-from paa.render.view_models import format_display_value, humanize_label, rating_tone
+from paa.render.almanac_views import build_annual_overview
+from paa.render.view_models import (
+    format_display_value,
+    format_local_date,
+    humanize_label,
+    rating_tone,
+)
 
 SECTIONS = [
     ("sun_twilight.csv", "Sun and twilight"),
@@ -169,6 +175,7 @@ def _environment() -> Environment:
         lstrip_blocks=True,
     )
     environment.globals["rating_tone"] = rating_tone
+    environment.globals["format_local_date"] = format_local_date
     return environment
 
 
@@ -371,10 +378,8 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         )
         (months_dir / f"{month:02d}.html").write_text(page, encoding="utf-8")
 
-    annual_tables = [
-        _table_view(title, headers, rows) for _, title, headers, rows in source_tables
-    ]
     charts = _copy_charts(source_year_dir, year_dir)
+    overview = build_annual_overview(year, site_id, data_dir)
     annual = environment.get_template("annual.html").render(
         **common,
         document_title=f"Nabhastala — {year} field almanac",
@@ -383,8 +388,8 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         page_description=(
             f"A complete astronomy and astrophotography reference for {common['site_name']}."
         ),
-        tables=annual_tables,
-        charts=charts,
+        overview=overview,
+        charts=[chart for chart in charts if chart["src"] == "charts/milky_way_windows.png"],
         month_links=month_links,
         active_month=None,
         annual_href="almanac.html",

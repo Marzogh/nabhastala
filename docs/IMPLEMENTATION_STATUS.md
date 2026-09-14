@@ -6,7 +6,7 @@ until the previous stage is committed, tagged, and marked complete here.
 ## Current stage
 
 - Stage: 3 — User-friendly information architecture
-- State: slice 3B complete
+- State: slice 3C complete; paused before slice 3D
 - Objective: replace the dataset-led reading experience with a visual annual
   overview and decision-led monthly field guides
 - Design specification: `docs/STAGE_3_DESIGN_SPEC.md`
@@ -123,21 +123,72 @@ Results:
 
 - Focused tests: 8 passed.
 - Full regression suite: 42 passed.
-- Ruff passed for the changed renderer and tests.
-- `git diff --check` passed.
-- Real-data render: the 2026 SE Queensland edition produced the root landing page,
-  canonical CSV copies, and data-library index successfully.
-- Visual QA: the landing page, corrected identity hierarchy, annual navigation, and
-  data-library page were inspected at a narrow browser width in the light theme.
+- Ruff and `git diff --check` passed.
+- The 2026 SE Queensland landing and data-library pages were rendered and visually
+  inspected at a narrow browser width in the light theme.
 - Scientific calculations, scores, and CLI command signatures were not changed.
 - Checkpoint tag: `stage-3b-landing`.
+
+## Slice 3C — Annual overview
+
+Objective:
+
+- replace the exhaustive annual dataset flow with a visual year-at-a-glance;
+- select a small, deterministic and category-diverse set of valid opportunities;
+- give each month a Moon marker, dark-window summary, lead category, verdict, and
+  direct field-guide link;
+- place the annual Milky Way chart and planet seasons in decision context.
+
+Affected files:
+
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/html.py`
+- `src/paa/render/view_models.py`
+- `src/paa/render/templates/annual.html`
+- `src/paa/render/static/styles.css`
+- `tests/test_annual_overview.py`
+- `tests/test_brand_shell.py`
+- `tests/test_render_paths.py`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- The annual page initially renders no exhaustive data table or dataset sequence.
+- Twelve months appear in order with usable empty states and direct links.
+- Highlights exclude failed and incomplete rows and preserve category diversity.
+- Every “best” statement displays the source value or reason used to justify it.
+- Existing Milky Way imagery is contextualised; Jupiter/Saturn strip charts are
+  reserved for specialised Stage 4 views.
+- Complete CSV access remains prominent through the data library.
+- Existing scientific and CLI tests remain green.
+
+Focused test command:
+
+```bash
+PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py
+```
 
 Resume command:
 
 ```bash
 git status --short
-PYTHONPATH=src .venv/bin/pytest -q tests/test_brand_shell.py tests/test_render_paths.py
+PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py
 ```
+
+Results:
+
+- Focused tests: 20 passed.
+- Full regression suite: 45 passed.
+- Ruff passed for all changed Python and test files.
+- `git diff --check` passed.
+- Real-data render: the 2026 SE Queensland annual edition rendered successfully in
+  about 15 seconds.
+- Visual QA: the actual annual edition was inspected in-browser at a narrow width;
+  its identity hierarchy, calendar grid, ranked events, seasonal context, monthly
+  cards, and data-library route render as intended. The generated HTML contains
+  each major section exactly once and contains no annual data table.
+- Scientific calculations, scores, and CLI command signatures were not changed.
+- Checkpoint tag: `stage-3c-annual`.
 
 ## Verification
 
@@ -167,6 +218,10 @@ PYTHONPATH=src .venv/bin/pytest -q tests/test_brand_shell.py tests/test_render_p
   `PYTHONPATH=src .venv/bin/pytest -q tests/test_brand_shell.py tests/test_render_paths.py`
 - Stage 3B focused result: 8 passed.
 - Stage 3B full result: 42 passed.
+- Stage 3C focused test command:
+  `PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py`
+- Stage 3C focused result: 20 passed.
+- Stage 3C full result: 45 passed.
 
 ## Resume
 
@@ -180,8 +235,8 @@ PYTHONPATH=src .venv/bin/pytest -q
 ```
 
 Stage 2 remains complete at tag `stage-2-brand-shell`. Stage 3A is complete at tag
-`stage-3a-contracts`, and Stage 3B is complete at tag `stage-3b-landing`. Do not
-begin slice 3C until the user authorizes it.
+`stage-3a-contracts`, Stage 3B at tag `stage-3b-landing`, and Stage 3C at tag
+`stage-3c-annual`. Do not begin slice 3D until the user authorizes it.
 
 ## External setup
 

@@ -55,6 +55,10 @@ class MonthSummaryView:
     best_dark_window: str | None
     moon_state: str
     highlights: tuple[OpportunityView, ...] = ()
+    month_name: str = ""
+    href: str = ""
+    lead_category: str = "General observing"
+    moon_illumination: float | None = None
 
     def __post_init__(self) -> None:
         _validate_month(self.month)
@@ -69,12 +73,21 @@ class AnnualOverviewView:
     site_slug: str
     months: tuple[MonthSummaryView, ...]
     highlights: tuple[OpportunityView, ...] = ()
+    planet_seasons: tuple[PlanetSeasonView, ...] = ()
 
     def __post_init__(self) -> None:
         if tuple(month.month for month in self.months) != tuple(range(1, 13)):
             raise ValueError("An annual overview requires months 1 through 12 in order")
         if len(self.highlights) > 6:
             raise ValueError("An annual overview can contain at most six highlights")
+
+
+@dataclass(frozen=True)
+class PlanetSeasonView:
+    planet: str
+    best_date: str
+    best_altitude_deg: float | None
+    rating: str
 
 
 @dataclass(frozen=True)
@@ -169,6 +182,18 @@ def format_local_datetime(value: object, timezone_name: str | None = None) -> st
         if zone:
             rendered += f" {zone}"
     return rendered
+
+
+def format_local_date(value: object, *, include_year: bool = False) -> str:
+    text = str(value).strip()
+    if text.lower() in MISSING_VALUES:
+        return "—"
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return text
+    rendered = f"{parsed.day} {parsed.strftime('%b')}"
+    return f"{rendered} {parsed.year}" if include_year else rendered
 
 
 def rating_tone(value: object) -> str:

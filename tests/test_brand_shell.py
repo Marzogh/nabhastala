@@ -40,7 +40,7 @@ def test_exact_identity_and_semantic_landmarks_are_rendered(tmp_path: Path) -> N
 
     parser = _LandmarkParser()
     parser.feed(html)
-    assert {"header", "nav", "main", "footer", "table", "caption"}.issubset(parser.tags)
+    assert {"header", "nav", "main", "footer"}.issubset(parser.tags)
     assert "main-content" in parser.ids
 
     devanagari = html.index('<span class="identity__devanagari"')
@@ -48,6 +48,19 @@ def test_exact_identity_and_semantic_landmarks_are_rendered(tmp_path: Path) -> N
     translation = html.index('<span class="identity__translation"')
     english = html.index('<span class="identity__english"')
     assert devanagari < sanskrit < translation < english
+
+
+def test_annual_page_is_an_editorial_overview_not_a_dataset_dump(tmp_path: Path) -> None:
+    annual = _render_fixture(tmp_path)
+    html = annual.read_text(encoding="utf-8")
+
+    assert "Year at a glance" in html
+    assert "Best of 2027" in html
+    assert "Monthly field guides" in html
+    assert 'href="data/index.html"' in html
+    assert html.count('class="glance-month ') == 12
+    assert "<table" not in html
+    assert "dataset-list" not in html
 
 
 def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path: Path) -> None:

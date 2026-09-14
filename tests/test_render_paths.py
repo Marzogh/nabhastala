@@ -46,10 +46,15 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert (rendered.parent / "data" / "index.html").exists()
     assert (output / "index.html").exists()
     html = rendered.read_text(encoding="utf-8")
-    assert "Moon illumination" in html
-    assert "27%" in html
+    assert "Year at a glance" in html
+    assert "Monthly field guides" in html
+    assert "Browse data and downloads" in html
+    assert "<table" not in html
     assert "<script>unsafe</script>" not in html
-    assert "&lt;script&gt;unsafe&lt;/script&gt;" in html
+    assert "&lt;script&gt;unsafe&lt;/script&gt;" not in html
+    assert "<script>unsafe</script>" in (
+        rendered.parent / "data" / "comets.csv"
+    ).read_text(encoding="utf-8")
 
 
 def test_validation_reads_legacy_data_and_writes_canonical_report(tmp_path: Path) -> None:

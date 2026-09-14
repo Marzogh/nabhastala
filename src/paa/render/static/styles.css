@@ -672,6 +672,343 @@ tbody tr:hover {
   color: var(--ink-soft);
 }
 
+.annual-overview {
+  display: grid;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+.annual-overview .month-nav {
+  margin-block: calc(-1 * var(--space-5)) calc(-1 * var(--space-4));
+}
+
+.year-glance,
+.annual-highlights,
+.seasonal-sky,
+.month-index {
+  display: grid;
+  gap: var(--space-6);
+  scroll-margin-top: var(--space-6);
+}
+
+.section-heading > p:last-child {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-soft);
+}
+
+.glance-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--border-strong);
+  border-left: 1px solid var(--border);
+}
+
+.glance-month {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-1) var(--space-2);
+  min-height: 11rem;
+  padding: var(--space-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.glance-month::before,
+.month-card::before,
+.highlight-list > li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--tone, var(--border-strong));
+  content: "";
+}
+
+.glance-month:hover {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.glance-month__number,
+.month-card__number,
+.highlight-list__date,
+.rating-label {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.glance-month__number {
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+
+.glance-month strong {
+  grid-column: 1 / -1;
+  font-size: 1.15rem;
+}
+
+.glance-month > span:nth-last-of-type(1) {
+  align-self: end;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.glance-month small {
+  align-self: end;
+  justify-self: end;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.moon-marker {
+  --moon-fill: 0%;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--ink) var(--moon-fill), transparent 0);
+}
+
+.tone-excellent { --tone: var(--sage); }
+.tone-good { --tone: #9b7b4f; }
+.tone-fair { --tone: var(--accent); }
+.tone-poor,
+.tone-unavailable,
+.tone-neutral { --tone: var(--border-strong); }
+
+.highlight-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border-strong);
+  list-style: none;
+  counter-reset: annual-highlight;
+}
+
+.highlight-list > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.7fr) minmax(16rem, 2fr) auto;
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  counter-increment: annual-highlight;
+}
+
+.highlight-list__date {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--ink);
+}
+
+.highlight-list__date::before {
+  color: var(--accent);
+  content: counter(annual-highlight, decimal-leading-zero);
+  font-size: 0.7rem;
+}
+
+.highlight-list__date small,
+.rating-label {
+  color: var(--ink-soft);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.highlight-list h3 { margin-bottom: var(--space-1); }
+
+.highlight-list p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.rating-label {
+  padding-left: var(--space-2);
+  border-left: 3px solid var(--tone, var(--border-strong));
+}
+
+.seasonal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 0.8fr);
+  gap: var(--space-6);
+  align-items: start;
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border-strong);
+}
+
+.seasonal-chart figcaption {
+  max-width: 62ch;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: normal;
+  line-height: 1.45;
+  text-transform: none;
+}
+
+.seasonal-chart figcaption strong {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.planet-seasons {
+  padding: var(--space-5);
+  background: var(--surface);
+}
+
+.planet-seasons h3 { margin-top: var(--space-1); }
+
+.planet-seasons ul {
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planet-seasons li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 var(--space-3);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.planet-seasons li span {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.planet-seasons li small {
+  grid-column: 1 / -1;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.month-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border-strong);
+  border-left: 1px solid var(--border);
+}
+
+.month-card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.month-card header {
+  display: flex;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.month-card__number {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.month-card header p {
+  margin: 0 0 var(--space-1);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.month-card__verdict {
+  min-height: 4.8em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.month-card dl,
+.month-card ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month-card dl > div {
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.month-card dt {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.month-card dd {
+  margin: var(--space-1) 0 0;
+  font-size: 0.85rem;
+}
+
+.month-card ul {
+  padding-left: var(--space-4);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.month-card > a {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.month-card > a:hover { color: var(--accent); }
+
+.data-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 0.5fr);
+  gap: var(--space-6);
+  align-items: end;
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.data-callout h2 { margin-top: var(--space-1); }
+
+.data-callout p:last-child {
+  max-width: 54rem;
+  margin: var(--space-3) 0 0;
+  color: var(--ink-soft);
+}
+
+.data-callout > a {
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
 figure {
   margin: 0;
 }
@@ -745,6 +1082,19 @@ figcaption {
   .horizon-card h3 {
     min-height: 0;
   }
+
+  .glance-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .seasonal-grid,
+  .data-callout {
+    grid-template-columns: 1fr;
+  }
+
+  .month-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 36rem) {
@@ -797,6 +1147,37 @@ figcaption {
   .dataset-card,
   .dataset-card:nth-child(even) {
     border-right: 0;
+  }
+
+  .annual-overview {
+    gap: 4rem;
+  }
+
+  .glance-grid,
+  .month-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glance-month {
+    min-height: 8.5rem;
+  }
+
+  .highlight-list > li {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .rating-label {
+    justify-self: start;
+  }
+
+  .month-card__verdict {
+    min-height: 0;
+  }
+
+  .data-callout,
+  .planet-seasons {
+    padding: var(--space-5);
   }
 
   .data-section__header {
@@ -861,6 +1242,10 @@ figcaption {
   }
 
   .data-section,
+  .glance-month,
+  .highlight-list > li,
+  .month-card,
+  .seasonal-grid,
   figure,
   table {
     break-inside: avoid;
