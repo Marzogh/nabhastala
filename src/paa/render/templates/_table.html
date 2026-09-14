@@ -1,0 +1,31 @@
+{% macro render_table(table) %}
+  <section class="data-section" aria-labelledby="{{ table.section_id }}-title">
+    <header class="data-section__header">
+      <div>
+        <p class="eyebrow">Dataset</p>
+        <h2 id="{{ table.section_id }}-title">{{ table.title }}</h2>
+      </div>
+      <p class="row-count">{{ table.total_rows }} {% if table.total_rows == 1 %}record{% else %}records{% endif %}</p>
+    </header>
+    {% if table.headers and table.rows %}
+      <div class="table-region" role="region" aria-labelledby="{{ table.section_id }}-title" tabindex="0">
+        <table>
+          <caption class="visually-hidden">{{ table.title }}, {{ table.total_rows }} records</caption>
+          <thead>
+            <tr>
+              {% for header in table.headers %}<th scope="col">{{ header }}</th>{% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in table.rows %}
+              <tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% if table.truncated %}<p class="table-note">Showing the first 200 records in this monthly view.</p>{% endif %}
+    {% else %}
+      <p class="empty-state">No records for this period.</p>
+    {% endif %}
+  </section>
+{% endmacro %}

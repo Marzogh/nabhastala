@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "_table.html" import render_table %}
+{% block content %}
+  <div class="page-shell">
+    <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
+    {% include "_page_header.html" %}
+    {% include "_month_nav.html" %}
+    <div class="dataset-list">
+      {% for table in tables %}{{ render_table(table) }}{% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+<nav class="month-nav" aria-label="Months in {{ year }}">
+  {% for month in month_links %}
+    <a href="{{ month.href }}"{% if active_month == month.number %} aria-current="page"{% endif %}>
+      <span class="month-nav__number">{{ "%02d"|format(month.number) }}</span>
+      <span>{{ month.label }}</span>
+    </a>
+  {% endfor %}
+</nav>

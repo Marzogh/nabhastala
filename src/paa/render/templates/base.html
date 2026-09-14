@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="Prajwal Bhattaram">
+    <meta name="generator" content="Nabhastala">
+    <title>{{ document_title }}</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("nabhastala-theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+        document.documentElement.classList.add("js");
+      } catch (_) {}
+    </script>
+    <link rel="stylesheet" href="{{ asset_prefix }}styles.css">
+    <script defer src="{{ asset_prefix }}theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to almanac</a>
+    {% include "_site_header.html" %}
+    <main id="main-content" tabindex="-1">
+      {% block content %}{% endblock %}
+    </main>
+    {% include "_site_footer.html" %}
+  </body>
+</html>

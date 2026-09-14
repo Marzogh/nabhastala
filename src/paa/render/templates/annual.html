@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_table.html" import render_table %}
+{% block content %}
+  <div class="page-shell">
+    {% include "_page_header.html" %}
+    {% include "_month_nav.html" %}
+    {% if charts %}
+      <section class="chart-section" aria-labelledby="annual-charts-title">
+        <header class="data-section__header">
+          <div>
+            <p class="eyebrow">Figures</p>
+            <h2 id="annual-charts-title">Annual charts</h2>
+          </div>
+        </header>
+        <div class="chart-grid">
+          {% for chart in charts %}
+            <figure>
+              <img src="{{ chart.src }}" alt="{{ chart.alt }}">
+              <figcaption>{{ chart.title }}</figcaption>
+            </figure>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    <div class="dataset-list">
+      {% for table in tables %}{{ render_table(table) }}{% endfor %}
+    </div>
+  </div>
+{% endblock %}

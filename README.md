@@ -1,9 +1,13 @@
-# personal-astro-almanac
+# नभस्तल — Nabhastala
+
+**त्रिषु दिगन्तेष्वेकं नभः (Triṣu diganteṣv ekaṃ nabhaḥ)**
+**One sky at three horizons.**
 
 Local, reproducible annual astronomy and astrophotography almanac generator.
 
-This codebase is being developed into **Nabhastala**, a static field almanac
-published independently and linked from Chips’nCode. See
+Nabhastala is being developed as a static field almanac published independently
+and linked from Chips’nCode. The Python distribution retains the technical name
+`personal-astro-almanac`. See
 [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md) for the current
 restart-safe implementation stage.
 

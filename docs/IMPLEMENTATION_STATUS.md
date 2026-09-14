@@ -5,39 +5,48 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 1 — Rendering contract and multi-site paths
+- Stage: 2 — Nabhastala brand foundation
 - State: complete
-- Objective: isolate every site/year build while retaining read-only access to legacy outputs
+- Objective: replace string-built documents with a reusable, accessible Nabhastala page shell
 - Started: 2026-09-14
 
-## Stage 1 work
+## Stage 2 work
 
 Expected areas:
 
-- output-path helpers and CLI consumers
-- HTML, validation, provenance, and occultation path consumers
-- renderer view-model helpers
-- deterministic renderer fixture and focused tests
+- packaged Jinja templates and reusable renderer view models
+- shared CSS tokens, local font assets, and minimal theme script
+- annual and monthly semantic page shells
+- renderer, packaging, accessibility, and visual smoke tests
 - `docs/IMPLEMENTATION_STATUS.md`
 
 Acceptance checks:
 
-- New writes use `output/<site>/<year>/`.
-- Legacy `output/<year>/` content remains readable and is never written.
-- Existing CLI commands remain valid.
-- Human labels, local datetimes, ratings, missing values, and escaping are tested.
+- Exact supplied identity appears on annual and monthly pages.
+- Templates and assets work from an installed package and direct file URLs.
+- Light, dark, focus, reduced-motion, narrow-screen, and print treatments exist.
+- Core content and navigation work without JavaScript.
 - Full regression suite passes.
-- Work is committed and tagged `stage-1-multisite-contract`.
+- Work is committed and tagged `stage-2-brand-shell`.
 
 ## Verification
 
-- Focused test command: `.venv/bin/python -m pytest tests/test_paths.py tests/test_view_models.py tests/test_render_paths.py`
-- Full test command: `.venv/bin/python -m pytest`
-- Result: 16 focused tests passed; 27 full-suite tests passed on Python 3.14.7
-- Lint: import and error checks passed for all Stage 1 files
-- Smoke test: legacy 2026 `se_qld` data rendered to
-  `output/se_qld/2026/almanac.html` with 12 monthly pages
-- Safety: legacy fallback now requires a matching run-manifest `site_id`
+- Focused test command: `PYTHONPATH=src .venv/bin/pytest -q tests/test_render_paths.py tests/test_brand_shell.py`
+- Focused result: 6 passed.
+- Full test command: `PYTHONPATH=src .venv/bin/pytest -q`
+- Full result: 31 passed.
+- Static checks: Ruff passed for the renderer and renderer tests; `node --check`
+  passed for `theme.js`; `git diff --check` passed.
+- Package check: a wheel built successfully and contained all templates, CSS,
+  JavaScript, bundled font subsets, and font licence files.
+- Render smoke test: the existing 2026 `se_qld` material rendered successfully to
+  `output/se_qld/2026/` through the legacy read fallback.
+- Visual smoke test: annual and January monthly pages were inspected in a browser
+  in light and dark themes. The identity fonts, hierarchy, navigation, tables, and
+  horizontal overflow treatments rendered correctly at the tested desktop width.
+- Note: this machine's pre-existing editable virtualenv intermittently omits the
+  project `.pth` after a Homebrew Python patch upgrade. Prefix local commands with
+  `PYTHONPATH=src` until the virtualenv is recreated; the built wheel is complete.
 
 ## Resume
 
@@ -46,11 +55,11 @@ From the repository root, run:
 ```bash
 git status --short
 git log -1 --oneline
-.venv/bin/python -m pytest
+git describe --tags --exact-match
+PYTHONPATH=src .venv/bin/pytest -q
 ```
 
-Stage 1 is complete. After the checkpoint commit is present and the working tree
-is clean, the next authorized work is Stage 2: Nabhastala brand foundation.
+Stage 2 is complete. Do not begin Stage 3 until the user authorizes it.
 
 ## External setup
 
