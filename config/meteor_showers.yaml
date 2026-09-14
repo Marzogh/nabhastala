@@ -1,0 +1,50 @@
+showers:
+  - id: quadrantids
+    name: Quadrantids
+    active_start_mmdd: "12-28"
+    active_end_mmdd: "01-12"
+    typical_peak_mmdd: "01-03"
+    radiant_ra_hours: 15.3
+    radiant_dec_deg: 49.7
+    zhr: 120
+    notes: "Short peak window; weather sensitive."
+
+  - id: eta_aquariids
+    name: Eta Aquariids
+    active_start_mmdd: "04-19"
+    active_end_mmdd: "05-28"
+    typical_peak_mmdd: "05-06"
+    radiant_ra_hours: 22.533
+    radiant_dec_deg: -1.0
+    zhr: 50
+    notes: "Often favorable from southern latitudes pre-dawn."
+
+  - id: perseids
+    name: Perseids
+    active_start_mmdd: "07-17"
+    active_end_mmdd: "08-24"
+    typical_peak_mmdd: "08-12"
+    radiant_ra_hours: 3.13
+    radiant_dec_deg: 58.0
+    zhr: 100
+    notes: "High northern radiant; can be modest in SE QLD."
+
+  - id: orionids
+    name: Orionids
+    active_start_mmdd: "10-02"
+    active_end_mmdd: "11-07"
+    typical_peak_mmdd: "10-21"
+    radiant_ra_hours: 6.33
+    radiant_dec_deg: 15.0
+    zhr: 20
+    notes: "Halley stream; best after midnight."
+
+  - id: geminids
+    name: Geminids
+    active_start_mmdd: "12-04"
+    active_end_mmdd: "12-17"
+    typical_peak_mmdd: "12-14"
+    radiant_ra_hours: 7.467
+    radiant_dec_deg: 32.2
+    zhr: 120
+    notes: "Strong annual shower, geometry varies by hemisphere."

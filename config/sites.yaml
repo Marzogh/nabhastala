@@ -1,0 +1,22 @@
+sites:
+  - id: se_qld
+    name: South East Queensland, Australia
+    latitude_deg: -27.5
+    longitude_deg: 153.0
+    elevation_m: 50
+    timezone: Australia/Brisbane
+    bortle: null
+  - id: southern_tasmania
+    name: Southern Tasmania, Australia
+    latitude_deg: -42.75
+    longitude_deg: 146.98
+    elevation_m: 120
+    timezone: Australia/Hobart
+    bortle: null
+  - id: malabar_coast
+    name: Malabar Coast, India
+    latitude_deg: 11.2588
+    longitude_deg: 75.7804
+    elevation_m: 5
+    timezone: Asia/Kolkata
+    bortle: null

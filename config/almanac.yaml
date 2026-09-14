@@ -1,0 +1,53 @@
+year: 2027
+
+darkness:
+  twilight: astronomical
+  sun_altitude_deg: -18
+  min_dark_window_minutes: 60
+
+moon:
+  max_illumination_for_dark_imaging: 0.25
+  require_moon_below_horizon: true
+
+milky_way:
+  useful_altitude_deg: 20
+  excellent_altitude_deg: 25
+  scan_step_minutes: 10
+
+planets:
+  min_altitude_deg: 25
+  excellent_altitude_deg: 45
+
+minor_planets:
+  max_imaging_mag: 15
+  min_solar_elongation_deg: 60
+  min_altitude_deg: 25
+  step_hours: 12
+  candidates:
+    - "1;"
+    - "2;"
+    - "3;"
+    - "4;"
+    - "7;"
+    - "15;"
+
+comets:
+  max_mag: 18
+  min_solar_elongation_deg: 40
+  min_altitude_deg: 15
+  step_hours: 12
+  sbdb_limit: 60
+  catalog_max_mag: 22
+  catalog_min_solar_elongation_deg: 20
+  catalog_min_altitude_deg: 5
+  candidates:
+    - "C/2023 A3"
+    - "12P"
+    - "29P"
+
+occultations:
+  max_star_mag_visual: 8
+  max_star_mag_imaging: 11
+  min_moon_altitude_deg: 10
+  keep_all_planetary: true
+  prefer_dark_limb: true

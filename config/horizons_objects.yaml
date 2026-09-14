@@ -1,0 +1,22 @@
+major_planets:
+  Mercury: "199"
+  Venus: "299"
+  Mars: "499"
+  Jupiter: "599"
+  Saturn: "699"
+  Uranus: "799"
+  Neptune: "899"
+
+jupiter_moons:
+  Io: "501"
+  Europa: "502"
+  Ganymede: "503"
+  Callisto: "504"
+
+saturn_moons:
+  Enceladus: "602"
+  Tethys: "603"
+  Dione: "604"
+  Rhea: "605"
+  Titan: "606"
+  Iapetus: "608"

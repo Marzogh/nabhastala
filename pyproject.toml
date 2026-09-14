@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "personal-astro-almanac"
+version = "0.1.0"
+description = "Personal astronomy and imaging almanac generator"
+authors = [{ name = "Prajwal Bhattaram" }]
+requires-python = ">=3.11"
+dependencies = [
+  "pandas",
+  "numpy",
+  "requests",
+  "pydantic>=2",
+  "pyyaml",
+  "python-dateutil",
+  "astropy",
+  "astroplan",
+  "skyfield",
+  "astral",
+  "matplotlib",
+  "jinja2",
+  "typer>=0.12",
+  "psycopg[binary]>=3.2",
+  "fastapi>=0.111",
+  "uvicorn>=0.30",
+]
+
+[project.scripts]
+astro-almanac = "paa.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "ruff",
+  "mypy",
+]
+pdf = ["weasyprint"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

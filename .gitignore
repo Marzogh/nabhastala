@@ -1,0 +1,21 @@
+.DS_Store
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.db
+*.sqlite
+*.sqlite3
+
+# Scientific build products remain local until assembled into a reviewed release.
+output/
+
+# Reviewed GitHub Pages artifacts are intentionally committed.
+!site/
+
