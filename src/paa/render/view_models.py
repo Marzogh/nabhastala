@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
+from dataclasses import dataclass
 from datetime import datetime
 from html import escape
+from math import inf
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 LABEL_OVERRIDES = {
@@ -24,6 +27,121 @@ RATING_TONES = {
     "query_failed": "unavailable",
     "unavailable": "unavailable",
 }
+RATING_PRIORITY = {"excellent": 4, "good": 3, "fair": 2, "poor": 1}
+
+
+@dataclass(frozen=True)
+class OpportunityView:
+    """A renderer-owned candidate; its score is copied, never recalculated."""
+
+    key: str
+    category: str
+    title: str
+    date_local: str
+    rating: str
+    reason: str
+    score: float | None = None
+    source_order: int = 0
+    observable: bool = True
+    complete: bool = True
+    include_when_poor: bool = False
+
+
+@dataclass(frozen=True)
+class MonthSummaryView:
+    month: int
+    verdict: str
+    rating: str
+    best_dark_window: str | None
+    moon_state: str
+    highlights: tuple[OpportunityView, ...] = ()
+
+    def __post_init__(self) -> None:
+        _validate_month(self.month)
+        if len(self.highlights) > 2:
+            raise ValueError("A month summary can contain at most two highlights")
+
+
+@dataclass(frozen=True)
+class AnnualOverviewView:
+    year: int
+    site_id: str
+    site_slug: str
+    months: tuple[MonthSummaryView, ...]
+    highlights: tuple[OpportunityView, ...] = ()
+
+    def __post_init__(self) -> None:
+        if tuple(month.month for month in self.months) != tuple(range(1, 13)):
+            raise ValueError("An annual overview requires months 1 through 12 in order")
+        if len(self.highlights) > 6:
+            raise ValueError("An annual overview can contain at most six highlights")
+
+
+@dataclass(frozen=True)
+class MonthGuideView:
+    year: int
+    month: int
+    site_id: str
+    site_slug: str
+    verdict: str
+    highlights: tuple[OpportunityView, ...] = ()
+
+    def __post_init__(self) -> None:
+        _validate_month(self.month)
+        if len(self.highlights) > 5:
+            raise ValueError("A monthly guide can contain at most five highlights")
+
+
+def _validate_month(month: int) -> int:
+    if not 1 <= month <= 12:
+        raise ValueError(f"Invalid month: {month!r}")
+    return month
+
+
+def opportunity_is_eligible(candidate: OpportunityView) -> bool:
+    """Return whether a candidate can appear in an editorial highlight list."""
+    rating = candidate.rating.strip().lower()
+    if not (
+        candidate.observable
+        and candidate.complete
+        and candidate.title.strip()
+        and candidate.reason.strip()
+        and candidate.date_local.strip()
+    ):
+        return False
+    if rating == "poor":
+        return candidate.include_when_poor
+    return rating in {"excellent", "good", "fair"}
+
+
+def rank_opportunities(
+    candidates: Iterable[OpportunityView],
+    *,
+    limit: int,
+    month: int | None = None,
+) -> tuple[OpportunityView, ...]:
+    """Select eligible highlights using a stable, documented display order."""
+    if limit < 0:
+        raise ValueError("Highlight limit cannot be negative")
+    if month is not None:
+        _validate_month(month)
+
+    eligible = [
+        candidate
+        for candidate in candidates
+        if opportunity_is_eligible(candidate)
+        and (month is None or candidate.date_local[5:7] == f"{month:02d}")
+    ]
+    eligible.sort(
+        key=lambda candidate: (
+            -RATING_PRIORITY[candidate.rating.strip().lower()],
+            -(candidate.score if candidate.score is not None else -inf),
+            candidate.date_local,
+            candidate.source_order,
+            candidate.title.casefold(),
+        )
+    )
+    return tuple(eligible[:limit])
 
 
 def humanize_label(name: str) -> str:

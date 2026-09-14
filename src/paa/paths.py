@@ -2,9 +2,16 @@ from __future__ import annotations
 
 import json
 import re
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 _SITE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
+
+PUBLIC_SITE_SLUGS = {
+    "se_qld": "se-qld",
+    "southern_tasmania": "southern-tasmania",
+    "malabar_coast": "malabar-coast",
+}
+_SITE_IDS_BY_PUBLIC_SLUG = {slug: site_id for site_id, slug in PUBLIC_SITE_SLUGS.items()}
 
 
 def validate_site_id(site_id: str) -> str:
@@ -12,6 +19,50 @@ def validate_site_id(site_id: str) -> str:
     if not _SITE_ID.fullmatch(site_id):
         raise ValueError(f"Invalid site id: {site_id!r}")
     return site_id
+
+
+def public_site_slug(site_id: str) -> str:
+    """Return the stable URL slug for a configured observing site."""
+    try:
+        return PUBLIC_SITE_SLUGS[site_id]
+    except KeyError as error:
+        raise ValueError(f"No public slug for site id: {site_id!r}") from error
+
+
+def site_id_from_public_slug(slug: str) -> str:
+    """Return the configured site id represented by a stable URL slug."""
+    try:
+        return _SITE_IDS_BY_PUBLIC_SLUG[slug]
+    except KeyError as error:
+        raise ValueError(f"Unknown public site slug: {slug!r}") from error
+
+
+def _validate_public_year(year: int) -> int:
+    if not 1000 <= year <= 9999:
+        raise ValueError(f"Invalid publication year: {year!r}")
+    return year
+
+
+def public_site_year_path(site_id: str, year: int) -> PurePosixPath:
+    """Return the stable published annual index path, independent of host OS."""
+    return (
+        PurePosixPath("sites")
+        / public_site_slug(site_id)
+        / str(_validate_public_year(year))
+        / "index.html"
+    )
+
+
+def public_month_path(site_id: str, year: int, month: int) -> PurePosixPath:
+    """Return the stable published path for one monthly field guide."""
+    if not 1 <= month <= 12:
+        raise ValueError(f"Invalid publication month: {month!r}")
+    return public_site_year_path(site_id, year).parent / "months" / f"{month:02d}.html"
+
+
+def public_data_path(site_id: str, year: int) -> PurePosixPath:
+    """Return the stable published dataset-library path for a site and year."""
+    return public_site_year_path(site_id, year).parent / "data" / "index.html"
 
 
 def site_year_dir(output_dir: Path, site_id: str, year: int) -> Path:
