@@ -118,6 +118,14 @@ DATASET_GROUP_ORDER = (
     "Supporting and provenance",
 )
 
+DATASET_GROUP_ART = {
+    "Night planning": "sun",
+    "Deep sky": "galaxy",
+    "Planets and satellites": "planet",
+    "Events and targets": "comet",
+    "Supporting and provenance": "document",
+}
+
 
 @dataclass(frozen=True)
 class TableView:
@@ -314,6 +322,7 @@ def _render_data_library(
     groups = [
         {
             "name": category,
+            "art": DATASET_GROUP_ART[category],
             "datasets": [dataset for dataset in datasets if dataset.category == category],
         }
         for category in DATASET_GROUP_ORDER

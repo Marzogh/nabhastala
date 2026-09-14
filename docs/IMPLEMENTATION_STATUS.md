@@ -5,12 +5,90 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 3 — User-friendly information architecture
-- State: slice 3E implementation complete; manual 200% zoom confirmation pending
-- Objective: replace the dataset-led reading experience with a visual annual
-  overview and decision-led monthly field guides
-- Design specification: `docs/STAGE_3_DESIGN_SPEC.md`
-- Study date: 2026-09-14
+- Stage: 3F, editorial almanac redesign
+- State: complete
+- Objective: apply the supplied publication-style visual direction to the annual,
+  monthly, and data-library pages while preserving generated scientific content,
+  the exact public identity, accessibility, and complete CSV access
+- Design references: the user-supplied `nabhasthala-redesign.zip` and three page
+  mockups dated 2026-09-15
+- Started: 2026-09-15
+
+## Stage 3F: Editorial almanac redesign
+
+Implementation order within this single stage:
+
+1. Shared editorial system, optimised artwork, exact identity, and annual page.
+2. Monthly field-guide composition driven entirely by generated data.
+3. Grouped data-and-downloads catalogue.
+4. Mobile, dark-theme, accessibility, performance, and regression QA.
+
+Affected files:
+
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/html.py`
+- `src/paa/render/view_models.py`
+- `src/paa/render/templates/*.html`
+- `src/paa/render/static/styles.css`
+- `src/paa/render/static/theme.js`
+- `src/paa/render/static/art/*`
+- focused renderer and information-architecture tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- The exact four-line identity is preserved as supplied: `नभस्तल`, `Nabhastala`,
+  `त्रिषु दिगन्तेष्वेकं नभः (Triṣu diganteṣv ekaṃ nabhaḥ)`, and
+  `One sky at three horizons.`
+- Annual, monthly, and data pages share a coherent editorial almanac system while
+  retaining page-specific compositions.
+- Every displayed date, time, rating, count, recommendation, and chart comes from
+  generated output or an explicit unavailable state; prototype sample claims are
+  not copied into production templates.
+- The annual page provides a concise year overview, the monthly page supports
+  field decisions, and the data page provides compact grouped downloads.
+- Complete CSV files and existing scientific schemas remain unchanged.
+- Artwork is locally bundled, appropriately described or decorative, and reduced
+  to a practical static-site payload.
+- Keyboard navigation, focus visibility, reduced motion, no-JavaScript operation,
+  light and dark themes, narrow layouts, and 200% zoom remain usable.
+- Existing scientific and CLI tests remain green.
+
+Focused test command:
+
+```bash
+PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_monthly_guide.py tests/test_information_architecture.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py
+```
+
+Exact resume command:
+
+```bash
+git status --short
+sed -n '/## Stage 3F/,/## Stage 3 design checkpoint/p' docs/IMPLEMENTATION_STATUS.md
+PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_monthly_guide.py tests/test_information_architecture.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py
+```
+
+Results:
+
+- The supplied prototype was used as a visual reference, not as a data source.
+  All production summaries remain generated from the existing view models.
+- The exact four-line public identity is preserved. The alternative spellings in
+  the prototype were not introduced.
+- Annual, monthly, and data-library pages now use one editorial almanac system
+  with page-specific compositions, locally bundled illustration, and compact
+  task-focused information.
+- Sixteen light and dark illustrations were resized and converted to WebP. Their
+  combined packaged size is about 740 KiB, compared with about 31 MiB for the
+  supplied prototype archive.
+- Focused Stage 3F tests: 27 passed.
+- Full regression suite: 52 passed.
+- Ruff and `git diff --check` passed.
+- The real 2026 South East Queensland annual, January, and data pages were rendered
+  and visually inspected at 1280 px and 390 px widths in light and dark themes.
+  No viewport overflow or missing artwork was detected.
+- Exact CSV content, scientific calculations, scores, schemas, and CLI signatures
+  were not changed.
+- Checkpoint tag: `stage-3f-editorial-redesign`.
 
 ## Stage 3 design checkpoint
 

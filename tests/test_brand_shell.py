@@ -54,11 +54,12 @@ def test_annual_page_is_an_editorial_overview_not_a_dataset_dump(tmp_path: Path)
     annual = _render_fixture(tmp_path)
     html = annual.read_text(encoding="utf-8")
 
-    assert "Year at a glance" in html
-    assert "Best of 2027" in html
+    assert "The year ahead" in html
+    assert "Best observing opportunities in 2027" in html
     assert "Monthly field guides" in html
     assert 'href="data/index.html"' in html
-    assert html.count('class="glance-month ') == 12
+    assert html.count('class="month-card ') == 12
+    assert 'src="assets/art/landscape-light.webp"' in html
     assert "<table" not in html
     assert "dataset-list" not in html
 
@@ -69,11 +70,13 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     html = january.read_text(encoding="utf-8")
 
     assert '../assets/styles.css' in html
+    assert '../assets/editorial.css' in html
     assert '../assets/theme.js' in html
     assert 'href="../almanac.html"' in html
     assert 'href="../data/index.html"' in html
     assert "Night-planning overview" in html
-    assert "Darkness first." in html
+    assert "Darkness across a representative night." in html
+    assert "Top picks for January." in html
     assert "1 Jan" in html
     assert "<table" not in html
     assert len(list((annual.parent / "months").glob("*.html"))) == 12
@@ -83,6 +86,7 @@ def test_packaged_assets_cover_theme_accessibility_print_and_local_fonts(tmp_pat
     annual = _render_fixture(tmp_path)
     assets = annual.parent / "assets"
     css = (assets / "styles.css").read_text(encoding="utf-8")
+    editorial = (assets / "editorial.css").read_text(encoding="utf-8")
     script = (assets / "theme.js").read_text(encoding="utf-8")
 
     assert ':root[data-theme="dark"]' in css
@@ -91,6 +95,8 @@ def test_packaged_assets_cover_theme_accessibility_print_and_local_fonts(tmp_pat
     assert ":focus-visible" in css
     assert "@media print" in css
     assert "fonts.googleapis.com" not in css
+    assert "theme-art--dark" in editorial
+    assert sum(path.stat().st_size for path in (assets / "art").glob("*.webp")) < 800_000
     assert "nabhastala-theme" in script
     assert (assets / "fonts" / "atkinson-regular-latin.woff2").read_bytes()[:4] == b"wOF2"
     assert (assets / "fonts" / "noto-sans-devanagari.woff2").read_bytes()[:4] == b"wOF2"
@@ -103,6 +109,8 @@ def test_templates_and_static_assets_are_package_resources() -> None:
     assert package.joinpath("templates", "landing.html").is_file()
     assert package.joinpath("templates", "data_library.html").is_file()
     assert package.joinpath("static", "styles.css").is_file()
+    assert package.joinpath("static", "editorial.css").is_file()
+    assert package.joinpath("static", "art", "landscape-light.webp").is_file()
 
 
 def test_landing_page_lists_horizons_and_available_local_editions(tmp_path: Path) -> None:

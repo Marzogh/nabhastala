@@ -46,7 +46,7 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert (rendered.parent / "data" / "index.html").exists()
     assert (output / "index.html").exists()
     html = rendered.read_text(encoding="utf-8")
-    assert "Year at a glance" in html
+    assert "The year ahead" in html
     assert "Monthly field guides" in html
     assert "Browse data and downloads" in html
     assert "<table" not in html

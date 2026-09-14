@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="page-shell monthly-guide">
+  <div class="page-shell monthly-guide editorial-page">
     <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
     {% include "_page_header.html" %}
     {% include "_month_nav.html" %}
 
-    <section class="monthly-verdict tone-{{ rating_tone(guide.rating) }}" aria-labelledby="monthly-verdict-title">
-      <div><p class="eyebrow">The month in one sentence</p><h2 id="monthly-verdict-title">{{ guide.verdict }}</h2></div>
+    <section class="monthly-verdict editorial-band tone-{{ rating_tone(guide.rating) }}" aria-labelledby="monthly-verdict-title">
+      <div class="monthly-verdict__intro"><p class="eyebrow">The month in one sentence · at a glance</p><h2 id="monthly-verdict-title">{{ guide.verdict }}</h2></div>
       <dl>
-        <div><dt>New Moon</dt><dd>{{ format_local_date(guide.new_moon_date) if guide.new_moon_date else "Unavailable" }}</dd></div>
-        <div><dt>Full Moon</dt><dd>{{ format_local_date(guide.full_moon_date) if guide.full_moon_date else "Unavailable" }}</dd></div>
-        <div><dt>Best dark window</dt><dd>{% if guide.dark_windows %}{{ format_local_date(guide.dark_windows[0].date) }} · {{ format_duration_minutes(guide.dark_windows[0].duration_minutes) }}{% else %}Unavailable{% endif %}</dd></div>
+        <div><span class="phase-symbol phase-symbol--new" aria-hidden="true"></span><dt>New Moon</dt><dd>{{ format_local_date(guide.new_moon_date) if guide.new_moon_date else "Unavailable" }}</dd><small>Darkest skies</small></div>
+        <div><span class="phase-symbol phase-symbol--full" aria-hidden="true"></span><dt>Full Moon</dt><dd>{{ format_local_date(guide.full_moon_date) if guide.full_moon_date else "Unavailable" }}</dd><small>Brightest skies</small></div>
+        <div><span class="phase-symbol phase-symbol--half" aria-hidden="true"></span><dt>Best dark window</dt><dd>{% if guide.dark_windows %}{{ format_local_date(guide.dark_windows[0].date) }}{% else %}Unavailable{% endif %}</dd><small>{% if guide.dark_windows %}{{ format_duration_minutes(guide.dark_windows[0].duration_minutes) }}{% else %}No supported window{% endif %}</small></div>
       </dl>
     </section>
 
@@ -21,7 +21,7 @@
     <div class="monthly-editorial-grid">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
-          <p class="eyebrow">Night-planning overview</p><h2 id="night-plan-title">Darkness first.</h2>
+          <p class="eyebrow">Night-planning overview</p><h2 id="night-plan-title">Darkness across a representative night.</h2>
           {% if guide.representative_date %}<p>A representative night around {{ format_local_date(guide.representative_date) }}.</p>{% endif %}
         </header>
         <div class="twilight-band" aria-label="Representative astronomical darkness">
@@ -40,7 +40,7 @@
       </section>
 
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
-        <header class="section-heading"><p class="eyebrow">Field shortlist</p><h2 id="month-highlights-title">What deserves attention.</h2></header>
+        <header class="section-heading"><p class="eyebrow">What deserves attention</p><h2 id="month-highlights-title">Top picks for {{ guide.month_name }}.</h2></header>
         {% if guide.highlights %}<ol class="compact-highlights">
           {% for item in guide.highlights %}
             <li class="tone-{{ rating_tone(item.rating) }}"><time datetime="{{ item.date_local }}">{{ format_local_date(item.date_local) }}</time><div><small>{{ item.category }}</small><h3>{{ item.title }}</h3><p>{{ item.reason }}</p></div></li>
@@ -48,7 +48,8 @@
         </ol>{% else %}<p class="empty-state">No trustworthy highlight is available.</p>{% endif %}
       </section>
 
-      <section class="moon-panel" aria-labelledby="moon-panel-title">
+      <section class="moon-panel illustrated-panel" aria-labelledby="moon-panel-title">
+        <span class="panel-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/moon-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/moon-dark.webp" alt=""></span>
         <header class="section-heading"><p class="eyebrow">Moon and darkness</p><h2 id="moon-panel-title">Read the lunar month.</h2></header>
         {% if guide.moon_samples %}<div class="moon-progression">
           {% for sample in guide.moon_samples %}
@@ -59,7 +60,8 @@
         <a class="context-link" href="../data/moon_phase.csv" download>Complete lunar data →</a>
       </section>
 
-      <section class="deep-sky-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/galaxy-dark.webp" alt=""></span>
         <header class="section-heading"><p class="eyebrow">Milky Way and deep sky</p><h2 id="deep-sky-title">Recommended core sessions.</h2></header>
         {% if guide.milky_way_sessions %}<ol class="session-list milky-sessions">
           {% for session in guide.milky_way_sessions %}
@@ -69,7 +71,8 @@
         <a class="context-link" href="../data/milky_way_windows.csv" download>Complete Milky Way data →</a>
       </section>
 
-      <section class="planet-panel" id="planets" aria-labelledby="planet-panel-title">
+      <section class="planet-panel illustrated-panel" id="planets" aria-labelledby="planet-panel-title">
+        <span class="panel-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/planet-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/planet-dark.webp" alt=""></span>
         <header class="section-heading"><p class="eyebrow">Planet visibility</p><h2 id="planet-panel-title">Useful at twilight.</h2></header>
         {% if guide.planet_groups %}<div class="planet-periods">
           {% for group in guide.planet_groups %}<section><h3>{{ group.period }}</h3><ul>
@@ -85,8 +88,9 @@
       </section>{% endif %}
     </div>
 
-    <section class="monthly-data" id="downloads" aria-labelledby="monthly-data-title">
-      <div><p class="eyebrow">Data notes</p><h2 id="monthly-data-title">Complete records stay available.</h2>{% for note in guide.data_notes %}<p>{{ note }}</p>{% endfor %}</div>
+    <section class="monthly-data illustrated-callout" id="downloads" aria-labelledby="monthly-data-title">
+      <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/telescope-dark.webp" alt=""></span>
+      <div><p class="eyebrow">Data and downloads</p><h2 id="monthly-data-title">Need every detail?</h2>{% for note in guide.data_notes %}<p>{{ note }}</p>{% endfor %}</div>
       <div class="monthly-downloads">
         {% for download in guide.downloads %}<a href="../data/{{ download.filename }}" download>{{ download.label }} <span>CSV ↓</span></a>{% endfor %}
         <a href="../data/index.html">Browse all datasets <span>→</span></a>

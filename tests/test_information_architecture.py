@@ -93,7 +93,7 @@ def test_three_sites_coexist_and_landing_links_each_edition(tmp_path: Path) -> N
         assert edition.exists()
         assert f'href="{site_id}/2027/almanac.html"' in landing
         html = edition.read_text(encoding="utf-8")
-        assert f">{site_id}</dd>" in html
+        assert f">{site_id.upper()}</dd>" in html
         assert all(f"/{other}/" not in html for other in SITES if other != site_id)
 
 
@@ -103,10 +103,11 @@ def test_core_views_need_no_javascript_and_reflow_rules_are_scoped(tmp_path: Pat
     annual = render_annual_html(2027, "se_qld", output)
     month = annual.parent / "months" / "01.html"
     css = (annual.parent / "assets" / "styles.css").read_text(encoding="utf-8")
+    editorial = (annual.parent / "assets" / "editorial.css").read_text(encoding="utf-8")
 
     annual_html = annual.read_text(encoding="utf-8")
     month_html = month.read_text(encoding="utf-8")
-    assert "Year at a glance" in annual_html
+    assert "The year ahead" in annual_html
     assert "Night-planning overview" in month_html
     assert "<noscript" not in annual_html + month_html
     assert 'class="js-only"' not in annual_html + month_html
@@ -116,6 +117,8 @@ def test_core_views_need_no_javascript_and_reflow_rules_are_scoped(tmp_path: Pat
     assert "overflow-x: auto" in css
     assert "prefers-reduced-motion: reduce" in css
     assert ":focus-visible" in css
+    assert "@media (max-width: 52rem)" in editorial
+    assert "@media (max-width: 36rem)" in editorial
 
 
 def test_light_and_dark_text_tokens_meet_normal_text_contrast() -> None:
