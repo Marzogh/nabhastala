@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import csv
-from html import escape
+import shutil
 from pathlib import Path
 
+from paa.paths import resolve_site_year_dir, site_year_dir
+from paa.render.view_models import escape_display, format_display_value, humanize_label
 
 SECTIONS = [
     ("sun_twilight.csv", "Sun/Twilight"),
@@ -37,10 +39,13 @@ def _table(headers: list[str], rows: list[list[str]], max_rows: int | None = Non
     if not headers:
         return "<p>No data.</p>"
     body = rows if max_rows is None else rows[:max_rows]
-    thead = "".join(f"<th>{escape(h)}</th>" for h in headers)
+    thead = "".join(f"<th>{escape_display(humanize_label(h))}</th>" for h in headers)
     tbody = ""
     for r in body:
-        cells = "".join(f"<td>{escape(c)}</td>" for c in r)
+        cells = "".join(
+            f"<td>{escape_display(format_display_value(headers[i], c))}</td>"
+            for i, c in enumerate(r)
+        )
         tbody += f"<tr>{cells}</tr>"
     return f"<table border='1' cellspacing='0' cellpadding='4'><thead><tr>{thead}</tr></thead><tbody>{tbody}</tbody></table>"
 
@@ -66,18 +71,19 @@ def _month_filter(headers: list[str], rows: list[list[str]], month: int) -> list
 
 
 def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
-    year_dir = output_dir / str(year)
-    data_dir = year_dir / "data"
+    year_dir = site_year_dir(output_dir, site_id, year)
+    source_year_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
+    data_dir = source_year_dir / "data"
     months_dir = year_dir / "months"
     months_dir.mkdir(parents=True, exist_ok=True)
 
     for m in range(1, 13):
         chunks = [f"<h1>{year}-{m:02d} Monthly Almanac</h1>"]
-        chunks.append(f"<p><a href='../almanac.html'>Back to annual index</a></p>")
+        chunks.append("<p><a href='../almanac.html'>Back to annual index</a></p>")
         for fname, title in SECTIONS:
             h, r = _read_csv(data_dir / fname)
             mr = _month_filter(h, r, m)
-            chunks.append(f"<h2>{escape(title)}</h2>")
+            chunks.append(f"<h2>{escape_display(title)}</h2>")
             chunks.append(_table(h, mr, max_rows=200))
         page = "<!doctype html><html><head><meta charset='utf-8'><title>Monthly Almanac</title></head><body>" + "".join(chunks) + "</body></html>"
         (months_dir / f"{m:02d}.html").write_text(page, encoding="utf-8")
@@ -85,22 +91,26 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     sections_html = []
     for fname, title in SECTIONS:
         h, r = _read_csv(data_dir / fname)
-        sections_html.append(f"<h2>{escape(title)}</h2>")
+        sections_html.append(f"<h2>{escape_display(title)}</h2>")
         sections_html.append(_table(h, r, max_rows=None))
 
     month_links = " ".join([f"<a href='months/{m:02d}.html'>{m:02d}</a>" for m in range(1, 13)])
     charts_html = ""
     for rel in ["charts/milky_way_windows.png", "charts/jupiter_moons/strip_chart.png", "charts/saturn_moons/strip_chart.png"]:
-        p = year_dir / rel
-        if p.exists():
-            charts_html += f"<h2>{escape(Path(rel).name)}</h2><img src='{rel}' style='max-width:100%;height:auto;'/>"
+        source = source_year_dir / rel
+        if source.exists():
+            target = year_dir / rel
+            if source != target:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, target)
+            charts_html += f"<h2>{escape_display(Path(rel).name)}</h2><img src='{rel}' style='max-width:100%;height:auto;'/>"
 
     html = (
         "<!doctype html><html><head><meta charset='utf-8'>"
         "<meta name='author' content='Prajwal Bhattaram'>"
         "<meta name='generator' content='personal-astro-almanac'>"
         f"<title>Personal Astro Almanac {year}</title></head><body>"
-        f"<h1>Personal Astro Almanac {year}</h1><p>Site: {escape(site_id)}</p>"
+        f"<h1>Personal Astro Almanac {year}</h1><p>Site: {escape_display(site_id)}</p>"
         f"<p>Monthly pages: {month_links}</p>"
         + "".join(sections_html)
         + charts_html

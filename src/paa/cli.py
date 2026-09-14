@@ -9,23 +9,23 @@ from pathlib import Path
 
 import yaml
 
+from paa.compute.conjunctions import compute_conjunctions
 from paa.compute.meteors import compute_meteor_showers
 from paa.compute.milky_way import compute_milky_way_outputs, save_milky_way_chart
 from paa.compute.minor_planets import compute_minor_planets_and_comets
 from paa.compute.moons import compute_moon_offsets, save_moon_strip_chart
 from paa.compute.planets import compute_planet_visibility
-from paa.compute.conjunctions import compute_conjunctions
 from paa.compute.sun_moon import build_dark_windows, generate_sun_moon_tables
 from paa.compute.ui_notes import generate_ui_notes
 from paa.config import get_site, load_sites
 from paa.io.postgres import ensure_schema, replace_rows, resolve_database_url, upsert_run
 from paa.io.provenance import write_run_manifest
 from paa.logging_config import configure_logging
+from paa.paths import occult_cache_dir, resolve_site_year_dir, site_year_dir
 from paa.render.html import render_annual_html
 from paa.render.pdf import render_pdf_from_html
 from paa.sources.occult_import import import_latest_occult_cache
 from paa.validate.reports import generate_validation_report
-
 
 DEFAULT_SITES = {
     "sites": [
@@ -146,7 +146,7 @@ def cmd_init_config(args: argparse.Namespace) -> int:
 def cmd_fetch(args: argparse.Namespace) -> int:
     sites = load_sites(Path(args.config_dir) / "sites.yaml")
     selected = get_site(sites, args.site)
-    out = Path("output") / str(args.year) / "cache" / "_run"
+    out = site_year_dir(Path("output"), selected.id, args.year) / "cache" / "_run"
     out.mkdir(parents=True, exist_ok=True)
     (out / "fetch_stub.txt").write_text(f"fetch prepared for {selected.id}\n", encoding="utf-8")
     print(f"Fetch complete for {selected.id} ({args.year})")
@@ -163,11 +163,12 @@ def cmd_build(args: argparse.Namespace) -> int:
     min_dark_minutes = int(darkness.get("min_dark_window_minutes", 60))
     max_illum = float(almanac.get("moon", {}).get("max_illumination_for_dark_imaging", 0.25))
 
-    out = Path("output") / str(args.year) / "data"
+    year_out = site_year_dir(Path("output"), args.site, args.year)
+    out = year_out / "data"
     out.mkdir(parents=True, exist_ok=True)
     explicit_requested = _parse_explicit_sections(args.sections)
     requested = _resolve_requested_sections(args.sections)
-    manifest_path = Path("output") / str(args.year) / "logs" / "section_manifest.json"
+    manifest_path = year_out / "logs" / "section_manifest.json"
     section_manifest = _read_json(manifest_path) if manifest_path.exists() else {}
     ctx: dict[str, list[dict]] = {}
 
@@ -212,7 +213,7 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
             _write_csv(out / "milky_way_windows.csv", mw_rows)
             _write_csv(out / "milky_way_monthly_summary.csv", mw_monthly_rows)
-            save_milky_way_chart(mw_points, Path("output") / str(args.year) / "charts" / "milky_way_windows.png")
+            save_milky_way_chart(mw_points, year_out / "charts" / "milky_way_windows.png")
             ctx["milky_way_windows"], ctx["milky_way_monthly_summary"] = mw_rows, mw_monthly_rows
         elif section == "planets":
             print("[build] planet visibility...", flush=True)
@@ -242,8 +243,8 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
             _write_csv(out / "jupiter_moons.csv", jupiter_moons)
             _write_csv(out / "saturn_moons.csv", saturn_moons)
-            save_moon_strip_chart(jupiter_moons, Path("output") / str(args.year) / "charts" / "jupiter_moons" / "strip_chart.png", "Jupiter Moon Relative Offsets")
-            save_moon_strip_chart(saturn_moons, Path("output") / str(args.year) / "charts" / "saturn_moons" / "strip_chart.png", "Saturn Moon Relative Offsets")
+            save_moon_strip_chart(jupiter_moons, year_out / "charts" / "jupiter_moons" / "strip_chart.png", "Jupiter Moon Relative Offsets")
+            save_moon_strip_chart(saturn_moons, year_out / "charts" / "saturn_moons" / "strip_chart.png", "Saturn Moon Relative Offsets")
             ctx["jupiter_moons"], ctx["saturn_moons"] = jupiter_moons, saturn_moons
         elif section in {"minor_planets", "comets"}:
             print(f"[build] {section.replace('_', ' ')}...", flush=True)
@@ -265,7 +266,13 @@ def cmd_build(args: argparse.Namespace) -> int:
             ctx["minor_planets"], ctx["comets"] = minor_rows, comet_rows
         elif section == "occultations":
             print("[build] occult import...", flush=True)
-            occult_rows = import_latest_occult_cache(args.year, args.site, site.timezone, almanac.get("occultations", {}))
+            occult_rows = import_latest_occult_cache(
+                args.year,
+                args.site,
+                site.timezone,
+                almanac.get("occultations", {}),
+                output_dir=Path("output"),
+            )
             _write_csv(out / "lunar_occultations.csv", occult_rows)
             ctx["lunar_occultations"] = occult_rows
         elif section == "meteors":
@@ -384,7 +391,7 @@ def cmd_import_occult(args: argparse.Namespace) -> int:
     source = Path(args.file)
     if not source.exists():
         raise SystemExit(f"File not found: {source}")
-    cache_dir = Path("output") / str(args.year) / "cache" / "occult" / args.site
+    cache_dir = occult_cache_dir(Path("output"), args.site, args.year)
     cache_dir.mkdir(parents=True, exist_ok=True)
     target = cache_dir / source.name
     target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
@@ -398,7 +405,7 @@ def cmd_render(args: argparse.Namespace) -> int:
         print(f"Rendered HTML: {html_path}")
         return 0
     if args.format == "pdf":
-        pdf_path = Path("output") / str(args.year) / "almanac.pdf"
+        pdf_path = site_year_dir(Path("output"), args.site, args.year) / "almanac.pdf"
         render_pdf_from_html(html_path, pdf_path)
         print(f"Rendered PDF: {pdf_path}")
         return 0
@@ -406,7 +413,7 @@ def cmd_render(args: argparse.Namespace) -> int:
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
-    log_path = Path("output") / str(args.year) / "logs" / "run.log"
+    log_path = site_year_dir(Path("output"), args.site, args.year) / "logs" / "run.log"
     configure_logging(log_path)
     report = generate_validation_report(args.year, args.site, Path("output"))
     print(f"Validation complete: {report}")
@@ -439,7 +446,10 @@ def cmd_view(args: argparse.Namespace) -> int:
     year = args.year
     if year is None:
         raise SystemExit("Provide a year via --year YYYY or shorthand like --2027")
-    report = Path("output") / str(year) / "almanac.html"
+    site_id = args.site
+    report = resolve_site_year_dir(
+        Path("output"), site_id, year, required="almanac.html"
+    ) / "almanac.html"
     if not report.exists():
         raise SystemExit(f"Report not found: {report}. Run build/render first.")
     subprocess.run(["open", str(report)], check=True)
@@ -498,6 +508,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("view")
     p.add_argument("--year", type=int, default=None)
+    p.add_argument("--site", default="se_qld")
     p.add_argument("--2027", dest="year", action="store_const", const=2027)
     p.set_defaults(func=cmd_view)
     return parser

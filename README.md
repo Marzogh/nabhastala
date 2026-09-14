@@ -68,13 +68,16 @@ astro-almanac view --2027
 
 Outputs:
 
-- `output/<year>/data/*.csv`
-- `output/<year>/charts/*`
-- `output/<year>/almanac.html`
-- `output/<year>/almanac.pdf`
-- `output/<year>/months/*.html`
-- `output/<year>/logs/validation_report.md`
-- `output/<year>/logs/run_manifest.json`
+- `output/<site>/<year>/data/*.csv`
+- `output/<site>/<year>/charts/*`
+- `output/<site>/<year>/almanac.html`
+- `output/<site>/<year>/almanac.pdf`
+- `output/<site>/<year>/months/*.html`
+- `output/<site>/<year>/logs/validation_report.md`
+- `output/<site>/<year>/logs/run_manifest.json`
+
+Existing `output/<year>/` trees are supported as read-only legacy inputs. New
+commands never write to the legacy layout.
 
 ## API (read-only)
 

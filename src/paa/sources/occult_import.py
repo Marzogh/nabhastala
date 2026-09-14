@@ -5,6 +5,8 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+from paa.paths import resolve_occult_cache_dir
+
 
 def _pick_col(headers: list[str], candidates: list[str]) -> int | None:
     lowered = [h.lower().strip() for h in headers]
@@ -108,8 +110,14 @@ def import_occult_file(path: Path, timezone_name: str, cfg: dict) -> list[dict]:
     return rows
 
 
-def import_latest_occult_cache(year: int, site_id: str, timezone_name: str, cfg: dict) -> list[dict]:
-    cache_dir = Path("output") / str(year) / "cache" / "occult" / site_id
+def import_latest_occult_cache(
+    year: int,
+    site_id: str,
+    timezone_name: str,
+    cfg: dict,
+    output_dir: Path = Path("output"),
+) -> list[dict]:
+    cache_dir = resolve_occult_cache_dir(output_dir, site_id, year)
     if not cache_dir.exists():
         return []
     candidates = sorted([p for p in cache_dir.iterdir() if p.suffix.lower() in {".csv", ".txt"}], key=lambda p: p.stat().st_mtime, reverse=True)

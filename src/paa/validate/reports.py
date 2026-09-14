@@ -2,10 +2,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from paa.paths import resolve_site_year_dir, site_year_dir
+
 
 def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Path:
-    data_dir = output_dir / str(year) / "data"
-    report = output_dir / str(year) / "logs" / "validation_report.md"
+    source_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
+    data_dir = source_dir / "data"
+    report = site_year_dir(output_dir, site_id, year) / "logs" / "validation_report.md"
     report.parent.mkdir(parents=True, exist_ok=True)
 
     expected = [
@@ -23,7 +26,7 @@ def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Pat
         "meteor_showers.csv",
     ]
 
-    lines = [f"# Validation report", "", f"- year: {year}", f"- site: {site_id}", ""]
+    lines = ["# Validation report", "", f"- year: {year}", f"- site: {site_id}", ""]
     for name in expected:
         p = data_dir / name
         if not p.exists():

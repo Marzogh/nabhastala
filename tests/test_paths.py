@@ -1,0 +1,71 @@
+import json
+from pathlib import Path
+
+import pytest
+
+from paa.io.provenance import write_run_manifest
+from paa.paths import (
+    occult_cache_dir,
+    resolve_occult_cache_dir,
+    resolve_site_year_dir,
+    site_year_dir,
+)
+
+
+def test_canonical_site_year_path() -> None:
+    assert site_year_dir(Path("output"), "se_qld", 2027) == Path("output/se_qld/2027")
+    assert occult_cache_dir(Path("output"), "se_qld", 2027) == Path(
+        "output/se_qld/2027/cache/occult"
+    )
+
+
+def test_resolver_prefers_canonical_then_falls_back_to_legacy(tmp_path: Path) -> None:
+    output = tmp_path / "output"
+    legacy_data = output / "2027" / "data"
+    legacy_data.mkdir(parents=True)
+    manifest = output / "2027" / "logs" / "run_manifest.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps({"site_id": "se_qld"}), encoding="utf-8")
+    assert resolve_site_year_dir(output, "se_qld", 2027, required="data") == output / "2027"
+
+    current_data = output / "se_qld" / "2027" / "data"
+    current_data.mkdir(parents=True)
+    assert resolve_site_year_dir(output, "se_qld", 2027, required="data") == (
+        output / "se_qld" / "2027"
+    )
+
+
+def test_resolver_rejects_legacy_data_from_another_site(tmp_path: Path) -> None:
+    output = tmp_path / "output"
+    legacy_data = output / "2027" / "data"
+    legacy_data.mkdir(parents=True)
+    manifest = output / "2027" / "logs" / "run_manifest.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps({"site_id": "southern_tasmania"}), encoding="utf-8")
+
+    assert resolve_site_year_dir(output, "se_qld", 2027, required="data") == (
+        output / "se_qld" / "2027"
+    )
+
+
+def test_occult_resolver_supports_old_site_nesting(tmp_path: Path) -> None:
+    legacy = tmp_path / "output" / "2027" / "cache" / "occult" / "se_qld"
+    legacy.mkdir(parents=True)
+    assert resolve_occult_cache_dir(tmp_path / "output", "se_qld", 2027) == legacy
+
+
+def test_site_ids_cannot_escape_output_root(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="Invalid site id"):
+        site_year_dir(tmp_path, "../elsewhere", 2027)
+
+
+def test_run_manifest_is_written_to_canonical_site_tree(tmp_path: Path) -> None:
+    config = tmp_path / "config"
+    config.mkdir()
+    for name in ("sites.yaml", "almanac.yaml", "horizons_objects.yaml", "meteor_showers.yaml"):
+        (config / name).write_text("fixture: true\n", encoding="utf-8")
+
+    manifest = write_run_manifest(2027, "se_qld", config, tmp_path / "output")
+
+    assert manifest == tmp_path / "output" / "se_qld" / "2027" / "logs" / "run_manifest.json"
+    assert json.loads(manifest.read_text(encoding="utf-8"))["site_id"] == "se_qld"

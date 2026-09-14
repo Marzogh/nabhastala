@@ -5,6 +5,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from paa.paths import site_year_dir
+
 
 def _sha256(path: Path) -> str:
     h = hashlib.sha256()
@@ -33,7 +35,7 @@ def write_run_manifest(year: int, site_id: str, config_dir: Path, output_dir: Pa
         'generator': 'personal-astro-almanac',
         'author': 'Prajwal Bhattaram',
     }
-    out = output_dir / str(year) / 'logs' / 'run_manifest.json'
+    out = site_year_dir(output_dir, site_id, year) / 'logs' / 'run_manifest.json'
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding='utf-8')
     return out

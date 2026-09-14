@@ -1,0 +1,60 @@
+{
+  "sun_twilight.csv": {
+    "headers": ["date", "dusk_astronomical_local", "dawn_astronomical_local"],
+    "rows": [["2027-01-01", "2027-01-01T19:14:00+10:00", "2027-01-01T04:28:00+10:00"]]
+  },
+  "moon_phase.csv": {
+    "headers": ["date", "moon_illumination_fraction"],
+    "rows": [["2027-01-01", "0.04"]]
+  },
+  "moonrise_moonset.csv": {
+    "headers": ["date", "moonrise_local", "moonset_local"],
+    "rows": [["2027-01-01", "", "2027-01-01T20:10:00+10:00"]]
+  },
+  "moon_dark_windows.csv": {
+    "headers": ["date", "start_local", "end_local", "duration_minutes"],
+    "rows": [["2027-01-01", "2027-01-01T20:30:00+10:00", "2027-01-02T04:20:00+10:00", "470"]]
+  },
+  "milky_way_windows.csv": {
+    "headers": ["date", "best_datetime_local", "rating"],
+    "rows": [["2027-01-01", "2027-01-02T03:10:00+10:00", "excellent"]]
+  },
+  "milky_way_monthly_summary.csv": {
+    "headers": ["month", "best_date", "rating"],
+    "rows": [["2027-01", "2027-01-01", "good"]]
+  },
+  "planet_visibility_daily.csv": {
+    "headers": ["date", "planet", "best_datetime_local", "rating"],
+    "rows": [["2027-01-01", "Jupiter", "2027-01-01T22:00:00+10:00", "excellent"]],
+    "repeat_to": 30
+  },
+  "planet_visibility_monthly_summary.csv": {
+    "headers": ["month", "planet", "rating"],
+    "rows": [["2027-01", "Saturn", "poor"]]
+  },
+  "jupiter_moons.csv": {
+    "headers": ["date", "moon", "offset_arcsec"],
+    "rows": [["2027-01-01", "Io", "12.4"]]
+  },
+  "saturn_moons.csv": {
+    "headers": ["date", "moon", "offset_arcsec"],
+    "rows": [["2027-01-01", "Titan", "71.1"]]
+  },
+  "minor_planets.csv": {
+    "headers": ["target", "best_datetime_local", "rating"],
+    "rows": [["1 Ceres", "2027-01-01T23:00:00+10:00", "good"]]
+  },
+  "comets.csv": {
+    "headers": ["target", "best_datetime_local", "rating", "magnitude_note"],
+    "rows": [["C/2023 A3", "", "query_failed", "<script>unsafe</script>"]]
+  },
+  "lunar_occultations.csv": {
+    "headers": ["datetime_local", "target", "rating"],
+    "rows": [["2027-01-14T22:40:00+10:00", "Jupiter", "excellent"]]
+  },
+  "meteor_showers.csv": {
+    "headers": ["name", "peak_date_local", "moon_illumination_fraction", "rating"],
+    "rows": [["Quadrantids", "2027-01-03", "0.27", "poor"]]
+  }
+}
+
