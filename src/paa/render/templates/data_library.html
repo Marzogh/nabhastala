@@ -3,25 +3,55 @@
   <div class="page-shell data-library-page">
     <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
     {% include "_page_header.html" %}
-    <section class="dataset-library" aria-labelledby="dataset-library-title">
-      <header class="section-heading">
-        <p class="eyebrow">CSV library</p>
-        <h2 id="dataset-library-title">Complete generated data</h2>
-      </header>
-      <div class="dataset-card-grid">
-        {% for dataset in datasets %}
-          <article class="dataset-card">
-            <div>
-              <p class="row-count">{{ dataset.record_count }} records</p>
-              <h3>{{ dataset.title }}</h3>
-              <p>{{ dataset.description }}</p>
-            </div>
-            <a class="download-link" href="{{ dataset.filename }}" download>Download CSV <span aria-hidden="true">↓</span></a>
-          </article>
-        {% else %}
-          <p class="empty-state">No CSV datasets are available for this edition.</p>
-        {% endfor %}
+
+    <section class="data-provenance" aria-labelledby="data-provenance-title">
+      <div>
+        <p class="eyebrow">How to use this library</p>
+        <h2 id="data-provenance-title">The field guide interprets. These files preserve.</h2>
       </div>
+      <p>Every download is copied from the reviewed local output without rewriting its rows or columns. Failed and unavailable calculations remain present so the published evidence is complete.</p>
     </section>
+
+    <nav class="dataset-group-nav" aria-label="Dataset groups">
+      {% for group in groups %}<a href="#data-{{ group.name|lower|replace(' ', '-') }}">{{ group.name }}</a>{% endfor %}
+    </nav>
+
+    {% for group in groups %}
+      <section class="dataset-library" id="data-{{ group.name|lower|replace(' ', '-') }}" aria-labelledby="data-group-{{ loop.index }}">
+        <header class="section-heading">
+          <p class="eyebrow">CSV library · {{ "%02d"|format(loop.index) }}</p>
+          <h2 id="data-group-{{ loop.index }}">{{ group.name }}</h2>
+          <p>{{ group.datasets|length }} downloadable {{ "file" if group.datasets|length == 1 else "files" }}.</p>
+        </header>
+        <div class="dataset-card-grid">
+          {% for dataset in group.datasets %}
+            <article class="dataset-card">
+              <div>
+                <p class="row-count">{{ dataset.record_count }} records</p>
+                <h3>{{ dataset.title }}</h3>
+                <p>{{ dataset.description }}</p>
+              </div>
+              <details>
+                <summary>File details</summary>
+                <dl>
+                  <div><dt>Filename</dt><dd><code>{{ dataset.filename }}</code></dd></div>
+                  <div><dt>Columns</dt><dd>{{ dataset.columns|join(", ") if dataset.columns else "No column header available" }}</dd></div>
+                </dl>
+              </details>
+              <a class="download-link" href="{{ dataset.filename }}" download>
+                Download CSV <span aria-hidden="true">↓</span>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% else %}
+      <p class="empty-state">No CSV datasets are available for this edition.</p>
+    {% endfor %}
+
+    <aside class="library-return">
+      <p><strong>Looking for an observing recommendation?</strong> Raw precision, UTC values and calculation status live here; friendly local decisions remain in the almanac.</p>
+      <a href="{{ annual_href }}">Return to the annual field guide →</a>
+    </aside>
   </div>
 {% endblock %}

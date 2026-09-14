@@ -6,7 +6,7 @@ until the previous stage is committed, tagged, and marked complete here.
 ## Current stage
 
 - Stage: 3 — User-friendly information architecture
-- State: slice 3D complete; paused before slice 3E
+- State: slice 3E implementation complete; manual 200% zoom confirmation pending
 - Objective: replace the dataset-led reading experience with a visual annual
   overview and decision-led monthly field guides
 - Design specification: `docs/STAGE_3_DESIGN_SPEC.md`
@@ -247,6 +247,67 @@ Results:
 - Scientific calculations, scores, schemas, and CLI signatures were not changed.
 - Checkpoint tag: `stage-3d-monthly`.
 
+## Slice 3E — Dataset library and visual QA
+
+Objective:
+
+- organise complete CSV downloads by observing purpose and expose concise schema
+  details without rendering thousands of rows;
+- make provenance and the relationship between editorial views and raw data clear;
+- verify keyboard/no-JavaScript behaviour, internal links, theme contrast, reduced
+  motion, 200% zoom, and narrow/wide responsive layouts.
+
+Affected files:
+
+- `src/paa/render/html.py`
+- `src/paa/render/templates/data_library.html`
+- `src/paa/render/static/styles.css`
+- `tests/test_information_architecture.py`
+- `tests/test_brand_shell.py`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Complete CSVs, including failed/unavailable rows, remain byte-for-byte available.
+- Datasets are grouped and each card names its file, record count, columns, and
+  intended use without requiring JavaScript.
+- Every local HTML link and referenced asset resolves in a three-site fixture build.
+- Annual and monthly core information remains usable with scripts disabled.
+- Keyboard focus, reduced motion, dark/light themes, narrow/wide layout, and 200%
+  zoom receive focused static and visual checks.
+- Existing scientific and CLI tests remain green.
+
+Focused test and resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_information_architecture.py tests/test_brand_shell.py tests/test_render_paths.py
+```
+
+Results:
+
+- Focused tests: 14 passed.
+- Full regression suite: 52 passed.
+- Ruff passed for every file changed in this slice; `node --check` and
+  `git diff --check` passed.
+- Repository-wide Ruff still reports 48 pre-existing findings in unrelated API,
+  compute, I/O, source, and legacy test files; this slice does not modify them.
+- Link QA: every local page, asset, CSV link, and fragment resolves across fixture
+  editions for all three configured sites; IDs are unique and editions do not
+  cross-link.
+- Visual QA: the real 2026 data library was inspected at the available tablet-width
+  viewport in light and dark themes. Group navigation, two-column cards, contrast,
+  and an expanded native details disclosure render cleanly.
+- Accessibility changes: the light accent now exceeds 4.5:1 against paper, all
+  normal text tokens in both themes have regression tests, and the body-wide 20rem
+  minimum was removed to prevent forced horizontal scrolling under text zoom.
+- No-JavaScript and 200% reflow received static contract checks. The preview surface
+  blocks programmatic browser zoom, so a manual 200% visual confirmation remains
+  before the final Stage 3 completion tag.
+- Complete CSV files, including failed rows, remain unchanged and directly linked.
+- Scientific calculations, scores, schemas, and CLI signatures were not changed.
+- Checkpoint tag: `stage-3e-qa-ready`.
+
 ## Verification
 
 - Focused test command: `PYTHONPATH=src .venv/bin/pytest -q tests/test_render_paths.py tests/test_brand_shell.py`
@@ -283,6 +344,10 @@ Results:
   `PYTHONPATH=src .venv/bin/pytest -q tests/test_monthly_guide.py tests/test_brand_shell.py tests/test_render_paths.py tests/test_view_models.py`
 - Stage 3D focused result: 20 passed.
 - Stage 3D full result: 47 passed.
+- Stage 3E focused test command:
+  `PYTHONPATH=src .venv/bin/pytest -q tests/test_information_architecture.py tests/test_brand_shell.py tests/test_render_paths.py`
+- Stage 3E focused result: 14 passed.
+- Stage 3E full result: 52 passed.
 
 ## Resume
 
@@ -298,7 +363,9 @@ PYTHONPATH=src .venv/bin/pytest -q
 Stage 2 remains complete at tag `stage-2-brand-shell`. Stage 3A is complete at tag
 `stage-3a-contracts`, Stage 3B at tag `stage-3b-landing`, and Stage 3C at tag
 `stage-3c-annual`. Stage 3D is complete at tag `stage-3d-monthly`. Do not begin
-slice 3E until the user authorizes it.
+Stage 4. Stage 3E code is checkpointed at `stage-3e-qa-ready`; confirm the annual,
+monthly, and data-library pages at 200% browser zoom before applying the final
+`stage-3-information-architecture` tag.
 
 ## External setup
 

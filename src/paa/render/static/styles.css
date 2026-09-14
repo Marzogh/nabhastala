@@ -50,7 +50,7 @@
   --surface-raised: #fffdf8;
   --ink: #29251f;
   --ink-soft: #655e52;
-  --accent: #a65f4f;
+  --accent: #9b5849;
   --accent-soft: rgb(166 95 79 / 10%);
   --sage: #70805e;
   --border: rgb(41 37 31 / 15%);
@@ -120,7 +120,6 @@ html {
 }
 
 body {
-  min-width: 20rem;
   margin: 0;
   background: var(--paper);
   color: var(--ink);
@@ -639,7 +638,47 @@ tbody tr:hover {
 }
 
 .data-library-page {
+  gap: clamp(3.5rem, 7vw, 6rem);
+}
+
+.data-provenance {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr);
   gap: var(--space-7);
+  align-items: end;
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.data-provenance h2 { margin-top: var(--space-2); }
+
+.data-provenance > p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.dataset-group-nav {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  overflow-x: auto;
+  border-block: 1px solid var(--border-strong);
+  background: var(--header-bg);
+  scrollbar-width: thin;
+}
+
+.dataset-group-nav a {
+  flex: 1 0 auto;
+  padding: var(--space-2) var(--space-4);
+  border-right: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .dataset-card-grid {
@@ -670,6 +709,64 @@ tbody tr:hover {
 .dataset-card p:not(.row-count) {
   margin: var(--space-2) 0 0;
   color: var(--ink-soft);
+}
+
+.dataset-card details {
+  border-top: 1px solid var(--border);
+}
+
+.dataset-card summary {
+  padding-block: var(--space-2);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.dataset-card details dl { margin: 0 0 var(--space-3); }
+
+.dataset-card details dl > div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-3);
+  padding-block: var(--space-1);
+}
+
+.dataset-card details dt {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.dataset-card details dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+}
+
+.library-return {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border-strong);
+}
+
+.library-return p {
+  max-width: var(--reading);
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.library-return a {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .annual-overview {
@@ -1453,7 +1550,8 @@ figcaption {
 
   .monthly-verdict,
   .monthly-editorial-grid,
-  .monthly-data {
+  .monthly-data,
+  .data-provenance {
     grid-template-columns: 1fr;
   }
 
@@ -1549,8 +1647,14 @@ figcaption {
   .data-callout,
   .planet-seasons,
   .monthly-verdict,
-  .monthly-data {
+  .monthly-data,
+  .data-provenance {
     padding: var(--space-5);
+  }
+
+  .library-return {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .session-list li {

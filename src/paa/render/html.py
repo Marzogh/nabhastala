@@ -89,7 +89,34 @@ DATASET_DESCRIPTIONS = {
     "comets.csv": "Comet calculations, including unavailable query results.",
     "lunar_occultations.csv": "Imported or computed lunar occultation events.",
     "meteor_showers.csv": "Meteor shower peaks and local observing conditions.",
+    "conjunctions.csv": "Computed close approaches and conjunction circumstances.",
 }
+
+DATASET_GROUPS = {
+    "sun_twilight.csv": "Night planning",
+    "moon_phase.csv": "Night planning",
+    "moonrise_moonset.csv": "Night planning",
+    "moon_dark_windows.csv": "Night planning",
+    "milky_way_windows.csv": "Deep sky",
+    "milky_way_monthly_summary.csv": "Deep sky",
+    "planet_visibility_daily.csv": "Planets and satellites",
+    "planet_visibility_monthly_summary.csv": "Planets and satellites",
+    "jupiter_moons.csv": "Planets and satellites",
+    "saturn_moons.csv": "Planets and satellites",
+    "minor_planets.csv": "Events and targets",
+    "comets.csv": "Events and targets",
+    "lunar_occultations.csv": "Events and targets",
+    "meteor_showers.csv": "Events and targets",
+    "conjunctions.csv": "Events and targets",
+}
+
+DATASET_GROUP_ORDER = (
+    "Night planning",
+    "Deep sky",
+    "Planets and satellites",
+    "Events and targets",
+    "Supporting and provenance",
+)
 
 
 @dataclass(frozen=True)
@@ -108,6 +135,8 @@ class DatasetView:
     filename: str
     description: str
     record_count: int
+    columns: tuple[str, ...]
+    category: str
 
 
 def _read_csv(path: Path) -> tuple[list[str], list[list[str]]]:
@@ -277,8 +306,19 @@ def _render_data_library(
                     f"Supporting data with {len(headers)} columns.",
                 ),
                 record_count=len(rows),
+                columns=tuple(humanize_label(header) for header in headers),
+                category=DATASET_GROUPS.get(path.name, "Supporting and provenance"),
             )
         )
+
+    groups = [
+        {
+            "name": category,
+            "datasets": [dataset for dataset in datasets if dataset.category == category],
+        }
+        for category in DATASET_GROUP_ORDER
+        if any(dataset.category == category for dataset in datasets)
+    ]
 
     page = _environment().get_template("data_library.html").render(
         **_identity_context(),
@@ -292,7 +332,7 @@ def _render_data_library(
         site_id=site_id,
         site_name=site_name,
         year=year,
-        datasets=datasets,
+        groups=groups,
         asset_prefix="../assets/",
         identity_href="../../../index.html",
         annual_href="../almanac.html",
