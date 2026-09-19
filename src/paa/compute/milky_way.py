@@ -14,15 +14,14 @@ class MilkyWayPoint:
 
 def _imports():
     try:
-        import matplotlib.pyplot as plt  # type: ignore
         from astropy import units as u  # type: ignore
         from astropy.coordinates import AltAz, EarthLocation, SkyCoord  # type: ignore
         from astropy.time import Time  # type: ignore
     except ImportError as exc:
         raise RuntimeError(
-            "Milky Way milestone requires astropy and matplotlib. Install project dependencies first."
+            "Milky Way calculation requires astropy. Install project dependencies first."
         ) from exc
-    return plt, u, AltAz, EarthLocation, SkyCoord, Time
+    return u, AltAz, EarthLocation, SkyCoord, Time
 
 
 def _parse_windows(dark_windows_csv: Path) -> list[tuple[datetime, datetime]]:
@@ -30,7 +29,12 @@ def _parse_windows(dark_windows_csv: Path) -> list[tuple[datetime, datetime]]:
     with dark_windows_csv.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            out.append((datetime.fromisoformat(row["start_local"]), datetime.fromisoformat(row["end_local"])))
+            out.append(
+                (
+                    datetime.fromisoformat(row["start_local"]),
+                    datetime.fromisoformat(row["end_local"]),
+                )
+            )
     return out
 
 
@@ -41,8 +45,10 @@ def _scan_gc_altitudes(
     elevation_m: float,
     step_minutes: int,
 ) -> list[MilkyWayPoint]:
-    _, u, AltAz, EarthLocation, SkyCoord, Time = _imports()
-    loc = EarthLocation(lat=latitude_deg * u.deg, lon=longitude_deg * u.deg, height=elevation_m * u.m)
+    u, AltAz, EarthLocation, SkyCoord, Time = _imports()
+    loc = EarthLocation(
+        lat=latitude_deg * u.deg, lon=longitude_deg * u.deg, height=elevation_m * u.m
+    )
     gc = SkyCoord(ra=266.4051 * u.deg, dec=-28.936175 * u.deg, frame="icrs")
 
     points: list[MilkyWayPoint] = []
@@ -77,23 +83,23 @@ def _group_visibility_windows(
         if current is None:
             current = {
                 "start_local": p.timestamp_local,
-                "end_local": p.timestamp_local,
+                "last_sample_local": p.timestamp_local,
                 "max_altitude_deg": p.altitude_deg,
                 "quality": quality,
             }
             continue
 
-        if p.timestamp_local - current["end_local"] > gap_limit:
+        if p.timestamp_local - current["last_sample_local"] > gap_limit:
             windows.append(current)
             current = {
                 "start_local": p.timestamp_local,
-                "end_local": p.timestamp_local,
+                "last_sample_local": p.timestamp_local,
                 "max_altitude_deg": p.altitude_deg,
                 "quality": quality,
             }
             continue
 
-        current["end_local"] = p.timestamp_local
+        current["last_sample_local"] = p.timestamp_local
         current["max_altitude_deg"] = max(current["max_altitude_deg"], p.altitude_deg)
         if quality == "excellent":
             current["quality"] = "excellent"
@@ -103,12 +109,13 @@ def _group_visibility_windows(
 
     rows: list[dict] = []
     for w in windows:
-        dur = (w["end_local"] - w["start_local"]).total_seconds() / 60.0 + step_minutes
+        end_local = w["last_sample_local"] + timedelta(minutes=step_minutes)
+        dur = (end_local - w["start_local"]).total_seconds() / 60.0
         rows.append(
             {
                 "date": w["start_local"].date().isoformat(),
                 "start_local": w["start_local"].isoformat(),
-                "end_local": w["end_local"].isoformat(),
+                "end_local": end_local.isoformat(),
                 "duration_minutes": round(dur, 1),
                 "max_altitude_deg": round(float(w["max_altitude_deg"]), 2),
                 "quality": w["quality"],
@@ -133,11 +140,16 @@ def compute_milky_way_outputs(
     monthly: dict[str, dict] = {}
     for row in visibility:
         month = row["date"][0:7]
-        info = monthly.setdefault(month, {"month": month, "window_count": 0, "excellent_count": 0, "best_altitude_deg": -90.0})
+        info = monthly.setdefault(
+            month,
+            {"month": month, "window_count": 0, "excellent_count": 0, "best_altitude_deg": -90.0},
+        )
         info["window_count"] += 1
         if row["quality"] == "excellent":
             info["excellent_count"] += 1
-        info["best_altitude_deg"] = max(float(info["best_altitude_deg"]), float(row["max_altitude_deg"]))
+        info["best_altitude_deg"] = max(
+            float(info["best_altitude_deg"]), float(row["max_altitude_deg"])
+        )
 
     monthly_rows = []
     for month in sorted(monthly):
@@ -155,7 +167,10 @@ def compute_milky_way_outputs(
 
 
 def save_milky_way_chart(points: list[MilkyWayPoint], path: Path) -> None:
-    plt, _, _, _, _, _ = _imports()
+    try:
+        import matplotlib.pyplot as plt  # type: ignore
+    except ImportError as exc:
+        raise RuntimeError("Static chart export requires matplotlib.") from exc
     path.parent.mkdir(parents=True, exist_ok=True)
     if not points:
         plt.figure(figsize=(10, 4))

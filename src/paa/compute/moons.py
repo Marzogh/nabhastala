@@ -1,13 +1,19 @@
 from __future__ import annotations
 
+import csv
 import math
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import yaml
 
-from paa.sources.horizons import HorizonsQuery, HorizonsSite, fetch_observer_ephemeris, parse_horizons_observer_ra_dec
+from paa.sources.horizons import (
+    HorizonsQuery,
+    HorizonsSite,
+    fetch_observer_ephemeris,
+    parse_horizons_observer_ra_dec,
+)
 
 
 def _wrap_delta_ra_deg(moon_ra: float, planet_ra: float) -> float:
@@ -21,37 +27,77 @@ def _load_horizons_ids(config_dir: Path) -> dict:
 
 
 def _read_planet_daily_csv(path: Path) -> list[dict]:
-    lines = path.read_text(encoding="utf-8").strip().splitlines()
-    if not lines:
+    if not path.exists() or path.stat().st_size == 0:
         return []
-    header = lines[0].split(",")
-    rows = []
-    for line in lines[1:]:
-        vals = line.split(",")
-        rows.append({header[i]: vals[i] for i in range(min(len(header), len(vals)))})
-    return rows
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
 
 
 def _best_dates(rows: list[dict], planet_name: str, top_n: int = 3) -> list[str]:
-    candidates = [r for r in rows if r.get("planet") == planet_name]
+    candidates = [
+        row
+        for row in rows
+        if row.get("planet") == planet_name
+        and row.get("best_time_local")
+        and row.get("visibility_rating") in {"excellent", "good", "fair"}
+    ]
     candidates.sort(key=lambda r: float(r.get("max_altitude_deg", -999.0)), reverse=True)
     dates: list[str] = []
+    months: set[str] = set()
     for r in candidates:
         d = r["date"]
-        if d not in dates:
+        month = d[:7]
+        if d not in dates and month not in months:
             dates.append(d)
+            months.add(month)
         if len(dates) >= top_n:
             break
     return dates
 
 
-def _fetch_body_series(target_id: str, date_iso: str, cadence_min: int, site: HorizonsSite) -> dict[datetime, tuple[float, float]]:
-    day = datetime.fromisoformat(date_iso).date()
-    start = datetime.combine(day, time(0, 0), tzinfo=timezone.utc)
-    stop = start + timedelta(days=1)
-    raw = fetch_observer_ephemeris(HorizonsQuery(command=target_id, start_utc=start, stop_utc=stop, step_minutes=cadence_min, site=site))
+def _fetch_body_series(
+    target_id: str,
+    centre_utc: datetime,
+    cadence_min: int,
+    site: HorizonsSite,
+) -> dict[datetime, tuple[float, float]]:
+    start = centre_utc - timedelta(hours=5)
+    stop = centre_utc + timedelta(hours=5)
+    raw = fetch_observer_ephemeris(
+        HorizonsQuery(
+            command=target_id, start_utc=start, stop_utc=stop, step_minutes=cadence_min, site=site
+        )
+    )
     rows = parse_horizons_observer_ra_dec(raw)
     return {r["datetime_utc"]: (r["ra_deg"], r["dec_deg"]) for r in rows}
+
+
+def _observable_timestamps(
+    timestamps: list[datetime], site: HorizonsSite, sun_limit_deg: float = -4.0
+) -> set[datetime]:
+    if not timestamps:
+        return set()
+    try:
+        from astropy import units as u  # type: ignore
+        from astropy.coordinates import AltAz, EarthLocation, get_sun  # type: ignore
+        from astropy.time import Time  # type: ignore
+    except ImportError as exc:
+        raise RuntimeError("Moon-system filtering requires astropy.") from exc
+    location = EarthLocation(
+        lat=site.latitude_deg * u.deg,
+        lon=site.longitude_deg * u.deg,
+        height=site.elevation_m * u.m,
+    )
+    utc_times = [timestamp.replace(tzinfo=UTC) for timestamp in timestamps]
+    time_array = Time(utc_times)
+    sun_altitudes = get_sun(time_array).transform_to(
+        AltAz(obstime=time_array, location=location)
+    ).alt.deg
+    return {
+        timestamp
+        for timestamp, sun_altitude in zip(timestamps, sun_altitudes, strict=True)
+        if float(sun_altitude) <= sun_limit_deg
+    }
 
 
 def compute_moon_offsets(
@@ -69,8 +115,18 @@ def compute_moon_offsets(
     tz = ZoneInfo(site_tz)
 
     systems = [
-        ("Jupiter", ids.get("major_planets", {}).get("Jupiter", "599"), ids.get("jupiter_moons", {}), 60),
-        ("Saturn", ids.get("major_planets", {}).get("Saturn", "699"), ids.get("saturn_moons", {}), 120),
+        (
+            "Jupiter",
+            ids.get("major_planets", {}).get("Jupiter", "599"),
+            ids.get("jupiter_moons", {}),
+            60,
+        ),
+        (
+            "Saturn",
+            ids.get("major_planets", {}).get("Saturn", "699"),
+            ids.get("saturn_moons", {}),
+            120,
+        ),
     ]
 
     jupiter_rows: list[dict] = []
@@ -78,12 +134,21 @@ def compute_moon_offsets(
 
     for system_name, planet_id, moon_map, cadence in systems:
         dates = _best_dates(planet_rows, system_name, top_n=3)
+        rows_by_date = {row["date"]: row for row in planet_rows if row.get("planet") == system_name}
         for date_iso in dates:
-            planet_series = _fetch_body_series(str(planet_id), date_iso, cadence, site)
-            moon_series_map = {moon_name: _fetch_body_series(str(moon_id), date_iso, cadence, site) for moon_name, moon_id in moon_map.items()}
+            best_local = datetime.fromisoformat(rows_by_date[date_iso]["best_time_local"])
+            centre_utc = best_local.astimezone(UTC).replace(tzinfo=None)
+            planet_series = _fetch_body_series(str(planet_id), centre_utc, cadence, site)
+            observable_timestamps = _observable_timestamps(list(planet_series), site)
+            moon_series_map = {
+                moon_name: _fetch_body_series(str(moon_id), centre_utc, cadence, site)
+                for moon_name, moon_id in moon_map.items()
+            }
 
             for moon_name, moon_series in moon_series_map.items():
                 for dt_utc, (moon_ra, moon_dec) in moon_series.items():
+                    if dt_utc not in observable_timestamps:
+                        continue
                     planet = planet_series.get(dt_utc)
                     if planet is None:
                         continue
@@ -94,7 +159,7 @@ def compute_moon_offsets(
                         "system": system_name,
                         "date": date_iso,
                         "datetime_utc": dt_utc.isoformat(),
-                        "datetime_local": dt_utc.replace(tzinfo=timezone.utc).astimezone(tz).isoformat(),
+                        "datetime_local": dt_utc.replace(tzinfo=UTC).astimezone(tz).isoformat(),
                         "moon": moon_name,
                         "dra_arcsec": round(dra, 3),
                         "ddec_arcsec": round(ddec, 3),

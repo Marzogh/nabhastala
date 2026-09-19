@@ -994,6 +994,321 @@ tbody tr:hover {
   text-transform: uppercase;
 }
 
+/* Stage 4 observing instruments */
+.instrument-card,
+.moon-system-section {
+  min-width: 0;
+  width: 100%;
+  margin-top: var(--space-6);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--border-strong);
+}
+
+.instrument-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-5);
+  align-items: end;
+  margin-bottom: var(--space-4);
+}
+
+.instrument-heading h3,
+.moon-system-section h3,
+.moon-system h4 { margin: 0 0 var(--space-2); }
+
+.instrument-heading p { max-width: 72ch; }
+
+.chart-controls {
+  display: flex;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.chart-controls button {
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.scroll-instrument {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--accent) var(--surface);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.milky-year-chart {
+  position: relative;
+  min-width: max(100%, calc(var(--year-days) * 7px + 5rem));
+  height: 24rem;
+  padding: 2.5rem 0 1.5rem 4.5rem;
+}
+
+.milky-year-chart__months {
+  position: absolute;
+  inset: 0 0 auto 4.5rem;
+  height: 2.5rem;
+}
+
+.milky-year-chart__months span {
+  position: absolute;
+  left: calc(var(--day) / var(--year-days) * 100%);
+  padding: 0.65rem 0.5rem;
+  border-left: 1px solid var(--border-strong);
+  color: var(--ink-soft);
+  font: 0.68rem var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.milky-year-chart__axis {
+  position: absolute;
+  inset: 2.5rem auto 1.5rem 0;
+  width: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 0.7rem;
+  color: var(--ink-soft);
+  font: 0.64rem var(--font-mono);
+  text-align: right;
+}
+
+.milky-year-chart__plot {
+  position: relative;
+  height: 20rem;
+  background:
+    linear-gradient(to bottom, transparent 49.8%, var(--border-strong) 50%, transparent 50.2%),
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-cream) 70%, transparent), color-mix(in srgb, var(--ink) 8%, transparent) 50%, color-mix(in srgb, var(--accent-cream) 70%, transparent));
+  background-size: 100% 100%, calc(100% / 12) 100%, 100% 100%;
+}
+
+.milky-window {
+  position: absolute;
+  left: calc(var(--day) / var(--year-days) * 100%);
+  top: var(--start);
+  width: max(4px, calc(100% / var(--year-days) * 0.8));
+  height: var(--height);
+  min-height: 3px;
+  border-radius: 2px;
+  background: #9b7b4f;
+  cursor: help;
+}
+
+.milky-window--excellent { background: var(--sage); }
+
+.milky-window i {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: calc(100% + 0.45rem);
+  width: 12rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border-strong);
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0 0.35rem 1rem rgb(0 0 0 / 12%);
+  font: 0.72rem/1.45 var(--font-sans);
+  font-style: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.milky-window:hover i,
+.milky-window:focus i { opacity: 1; }
+
+.instrument-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+  color: var(--ink-soft);
+  font: 0.7rem var(--font-mono);
+  text-transform: uppercase;
+}
+
+.instrument-legend span::before {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.4rem;
+  border: 1px solid var(--border-strong);
+  content: "";
+  vertical-align: -0.1rem;
+}
+
+.legend-useful::before { background: #9b7b4f; }
+.legend-excellent::before { background: var(--sage); }
+
+.milky-month-summary {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: var(--space-4) 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+
+.milky-month-summary li {
+  display: grid;
+  gap: 0.15rem;
+  padding: var(--space-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-top: 3px solid var(--tone);
+}
+
+.milky-month-summary time,
+.milky-month-summary span { font-size: 0.8rem; }
+.milky-month-summary small { color: var(--ink-soft); font-size: 0.68rem; }
+
+.planet-year-chart { min-width: 68rem; }
+
+.planet-lane {
+  display: grid;
+  grid-template-columns: 7rem repeat(12, minmax(4.8rem, 1fr));
+  border-bottom: 1px solid var(--border);
+}
+
+.planet-lane > strong,
+.planet-lane > span { padding: 0.65rem 0.5rem; }
+
+.planet-lane > strong {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  border-right: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.planet-lane--head {
+  color: var(--ink-soft);
+  font: 0.68rem var(--font-mono);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.planet-cell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 0.35rem;
+  border-left: 3px solid var(--tone, var(--border));
+  background: color-mix(in srgb, var(--tone, var(--surface)) 10%, var(--surface));
+}
+
+.planet-cell i,
+.planet-cell small { color: var(--ink-soft); }
+.planet-cell i { font: 0.65rem var(--font-mono); font-style: normal; }
+.planet-cell b { text-align: right; }
+.planet-cell small { grid-column: 1 / -1; font-size: 0.62rem; text-transform: uppercase; }
+.planet-cell--empty { display: block; color: var(--ink-soft); text-align: center; }
+
+.moon-system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.moon-system {
+  min-width: 0;
+  padding: var(--space-4);
+  background: var(--surface);
+}
+
+.moon-night-scroll {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-bottom: var(--space-3);
+}
+
+.moon-night {
+  flex: 0 0 17rem;
+  margin: 0;
+}
+
+.moon-night figcaption { display: grid; margin-bottom: var(--space-2); }
+.moon-night figcaption span { color: var(--ink-soft); font-size: 0.72rem; }
+
+.moon-offset-plot {
+  position: relative;
+  height: 17rem;
+  border: 1px solid var(--border);
+  background: repeating-linear-gradient(to bottom, transparent 0 2.75rem, var(--border) 2.8rem);
+}
+
+.moon-offset-axis {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 0.2rem;
+  background: var(--ink);
+}
+
+.moon-offset-point {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 0.46rem;
+  height: 0.46rem;
+  border: 1px solid var(--paper);
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+}
+
+.moon-offset-point--1, .moon-key--1::before { background: #557a95; }
+.moon-offset-point--2, .moon-key--2::before { background: #7b6948; }
+.moon-offset-point--3, .moon-key--3::before { background: #6b8058; }
+.moon-offset-point--4, .moon-key--4::before { background: #96627b; }
+.moon-offset-point--5, .moon-key--5::before { background: #7b6b9a; }
+.moon-offset-point--6, .moon-key--6::before { background: #956c46; }
+.moon-offset-point--7, .moon-key--7::before { background: #557c78; }
+
+.moon-offset-scale,
+.moon-key {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  color: var(--ink-soft);
+  font: 0.62rem var(--font-mono);
+}
+
+.moon-key {
+  flex-wrap: wrap;
+  justify-content: start;
+  padding: 0;
+  list-style: none;
+}
+
+.moon-key li::before {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+@media (max-width: 760px) {
+  .instrument-heading { align-items: start; }
+  .chart-controls { display: none; }
+  .moon-system-grid { grid-template-columns: 1fr; }
+  .milky-year-chart { min-width: calc(var(--year-days) * 9px + 4.5rem); }
+  .milky-month-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .month-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

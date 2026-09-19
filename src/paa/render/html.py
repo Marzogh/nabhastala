@@ -11,7 +11,11 @@ from pathlib import Path
 from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescape
 
 from paa.paths import public_site_slug, resolve_site_year_dir, site_year_dir
-from paa.render.almanac_views import build_annual_overview, build_month_guide
+from paa.render.almanac_views import (
+    build_annual_overview,
+    build_month_guide,
+    build_observing_instruments,
+)
 from paa.render.view_models import (
     format_display_value,
     format_duration_minutes,
@@ -247,14 +251,18 @@ def _edition_catalog(output_dir: Path) -> list[dict[str, object]]:
     editions: list[dict[str, object]] = []
     for site in SITE_CATALOG:
         site_root = output_dir / str(site["id"])
-        years = sorted(
-            (
-                int(path.name)
-                for path in site_root.iterdir()
-                if path.is_dir() and path.name.isdigit() and (path / "almanac.html").exists()
-            ),
-            reverse=True,
-        ) if site_root.exists() else []
+        years = (
+            sorted(
+                (
+                    int(path.name)
+                    for path in site_root.iterdir()
+                    if path.is_dir() and path.name.isdigit() and (path / "almanac.html").exists()
+                ),
+                reverse=True,
+            )
+            if site_root.exists()
+            else []
+        )
         editions.append(
             {
                 **site,
@@ -274,19 +282,23 @@ def render_landing_html(output_dir: Path) -> Path:
     """Render the development landing page from locally available editions."""
     output_dir.mkdir(parents=True, exist_ok=True)
     _copy_static_assets(output_dir)
-    page = _environment().get_template("landing.html").render(
-        **_identity_context(),
-        document_title="Nabhastala — astronomy planning at three horizons",
-        asset_prefix="assets/",
-        identity_href="index.html",
-        nav_items=(
-            {"href": "#horizons", "label": "Horizons", "current": True},
-            {"href": "#about", "label": "About", "current": False},
-            {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
-        ),
-        editions=_edition_catalog(output_dir),
-        site_name=None,
-        year=None,
+    page = (
+        _environment()
+        .get_template("landing.html")
+        .render(
+            **_identity_context(),
+            document_title="Nabhastala: astronomy planning at three horizons",
+            asset_prefix="assets/",
+            identity_href="index.html",
+            nav_items=(
+                {"href": "#horizons", "label": "Horizons", "current": True},
+                {"href": "#about", "label": "About", "current": False},
+                {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
+            ),
+            editions=_edition_catalog(output_dir),
+            site_name=None,
+            year=None,
+        )
     )
     output = output_dir / "index.html"
     output.write_text(page, encoding="utf-8")
@@ -329,28 +341,32 @@ def _render_data_library(
         if any(dataset.category == category for dataset in datasets)
     ]
 
-    page = _environment().get_template("data_library.html").render(
-        **_identity_context(),
-        document_title=f"Data and downloads — {site_name}, {year}",
-        page_title="Data and downloads",
-        page_eyebrow="Complete reference files",
-        page_description=(
-            "The full generated datasets remain available for detailed inspection, "
-            "export, and reproducible analysis."
-        ),
-        site_id=site_id,
-        site_name=site_name,
-        year=year,
-        groups=groups,
-        asset_prefix="../assets/",
-        identity_href="../../../index.html",
-        annual_href="../almanac.html",
-        nav_items=(
-            {"href": "../almanac.html", "label": "Annual", "current": False},
-            {"href": "../months/01.html", "label": "Months", "current": False},
-            {"href": "index.html", "label": "Data", "current": True},
-            {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
-        ),
+    page = (
+        _environment()
+        .get_template("data_library.html")
+        .render(
+            **_identity_context(),
+            document_title=f"Data and downloads: {site_name}, {year}",
+            page_title="Data and downloads",
+            page_eyebrow="Complete reference files",
+            page_description=(
+                "The full generated datasets remain available for detailed inspection, "
+                "export, and reproducible analysis."
+            ),
+            site_id=site_id,
+            site_name=site_name,
+            year=year,
+            groups=groups,
+            asset_prefix="../assets/",
+            identity_href="../../../index.html",
+            annual_href="../almanac.html",
+            nav_items=(
+                {"href": "../almanac.html", "label": "Annual", "current": False},
+                {"href": "../months/01.html", "label": "Months", "current": False},
+                {"href": "index.html", "label": "Data", "current": True},
+                {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
+            ),
+        )
     )
     output = data_dir / "index.html"
     output.write_text(page, encoding="utf-8")
@@ -405,9 +421,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             page_eyebrow="Monthly field almanac",
             page_description=f"Observing reference for {common['site_name']}.",
             guide=guide,
-            month_links=[
-                {**item, "href": f"{item['number']:02d}.html"} for item in month_links
-            ],
+            month_links=[{**item, "href": f"{item['number']:02d}.html"} for item in month_links],
             active_month=month,
             annual_href="../almanac.html",
             asset_prefix="../assets/",
@@ -427,6 +441,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
 
     charts = _copy_charts(source_year_dir, year_dir)
     overview = build_annual_overview(year, site_id, data_dir)
+    instruments = build_observing_instruments(year, data_dir)
     annual = environment.get_template("annual.html").render(
         **common,
         document_title=f"Nabhastala — {year} field almanac",
@@ -436,6 +451,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             f"A complete astronomy and astrophotography reference for {common['site_name']}."
         ),
         overview=overview,
+        instruments=instruments,
         charts=[chart for chart in charts if chart["src"] == "charts/milky_way_windows.png"],
         month_links=month_links,
         active_month=None,

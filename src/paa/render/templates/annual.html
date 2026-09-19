@@ -26,18 +26,44 @@
     </section>
 
     <section class="seasonal-sky" aria-labelledby="seasonal-sky-title">
-      <div class="seasonal-grid">
-        <div class="seasonal-chart-column">
-          <header class="section-heading"><p class="eyebrow">The seasonal sky</p><h2 id="seasonal-sky-title">See the year as a changing horizon.</h2><p>Compare the height of the Galactic Centre during Moon-free dark windows.</p></header>
-          {% for chart in charts %}<figure class="seasonal-chart"><img src="{{ chart.src }}" alt="{{ chart.alt }}"><figcaption>{{ chart.title }}</figcaption></figure>{% else %}<p class="empty-state">The annual visibility chart is unavailable for this edition.</p>{% endfor %}
+      <header class="section-heading section-heading--split"><div><p class="eyebrow">The seasonal sky</p><h2 id="seasonal-sky-title">Read the year as observing time.</h2></div><p>Generated locally from this edition’s reviewed data.</p></header>
+
+      <article class="instrument-card" aria-labelledby="milky-instrument-title">
+        <header class="instrument-heading"><div><p class="eyebrow">Milky Way core</p><h3 id="milky-instrument-title">Moon-free core windows, night by night.</h3><p>Scroll through the year. Each vertical mark is a useful or excellent interval between 6 pm and 6 am local time.</p></div><div class="chart-controls" aria-label="Milky Way chart controls"><button type="button" data-chart-scroll="back" data-chart-target="milky-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="milky-year-chart" aria-label="Scroll chart forward">→</button></div></header>
+        {% if instruments.milky_way.windows %}
+          <div class="scroll-instrument" id="milky-year-chart" tabindex="0" aria-label="Scrollable Milky Way observing windows for {{ year }}">
+            <div class="milky-year-chart" style="--year-days: {{ instruments.milky_way.year_days }}">
+              <div class="milky-year-chart__months" aria-hidden="true">{% for tick in instruments.milky_way.month_ticks %}<span style="--day: {{ tick.day }}">{{ tick.label }}</span>{% endfor %}</div>
+              <div class="milky-year-chart__axis" aria-hidden="true"><span>6 pm</span><span>midnight</span><span>6 am</span></div>
+              <div class="milky-year-chart__plot">
+                {% for window in instruments.milky_way.windows %}<span class="milky-window milky-window--{{ window.quality }}" style="--day: {{ window.day }}; --start: {{ window.start_pct }}%; --height: {{ window.height_pct }}%" aria-hidden="true"><i>{{ format_local_date(window.date) }}<br>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}<br>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ window.quality|title }}</i></span>{% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="instrument-legend"><span class="legend-useful">Useful, at least 20°</span><span class="legend-excellent">Excellent, at least 25°</span></div>
+          <ol class="milky-month-summary" aria-label="Best Milky Way window in each available month">{% for window in instruments.milky_way.summaries %}<li class="tone-{{ rating_tone('excellent' if window.quality == 'excellent' else 'good') }}"><strong>{{ window.month_name }}</strong><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><span>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</span><small>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ window.quality|title }}</small></li>{% endfor %}</ol>
+        {% else %}<p class="empty-state">No Moon-free Milky Way core window is available for this edition.</p>{% endif %}
+        <a class="context-link" href="data/milky_way_windows.csv" download>Download exact Milky Way windows →</a>
+      </article>
+
+      <article class="instrument-card" aria-labelledby="planet-instrument-title">
+        <header class="instrument-heading"><div><p class="eyebrow">Planet visibility</p><h3 id="planet-instrument-title">When each planet is actually observable.</h3><p>Monthly cells use the best local sample with the Sun at least 4° below the horizon. Colour and text show the rating; the marker shows evening, overnight, or predawn.</p></div><div class="chart-controls" aria-label="Planet chart controls"><button type="button" data-chart-scroll="back" data-chart-target="planet-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="planet-year-chart" aria-label="Scroll chart forward">→</button></div></header>
+        <div class="scroll-instrument" id="planet-year-chart" tabindex="0" aria-label="Scrollable annual planet visibility chart">
+          <div class="planet-year-chart">
+            <div class="planet-lane planet-lane--head"><strong>Planet</strong>{% for month in instruments.planets.months %}<span>{{ month }}</span>{% endfor %}</div>
+            {% for lane in instruments.planets.lanes %}<div class="planet-lane"><strong>{{ lane.planet }}</strong>{% for cell in lane.months %}{% if cell and cell.altitude_deg is not none %}<span class="planet-cell tone-{{ rating_tone(cell.rating) }}" tabindex="0" aria-label="{{ lane.planet }}, {{ instruments.planets.months[loop.index0] }}, {{ cell.rating }}, {{ cell.period }}, {{ cell.altitude_deg|round|int }} degrees on {{ format_local_date(cell.best_date) }} at {{ format_local_time(cell.best_time_local) }}"><i aria-hidden="true">{{ cell.period[0]|upper }}</i><b>{{ cell.altitude_deg|round|int }}°</b><small>{{ cell.rating|title }}</small></span>{% else %}<span class="planet-cell planet-cell--empty">Not available</span>{% endif %}{% endfor %}</div>{% endfor %}
+          </div>
         </div>
-        <aside class="planet-seasons">
-          <span class="section-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/planet-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/planet-dark.webp" alt=""></span>
-          <p class="eyebrow">By the planets</p><h3>Best monthly date by planet</h3><p>A quick annual guide using the highest-rated monthly record for each planet.</p>
-          {% if overview.planet_seasons %}<ul>{% for planet in overview.planet_seasons %}<li><strong>{{ planet.planet }}</strong><span>{{ format_local_date(planet.best_date) }}{% if planet.best_altitude_deg is not none %} · {{ planet.best_altitude_deg|round|int }}°{% endif %}</span><small class="tone-{{ rating_tone(planet.rating) }}">{{ planet.rating|title }}</small></li>{% endfor %}</ul>{% else %}<p>Planet summary data is unavailable.</p>{% endif %}
-          <a class="context-link" href="data/planet_visibility_monthly_summary.csv" download>Complete planet data →</a>
-        </aside>
-      </div>
+        <div class="instrument-legend"><span>E evening</span><span>O overnight</span><span>P predawn</span></div>
+        <a class="context-link" href="data/planet_visibility_monthly_summary.csv" download>Download exact planet summary →</a>
+      </article>
+
+      <section class="moon-system-section" aria-labelledby="moon-system-title">
+        <header class="section-heading"><p class="eyebrow">Satellite systems</p><h3 id="moon-system-title">Jupiter and Saturn, one observing night at a time.</h3><p>Local time runs downward. The centre line is the planet; points show each moon’s east-west angular offset. Separate cards are never joined across dates.</p></header>
+        <div class="moon-system-grid">
+          {% for system in instruments.moon_systems %}<article class="moon-system"><h4>{{ system.system }}</h4>{% if system.nights %}<div class="moon-night-scroll">{% for night in system.nights %}<figure class="moon-night"><figcaption><strong>{{ format_local_date(night.date) }}</strong><span>{{ format_local_time(night.start_local) }}–{{ format_local_time(night.end_local) }} local</span></figcaption><div class="moon-offset-plot" aria-hidden="true"><span class="moon-offset-axis"></span>{% for point in night.points %}<i class="moon-offset-point moon-offset-point--{{ point.moon_index % 8 }}" style="--x: {{ point.x_pct }}%; --y: {{ point.y_pct }}%" title="{{ point.moon }} · {{ format_local_time(point.datetime_local) }} · {{ point.offset_arcsec|round(1) }} arcsec"></i>{% endfor %}</div><div class="moon-offset-scale"><span>−{{ night.extent_arcsec|round|int }}″ W</span><span>planet</span><span>+{{ night.extent_arcsec|round|int }}″ E</span></div><ul class="moon-key">{% for moon in night.moons %}<li class="moon-key--{{ loop.index0 % 8 }}">{{ moon }}</li>{% endfor %}</ul></figure>{% endfor %}</div>{% else %}<p class="empty-state">No validated observing-night offsets are available.</p>{% endif %}<a class="context-link" href="data/{{ system.system|lower }}_moons.csv" download>Download {{ system.system }} moon offsets →</a></article>{% endfor %}
+        </div>
+      </section>
     </section>
 
     <section class="month-index" id="monthly-guides" aria-labelledby="month-index-title">

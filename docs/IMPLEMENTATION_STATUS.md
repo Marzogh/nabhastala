@@ -5,14 +5,101 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 3F, editorial almanac redesign
+- Stage: 4, reproducible observing instruments
 - State: complete
-- Objective: apply the supplied publication-style visual direction to the annual,
-  monthly, and data-library pages while preserving generated scientific content,
-  the exact public identity, accessibility, and complete CSV access
-- Design references: the user-supplied `nabhasthala-redesign.zip` and three page
-  mockups dated 2026-09-15
-- Started: 2026-09-15
+- Objective: correct observing-window calculations, replace static scientific
+  plots with understandable interactive views, and provide one local annual
+  command that regenerates, validates, renders, and records a reviewed edition
+- Started: 2026-09-19
+
+## Stage 4: Reproducible observing instruments
+
+Implementation order within this single stage:
+
+1. Correct planet and Milky Way observing-window calculations without removing
+   existing public CSV fields.
+2. Generate stable chart-ready records for Milky Way, planet, Jupiter-moon, and
+   Saturn-moon views.
+3. Render accessible, horizontally scrollable observing instruments with local
+   CSS and progressive JavaScript. Core values remain readable without JavaScript.
+4. Add a reusable local annual workflow for every configured observing site.
+5. Regenerate a representative edition, inspect it, run focused and full tests,
+   then commit and tag the checkpoint.
+
+Affected files:
+
+- `src/paa/compute/milky_way.py`
+- `src/paa/compute/planets.py`
+- `src/paa/compute/moons.py`
+- `src/paa/cli.py`
+- `src/paa/validate/reports.py`
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/html.py`
+- `src/paa/render/templates/*.html`
+- `src/paa/render/static/styles.css`
+- `src/paa/render/static/charts.js`
+- `pyproject.toml`
+- focused scientific, CLI, renderer, and annual-workflow tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Planet ratings and monthly selections use observable local twilight or night
+  samples, never an all-day altitude maximum below a bright Sun.
+- Milky Way intervals have exact exclusive end times and never join separate
+  nights into one visual line.
+- The annual Milky Way view scrolls by date and exposes date, local start and end,
+  duration, quality, and peak altitude as text.
+- Planet views explain season, local observing period, altitude, rating, and best
+  date without depending on colour alone.
+- Jupiter and Saturn moon views keep observing dates separate and label local
+  time, moon name, and east-west offset.
+- A documented `annual-release` command performs all scientific computation on
+  the local Mac, validates before rendering, writes provenance and hashes, and
+  does not publish automatically or require model tokens.
+- Existing commands and existing CSV columns remain compatible. New columns and
+  chart-ready files may be additive.
+- Keyboard navigation, no-JavaScript use, reduced motion, narrow layouts, and
+  light and dark themes remain usable.
+- Existing scientific and CLI tests remain green.
+
+Focused test command:
+
+```bash
+PYTHONPATH=src .venv/bin/pytest -q tests/test_milky_way.py tests/test_planets.py tests/test_moons.py tests/test_annual_overview.py tests/test_cli.py tests/test_render_paths.py
+```
+
+Exact resume command:
+
+```bash
+git status --short
+sed -n '/## Stage 4:/,/## Stage 3F:/p' docs/IMPLEMENTATION_STATUS.md
+PYTHONPATH=src .venv/bin/pytest -q tests/test_milky_way.py tests/test_planets.py tests/test_moons.py tests/test_annual_overview.py tests/test_cli.py tests/test_render_paths.py
+```
+
+Results:
+
+- Planet selection now uses the highest target altitude while the Sun is at or
+  below -4 degrees. The full-day maximum remains in additive audit columns and
+  no longer controls ratings, highlights, or monthly selection.
+- Milky Way rows now use an exclusive interval end. Separate nights remain
+  separate in both data and presentation.
+- The annual page now contains a horizontally scrollable Milky Way night chart,
+  twelve compact monthly summaries where data exists, an annual planet matrix,
+  and separate Jupiter and Saturn moon-night plots.
+- Moon-system samples are centred on a valid planet observing time and locally
+  filtered to Sun altitude at or below -4 degrees. Dates are never connected.
+- Obsolete PNG production was removed from the active build path. The reviewed
+  CSV data drives semantic HTML and CSS instruments directly.
+- `astro-almanac annual-release` regenerates selected sites, validates before
+  rendering, hashes all edition files, records `published: false`, and performs
+  no model calls. The workflow is documented in `docs/ANNUAL_WORKFLOW.md`.
+- A 2026 South East Queensland release rehearsal completed successfully with 70
+  hashed files. The corrected page was visually inspected in the local browser.
+- Focused Stage 4 tests: 21 passed.
+- Full regression suite: 56 passed.
+- Ruff passed for all changed Python and test files. `git diff --check` passed.
+- Checkpoint tag: `stage-4-observing-instruments`.
 
 ## Stage 3F: Editorial almanac redesign
 

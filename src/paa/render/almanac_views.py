@@ -3,6 +3,7 @@ from __future__ import annotations
 import calendar
 import csv
 from collections import defaultdict
+from datetime import date, datetime
 from pathlib import Path
 
 from paa.paths import public_site_slug
@@ -68,13 +69,176 @@ def _short_date(value: str) -> str:
         return value
 
 
+def _night_minute(value: datetime) -> float:
+    minutes = value.hour * 60 + value.minute
+    if minutes < 12 * 60:
+        minutes += 24 * 60
+    return max(0.0, min(720.0, minutes - 18 * 60))
+
+
+def _milky_way_instrument(year: int, data_dir: Path) -> dict[str, object]:
+    year_start = date(year, 1, 1)
+    year_days = (date(year + 1, 1, 1) - year_start).days
+    windows: list[dict[str, object]] = []
+    for row in _read_rows(data_dir, "milky_way_windows.csv"):
+        try:
+            start = datetime.fromisoformat(row["start_local"])
+            end = datetime.fromisoformat(row["end_local"])
+            day_index = (date.fromisoformat(row["date"]) - year_start).days
+        except (KeyError, ValueError):
+            continue
+        if not 0 <= day_index < year_days:
+            continue
+        start_minute = _night_minute(start)
+        end_minute = _night_minute(end)
+        if end_minute <= start_minute:
+            end_minute = min(720.0, start_minute + (_number(row.get("duration_minutes")) or 0))
+        windows.append(
+            {
+                "date": row["date"],
+                "day": day_index,
+                "start_local": row["start_local"],
+                "end_local": row["end_local"],
+                "start_pct": start_minute / 720 * 100,
+                "height_pct": max(1.5, (end_minute - start_minute) / 720 * 100),
+                "duration_minutes": _number(row.get("duration_minutes")) or 0,
+                "max_altitude_deg": _number(row.get("max_altitude_deg")),
+                "quality": row.get("quality", "useful"),
+            }
+        )
+    month_ticks = [
+        {
+            "label": calendar.month_abbr[month],
+            "day": (date(year, month, 1) - year_start).days,
+        }
+        for month in range(1, 13)
+    ]
+    best_by_month: dict[int, dict[str, object]] = {}
+    for window in windows:
+        month = int(str(window["date"])[5:7])
+        current = best_by_month.get(month)
+        if current is None or (
+            float(window["duration_minutes"]), float(window["max_altitude_deg"] or -90)
+        ) > (
+            float(current["duration_minutes"]), float(current["max_altitude_deg"] or -90)
+        ):
+            best_by_month[month] = window
+    summaries = tuple(
+        {
+            "month_name": calendar.month_abbr[month],
+            **best_by_month[month],
+        }
+        for month in range(1, 13)
+        if month in best_by_month
+    )
+    return {
+        "year_days": year_days,
+        "windows": windows,
+        "month_ticks": month_ticks,
+        "summaries": summaries,
+    }
+
+
+def _planet_instrument(year: int, data_dir: Path) -> dict[str, object]:
+    rows = _read_rows(data_dir, "planet_visibility_monthly_summary.csv")
+    by_planet: dict[str, dict[int, dict[str, object]]] = defaultdict(dict)
+    for row in rows:
+        try:
+            month = int(row.get("month", "")[5:7])
+        except ValueError:
+            continue
+        if not row.get("month", "").startswith(f"{year}-"):
+            continue
+        by_planet[row.get("planet", "")][month] = {
+            "month": month,
+            "best_date": row.get("best_date", ""),
+            "best_time_local": row.get("best_time_local", ""),
+            "altitude_deg": _number(row.get("best_altitude_deg")),
+            "rating": row.get("rating", "unavailable"),
+            "period": row.get("observation_period", "unavailable"),
+        }
+    order = ("Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    return {
+        "months": tuple(calendar.month_abbr[month] for month in range(1, 13)),
+        "lanes": tuple(
+            {
+                "planet": planet,
+                "months": tuple(by_planet.get(planet, {}).get(month) for month in range(1, 13)),
+            }
+            for planet in order
+        ),
+    }
+
+
+def _moon_instrument(data_dir: Path, filename: str, system: str) -> dict[str, object]:
+    rows = _read_rows(data_dir, filename)
+    by_date: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in rows:
+        if row.get("date") and row.get("datetime_local"):
+            by_date[row["date"]].append(row)
+    nights: list[dict[str, object]] = []
+    for night_date, night_rows in sorted(by_date.items()):
+        parsed = []
+        for row in night_rows:
+            try:
+                parsed.append((row, datetime.fromisoformat(row["datetime_local"])))
+            except ValueError:
+                continue
+        if not parsed:
+            continue
+        start = min(item[1] for item in parsed)
+        end = max(item[1] for item in parsed)
+        span_seconds = max(1.0, (end - start).total_seconds())
+        extent = max(1.0, max(abs(_number(row.get("dra_arcsec")) or 0) for row, _ in parsed))
+        moons = tuple(sorted({row.get("moon", "") for row, _ in parsed}))
+        moon_index = {name: index for index, name in enumerate(moons)}
+        points = []
+        for row, timestamp in parsed:
+            offset = _number(row.get("dra_arcsec")) or 0
+            points.append(
+                {
+                    "moon": row.get("moon", ""),
+                    "moon_index": moon_index[row.get("moon", "")],
+                    "datetime_local": row.get("datetime_local", ""),
+                    "offset_arcsec": offset,
+                    "x_pct": 50 + offset / extent * 46,
+                    "y_pct": (timestamp - start).total_seconds() / span_seconds * 100,
+                }
+            )
+        nights.append(
+            {
+                "date": night_date,
+                "start_local": start.isoformat(),
+                "end_local": end.isoformat(),
+                "extent_arcsec": extent,
+                "moons": moons,
+                "points": points,
+            }
+        )
+    return {"system": system, "nights": nights}
+
+
+def build_observing_instruments(year: int, data_dir: Path) -> dict[str, object]:
+    """Build deterministic chart models from the same reviewed CSVs as the prose."""
+    return {
+        "milky_way": _milky_way_instrument(year, data_dir),
+        "planets": _planet_instrument(year, data_dir),
+        "moon_systems": (
+            _moon_instrument(data_dir, "jupiter_moons.csv", "Jupiter"),
+            _moon_instrument(data_dir, "saturn_moons.csv", "Saturn"),
+        ),
+    }
+
+
 def _candidate_rows(data_dir: Path) -> list[OpportunityView]:
     candidates: list[OpportunityView] = []
     source_order = 0
 
     for row in _read_rows(data_dir, "milky_way_windows.csv"):
         quality = row.get("quality", "").lower()
-        rating = "excellent" if quality == "excellent" else "good" if quality == "useful" else quality
+        rating = (
+            "excellent" if quality == "excellent" else "good" if quality == "useful" else quality
+        )
         candidates.append(
             OpportunityView(
                 key=f"milky-way-{source_order}",
@@ -262,7 +426,9 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
         illumination = float(moon["illumination"]) if moon else None
         moon_state = "Moon data unavailable"
         if moon:
-            moon_state = f"Darkest Moon {_short_date(moon['date'])} · {illumination:.0%} illuminated"
+            moon_state = (
+                f"Darkest Moon {_short_date(moon['date'])} · {illumination:.0%} illuminated"
+            )
 
         dark = dark_by_month.get(month)
         best_dark = None
@@ -270,9 +436,7 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
             best_dark = f"{_short_date(dark['date'])} · {_duration(dark.get('duration_minutes'))}"
 
         month_candidates = [
-            candidate
-            for candidate in candidates
-            if candidate.date_local[5:7] == f"{month:02d}"
+            candidate for candidate in candidates if candidate.date_local[5:7] == f"{month:02d}"
         ]
         month_highlights = rank_diverse_opportunities(month_candidates, limit=2)
         milky = milky_by_month.get(month, {})
@@ -280,7 +444,9 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
         if excellent_milky:
             rating = "excellent"
             lead_category = "Milky Way"
-            verdict = f"{excellent_milky} excellent Milky Way windows make this a strong deep-sky month."
+            verdict = (
+                f"{excellent_milky} excellent Milky Way windows make this a strong deep-sky month."
+            )
         elif month_highlights:
             rating = month_highlights[0].rating.lower()
             lead_category = month_highlights[0].category
@@ -324,9 +490,7 @@ def _month_rows(data_dir: Path, filename: str, year: int, month: int) -> list[di
     rows = _read_rows(data_dir, filename)
     date_fields = ("date", "month", "peak_date_local", "best_date", "datetime_local")
     return [
-        row
-        for row in rows
-        if any(row.get(field, "").startswith(prefix) for field in date_fields)
+        row for row in rows if any(row.get(field, "").startswith(prefix) for field in date_fields)
     ]
 
 
@@ -350,29 +514,28 @@ def build_month_guide(
 ) -> MonthGuideView:
     candidates = _candidate_rows(data_dir)
     month_candidates = [
-        candidate
-        for candidate in candidates
-        if candidate.date_local[5:7] == f"{month:02d}"
+        candidate for candidate in candidates if candidate.date_local[5:7] == f"{month:02d}"
     ]
     highlights = rank_diverse_opportunities(month_candidates, limit=5)
 
     moon_rows = _month_rows(data_dir, "moon_phase.csv", year, month)
-    moon_values = [
-        (row, _number(row.get("moon_illumination_fraction"))) for row in moon_rows
-    ]
+    moon_values = [(row, _number(row.get("moon_illumination_fraction"))) for row in moon_rows]
     moon_values = [(row, value) for row, value in moon_values if value is not None]
     new_moon = min(moon_values, key=lambda item: item[1])[0] if moon_values else None
     full_moon = max(moon_values, key=lambda item: item[1])[0] if moon_values else None
     moon_samples = tuple(
-        MoonSampleView(row.get("date", ""), value)
-        for row, value in moon_values[::7][:5]
+        MoonSampleView(row.get("date", ""), value) for row, value in moon_values[::7][:5]
     )
 
     twilight_rows = _month_rows(data_dir, "sun_twilight.csv", year, month)
-    representative = min(
-        twilight_rows,
-        key=lambda row: abs(int(row.get("date", "00")[-2:]) - 15),
-    ) if twilight_rows else None
+    representative = (
+        min(
+            twilight_rows,
+            key=lambda row: abs(int(row.get("date", "00")[-2:]) - 15),
+        )
+        if twilight_rows
+        else None
+    )
 
     dark_rows = _month_rows(data_dir, "moon_dark_windows.csv", year, month)
     dark_rows.sort(
@@ -448,7 +611,11 @@ def build_month_guide(
             planets=tuple(
                 sorted(
                     planet_buckets[period],
-                    key=lambda item: (-RATING_PRIORITY[item.rating], -item.altitude_deg, item.planet),
+                    key=lambda item: (
+                        -RATING_PRIORITY[item.rating],
+                        -item.altitude_deg,
+                        item.planet,
+                    ),
                 )
             ),
         )

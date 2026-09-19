@@ -47,6 +47,11 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert (output / "index.html").exists()
     html = rendered.read_text(encoding="utf-8")
     assert "The year ahead" in html
+    assert "Moon-free core windows, night by night." in html
+    assert "When each planet is actually observable." in html
+    assert "Jupiter and Saturn, one observing night at a time." in html
+    assert 'data-chart-target="milky-year-chart"' in html
+    assert 'src="assets/charts.js"' in html
     assert "Monthly field guides" in html
     assert "Browse data and downloads" in html
     assert "<table" not in html

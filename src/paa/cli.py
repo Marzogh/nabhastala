@@ -5,15 +5,16 @@ import csv
 import hashlib
 import json
 import subprocess
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
 
 from paa.compute.conjunctions import compute_conjunctions
 from paa.compute.meteors import compute_meteor_showers
-from paa.compute.milky_way import compute_milky_way_outputs, save_milky_way_chart
+from paa.compute.milky_way import compute_milky_way_outputs
 from paa.compute.minor_planets import compute_minor_planets_and_comets
-from paa.compute.moons import compute_moon_offsets, save_moon_strip_chart
+from paa.compute.moons import compute_moon_offsets
 from paa.compute.planets import compute_planet_visibility
 from paa.compute.sun_moon import build_dark_windows, generate_sun_moon_tables
 from paa.compute.ui_notes import generate_ui_notes
@@ -25,7 +26,7 @@ from paa.paths import occult_cache_dir, resolve_site_year_dir, site_year_dir
 from paa.render.html import render_annual_html
 from paa.render.pdf import render_pdf_from_html
 from paa.sources.occult_import import import_latest_occult_cache
-from paa.validate.reports import generate_validation_report
+from paa.validate.reports import generate_validation_report, validation_failures
 
 DEFAULT_SITES = {
     "sites": [
@@ -61,7 +62,11 @@ DEFAULT_SITES = {
 
 DEFAULT_ALMANAC = {
     "year": 2027,
-    "darkness": {"twilight": "astronomical", "sun_altitude_deg": -18, "min_dark_window_minutes": 60},
+    "darkness": {
+        "twilight": "astronomical",
+        "sun_altitude_deg": -18,
+        "min_dark_window_minutes": 60,
+    },
     "moon": {"max_illumination_for_dark_imaging": 0.25, "require_moon_below_horizon": True},
     "milky_way": {"useful_altitude_deg": 20, "excellent_altitude_deg": 25, "scan_step_minutes": 10},
     "planets": {"min_altitude_deg": 25, "excellent_altitude_deg": 45},
@@ -99,7 +104,16 @@ SECTION_DEPS = {
     "ui_notes_context": {"sun_moon"},
     "ui_notes_tonight": {"sun_moon"},
     "ui_notes_milky_way": {"milky_way"},
-    "ui_notes_events": {"sun_moon", "milky_way", "planets", "minor_planets", "comets", "occultations", "meteors", "conjunctions"},
+    "ui_notes_events": {
+        "sun_moon",
+        "milky_way",
+        "planets",
+        "minor_planets",
+        "comets",
+        "occultations",
+        "meteors",
+        "conjunctions",
+    },
     "ui_notes_validation": {"sun_moon", "milky_way", "planets", "moons", "occultations"},
     "ui_notes_recommendations": {"sun_moon", "occultations"},
     "ui_notes_bundle": {
@@ -186,23 +200,40 @@ def cmd_build(args: argparse.Namespace) -> int:
         fp = _section_fingerprint(section, args.year, args.site, config_dir, out)
         prev = section_manifest.get(section, {})
         force_this = args.force and section in explicit_requested
-        if (not force_this) and prev.get("fingerprint") == fp and _section_outputs_exist(section, out):
+        if (
+            (not force_this)
+            and prev.get("fingerprint") == fp
+            and _section_outputs_exist(section, out)
+        ):
             print(f"[build] {section}: unchanged; skip", flush=True)
             continue
 
         if section == "sun_moon":
             print("[build] sun/moon tables...", flush=True)
-            twilight_rows, moon_phase_rows, moonrise_rows = generate_sun_moon_tables(args.year, site)
-            dark_rows = build_dark_windows(twilight_rows, moon_phase_rows, moonrise_rows, min_dark_minutes=min_dark_minutes, max_illum=max_illum)
+            twilight_rows, moon_phase_rows, moonrise_rows = generate_sun_moon_tables(
+                args.year, site
+            )
+            dark_rows = build_dark_windows(
+                twilight_rows,
+                moon_phase_rows,
+                moonrise_rows,
+                min_dark_minutes=min_dark_minutes,
+                max_illum=max_illum,
+            )
             _write_csv(out / "sun_twilight.csv", twilight_rows)
             _write_csv(out / "moon_phase.csv", moon_phase_rows)
             _write_csv(out / "moonrise_moonset.csv", moonrise_rows)
             _write_csv(out / "moon_dark_windows.csv", dark_rows)
-            ctx["sun_twilight"], ctx["moon_phase"], ctx["moonrise_moonset"], ctx["moon_dark_windows"] = twilight_rows, moon_phase_rows, moonrise_rows, dark_rows
+            (
+                ctx["sun_twilight"],
+                ctx["moon_phase"],
+                ctx["moonrise_moonset"],
+                ctx["moon_dark_windows"],
+            ) = twilight_rows, moon_phase_rows, moonrise_rows, dark_rows
         elif section == "milky_way":
             print("[build] milky way windows...", flush=True)
             milky_cfg = almanac.get("milky_way", {})
-            mw_rows, mw_monthly_rows, mw_points = compute_milky_way_outputs(
+            mw_rows, mw_monthly_rows, _mw_points = compute_milky_way_outputs(
                 dark_windows_csv=out / "moon_dark_windows.csv",
                 latitude_deg=site.latitude_deg,
                 longitude_deg=site.longitude_deg,
@@ -213,7 +244,6 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
             _write_csv(out / "milky_way_windows.csv", mw_rows)
             _write_csv(out / "milky_way_monthly_summary.csv", mw_monthly_rows)
-            save_milky_way_chart(mw_points, year_out / "charts" / "milky_way_windows.png")
             ctx["milky_way_windows"], ctx["milky_way_monthly_summary"] = mw_rows, mw_monthly_rows
         elif section == "planets":
             print("[build] planet visibility...", flush=True)
@@ -229,7 +259,10 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
             _write_csv(out / "planet_visibility_daily.csv", planet_daily)
             _write_csv(out / "planet_visibility_monthly_summary.csv", planet_monthly)
-            ctx["planet_visibility_daily"], ctx["planet_visibility_monthly_summary"] = planet_daily, planet_monthly
+            ctx["planet_visibility_daily"], ctx["planet_visibility_monthly_summary"] = (
+                planet_daily,
+                planet_monthly,
+            )
         elif section == "moons":
             print("[build] moon offsets...", flush=True)
             jupiter_moons, saturn_moons = compute_moon_offsets(
@@ -243,8 +276,6 @@ def cmd_build(args: argparse.Namespace) -> int:
             )
             _write_csv(out / "jupiter_moons.csv", jupiter_moons)
             _write_csv(out / "saturn_moons.csv", saturn_moons)
-            save_moon_strip_chart(jupiter_moons, year_out / "charts" / "jupiter_moons" / "strip_chart.png", "Jupiter Moon Relative Offsets")
-            save_moon_strip_chart(saturn_moons, year_out / "charts" / "saturn_moons" / "strip_chart.png", "Saturn Moon Relative Offsets")
             ctx["jupiter_moons"], ctx["saturn_moons"] = jupiter_moons, saturn_moons
         elif section in {"minor_planets", "comets"}:
             print(f"[build] {section.replace('_', ' ')}...", flush=True)
@@ -277,7 +308,14 @@ def cmd_build(args: argparse.Namespace) -> int:
             ctx["lunar_occultations"] = occult_rows
         elif section == "meteors":
             print("[build] meteor showers...", flush=True)
-            meteor_rows = compute_meteor_showers(args.year, site.latitude_deg, site.longitude_deg, site.elevation_m, site.timezone, config_dir)
+            meteor_rows = compute_meteor_showers(
+                args.year,
+                site.latitude_deg,
+                site.longitude_deg,
+                site.elevation_m,
+                site.timezone,
+                config_dir,
+            )
             _write_csv(out / "meteor_showers.csv", meteor_rows)
             ctx["meteor_showers"] = meteor_rows
         elif section == "conjunctions":
@@ -379,7 +417,9 @@ def cmd_build(args: argparse.Namespace) -> int:
         replace_rows(database_url, "ui_notes", run_id, ui_notes)
 
     report = generate_validation_report(args.year, args.site, Path("output"))
-    manifest = write_run_manifest(args.year, args.site, config_dir=config_dir, output_dir=Path("output"), run_id=run_id)
+    manifest = write_run_manifest(
+        args.year, args.site, config_dir=config_dir, output_dir=Path("output"), run_id=run_id
+    )
 
     print(f"Build complete for {args.site} ({args.year}) through Milestone 7; run_id={run_id}")
     print(f"Validation: {report}")
@@ -420,6 +460,77 @@ def cmd_validate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_annual_release(args: argparse.Namespace) -> int:
+    """Regenerate a complete reviewed local edition without publishing it."""
+    config_dir = Path(args.config_dir)
+    configured_sites = load_sites(config_dir / "sites.yaml")
+    if args.sites.strip().lower() == "all":
+        site_ids = [site.id for site in configured_sites]
+    else:
+        site_ids = [item.strip() for item in args.sites.split(",") if item.strip()]
+        for site_id in site_ids:
+            get_site(configured_sites, site_id)
+    if not site_ids:
+        raise SystemExit("No observing sites selected")
+
+    completed: list[dict[str, str]] = []
+    for site_id in site_ids:
+        print(f"[annual-release] regenerate {site_id} ({args.year})", flush=True)
+        cmd_build(
+            argparse.Namespace(
+                year=args.year,
+                site=site_id,
+                config_dir=args.config_dir,
+                database_url=None,
+                skip_db=True,
+                sections=args.sections,
+                force=args.force,
+            )
+        )
+        failures = validation_failures(args.year, site_id, Path("output"))
+        report = generate_validation_report(args.year, site_id, Path("output"))
+        if failures:
+            raise SystemExit(
+                f"Validation failed for {site_id}: {', '.join(failures)}. See {report}"
+            )
+        html_path = render_annual_html(args.year, site_id, Path("output"))
+        completed.append(
+            {
+                "site_id": site_id,
+                "html": str(html_path),
+                "validation_report": str(report),
+            }
+        )
+
+    release_root = Path("output") / "releases" / str(args.year)
+    release_root.mkdir(parents=True, exist_ok=True)
+    file_hashes: dict[str, str] = {}
+    for site_id in site_ids:
+        edition_root = site_year_dir(Path("output"), site_id, args.year)
+        for path in sorted(edition_root.rglob("*")):
+            if path.is_file():
+                digest = hashlib.sha256(path.read_bytes()).hexdigest()
+                file_hashes[str(path.relative_to(Path("output")))] = digest
+    manifest = release_root / "annual_release.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "generated_at_utc": datetime.now(UTC).isoformat(),
+                "year": args.year,
+                "sites": completed,
+                "sections": args.sections,
+                "files_sha256": file_hashes,
+                "published": False,
+            },
+            indent=2,
+            sort_keys=True,
+        ),
+        encoding="utf-8",
+    )
+    print(f"Annual release ready for review: {manifest}")
+    return 0
+
+
 def cmd_db_init(args: argparse.Namespace) -> int:
     db = resolve_database_url(args.database_url)
     ensure_schema(db)
@@ -431,12 +542,14 @@ def cmd_db_check(args: argparse.Namespace) -> int:
     db = resolve_database_url(args.database_url)
     import psycopg
 
-    with psycopg.connect(db) as conn:
-        with conn.cursor() as cur:
-            cur.execute("SELECT count(*) FROM paa.runs")
-            runs = cur.fetchone()[0]
-            cur.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='paa' ORDER BY table_name")
-            tables = [r[0] for r in cur.fetchall()]
+    with psycopg.connect(db) as conn, conn.cursor() as cur:
+        cur.execute("SELECT count(*) FROM paa.runs")
+        runs = cur.fetchone()[0]
+        cur.execute(
+            "SELECT table_name FROM information_schema.tables "
+            "WHERE table_schema='paa' ORDER BY table_name"
+        )
+        tables = [r[0] for r in cur.fetchall()]
     print(f"runs={runs}")
     print("tables=" + ",".join(tables))
     return 0
@@ -447,9 +560,10 @@ def cmd_view(args: argparse.Namespace) -> int:
     if year is None:
         raise SystemExit("Provide a year via --year YYYY or shorthand like --2027")
     site_id = args.site
-    report = resolve_site_year_dir(
-        Path("output"), site_id, year, required="almanac.html"
-    ) / "almanac.html"
+    report = (
+        resolve_site_year_dir(Path("output"), site_id, year, required="almanac.html")
+        / "almanac.html"
+    )
     if not report.exists():
         raise SystemExit(f"Report not found: {report}. Run build/render first.")
     subprocess.run(["open", str(report)], check=True)
@@ -458,7 +572,9 @@ def cmd_view(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="astro-almanac", description="Personal Astronomy Almanac CLI")
+    parser = argparse.ArgumentParser(
+        prog="astro-almanac", description="Personal Astronomy Almanac CLI"
+    )
     sub = parser.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("init-config")
@@ -477,8 +593,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--config-dir", default="config")
     p.add_argument("--database-url", default=None)
     p.add_argument("--skip-db", action="store_true")
-    p.add_argument("--sections", default="all", help="Comma list: sun_moon,milky_way,planets,moons,minor_planets,comets,occultations,meteors,conjunctions,ui_notes_context,ui_notes_tonight,ui_notes_milky_way,ui_notes_events,ui_notes_validation,ui_notes_recommendations,ui_notes_bundle,ui_notes_all or 'all'")
-    p.add_argument("--force", action="store_true", help="Rebuild selected sections even when fingerprint is unchanged")
+    p.add_argument(
+        "--sections",
+        default="all",
+        help="Comma list: sun_moon,milky_way,planets,moons,minor_planets,comets,occultations,meteors,conjunctions,ui_notes_context,ui_notes_tonight,ui_notes_milky_way,ui_notes_events,ui_notes_validation,ui_notes_recommendations,ui_notes_bundle,ui_notes_all or 'all'",
+    )
+    p.add_argument(
+        "--force",
+        action="store_true",
+        help="Rebuild selected sections even when fingerprint is unchanged",
+    )
     p.set_defaults(func=cmd_build)
 
     p = sub.add_parser("import-occult")
@@ -497,6 +621,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--year", type=int, required=True)
     p.add_argument("--site", required=True)
     p.set_defaults(func=cmd_validate)
+
+    p = sub.add_parser(
+        "annual-release",
+        help="Regenerate, validate, render, and hash a local annual edition",
+    )
+    p.add_argument("--year", type=int, required=True)
+    p.add_argument("--sites", default="all", help="'all' or comma-separated configured site IDs")
+    p.add_argument("--config-dir", default="config")
+    p.add_argument("--sections", default="all")
+    p.add_argument("--force", action="store_true")
+    p.set_defaults(func=cmd_annual_release)
 
     p = sub.add_parser("db-init")
     p.add_argument("--database-url", default=None)
@@ -546,7 +681,9 @@ def _write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2, sort_keys=True), encoding="utf-8")
 
 
-def _build_all_ui_notes(*, ctx: dict[str, list[dict]], load_csv, year: int, site_name: str, timezone: str) -> list[dict]:
+def _build_all_ui_notes(
+    *, ctx: dict[str, list[dict]], load_csv, year: int, site_name: str, timezone: str
+) -> list[dict]:
     cached = ctx.get("_ui_notes_all")
     if cached is not None:
         return cached
@@ -664,7 +801,12 @@ def _parse_explicit_sections(raw: str) -> set[str]:
 
 def _section_outputs_exist(section: str, out: Path) -> bool:
     req = {
-        "sun_moon": ["sun_twilight.csv", "moon_phase.csv", "moonrise_moonset.csv", "moon_dark_windows.csv"],
+        "sun_moon": [
+            "sun_twilight.csv",
+            "moon_phase.csv",
+            "moonrise_moonset.csv",
+            "moon_dark_windows.csv",
+        ],
         "milky_way": ["milky_way_windows.csv", "milky_way_monthly_summary.csv"],
         "planets": ["planet_visibility_daily.csv", "planet_visibility_monthly_summary.csv"],
         "moons": ["jupiter_moons.csv", "saturn_moons.csv"],
@@ -686,7 +828,7 @@ def _section_outputs_exist(section: str, out: Path) -> bool:
 
 def _section_fingerprint(section: str, year: int, site: str, config_dir: Path, out: Path) -> str:
     h = hashlib.sha256()
-    h.update(f"section={section}|year={year}|site={site}".encode("utf-8"))
+    h.update(f"section={section}|year={year}|site={site}".encode())
     for p in [config_dir / "sites.yaml", config_dir / "almanac.yaml"]:
         if p.exists():
             h.update(p.read_bytes())
@@ -755,7 +897,7 @@ def _section_fingerprint(section: str, year: int, site: str, config_dir: Path, o
         p = out / f
         if p.exists():
             st = p.stat()
-            h.update(f"{f}:{st.st_mtime_ns}:{st.st_size}".encode("utf-8"))
+            h.update(f"{f}:{st.st_mtime_ns}:{st.st_size}".encode())
     return h.hexdigest()
 
 

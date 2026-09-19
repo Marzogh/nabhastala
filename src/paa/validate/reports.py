@@ -5,29 +5,36 @@ from pathlib import Path
 from paa.paths import resolve_site_year_dir, site_year_dir
 
 
+def validation_failures(year: int, site_id: str, output_dir: Path) -> list[str]:
+    source_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
+    data_dir = source_dir / "data"
+    return [name for name in EXPECTED_DATASETS if not (data_dir / name).exists()]
+
+
+EXPECTED_DATASETS = (
+    "sun_twilight.csv",
+    "moon_phase.csv",
+    "moonrise_moonset.csv",
+    "moon_dark_windows.csv",
+    "milky_way_windows.csv",
+    "planet_visibility_daily.csv",
+    "jupiter_moons.csv",
+    "saturn_moons.csv",
+    "minor_planets.csv",
+    "comets.csv",
+    "lunar_occultations.csv",
+    "meteor_showers.csv",
+)
+
+
 def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Path:
     source_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
     data_dir = source_dir / "data"
     report = site_year_dir(output_dir, site_id, year) / "logs" / "validation_report.md"
     report.parent.mkdir(parents=True, exist_ok=True)
 
-    expected = [
-        "sun_twilight.csv",
-        "moon_phase.csv",
-        "moonrise_moonset.csv",
-        "moon_dark_windows.csv",
-        "milky_way_windows.csv",
-        "planet_visibility_daily.csv",
-        "jupiter_moons.csv",
-        "saturn_moons.csv",
-        "minor_planets.csv",
-        "comets.csv",
-        "lunar_occultations.csv",
-        "meteor_showers.csv",
-    ]
-
     lines = ["# Validation report", "", f"- year: {year}", f"- site: {site_id}", ""]
-    for name in expected:
+    for name in EXPECTED_DATASETS:
         p = data_dir / name
         if not p.exists():
             lines.append(f"- [FAIL] missing `{name}`")
