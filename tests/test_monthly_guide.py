@@ -164,7 +164,7 @@ def test_month_guide_selects_field_information_without_recalculating_scores(
         "Galactic Centre viewing is best on 15 Jan 2027, from 2:00 am to 4:00 am, "
         "reaching 48°."
     )
-    assert any("comet calculations are unavailable" in note for note in guide.data_notes)
+    assert any("Positions are unavailable" in note for note in guide.data_notes)
     assert all(item.category != "Comets" for item in guide.highlights)
 
 
@@ -175,13 +175,13 @@ def test_rendered_month_is_a_field_guide_with_contextual_downloads(tmp_path: Pat
     annual = render_annual_html(2027, "se_qld", output)
     html = (annual.parent / "months" / "01.html").read_text(encoding="utf-8")
 
-    assert "The month in one sentence" in html
-    assert "Plan the sky for your date" in html
+    assert "Galactic Centre viewing is best" in html
+    assert ">Night planner<" in html
     assert "data-night-planner" in html
     assert 'type="date"' in html
     assert 'data-site-timezone="Australia/Brisbane"' in html
-    assert "Recommended core sessions" in html
-    assert "Useful at twilight" in html
+    assert "Galactic Centre sessions" in html
+    assert ">Planet visibility<" in html
     assert 'href="../data/moon_dark_windows.csv" download' in html
     assert "query_failed" not in html
     assert "<table" not in html

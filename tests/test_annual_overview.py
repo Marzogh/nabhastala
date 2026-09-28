@@ -142,7 +142,7 @@ def test_annual_overview_selects_month_signals_and_diverse_complete_highlights(
         "Minor planets",
     }
     assert all(item.category != "Comets" for item in overview.highlights)
-    assert any(item.title == "Minor planet 4" for item in overview.highlights)
+    assert any(item.title == "4 Vesta" for item in overview.highlights)
     assert overview.planet_seasons[0].best_date == "2027-01-10"
 
 

@@ -99,7 +99,7 @@
       planetBox.replaceChildren();
       planetBox.append(element("h3", "", "Planets on this night"));
       if (!plan.planets.length) {
-        planetBox.append(element("p", "empty-state", "No planet has a supported observing sample for this date."));
+        planetBox.append(element("p", "empty-state", "No planet position is available for this date."));
       } else {
         const list = element("ul");
         plan.planets.slice(0, 7).forEach((planet) => {
@@ -131,8 +131,8 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       payload = await response.json();
     } catch (error) {
-      status.textContent = "The locally generated moon data could not be loaded.";
-      caption.textContent = "Use the complete CSV download while the chart data is unavailable.";
+      status.textContent = "Moon positions could not be loaded.";
+      caption.textContent = "Download the CSV for the full table.";
       return;
     }
     const nights = new Map(payload.map((night) => [night.date, night]));
@@ -147,8 +147,8 @@
       chart.replaceChildren();
       key.replaceChildren();
       if (!night) {
-        status.textContent = `${localDate(input.value)} has no observable nighttime samples for this planet.`;
-        caption.textContent = "Choose another date, or use the complete CSV for exact records.";
+        status.textContent = `No moon positions are available for ${localDate(input.value)}.`;
+        caption.textContent = "Choose another date or download the CSV.";
         return;
       }
       status.textContent = `${localDate(night.date)}, ${localTime(night.start_local)} to ${localTime(night.end_local)} local.`;

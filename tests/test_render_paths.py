@@ -48,17 +48,17 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert (rendered.parent / "assets" / "data" / "saturn-moons.json").exists()
     assert (output / "index.html").exists()
     html = rendered.read_text(encoding="utf-8")
-    assert "The year ahead" in html
-    assert "Usable Galactic Centre viewing windows." in html
+    assert "Best observing opportunities" in html
+    assert "Galactic Centre visibility" in html
     assert "astronomical darkness, acceptable Moon interference" in html
-    assert "When each planet is actually observable." in html
-    assert "Choose a date for Jupiter and Saturn." in html
+    assert "Planet visibility by month" in html
+    assert "Jupiter and Saturn moons" in html
     assert 'data-site-timezone="Australia/Brisbane"' in (
         rendered.parent / "months" / "01.html"
     ).read_text(encoding="utf-8")
     assert 'data-chart-target="milky-year-chart"' in html
     assert 'src="assets/charts.js?v=stage-4a"' in html
-    assert "Monthly field guides" in html
+    assert "Monthly guides" in html
     assert "Browse data and downloads" in html
     assert "<table" not in html
     assert "<script>unsafe</script>" not in html

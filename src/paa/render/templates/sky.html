@@ -5,13 +5,7 @@
     <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
     {% include "_page_header.html" %}
 
-    <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-year="{{ year }}" data-timezone="{{ site_timezone }}" aria-labelledby="sky-tool-title">
-      <header class="section-heading sky-tool__heading">
-        <p class="eyebrow">Set the sky</p>
-        <h2 id="sky-tool-title">Choose when you will observe.</h2>
-        <p>Times are local to {{ site_name }}.</p>
-      </header>
-
+    <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-year="{{ year }}" data-timezone="{{ site_timezone }}" aria-label="Sky chart controls and chart">
       <form class="sky-controls" data-sky-controls>
         <label>Date <input type="date" min="{{ year }}-01-01" max="{{ year }}-12-31" data-sky-date></label>
         <label>Local time <input type="time" step="60" data-sky-time></label>
@@ -33,7 +27,7 @@
     </section>
 
     <noscript>
-      <section class="static-sky-fallback"><h2>Monthly charts</h2><p>Choose the nearest month, then adjust for the time of night.</p><ul>{% for month in month_links %}<li><a href="{{ month.href }}">{{ month.label }}</a></li>{% endfor %}</ul></section>
+      <section class="static-sky-fallback"><h2>Monthly charts</h2><p>Open the chart nearest your observing date.</p><ul>{% for month in month_links %}<li><a href="{{ month.href }}">{{ month.label }}</a></li>{% endfor %}</ul></section>
     </noscript>
   </div>
 {% endblock %}

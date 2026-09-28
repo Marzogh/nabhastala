@@ -21,7 +21,6 @@
     <div class="rule"></div>
     <p class="eyebrow">FIELD EDITION / {{ site_id|upper }} / {{ year }}</p>
     <h1>{{ year }} observing almanac</h1>
-    <p class="dek">A compact astronomical planning reference for {{ site_name }}.</p>
 
     <dl class="edition-grid">
       <div><dt>Horizon</dt><dd>{{ site_name }}</dd></div>
@@ -45,19 +44,17 @@
       </tbody>
     </table>
 
-    <div class="cover-note">
-      Use the monthly sheets for exact local dates and times. Complete datasets remain available in the web edition.
-    </div>
+    <div class="cover-note">Monthly sheets give local dates and times. CSV tables: {{ data_page }}.</div>
   </section>
 
   <section class="page annual-page">
     <header class="running-head"><span>{{ year }} FIELD EDITION</span><span>{{ site_name }}</span></header>
     <p class="eyebrow">ANNUAL INDEX</p>
-    <h1>Year at a glance</h1>
+    <h1>Annual summary</h1>
     <p class="intro">The principal observing lead, darkest low-Moon interval and darkest lunar date for each month.</p>
 
     <table class="technical-table year-table">
-      <thead><tr><th>Month</th><th>Primary observing lead</th><th>Best low-Moon darkness</th><th>Darkest Moon</th><th>Rating</th></tr></thead>
+      <thead><tr><th>Month</th><th>Event or target</th><th>Best low-Moon darkness</th><th>Darkest Moon</th><th>Rating</th></tr></thead>
       <tbody>
       {% for month in overview.months %}
         <tr>
@@ -194,24 +191,24 @@
       </div>
       <div>
         <h2>Ratings</h2>
-        <p>Ratings combine the edition's established visibility thresholds. The text label is authoritative in monochrome printing; colour is never required to interpret a rating.</p>
+        <p>Text labels repeat every colour-coded rating for monochrome printing.</p>
       </div>
       <div>
         <h2>Low-Moon darkness</h2>
         <p>Intervals occur within astronomical darkness and apply the edition's Moon constraint. They are not interchangeable with Galactic Centre visibility, which additionally requires the core to clear the altitude threshold.</p>
       </div>
       <div>
-        <h2>Complete reference data</h2>
-        <p>The web edition contains complete CSV tables for twilight, Moon, Galactic Centre, planets, satellites, minor planets, comets and events. This PDF intentionally keeps only field-useful summaries.</p>
+        <h2>CSV tables</h2>
+        <p>Full CSV tables for twilight, Moon, Galactic Centre, planets, satellites, minor planets, comets and events are available from the web data index.</p>
       </div>
     </div>
 
     <h2>Sources and scope</h2>
     <ul class="source-list">
       <li>Solar, lunar, planetary and Galactic Centre circumstances are calculated for the named observing horizon.</li>
-      <li>Jupiter and Saturn satellite positions use cached NASA JPL Horizons results in the corresponding web edition.</li>
-      <li>Meteor and event entries retain the edition's source notes and validation state in the downloadable data.</li>
-      <li>Weather, cloud, smoke, local obstruction and artificial sky brightness are outside the scope of this almanac.</li>
+      <li>Jupiter and Saturn satellite positions use NASA JPL Horizons.</li>
+      <li>Meteor and event sources are listed in the downloadable tables.</li>
+      <li>This PDF does not include live weather, cloud, smoke, local obstruction or artificial sky brightness.</li>
     </ul>
     <p class="web-pointer">Web data index: <strong>{{ data_page }}</strong></p>
   </section>

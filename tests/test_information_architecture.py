@@ -118,8 +118,8 @@ def test_core_views_need_no_javascript_and_reflow_rules_are_scoped(tmp_path: Pat
 
     annual_html = annual.read_text(encoding="utf-8")
     month_html = month.read_text(encoding="utf-8")
-    assert "The year ahead" in annual_html
-    assert "Plan the sky for your date" in month_html
+    assert "Best observing opportunities" in annual_html
+    assert ">Night planner<" in month_html
     assert "Best low-Moon dark periods this month" in month_html
     assert "<noscript" in annual_html + month_html
     assert 'class="js-only"' not in annual_html + month_html

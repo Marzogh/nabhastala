@@ -24,6 +24,15 @@ from paa.render.view_models import (
     rank_opportunities,
 )
 
+MINOR_PLANET_NAMES = {
+    "1": "1 Ceres",
+    "2": "2 Pallas",
+    "3": "3 Juno",
+    "4": "4 Vesta",
+    "7": "7 Iris",
+    "15": "15 Eunomia",
+}
+
 
 def _read_rows(data_dir: Path, filename: str) -> list[dict[str, str]]:
     path = data_dir / filename
@@ -409,6 +418,11 @@ def _candidate_rows(data_dir: Path) -> list[OpportunityView]:
     ):
         for row in _read_rows(data_dir, filename):
             target = row.get("target", "").rstrip(";")
+            title = (
+                MINOR_PLANET_NAMES.get(target, f"Minor planet {target}")
+                if filename == "minor_planets.csv"
+                else f"Comet {target}"
+            )
             date_local = row.get("best_datetime_local", "")
             complete = bool(date_local and row.get("best_altitude_deg") and row.get("best_apmag"))
             observable = filename != "comets.csv" or _truthy(row.get("amateur_chaseable"))
@@ -416,7 +430,7 @@ def _candidate_rows(data_dir: Path) -> list[OpportunityView]:
                 OpportunityView(
                     key=f"{category.lower()}-{target}-{source_order}",
                     category=category,
-                    title=f"{category[:-1]} {target}",
+                    title=title,
                     date_local=date_local,
                     rating=row.get("rating", ""),
                     reason=f"{_degrees(row.get('best_altitude_deg'))}; {_magnitude(row.get('best_apmag'))}.",
@@ -644,15 +658,15 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
         elif month_highlights:
             rating = month_highlights[0].rating.lower()
             lead_category = month_highlights[0].category
-            verdict = f"{month_highlights[0].title} is the clearest planning lead this month."
+            verdict = f"{month_highlights[0].title}: {month_highlights[0].reason}"
         elif best_dark:
             rating = "fair"
             lead_category = "Dark sky"
-            verdict = "Use the longest low-Moon dark period for general observing."
+            verdict = f"Longest low-Moon dark period: {best_dark}."
         else:
             rating = "unavailable"
             lead_category = "No recommendation"
-            verdict = "No strong opportunity is identified in the available data."
+            verdict = "No major event listed."
 
         months.append(
             MonthSummaryView(
@@ -898,7 +912,7 @@ def build_month_guide(
     )
     if failed_comets:
         data_notes.append(
-            f"{failed_comets} comet calculations are unavailable; they remain in the data library."
+            f"Positions are unavailable for {failed_comets} comet entries."
         )
     if not _month_rows(data_dir, "lunar_occultations.csv", year, month):
         data_notes.append("No lunar occultation is listed for this month.")

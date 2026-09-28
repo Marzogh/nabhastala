@@ -31,7 +31,7 @@ def test_field_pdf_uses_dedicated_curated_print_composition(
         assert html_path.parent == Path("tmp/pdfs")
         html = html_path.read_text(encoding="utf-8")
         assert "2027 observing almanac" in html
-        assert "Year at a glance" in html
+        assert "Annual summary" in html
         assert "Galactic Centre observing time" in html
         assert html.count('class="page month-page"') == 12
         assert "Using this field edition" in html

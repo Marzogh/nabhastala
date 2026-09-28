@@ -54,9 +54,9 @@ def test_annual_page_is_an_editorial_overview_not_a_dataset_dump(tmp_path: Path)
     annual = _render_fixture(tmp_path)
     html = annual.read_text(encoding="utf-8")
 
-    assert "The year ahead" in html
+    assert "Best observing opportunities" in html
     assert "Best observing opportunities in 2027" in html
-    assert "Monthly field guides" in html
+    assert "Monthly guides" in html
     assert 'href="data/index.html"' in html
     assert html.count('class="month-card ') == 12
     assert 'src="assets/art/landscape-light.webp"' in html
@@ -76,10 +76,10 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert 'href="../almanac.html"' in html
     assert 'href="../data/index.html"' in html
     assert "The date selector requires JavaScript" in html
-    assert "Plan the sky for your date." in html
-    assert "Top picks for January." in html
-    assert "Is the sky likely to cooperate?" in html
-    assert "The mid-month sky at 10 pm." in html
+    assert ">Night planner<" in html
+    assert "January highlights" in html
+    assert ">Current conditions<" in html
+    assert "Mid-month sky at 10 pm" in html
     assert 'src="../charts/sky/month-01.svg"' in html
     assert (annual.parent / "charts" / "sky" / "month-01.svg").exists()
     assert "1 Jan" in html
@@ -93,7 +93,7 @@ def test_sky_finder_is_linked_and_has_a_static_fallback(tmp_path: Path) -> None:
     html = sky_page.read_text(encoding="utf-8")
 
     assert 'href="sky/index.html"' in annual.read_text(encoding="utf-8")
-    assert "Choose when you will observe." in html
+    assert ">Night sky chart<" in html
     assert 'data-sky-date' in html
     assert 'data-sky-time' in html
     assert 'src="../assets/sky.js?v=stage-5d"' in html
@@ -160,3 +160,28 @@ def test_data_library_links_complete_csv_without_rendering_its_rows(tmp_path: Pa
     assert "2027-01-01T19:14:00+10:00" not in html
     assert 'href="../almanac.html"' in html
     assert 'href="../../../index.html"' in html
+
+
+def test_public_pages_avoid_promotional_and_process_language(tmp_path: Path) -> None:
+    annual = _render_fixture(tmp_path)
+    pages = (
+        annual.parents[2] / "index.html",
+        annual,
+        annual.parent / "months" / "01.html",
+        annual.parent / "data" / "index.html",
+        annual.parent / "sky" / "index.html",
+    )
+    combined = "\n".join(path.read_text(encoding="utf-8") for path in pages)
+    banned = (
+        "A practical observing and nightscape planner",
+        "Three locations. Local sky time.",
+        "concise shortlist",
+        "complete, observable records",
+        "Highlights first",
+        "What deserves attention",
+        "Looking for an observing recommendation?",
+        "locally generated moon data",
+    )
+
+    for phrase in banned:
+        assert phrase not in combined

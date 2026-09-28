@@ -319,15 +319,14 @@ def render_landing_html(output_dir: Path) -> Path:
         .get_template("landing.html")
         .render(
             **_identity_context(),
-            document_title="Nabhastala: astronomy planning at three horizons",
+            document_title="Nabhastala astronomy almanacs",
             page_description=(
-                "Practical annual astronomy and nightscape guides for three local horizons."
+                "Astronomy almanacs for South East Queensland, Southern Tasmania and the Malabar Coast."
             ),
             asset_prefix="assets/",
             identity_href="index.html",
             nav_items=(
-                {"href": "#horizons", "label": "Horizons", "current": True},
-                {"href": "#about", "label": "About", "current": False},
+                {"href": "#horizons", "label": "Locations", "current": True},
                 {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
             ),
             editions=_edition_catalog(output_dir),
@@ -351,6 +350,8 @@ def _render_data_library(
     datasets: list[DatasetView] = []
     titles = dict(SECTIONS)
     for path in sorted(data_dir.glob("*.csv")):
+        if path.name.startswith("ui_notes"):
+            continue
         headers, rows = _read_csv(path)
         datasets.append(
             DatasetView(
@@ -384,9 +385,7 @@ def _render_data_library(
             document_title=f"Data and downloads: {site_name}, {year}",
             page_title="Data and downloads",
             page_eyebrow="Complete reference files",
-            page_description=(
-                "Download the complete dates, times and measurements behind each guide."
-            ),
+            page_description=f"CSV astronomy data for {site_name}, {year}.",
             site_id=site_id,
             site_name=site_name,
             year=year,
@@ -429,7 +428,7 @@ def _render_sky_tool(
             document_title=f"Night sky chart: {site_name}, {year}",
             page_title="Night sky chart",
             page_eyebrow="Date and time finder",
-            page_description=f"Choose a local date and time for {site_name}.",
+            page_description=f"Interactive sky chart for {site_name}, {year}.",
             site_id=site_id,
             site_name=site_name,
             site_timezone=site_record["timezone"],
@@ -561,7 +560,10 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             document_title=f"{calendar.month_name[month]} {year} — Nabhastala",
             page_title=f"{calendar.month_name[month]} {year}",
             page_eyebrow="Monthly field almanac",
-            page_description=f"Observing reference for {common['site_name']}.",
+            page_description=(
+                f"Astronomy data and observing times for {common['site_name']}, "
+                f"{calendar.month_name[month]} {year}."
+            ),
             guide=guide,
             horizon_links=_horizon_links(
                 year=year,
@@ -610,12 +612,10 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     instruments = {**instruments, "moon_systems": tuple(moon_systems)}
     annual = environment.get_template("annual.html").render(
         **common,
-        document_title=f"Nabhastala — {year} field almanac",
+        document_title=f"Nabhastala: {year} field almanac",
         page_title=f"{year} field almanac",
         page_eyebrow="Annual observing reference",
-        page_description=(
-            f"A complete astronomy and astrophotography reference for {common['site_name']}."
-        ),
+        page_description=f"{year} astronomy data and observing times for {common['site_name']}.",
         pdf_href=(
             f"../../pdf/nabhastala-{year}-{public_site_slug(site_id)}-field-edition.pdf"
             if (

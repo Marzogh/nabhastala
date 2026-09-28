@@ -13,6 +13,20 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Stage 6: Reviewed release builder and GitHub Pages deployment
 
+### Public-copy audit
+
+- Audited the landing page, annual and monthly guides, data library, sky tool,
+  runtime messages and field PDF for promotional, rhetorical and internal
+  process language.
+- Retained technical explanations, thresholds, units, source attribution,
+  limitations and operating instructions. Removed copy that only described the
+  publication, praised the interface or repeated an adjacent heading.
+- Removed internal UI-note CSVs from the public data catalogue while retaining
+  the astronomy CSV files. Added common names for the numbered minor planets
+  used by the 2026 builds.
+- Added a regression check for the rejected phrases. Rebuilt all three HTML and
+  PDF editions locally, then validated the complete release tree.
+
 Affected files:
 
 - `src/paa/release.py`
@@ -72,8 +86,11 @@ Results:
   run `36489275541` completed successfully. HTTPS enforcement is active, and
   the public landing page, stable edition route and field PDF all return the
   expected live content.
-- Full regression suite: 81 passed. Release validation, changed-file Ruff
+- Full regression suite: 82 passed. Release validation, changed-file Ruff
   checks, workflow YAML parsing and `git diff --check` passed.
+- Copy-audit QA covered representative rendered pages in the local browser and
+  the cover, annual table, Galactic Centre chart and notes pages of the field
+  PDF. The longest site names fit without clipping.
 - Checkpoint tag: `stage-6-pages-release`.
 
 ## Stage 5D: Interactive date-and-time sky chart

@@ -4,12 +4,6 @@
     <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
     {% include "_page_header.html" %}
 
-    <section class="data-provenance data-intro-band" aria-labelledby="data-provenance-title">
-      <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/telescope-dark.webp" alt=""></span>
-      <div><p class="eyebrow">Complete datasets</p><h2 id="data-provenance-title">Open data for your own exploration.</h2><p>Explore and download the complete datasets behind this almanac.</p></div>
-      <a class="catalog-button" href="#dataset-catalogue">Browse all datasets →</a>
-    </section>
-
     <nav class="dataset-group-nav" aria-label="Dataset groups">
       {% for group in groups %}<a href="#data-{{ group.name|lower|replace(' ', '-') }}">{{ group.name }}</a>{% endfor %}
     </nav>
@@ -19,7 +13,7 @@
         <section class="dataset-library dataset-group-row" id="data-{{ group.name|lower|replace(' ', '-') }}" aria-labelledby="data-group-{{ loop.index }}">
           <header class="dataset-group-heading">
             <span class="dataset-group-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/{{ group.art }}-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/{{ group.art }}-dark.webp" alt=""></span>
-            <div><p class="eyebrow">CSV library · {{ "%02d"|format(loop.index) }}</p><h2 id="data-group-{{ loop.index }}">{{ group.name }}</h2><p>{{ group.datasets|length }} downloadable {{ "file" if group.datasets|length == 1 else "files" }}.</p></div>
+            <div><h2 id="data-group-{{ loop.index }}">{{ group.name }}</h2></div>
           </header>
           <div class="dataset-row-list">
             {% for dataset in group.datasets %}
@@ -31,13 +25,7 @@
             {% endfor %}
           </div>
         </section>
-      {% else %}<p class="empty-state">No CSV datasets are available for this edition.</p>{% endfor %}
+      {% else %}<p class="empty-state">No CSV files available.</p>{% endfor %}
     </div>
-
-    <aside class="library-return illustrated-callout">
-      <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/document-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/document-dark.webp" alt=""></span>
-      <p><strong>Looking for an observing recommendation?</strong> Raw precision, UTC values and calculation status live here. Friendly local decisions remain in the almanac.</p>
-      <a href="{{ annual_href }}">Return to the annual field guide →</a>
-    </aside>
   </div>
 {% endblock %}

@@ -6,7 +6,7 @@
 
     <section class="annual-highlights editorial-band" aria-labelledby="annual-highlights-title">
       <header class="section-heading section-heading--split">
-        <div><p class="eyebrow">The year ahead</p><h2 id="annual-highlights-title">Best observing opportunities in {{ year }}</h2></div>
+        <h2 id="annual-highlights-title">Best observing opportunities in {{ year }}</h2>
         <a class="context-link" href="#monthly-guides">See all twelve months →</a>
       </header>
       {% if overview.highlights %}
@@ -25,10 +25,10 @@
     </section>
 
     <section class="seasonal-sky" aria-labelledby="seasonal-sky-title">
-      <header class="section-heading section-heading--split"><div><p class="eyebrow">The seasonal sky</p><h2 id="seasonal-sky-title">Read the year as observing time.</h2></div><p>Compare the Galactic Centre, planets and major moons across the year.</p></header>
+      <header class="section-heading"><h2 id="seasonal-sky-title">Annual visibility</h2></header>
 
       <article class="instrument-card" aria-labelledby="milky-instrument-title">
-        <header class="instrument-heading"><div><p class="eyebrow">Milky Way Galactic Centre</p><h3 id="milky-instrument-title">Usable Galactic Centre viewing windows.</h3><p>Each mark shows when three conditions overlap: astronomical darkness, acceptable Moon interference, and the Galactic Centre at least 20° above the horizon. Wider marks mean a longer usable core-viewing period, not a larger Milky Way.</p></div><div class="chart-controls" aria-label="Milky Way chart controls"><button type="button" data-chart-scroll="back" data-chart-target="milky-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="milky-year-chart" aria-label="Scroll chart forward">→</button></div></header>
+        <header class="instrument-heading"><div><h3 id="milky-instrument-title">Galactic Centre visibility</h3><p>Windows require astronomical darkness, acceptable Moon interference, and the Galactic Centre at least 20° above the horizon. Wider marks indicate longer windows.</p></div><div class="chart-controls" aria-label="Milky Way chart controls"><button type="button" data-chart-scroll="back" data-chart-target="milky-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="milky-year-chart" aria-label="Scroll chart forward">→</button></div></header>
         {% if instruments.milky_way.windows %}
           <div class="scroll-instrument" id="milky-year-chart" tabindex="0" aria-label="Scrollable Milky Way observing windows for {{ year }}">
             <div class="milky-year-chart" style="--year-days: {{ instruments.milky_way.year_days }}">
@@ -42,11 +42,11 @@
           <div class="instrument-legend"><span class="legend-useful">Useful, at least 20°</span><span class="legend-excellent">Excellent, at least 25°</span></div>
           <ol class="milky-month-summary" aria-label="Best Milky Way window in each available month">{% for window in instruments.milky_way.summaries %}<li class="tone-{{ rating_tone('excellent' if window.quality == 'excellent' else 'good') }}"><strong>{{ window.month_name }}</strong><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><span>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</span><small>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ window.quality|title }}</small></li>{% endfor %}</ol>
         {% else %}<p class="empty-state">No Galactic Centre window available.</p>{% endif %}
-        <a class="context-link" href="data/milky_way_windows.csv" download>Download exact Milky Way windows →</a>
+        <a class="context-link" href="data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </article>
 
       <article class="instrument-card" aria-labelledby="planet-instrument-title">
-        <header class="instrument-heading"><div><p class="eyebrow">Planet visibility</p><h3 id="planet-instrument-title">When each planet is actually observable.</h3><p>Monthly cells use the best local sample with the Sun at least 4° below the horizon. Colour and text show the rating; the marker shows evening, overnight, or predawn.</p></div><div class="chart-controls" aria-label="Planet chart controls"><button type="button" data-chart-scroll="back" data-chart-target="planet-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="planet-year-chart" aria-label="Scroll chart forward">→</button></div></header>
+        <header class="instrument-heading"><div><h3 id="planet-instrument-title">Planet visibility by month</h3><p>Each cell gives the best altitude with the Sun at least 4° below the horizon. E, O and P mean evening, overnight and predawn.</p></div><div class="chart-controls" aria-label="Planet chart controls"><button type="button" data-chart-scroll="back" data-chart-target="planet-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="planet-year-chart" aria-label="Scroll chart forward">→</button></div></header>
         <div class="scroll-instrument" id="planet-year-chart" tabindex="0" aria-label="Scrollable annual planet visibility chart">
           <div class="planet-year-chart">
             <div class="planet-lane planet-lane--head"><strong>Planet</strong>{% for month in instruments.planets.months %}<span>{{ month }}</span>{% endfor %}</div>
@@ -54,19 +54,19 @@
           </div>
         </div>
         <div class="instrument-legend"><span>E evening</span><span>O overnight</span><span>P predawn</span></div>
-        <a class="context-link" href="data/planet_visibility_monthly_summary.csv" download>Download exact planet summary →</a>
+        <a class="context-link" href="data/planet_visibility_monthly_summary.csv" download>Download planet CSV →</a>
       </article>
 
       <section class="moon-system-section" aria-labelledby="moon-system-title">
-        <header class="section-heading"><p class="eyebrow">Satellite systems</p><h3 id="moon-system-title">Choose a date for Jupiter and Saturn.</h3><p>Follow the major moons across the selected night. The centre line marks the planet; west is left and east is right.</p></header>
+        <header class="section-heading"><h3 id="moon-system-title">Jupiter and Saturn moons</h3><p>Choose a date. The centre line marks the planet; west is left and east is right.</p></header>
         <div class="moon-system-grid">
-          {% for system in instruments.moon_systems %}<article class="moon-system" data-moon-system data-moon-src="{{ system.data_href }}"><h4>{{ system.system }}</h4>{% if system.has_nights %}<label for="{{ system.system|lower }}-moon-date">Observing date</label><input id="{{ system.system|lower }}-moon-date" type="date" min="{{ system.year }}-01-01" max="{{ system.year }}-12-31" value="{{ system.default_date }}" data-site-timezone="{{ site_timezone }}" data-moon-date><p class="moon-chart-status" aria-live="polite" data-moon-status>Loading moon positions…</p><figure class="moon-track"><svg viewBox="0 0 800 430" role="img" aria-label="{{ system.system }} moon positions through the selected night" data-moon-chart></svg><figcaption data-moon-caption></figcaption></figure><ul class="moon-key" data-moon-key></ul><noscript><p class="field-note">The date selector requires JavaScript. Download the complete offsets below.</p></noscript>{% else %}<p class="empty-state">No observing-night offsets are available.</p>{% endif %}<a class="context-link" href="data/{{ system.system|lower }}_moons.csv" download>Download {{ system.system }} moon offsets →</a></article>{% endfor %}
+          {% for system in instruments.moon_systems %}<article class="moon-system" data-moon-system data-moon-src="{{ system.data_href }}"><h4>{{ system.system }}</h4>{% if system.has_nights %}<label for="{{ system.system|lower }}-moon-date">Observing date</label><input id="{{ system.system|lower }}-moon-date" type="date" min="{{ system.year }}-01-01" max="{{ system.year }}-12-31" value="{{ system.default_date }}" data-site-timezone="{{ site_timezone }}" data-moon-date><p class="moon-chart-status" aria-live="polite" data-moon-status>Loading moon positions…</p><figure class="moon-track"><svg viewBox="0 0 800 430" role="img" aria-label="{{ system.system }} moon positions through the selected night" data-moon-chart></svg><figcaption data-moon-caption></figcaption></figure><ul class="moon-key" data-moon-key></ul><noscript><p class="field-note">The date selector requires JavaScript. Download the CSV below.</p></noscript>{% else %}<p class="empty-state">No moon positions available.</p>{% endif %}<a class="context-link" href="data/{{ system.system|lower }}_moons.csv" download>Download {{ system.system }} moon CSV →</a></article>{% endfor %}
         </div>
       </section>
     </section>
 
     <section class="month-index" id="monthly-guides" aria-labelledby="month-index-title">
-      <header class="section-heading section-heading--split"><div><p class="eyebrow">Monthly field guides</p><h2 id="month-index-title">Plan one month at a time.</h2></div><p>Twelve distinct windows across one changing sky.</p></header>
+      <header class="section-heading"><h2 id="month-index-title">Monthly guides</h2></header>
       <div class="month-card-grid">
         {% for month in overview.months %}
           <article class="month-card tone-{{ rating_tone(month.rating) }}">
@@ -81,7 +81,7 @@
 
     <aside class="data-callout illustrated-callout" aria-labelledby="data-callout-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/telescope-dark.webp" alt=""></span>
-      <div><p class="eyebrow">Data and downloads</p><h2 id="data-callout-title">Need the full observing tables?</h2><p>Download the complete dates, times and measurements behind each guide.</p>{% if pdf_href %}<p><a class="context-link" href="{{ pdf_href }}">Download the field edition PDF →</a></p>{% endif %}</div>
+      <div><h2 id="data-callout-title">Downloads</h2>{% if pdf_href %}<p><a class="context-link" href="{{ pdf_href }}">Field edition PDF →</a></p>{% endif %}</div>
       <a href="data/index.html">Browse data and downloads <span aria-hidden="true">→</span></a>
     </aside>
   </div>

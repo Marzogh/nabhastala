@@ -1,16 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="page-shell landing-page">
-    <section class="landing-intro" aria-labelledby="landing-title">
-      <p class="eyebrow">Local astronomy field guides</p>
-      <h1 id="landing-title">Plan the year before you step outside.</h1>
-      <p>A practical observing and nightscape planner for three distinct horizons.</p>
-    </section>
-
-    <section id="horizons" class="horizons" aria-labelledby="horizons-title">
+    <section id="horizons" class="horizons" aria-labelledby="landing-title">
       <header class="section-heading">
-        <p class="eyebrow">Choose a horizon</p>
-        <h2 id="horizons-title">Three locations. Local sky time.</h2>
+        <h1 id="landing-title">Choose an observing location</h1>
       </header>
       <div class="horizon-grid">
         {% for edition in editions %}
@@ -31,12 +24,6 @@
           </article>
         {% endfor %}
       </div>
-    </section>
-
-    <section id="about" class="landing-about" aria-labelledby="about-title">
-      <p class="eyebrow">Built for forward planning</p>
-      <h2 id="about-title">Highlights first. Complete data when you need it.</h2>
-      <p>Each edition leads with practical observing guidance, with complete tables available when you need more detail.</p>
     </section>
   </div>
 {% endblock %}
