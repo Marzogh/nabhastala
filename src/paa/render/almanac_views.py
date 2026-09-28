@@ -400,16 +400,30 @@ def _candidate_rows(data_dir: Path) -> list[OpportunityView]:
             )
             source_order += 1
 
+    occultation_groups: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
     for row in _read_rows(data_dir, "lunar_occultations.csv"):
+        occultation_groups[(row.get("target", ""), row.get("datetime_local", "")[:10])].append(row)
+    for rows in occultation_groups.values():
+        rows.sort(key=lambda item: item.get("datetime_local", ""))
+        row = next(
+            (
+                item
+                for item in rows
+                if "disappearance" in item.get("event_type", "").lower()
+            ),
+            rows[0],
+        )
+        times = " to ".join(_short_time(item.get("datetime_local", "")) for item in rows)
+        altitude = _degrees(row.get("moon_altitude_deg"))
         candidates.append(
             OpportunityView(
                 key=f"occultation-{source_order}",
                 category="Occultations",
                 title=f"{row.get('target', '').strip()} lunar occultation".strip(),
                 date_local=row.get("datetime_local", ""),
-                rating=row.get("rating", "good"),
-                reason="A locally listed lunar occultation.",
-                score=_number(row.get("score")),
+                rating=row.get("score", "fair"),
+                reason=f"{times}; Moon at {altitude} for the first listed contact.",
+                score=None,
                 source_order=source_order,
                 complete=bool(row.get("datetime_local") and row.get("target")),
             )
@@ -809,6 +823,10 @@ def build_month_guide(
         )
     if not _month_rows(data_dir, "lunar_occultations.csv", year, month):
         data_notes.append("No lunar occultation is listed for this month.")
+    else:
+        data_notes.append(
+            "Occultation times use a smooth lunar limb; confirm grazing events with IOTA Occult 4."
+        )
 
     annual_month = build_annual_overview(year, site_id, data_dir).months[month - 1]
     verdict = annual_month.verdict

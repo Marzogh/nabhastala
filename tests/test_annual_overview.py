@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from paa.render.almanac_views import (
+    _candidate_rows,
     build_annual_overview,
     rank_diverse_opportunities,
 )
@@ -183,3 +184,43 @@ def test_diverse_ranking_validates_limit() -> None:
     assert rank_diverse_opportunities([], limit=0) == ()
     with pytest.raises(ValueError, match="limit"):
         rank_diverse_opportunities([], limit=-1)
+
+
+def test_occultation_contacts_form_one_ranked_observing_event(tmp_path: Path) -> None:
+    data_dir = tmp_path / "data"
+    _write_csv(
+        data_dir,
+        "lunar_occultations.csv",
+        [
+            {
+                "datetime_local": "2026-06-28T01:58:00+10:00",
+                "target": "Antares",
+                "target_mag": 1.06,
+                "moon_altitude_deg": 43.1,
+                "limb": "leading limb",
+                "event_type": "Geometric disappearance",
+                "is_planetary": False,
+                "score": "fair",
+            },
+            {
+                "datetime_local": "2026-06-28T03:01:00+10:00",
+                "target": "Antares",
+                "target_mag": 1.06,
+                "moon_altitude_deg": 32.0,
+                "limb": "trailing limb",
+                "event_type": "Geometric reappearance",
+                "is_planetary": False,
+                "score": "fair",
+            },
+        ],
+    )
+
+    occultations = [
+        candidate
+        for candidate in _candidate_rows(data_dir)
+        if candidate.category == "Occultations"
+    ]
+
+    assert len(occultations) == 1
+    assert occultations[0].rating == "fair"
+    assert "1:58 am to 3:01 am" in occultations[0].reason

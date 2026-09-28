@@ -40,9 +40,9 @@ def score_occultation(event: dict, cfg: dict) -> str:
 
     if event.get("is_planetary"):
         base = 3
-    elif mag <= float(cfg.get("max_star_mag_imaging", 11)):
-        base = 2
     elif mag <= float(cfg.get("max_star_mag_visual", 8)):
+        base = 2
+    elif mag <= float(cfg.get("max_star_mag_imaging", 11)):
         base = 1
     else:
         base = 0

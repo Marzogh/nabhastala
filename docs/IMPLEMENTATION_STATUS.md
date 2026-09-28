@@ -5,12 +5,75 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 5A1, comet source repair
+- Stage: 5A2, site-specific lunar occultations
 - State: complete
-- Objective: resolve comet designations unambiguously through JPL, parse comet
-  magnitude fields correctly, cache all source responses locally, and make
-  widespread query failure a validation error
+- Objective: replace the empty manual-import dependency with repeatable local
+  lunar-occultation predictions for every configured site, using cached
+  authoritative ephemerides and a stellar catalogue
 - Started: 2026-09-29
+
+## Stage 5A2: Site-specific lunar occultations
+
+Affected files:
+
+- `src/paa/compute/occultations.py`
+- `src/paa/sources/occult_import.py`
+- `src/paa/cli.py`
+- `src/paa/validate/reports.py`
+- `config/almanac.yaml`
+- focused occultation computation and validation tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- The annual builder produces non-empty, site-specific lunar occultation data
+  for all three configured horizons without a manual import.
+- JPL ephemeris and Hipparcos catalogue inputs are downloaded once, cached
+  locally, and reused without network access.
+- Predictions include local disappearance and reappearance times, target
+  magnitude, Moon altitude and an explicit geometric prediction type.
+- Events below the configured Moon-altitude threshold or outside the requested
+  edition year are excluded.
+- Australian bright-star events are cross-checked against published 2026
+  Brisbane and Hobart tables generated with IOTA Occult 4.
+- The public data states that timings use a smooth geometric lunar limb and are
+  planning predictions, not graze-grade lunar-terrain predictions.
+- Existing manual `import-occult` support and existing CSV columns remain valid.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_occult_import.py tests/test_occultations.py tests/test_validation.py
+PYTHONPATH=src .venv/bin/astro-almanac build --year 2026 --site se_qld --skip-db --sections occultations --force
+```
+
+Results:
+
+- Added a repeatable local prediction engine using the cached JPL DE440s
+  ephemeris and Hipparcos catalogue. The 83 MB source cache is reused across
+  all sites and future builds without model calls.
+- Generated 660 contact rows for South East Queensland, 636 for Southern
+  Tasmania, and 629 for the Malabar Coast. Each contact includes local time,
+  target magnitude where available, Moon altitude, contact type and rating.
+- Included site-specific planetary events. Notable results include the 14
+  September Venus occultation for the Malabar Coast and 3 November Jupiter
+  occultations for all three horizons where locally observable.
+- Cross-checked the 31 May Antares reappearance for Brisbane at 18:10 against
+  the published Occult 4 table, with exact minute agreement. The Tasmania
+  engine times of 01:57:44 and 03:00:38 for the 28 June Antares occultation
+  round to the published Hobart times of 01:58 and 03:01.
+- Preserved manual `import-occult` input as an authoritative override. Automated
+  predictions run only when no imported site file is present.
+- Monthly and annual views group disappearance and reappearance contacts into
+  one observing opportunity and retain the complete contact data for download.
+- Added the concise observer warning that timings use a smooth lunar limb and
+  grazing events should be confirmed with IOTA Occult 4.
+- Empty occultation output is now a validation failure. All three 2026 edition
+  validation reports pass.
+- Focused renderer and computation tests: 15 passed. Full regression suite: 72
+  passed. Ruff and `git diff --check` passed for every affected file.
+- Checkpoint tag: `stage-5a2-lunar-occultations`.
 
 ## Stage 5A1: Comet source repair
 

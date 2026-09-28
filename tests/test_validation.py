@@ -46,3 +46,17 @@ def test_validation_accepts_isolated_comet_query_failure(tmp_path: Path) -> None
     failures = validation_failures(2026, "se_qld", tmp_path / "output")
 
     assert not any(failure.startswith("comets.csv query_failed") for failure in failures)
+
+
+def test_validation_rejects_empty_occultation_dataset(tmp_path: Path) -> None:
+    data_dir = tmp_path / "output" / "se_qld" / "2026" / "data"
+    data_dir.mkdir(parents=True)
+    _touch_other_datasets(data_dir)
+    _write_comets(data_dir / "comets.csv", ["visible"])
+    (data_dir / "lunar_occultations.csv").write_text(
+        "datetime_local,target\n", encoding="utf-8"
+    )
+
+    failures = validation_failures(2026, "se_qld", tmp_path / "output")
+
+    assert "lunar_occultations.csv empty" in failures

@@ -15,6 +15,9 @@ def validation_failures(year: int, site_id: str, output_dir: Path) -> list[str]:
         failed, total = _comet_query_failures(comet_path)
         if total and failed / total > 0.5:
             failures.append(f"comets.csv query_failed={failed}/{total}")
+    occultation_path = data_dir / "lunar_occultations.csv"
+    if occultation_path.exists() and not _csv_has_rows(occultation_path):
+        failures.append("lunar_occultations.csv empty")
     return failures
 
 
@@ -38,6 +41,11 @@ def _comet_query_failures(path: Path) -> tuple[int, int]:
     with path.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
     return sum(row.get("calc_status") == "query_failed" for row in rows), len(rows)
+
+
+def _csv_has_rows(path: Path) -> bool:
+    with path.open(encoding="utf-8", newline="") as handle:
+        return next(csv.DictReader(handle), None) is not None
 
 
 def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Path:
@@ -65,7 +73,7 @@ def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Pat
                 f"- [PASS] `{name}` rows={rows} query_failed={failed}/{total}"
             )
             continue
-        status = "PASS" if rows > 0 else "WARN"
+        status = "PASS" if rows > 0 else "FAIL" if name == "lunar_occultations.csv" else "WARN"
         lines.append(f"- [{status}] `{name}` rows={rows}")
 
     report.write_text("\n".join(lines) + "\n", encoding="utf-8")

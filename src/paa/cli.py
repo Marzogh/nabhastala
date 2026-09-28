@@ -15,6 +15,7 @@ from paa.compute.meteors import compute_meteor_showers
 from paa.compute.milky_way import compute_milky_way_outputs
 from paa.compute.minor_planets import compute_minor_planets_and_comets
 from paa.compute.moons import compute_moon_offsets
+from paa.compute.occultations import compute_lunar_occultations
 from paa.compute.planets import compute_planet_visibility
 from paa.compute.sun_moon import build_dark_windows, generate_sun_moon_tables
 from paa.compute.ui_notes import generate_ui_notes
@@ -298,7 +299,7 @@ def cmd_build(args: argparse.Namespace) -> int:
                 _write_csv(out / "comets.csv", comet_rows)
             ctx["minor_planets"], ctx["comets"] = minor_rows, comet_rows
         elif section == "occultations":
-            print("[build] occult import...", flush=True)
+            print("[build] lunar occultations...", flush=True)
             occult_rows = import_latest_occult_cache(
                 args.year,
                 args.site,
@@ -306,6 +307,16 @@ def cmd_build(args: argparse.Namespace) -> int:
                 almanac.get("occultations", {}),
                 output_dir=Path("output"),
             )
+            if not occult_rows:
+                occult_rows = compute_lunar_occultations(
+                    year=args.year,
+                    latitude_deg=site.latitude_deg,
+                    longitude_deg=site.longitude_deg,
+                    elevation_m=site.elevation_m,
+                    timezone_name=site.timezone,
+                    cfg=almanac.get("occultations", {}),
+                    source_cache=Path("output") / "_sources" / "occultations",
+                )
             _write_csv(out / "lunar_occultations.csv", occult_rows)
             ctx["lunar_occultations"] = occult_rows
         elif section == "meteors":

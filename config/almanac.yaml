@@ -48,6 +48,9 @@ comets:
 occultations:
   max_star_mag_visual: 8
   max_star_mag_imaging: 11
+  catalog_max_mag: 8
   min_moon_altitude_deg: 10
+  max_sun_altitude_deg: -6
+  ephemeris: de440s.bsp
   keep_all_planetary: true
   prefer_dark_limb: true

@@ -92,7 +92,7 @@ DATASET_DESCRIPTIONS = {
     "saturn_moons.csv": "Saturn satellite positions at sampled times.",
     "minor_planets.csv": "Ranked minor-planet opportunities.",
     "comets.csv": "Comet calculations, including unavailable query results.",
-    "lunar_occultations.csv": "Imported or computed lunar occultation events.",
+    "lunar_occultations.csv": "Site-specific disappearance and reappearance predictions.",
     "meteor_showers.csv": "Meteor shower peaks and local observing conditions.",
     "conjunctions.csv": "Computed close approaches and conjunction circumstances.",
 }
