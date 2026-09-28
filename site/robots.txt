@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marzogh.github.io/nabhastala/sitemap.xml

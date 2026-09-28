@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "Atkinson";
+  src: url("fonts/atkinson-regular-latin.woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Atkinson";
+  src: url("fonts/atkinson-bold-latin.woff2") format("woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Noto Devanagari";
+  src: url("fonts/noto-sans-devanagari.woff2") format("woff2");
+}
+
+@page {
+  size: A4 portrait;
+  margin: 13mm 14mm 14mm;
+  @bottom-left {
+    content: "NABHASTALA / FIELD EDITION";
+    font: 7pt "Atkinson", sans-serif;
+    letter-spacing: 0.08em;
+    color: #55524c;
+  }
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font: 7pt "Atkinson", sans-serif;
+    color: #55524c;
+  }
+}
+
+:root {
+  font-family: "Atkinson", sans-serif;
+  color: #1f1e1b;
+  background: #fffdfa;
+  font-size: 9pt;
+  line-height: 1.25;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.page { break-after: page; min-height: 268mm; }
+.page:last-child { break-after: auto; }
+.cover { padding-top: 2mm; }
+.identity { display: flex; align-items: flex-start; gap: 8mm; }
+.identity-primary { border-right: 0.35mm solid #9c9990; padding-right: 8mm; }
+.devanagari { font-family: "Noto Devanagari", sans-serif; font-size: 25pt; line-height: 1; color: #9e3f30; }
+.sanskrit { font-family: "Noto Devanagari", "Atkinson", sans-serif; font-size: 6.8pt; margin-top: 1.2mm; }
+.identity-translation { display: flex; flex-direction: column; padding-top: 1mm; }
+.identity-translation strong { font-size: 10pt; }
+.identity-translation span { font-size: 7.5pt; color: #55524c; }
+.rule { border-top: 0.5mm solid #25231f; margin: 12mm 0 17mm; }
+.eyebrow, .micro { color: #9e3f30; font-size: 7pt; font-weight: 700; letter-spacing: 0.12em; }
+h1 { font-size: 28pt; line-height: 1; margin: 2mm 0 4mm; letter-spacing: -0.02em; }
+h2 { font-size: 12pt; margin: 7mm 0 2.2mm; padding-top: 2mm; border-top: 0.35mm solid #77736b; }
+.dek { font-size: 12pt; max-width: 145mm; margin: 0 0 13mm; color: #45423c; }
+.edition-grid { display: grid; grid-template-columns: 1.2fr 0.55fr 1.65fr; margin: 0 0 13mm; border-top: 0.35mm solid #aaa69e; border-bottom: 0.35mm solid #aaa69e; }
+.edition-grid div { padding: 4mm 5mm 4mm 0; }
+.edition-grid dt { font-size: 6.8pt; font-weight: 700; letter-spacing: 0.1em; color: #9e3f30; text-transform: uppercase; }
+.edition-grid dd { margin: 1.2mm 0 0; font-size: 9pt; }
+.technical-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.technical-table thead { display: table-header-group; }
+.technical-table th { background: #ece9e1; border-top: 0.45mm solid #25231f; border-bottom: 0.35mm solid #77736b; padding: 1.7mm 1.5mm; text-align: left; font-size: 6.5pt; letter-spacing: 0.07em; text-transform: uppercase; }
+.technical-table td { border-bottom: 0.22mm solid #c5c1b8; padding: 1.55mm 1.5mm; vertical-align: top; }
+.technical-table tr { break-inside: avoid; }
+.highlights th:nth-child(1), .highlights td:nth-child(1) { width: 8%; }
+.highlights th:nth-child(2), .highlights td:nth-child(2) { width: 16%; }
+.highlights th:nth-child(3), .highlights td:nth-child(3) { width: 16%; }
+.highlights th:nth-child(5), .highlights td:nth-child(5) { width: 12%; }
+.rating { font-size: 7pt; font-weight: 700; letter-spacing: 0.06em; }
+.cover-note { border-left: 0.7mm solid #53654a; margin-top: 11mm; padding: 3mm 4mm; background: #f0efe9; }
+.running-head { display: flex; justify-content: space-between; border-bottom: 0.35mm solid #77736b; padding-bottom: 2mm; margin-bottom: 8mm; font-size: 6.5pt; letter-spacing: 0.08em; color: #55524c; }
+.intro { margin: 0 0 4mm; color: #55524c; }
+.year-table { font-size: 7.8pt; }
+.year-table th:nth-child(1), .year-table td:nth-child(1) { width: 14%; }
+.year-table th:nth-child(2), .year-table td:nth-child(2) { width: 34%; }
+.year-table th:nth-child(3), .year-table td:nth-child(3) { width: 20%; }
+.year-table th:nth-child(4), .year-table td:nth-child(4) { width: 22%; }
+.year-table th:nth-child(5), .year-table td:nth-child(5) { width: 10%; }
+.chart-block { margin: 6mm 0 0; break-inside: avoid; }
+.technical-chart { margin-top: 8mm; }
+.technical-chart svg { display: block; width: 100%; height: 93mm; border: 0.25mm solid #aaa69e; background: #fbfaf6; }
+.core-summary { margin-top: 2mm; font-size: 7.2pt; }
+.core-summary th, .core-summary td { padding: 1.2mm 1.3mm; }
+figcaption { margin-top: 1.5mm; font-size: 7pt; color: #55524c; }
+.month-title { display: flex; justify-content: space-between; align-items: flex-end; }
+.month-title h1 { margin-bottom: 0; }
+.month-rating { border: 0.35mm solid #77736b; padding: 2mm 3mm; font-size: 7pt; font-weight: 700; letter-spacing: 0.08em; }
+.verdict { font-size: 12pt; font-weight: 700; margin: 5mm 0; max-width: 165mm; }
+.lunar-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 0.35mm solid #77736b; border-bottom: 0.35mm solid #77736b; margin-bottom: 4mm; }
+.lunar-strip div { padding: 2.3mm 2mm; border-right: 0.2mm solid #c5c1b8; }
+.lunar-strip div:last-child { border-right: 0; }
+.lunar-strip span { display: block; font-size: 6pt; letter-spacing: 0.08em; color: #55524c; }
+.lunar-strip strong { display: block; margin-top: 0.8mm; font-size: 8pt; }
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.two-column h2 { margin-top: 4mm; }
+.compact { font-size: 7.1pt; }
+.compact th, .compact td { padding: 1.3mm 1.1mm; }
+.planets th:nth-child(1) { width: 17%; }
+.planets th:nth-child(2) { width: 18%; }
+.planets th:nth-child(3) { width: 31%; }
+.planets th:nth-child(4) { width: 13%; }
+.planets th:nth-child(5) { width: 21%; }
+.events th:nth-child(1) { width: 14%; }
+.events th:nth-child(2) { width: 14%; }
+.events th:nth-child(3) { width: 20%; }
+.events th:nth-child(5) { width: 11%; }
+.notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 8mm; }
+.notes-grid > div { border-top: 0.45mm solid #25231f; padding-top: 1mm; }
+.notes-grid h2 { border: 0; margin: 2mm 0 1.5mm; padding: 0; }
+.notes-grid p { margin: 0; }
+.source-list { padding-left: 5mm; }
+.source-list li { margin-bottom: 2mm; }
+.web-pointer { margin-top: 9mm; border: 0.45mm solid #25231f; padding: 3mm; font-family: monospace; }

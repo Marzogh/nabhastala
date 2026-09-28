@@ -84,6 +84,21 @@ The PDF is a dedicated A4 field edition. It contains annual priorities, a
 technical Galactic Centre time chart and concise monthly planning sheets; full
 daily and satellite tables remain in the HTML and CSV edition.
 
+## Reviewed GitHub Pages release
+
+Publishing never recalculates astronomy data. After reviewing and validating
+the local HTML, CSV and PDF editions, assemble the exact static release tree:
+
+```bash
+astro-almanac release --years 2026 --sites all --dest site
+astro-almanac release-check --dest site
+```
+
+The command writes stable routes below `site/sites/<site-slug>/<year>/`, copies
+the curated PDFs to `site/downloads/`, creates the sitemap and release manifest,
+and excludes caches and logs. The committed `site/` directory is the only input
+to the GitHub Pages deployment workflow.
+
 Existing `output/<year>/` trees are supported as read-only legacy inputs. New
 commands never write to the legacy layout.
 

@@ -5,11 +5,69 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 5D, interactive date-and-time sky chart
+- Stage: 6, reviewed release builder and GitHub Pages deployment
 - State: complete
-- Objective: add a site-aware chart for any date and local time in the edition,
-  backed entirely by locally generated annual data
+- Objective: assemble the validated 2026 editions into a committed, host-ready
+  static tree and deploy exactly those reviewed files through GitHub Pages
 - Started: 2026-09-29
+
+## Stage 6: Reviewed release builder and GitHub Pages deployment
+
+Affected files:
+
+- `src/paa/release.py`
+- `src/paa/cli.py`
+- `src/paa/render/html.py`
+- `src/paa/render/templates/annual.html`
+- `.github/workflows/pages.yml`
+- release-focused tests under `tests/`
+- generated and reviewed `site/`
+- `README.md`
+- `docs/ANNUAL_WORKFLOW.md`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- `astro-almanac release --years 2026 --sites all --dest site` packages only
+  previously generated and validated material; it performs no astronomy work.
+- Published editions use stable `sites/<site-slug>/<year>/` routes and work
+  beneath the `/nabhastala/` project path using relative internal links.
+- The release contains all three editions, complete CSV downloads, interactive
+  chart data, curated PDFs, metadata, sitemap and `.nojekyll`, but no caches,
+  logs, credentials or private build files.
+- A local release validator checks every internal link and asset before the
+  static tree is committed.
+- GitHub Actions validates and deploys the committed `site/` directory without
+  recomputing astronomy data or requiring PostgreSQL.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_release.py tests/test_brand_shell.py
+PYTHONPATH=src .venv/bin/astro-almanac release --years 2026 --sites all --dest site
+```
+
+Results:
+
+- Added `release` and `release-check` commands. The builder validates existing
+  outputs and packages them without invoking any astronomy calculation.
+- Assembled a 292-file, 43 MB reviewed release containing all three 2026
+  horizons, complete CSV data, interactive chart data and three field PDFs.
+- Published routes use `sites/se-qld/2026/`, `sites/southern-tasmania/2026/`
+  and `sites/malabar-coast/2026/`, with relative links that remain valid below
+  the `/nabhastala/` GitHub Pages project path.
+- Added canonical metadata, descriptions, sitemap, robots file, `.nojekyll` and
+  a SHA-256 release manifest. Caches, logs and local source material are absent.
+- Added a Pages workflow that validates and uploads only the committed `site/`
+  tree, then deploys it using GitHub's supported Pages actions. It does not
+  install astronomy dependencies, query external astronomy services or use a
+  database.
+- Verified the exact release tree through a local web server, including stable
+  site selection, annual navigation, assets, downloads and PDF links.
+- Full regression suite: 81 passed. Release validation, changed-file Ruff
+  checks, workflow YAML parsing and `git diff --check` passed.
+- Checkpoint tag: `stage-6-pages-release`.
 
 ## Stage 5D: Interactive date-and-time sky chart
 

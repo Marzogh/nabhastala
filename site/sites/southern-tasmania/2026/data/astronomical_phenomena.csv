@@ -1,0 +1,31 @@
+datetime_local,category,target,event,value,visibility,altitude_deg,details
+2026-01-10T19:42:09.453497+11:00,Planetary phenomena,Jupiter,Opposition,180° solar elongation,Best annual placement,,The planet is opposite the Sun and visible for most of the night.
+2026-02-05T11:00:00+11:00,Planetary phenomena,Uranus,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-02-17T23:13:09.065864+11:00,Eclipse,Sun,Partial solar eclipse,76% obscuration,Below horizon,-27.48,Maximum local geometric obscuration.
+2026-02-20T11:00:00+11:00,Planetary phenomena,Mercury,Greatest eastern elongation,18.1°,Evening sky,,Eastern of the Sun.
+2026-02-27T11:00:00+11:00,Planetary phenomena,Mercury,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-03-03T22:33:41.847399+11:00,Eclipse,Moon,Total lunar eclipse,umbral magnitude 1.15,Visible at maximum,26.75,Greatest eclipse; visibility refers to the observing horizon.
+2026-03-12T11:00:00+11:00,Planetary phenomena,Jupiter,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-03-21T11:00:00+11:00,Planetary phenomena,Mercury,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-04-04T11:00:00+11:00,Planetary phenomena,Mercury,Greatest western elongation,27.8°,Morning sky,,Western of the Sun.
+2026-06-16T10:00:00+10:00,Planetary phenomena,Mercury,Greatest eastern elongation,24.5°,Evening sky,,Eastern of the Sun.
+2026-06-30T10:00:00+10:00,Planetary phenomena,Mercury,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-07-08T10:00:00+10:00,Planetary phenomena,Neptune,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-07-24T10:00:00+10:00,Planetary phenomena,Mercury,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-07-27T10:00:00+10:00,Planetary phenomena,Saturn,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-08-02T10:00:00+10:00,Planetary phenomena,Mercury,Greatest western elongation,19.5°,Morning sky,,Western of the Sun.
+2026-08-15T10:00:00+10:00,Planetary phenomena,Venus,Greatest eastern elongation,45.9°,Evening sky,,Eastern of the Sun.
+2026-08-28T14:12:53.770779+10:00,Eclipse,Moon,Partial lunar eclipse,umbral magnitude 0.93,Below horizon at maximum,-31.95,Greatest eclipse; visibility refers to the observing horizon.
+2026-09-11T10:00:00+10:00,Planetary phenomena,Uranus,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-09-26T11:36:21.875915+10:00,Planetary phenomena,Neptune,Opposition,180° solar elongation,Best annual placement,,The planet is opposite the Sun and visible for most of the night.
+2026-10-04T11:00:00+11:00,Planetary phenomena,Venus,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-10-04T23:29:13.160893+11:00,Planetary phenomena,Saturn,Opposition,180° solar elongation,Best annual placement,,The planet is opposite the Sun and visible for most of the night.
+2026-10-12T11:00:00+11:00,Planetary phenomena,Mercury,Greatest eastern elongation,25.2°,Evening sky,,Eastern of the Sun.
+2026-10-25T11:00:00+11:00,Planetary phenomena,Mercury,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.
+2026-11-14T11:00:00+11:00,Planetary phenomena,Mercury,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-11-15T11:00:00+11:00,Planetary phenomena,Venus,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-11-21T11:00:00+11:00,Planetary phenomena,Mercury,Greatest western elongation,19.6°,Morning sky,,Western of the Sun.
+2026-11-26T09:41:17.929389+11:00,Planetary phenomena,Uranus,Opposition,180° solar elongation,Best annual placement,,The planet is opposite the Sun and visible for most of the night.
+2026-12-11T11:00:00+11:00,Planetary phenomena,Saturn,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-12-13T11:00:00+11:00,Planetary phenomena,Neptune,Stationary point,Retrograde to direct,Date applies worldwide,,Apparent motion changes direction.
+2026-12-14T11:00:00+11:00,Planetary phenomena,Jupiter,Stationary point,Direct to retrograde,Date applies worldwide,,Apparent motion changes direction.

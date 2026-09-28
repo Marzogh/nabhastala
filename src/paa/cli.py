@@ -25,6 +25,7 @@ from paa.io.postgres import ensure_schema, replace_rows, resolve_database_url, u
 from paa.io.provenance import write_run_manifest
 from paa.logging_config import configure_logging
 from paa.paths import occult_cache_dir, resolve_site_year_dir, site_year_dir
+from paa.release import assemble_release, validate_release_tree
 from paa.render.html import render_annual_html
 from paa.render.pdf import render_field_pdf
 from paa.sources.occult_import import import_latest_occult_cache
@@ -562,6 +563,51 @@ def cmd_annual_release(args: argparse.Namespace) -> int:
     return 0
 
 
+def _comma_separated_years(raw: str) -> tuple[int, ...]:
+    try:
+        years = tuple(dict.fromkeys(int(item.strip()) for item in raw.split(",") if item.strip()))
+    except ValueError as error:
+        raise SystemExit("--years must be a comma-separated list of years") from error
+    if not years:
+        raise SystemExit("At least one release year is required")
+    return years
+
+
+def _release_site_ids(raw: str, config_dir: Path) -> tuple[str, ...]:
+    configured = load_sites(config_dir / "sites.yaml")
+    if raw.strip().lower() == "all":
+        return tuple(site.id for site in configured)
+    site_ids = tuple(dict.fromkeys(item.strip() for item in raw.split(",") if item.strip()))
+    for site_id in site_ids:
+        get_site(configured, site_id)
+    if not site_ids:
+        raise SystemExit("At least one release site is required")
+    return site_ids
+
+
+def cmd_release(args: argparse.Namespace) -> int:
+    years = _comma_separated_years(args.years)
+    site_ids = _release_site_ids(args.sites, Path(args.config_dir))
+    destination = assemble_release(
+        years=years,
+        site_ids=site_ids,
+        output_dir=Path("output"),
+        destination=Path(args.dest),
+        base_url=args.base_url,
+    )
+    file_count = sum(1 for path in destination.rglob("*") if path.is_file())
+    print(f"Reviewed release assembled: {destination} ({file_count} files)")
+    return 0
+
+
+def cmd_release_check(args: argparse.Namespace) -> int:
+    errors = validate_release_tree(Path(args.dest))
+    if errors:
+        raise SystemExit("Release validation failed:\n" + "\n".join(errors))
+    print(f"Release tree is valid: {args.dest}")
+    return 0
+
+
 def cmd_db_init(args: argparse.Namespace) -> int:
     db = resolve_database_url(args.database_url)
     ensure_schema(db)
@@ -663,6 +709,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sections", default="all")
     p.add_argument("--force", action="store_true")
     p.set_defaults(func=cmd_annual_release)
+
+    p = sub.add_parser(
+        "release",
+        help="Package previously generated and validated artifacts for GitHub Pages",
+    )
+    p.add_argument("--years", required=True, help="Comma-separated publication years")
+    p.add_argument("--sites", default="all", help="'all' or comma-separated site IDs")
+    p.add_argument("--dest", default="site")
+    p.add_argument("--config-dir", default="config")
+    p.add_argument("--base-url", default="https://marzogh.github.io/nabhastala")
+    p.set_defaults(func=cmd_release)
+
+    p = sub.add_parser("release-check", help="Validate a committed static release tree")
+    p.add_argument("--dest", default="site")
+    p.set_defaults(func=cmd_release_check)
 
     p = sub.add_parser("db-init")
     p.add_argument("--database-url", default=None)

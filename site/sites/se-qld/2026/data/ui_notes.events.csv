@@ -1,0 +1,1360 @@
+note_id,section,title,body,score,date_local
+event.2026-01-01.planet-uranus.001,events,Uranus observing window,Best local time 21:00 with altitude near 43 degrees.,good,2026-01-01
+event.2026-01-01.planet-jupiter.001,events,Jupiter observing window,Best local time 00:30 with altitude near 40 degrees.,good,2026-01-01
+event.2026-01-01.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-01
+event.2026-01-01.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-01
+event.2026-01-02.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-02
+event.2026-01-02.planet-jupiter.001,events,Jupiter observing window,Best local time 00:30 with altitude near 40 degrees.,good,2026-01-02
+event.2026-01-02.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-02
+event.2026-01-02.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-02
+event.2026-01-03.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-03
+event.2026-01-03.planet-jupiter.001,events,Jupiter observing window,Best local time 00:30 with altitude near 40 degrees.,good,2026-01-03
+event.2026-01-03.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-03
+event.2026-01-03.meteor.001,events,Meteor shower: Quadrantids,Peak night with ZHR 120 and moon illumination 99%.,poor,2026-01-03
+event.2026-01-03.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-03
+event.2026-01-04.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-04
+event.2026-01-04.planet-jupiter.001,events,Jupiter observing window,Best local time 00:30 with altitude near 40 degrees.,good,2026-01-04
+event.2026-01-04.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-04
+event.2026-01-04.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-04
+event.2026-01-05.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-05
+event.2026-01-05.planet-jupiter.001,events,Jupiter observing window,Best local time 00:30 with altitude near 40 degrees.,good,2026-01-05
+event.2026-01-05.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-05
+event.2026-01-05.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-05
+event.2026-01-06.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-06
+event.2026-01-06.planet-jupiter.001,events,Jupiter observing window,Best local time 00:30 with altitude near 40 degrees.,good,2026-01-06
+event.2026-01-06.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-06
+event.2026-01-06.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 16:30. Usually not observable; use for planning transitions.,info,2026-01-06
+event.2026-01-07.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-07
+event.2026-01-07.planet-jupiter.001,events,Jupiter observing window,Best local time 00:00 with altitude near 40 degrees.,good,2026-01-07
+event.2026-01-07.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-07
+event.2026-01-07.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-07
+event.2026-01-08.planet-uranus.001,events,Uranus observing window,Best local time 20:30 with altitude near 43 degrees.,good,2026-01-08
+event.2026-01-08.planet-jupiter.001,events,Jupiter observing window,Best local time 00:00 with altitude near 40 degrees.,good,2026-01-08
+event.2026-01-08.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-08
+event.2026-01-08.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-08
+event.2026-01-09.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-09
+event.2026-01-09.planet-jupiter.001,events,Jupiter observing window,Best local time 00:00 with altitude near 40 degrees.,good,2026-01-09
+event.2026-01-09.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 19:45. Usually not observable; use for planning transitions.,info,2026-01-09
+event.2026-01-09.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-09
+event.2026-01-10.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-10
+event.2026-01-10.planet-jupiter.001,events,Jupiter observing window,Best local time 00:00 with altitude near 40 degrees.,good,2026-01-10
+event.2026-01-10.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-10
+event.2026-01-10.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-10
+event.2026-01-11.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-11
+event.2026-01-11.planet-jupiter.001,events,Jupiter observing window,Best local time 00:00 with altitude near 40 degrees.,good,2026-01-11
+event.2026-01-11.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-11
+event.2026-01-11.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-11
+event.2026-01-12.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-12
+event.2026-01-12.planet-jupiter.001,events,Jupiter observing window,Best local time 00:00 with altitude near 40 degrees.,good,2026-01-12
+event.2026-01-12.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-12
+event.2026-01-12.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-12
+event.2026-01-13.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-13
+event.2026-01-13.planet-jupiter.001,events,Jupiter observing window,Best local time 23:30 with altitude near 40 degrees.,good,2026-01-13
+event.2026-01-13.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-13
+event.2026-01-13.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-13
+event.2026-01-14.dark.001,events,Dark-sky window,563 moon-free minutes. Low moon interference (28%).,excellent,2026-01-14
+event.2026-01-14.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-14
+event.2026-01-14.planet-jupiter.001,events,Jupiter observing window,Best local time 23:30 with altitude near 40 degrees.,good,2026-01-14
+event.2026-01-14.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-14
+event.2026-01-14.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-14
+event.2026-01-15.dark.001,events,Dark-sky window,564 moon-free minutes. Low moon interference (20%).,excellent,2026-01-15
+event.2026-01-15.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-15
+event.2026-01-15.planet-jupiter.001,events,Jupiter observing window,Best local time 23:30 with altitude near 40 degrees.,good,2026-01-15
+event.2026-01-15.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-15
+event.2026-01-15.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-15
+event.2026-01-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 20 degrees.,fair,2026-01-15
+event.2026-01-16.dark.001,events,Dark-sky window,565 moon-free minutes. Low moon interference (13%).,excellent,2026-01-16
+event.2026-01-16.planet-uranus.001,events,Uranus observing window,Best local time 20:00 with altitude near 43 degrees.,good,2026-01-16
+event.2026-01-16.planet-jupiter.001,events,Jupiter observing window,Best local time 23:30 with altitude near 40 degrees.,good,2026-01-16
+event.2026-01-16.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-16
+event.2026-01-16.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-16
+event.2026-01-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 21 degrees.,fair,2026-01-16
+event.2026-01-17.dark.001,events,Dark-sky window,566 moon-free minutes. Low moon interference (8%).,excellent,2026-01-17
+event.2026-01-17.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-17
+event.2026-01-17.planet-jupiter.001,events,Jupiter observing window,Best local time 23:30 with altitude near 40 degrees.,good,2026-01-17
+event.2026-01-17.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-17
+event.2026-01-17.conjunction.002,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-17
+event.2026-01-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 22 degrees.,fair,2026-01-17
+event.2026-01-18.dark.001,events,Dark-sky window,567 moon-free minutes. Low moon interference (4%).,excellent,2026-01-18
+event.2026-01-18.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-18
+event.2026-01-18.planet-jupiter.001,events,Jupiter observing window,Best local time 23:30 with altitude near 40 degrees.,good,2026-01-18
+event.2026-01-18.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-18
+event.2026-01-18.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-18
+event.2026-01-18.conjunction.003,events,Venus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-18
+event.2026-01-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 23 degrees.,fair,2026-01-18
+event.2026-01-19.dark.001,events,Dark-sky window,568 moon-free minutes. Low moon interference (0%).,excellent,2026-01-19
+event.2026-01-19.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-19
+event.2026-01-19.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,fair,2026-01-19
+event.2026-01-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 23 degrees.,fair,2026-01-19
+event.2026-01-19.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-19
+event.2026-01-19.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-19
+event.2026-01-20.dark.001,events,Dark-sky window,569 moon-free minutes. Low moon interference (3%).,excellent,2026-01-20
+event.2026-01-20.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-20
+event.2026-01-20.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,good,2026-01-20
+event.2026-01-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 24 degrees.,fair,2026-01-20
+event.2026-01-20.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-20
+event.2026-01-20.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-01-20
+event.2026-01-21.dark.001,events,Dark-sky window,571 moon-free minutes. Low moon interference (7%).,excellent,2026-01-21
+event.2026-01-21.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-21
+event.2026-01-21.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,good,2026-01-21
+event.2026-01-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 25 degrees.,fair,2026-01-21
+event.2026-01-21.conjunction.001,events,Mars conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-21
+event.2026-01-21.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:15. Usually not observable; use for planning transitions.,info,2026-01-21
+event.2026-01-22.dark.001,events,Dark-sky window,572 moon-free minutes. Low moon interference (12%).,excellent,2026-01-22
+event.2026-01-22.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-22
+event.2026-01-22.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,good,2026-01-22
+event.2026-01-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 28 degrees.,fair,2026-01-22
+event.2026-01-22.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-22
+event.2026-01-23.dark.001,events,Dark-sky window,573 moon-free minutes. Low moon interference (20%).,excellent,2026-01-23
+event.2026-01-23.conjunction.001,events,Moon-Saturn conjunction,"Closest approach near 19:15, separation 3.834 degrees. Moon illumination 20%.",fair,2026-01-23
+event.2026-01-23.planet-uranus.001,events,Uranus observing window,Best local time 19:30 with altitude near 43 degrees.,good,2026-01-23
+event.2026-01-23.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,good,2026-01-23
+event.2026-01-23.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 29 degrees.,fair,2026-01-23
+event.2026-01-23.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-23
+event.2026-01-24.dark.001,events,Dark-sky window,409 moon-free minutes. Low moon interference (29%).,good,2026-01-24
+event.2026-01-24.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,fair,2026-01-24
+event.2026-01-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 29 degrees.,fair,2026-01-24
+event.2026-01-24.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-24
+event.2026-01-25.planet-jupiter.001,events,Jupiter observing window,Best local time 23:00 with altitude near 40 degrees.,fair,2026-01-25
+event.2026-01-25.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 29 degrees.,fair,2026-01-25
+event.2026-01-25.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-01-25
+event.2026-01-26.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-01-26
+event.2026-01-26.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 31 degrees.,fair,2026-01-26
+event.2026-01-27.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-01-27
+event.2026-01-27.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 31 degrees.,fair,2026-01-27
+event.2026-01-28.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-01-28
+event.2026-01-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 33 degrees.,fair,2026-01-28
+event.2026-01-29.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-01-29
+event.2026-01-29.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 33 degrees.,fair,2026-01-29
+event.2026-01-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 35 degrees.,fair,2026-01-30
+event.2026-01-30.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-01-30
+event.2026-01-31.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 36 degrees.,fair,2026-01-31
+event.2026-01-31.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-01-31
+event.2026-02-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 36 degrees.,fair,2026-02-01
+event.2026-02-01.planet-jupiter.001,events,Jupiter observing window,Best local time 22:30 with altitude near 40 degrees.,fair,2026-02-01
+event.2026-02-02.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-02
+event.2026-02-03.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-03
+event.2026-02-04.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-04
+event.2026-02-05.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-05
+event.2026-02-06.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-06
+event.2026-02-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 44 degrees.,fair,2026-02-07
+event.2026-02-07.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-07
+event.2026-02-08.planet-jupiter.001,events,Jupiter observing window,Best local time 22:00 with altitude near 40 degrees.,fair,2026-02-08
+event.2026-02-09.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-09
+event.2026-02-10.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-10
+event.2026-02-11.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-11
+event.2026-02-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 49 degrees.,good,2026-02-12
+event.2026-02-12.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-12
+event.2026-02-13.dark.001,events,Dark-sky window,604 moon-free minutes. Low moon interference (27%).,excellent,2026-02-13
+event.2026-02-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 50 degrees.,good,2026-02-13
+event.2026-02-13.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-13
+event.2026-02-14.dark.001,events,Dark-sky window,606 moon-free minutes. Low moon interference (20%).,excellent,2026-02-14
+event.2026-02-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 51 degrees.,good,2026-02-14
+event.2026-02-14.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-14
+event.2026-02-15.dark.001,events,Dark-sky window,607 moon-free minutes. Low moon interference (12%).,excellent,2026-02-15
+event.2026-02-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 51 degrees.,good,2026-02-15
+event.2026-02-15.planet-jupiter.001,events,Jupiter observing window,Best local time 21:30 with altitude near 40 degrees.,fair,2026-02-15
+event.2026-02-16.dark.001,events,Dark-sky window,609 moon-free minutes. Low moon interference (7%).,excellent,2026-02-16
+event.2026-02-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 52 degrees.,good,2026-02-16
+event.2026-02-16.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-16
+event.2026-02-17.dark.001,events,Dark-sky window,610 moon-free minutes. Low moon interference (3%).,excellent,2026-02-17
+event.2026-02-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 53 degrees.,good,2026-02-17
+event.2026-02-17.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-17
+event.2026-02-18.dark.001,events,Dark-sky window,612 moon-free minutes. Low moon interference (1%).,excellent,2026-02-18
+event.2026-02-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 55 degrees.,good,2026-02-18
+event.2026-02-18.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-18
+event.2026-02-19.dark.001,events,Dark-sky window,614 moon-free minutes. Low moon interference (4%).,excellent,2026-02-19
+event.2026-02-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 56 degrees.,good,2026-02-19
+event.2026-02-19.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-19
+event.2026-02-20.dark.001,events,Dark-sky window,615 moon-free minutes. Low moon interference (9%).,excellent,2026-02-20
+event.2026-02-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 57 degrees.,good,2026-02-20
+event.2026-02-20.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-20
+event.2026-02-21.dark.001,events,Dark-sky window,617 moon-free minutes. Low moon interference (16%).,excellent,2026-02-21
+event.2026-02-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 57 degrees.,good,2026-02-21
+event.2026-02-21.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-21
+event.2026-02-22.dark.001,events,Dark-sky window,481 moon-free minutes. Low moon interference (25%).,excellent,2026-02-22
+event.2026-02-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 58 degrees.,good,2026-02-22
+event.2026-02-22.planet-jupiter.001,events,Jupiter observing window,Best local time 21:00 with altitude near 40 degrees.,fair,2026-02-22
+event.2026-02-23.dark.001,events,Dark-sky window,438 moon-free minutes. Low moon interference (35%).,good,2026-02-23
+event.2026-02-23.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 60 degrees.,excellent,2026-02-23
+event.2026-02-23.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-02-23
+event.2026-02-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 60 degrees.,excellent,2026-02-24
+event.2026-02-24.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-02-24
+event.2026-02-25.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 63 degrees.,excellent,2026-02-25
+event.2026-02-25.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-02-25
+event.2026-02-26.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 63 degrees.,excellent,2026-02-26
+event.2026-02-26.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-02-26
+event.2026-02-27.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 63 degrees.,excellent,2026-02-27
+event.2026-02-27.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-02-27
+event.2026-02-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 65 degrees.,excellent,2026-02-28
+event.2026-02-28.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-02-28
+event.2026-03-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 66 degrees.,excellent,2026-03-01
+event.2026-03-01.planet-jupiter.001,events,Jupiter observing window,Best local time 20:30 with altitude near 40 degrees.,fair,2026-03-01
+event.2026-03-02.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 66 degrees.,good,2026-03-02
+event.2026-03-02.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 39 degrees.,fair,2026-03-02
+event.2026-03-03.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 68 degrees.,good,2026-03-03
+event.2026-03-03.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 40 degrees.,fair,2026-03-03
+event.2026-03-04.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 40 degrees.,fair,2026-03-04
+event.2026-03-05.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 40 degrees.,fair,2026-03-05
+event.2026-03-06.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 40 degrees.,fair,2026-03-06
+event.2026-03-07.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 40 degrees.,fair,2026-03-07
+event.2026-03-08.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 40 degrees.,fair,2026-03-08
+event.2026-03-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 74 degrees.,excellent,2026-03-09
+event.2026-03-09.planet-jupiter.001,events,Jupiter observing window,Best local time 20:00 with altitude near 39 degrees.,fair,2026-03-09
+event.2026-03-10.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 39 degrees.,fair,2026-03-10
+event.2026-03-11.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 40 degrees.,fair,2026-03-11
+event.2026-03-12.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 40 degrees.,fair,2026-03-12
+event.2026-03-13.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 40 degrees.,fair,2026-03-13
+event.2026-03-14.dark.001,events,Dark-sky window,653 moon-free minutes. Low moon interference (34%).,excellent,2026-03-14
+event.2026-03-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 79 degrees.,excellent,2026-03-14
+event.2026-03-14.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 40 degrees.,fair,2026-03-14
+event.2026-03-15.dark.001,events,Dark-sky window,654 moon-free minutes. Low moon interference (26%).,excellent,2026-03-15
+event.2026-03-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 80 degrees.,excellent,2026-03-15
+event.2026-03-15.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 40 degrees.,fair,2026-03-15
+event.2026-03-16.dark.001,events,Dark-sky window,656 moon-free minutes. Low moon interference (18%).,excellent,2026-03-16
+event.2026-03-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 81 degrees.,excellent,2026-03-16
+event.2026-03-16.planet-jupiter.001,events,Jupiter observing window,Best local time 19:30 with altitude near 39 degrees.,fair,2026-03-16
+event.2026-03-17.dark.001,events,Dark-sky window,658 moon-free minutes. Low moon interference (10%).,excellent,2026-03-17
+event.2026-03-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 81 degrees.,excellent,2026-03-17
+event.2026-03-17.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 39 degrees.,fair,2026-03-17
+event.2026-03-18.dark.001,events,Dark-sky window,659 moon-free minutes. Low moon interference (5%).,excellent,2026-03-18
+event.2026-03-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 82 degrees.,excellent,2026-03-18
+event.2026-03-18.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 40 degrees.,fair,2026-03-18
+event.2026-03-18.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 13 degrees.,fair,2026-03-18
+event.2026-03-19.dark.001,events,Dark-sky window,661 moon-free minutes. Low moon interference (0%).,excellent,2026-03-19
+event.2026-03-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 82 degrees.,excellent,2026-03-19
+event.2026-03-19.minor.001,events,Minor planet: 7;,"Predicted mag 9.373, altitude 60.56 degrees.",excellent,2026-03-19
+event.2026-03-19.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 40 degrees.,fair,2026-03-19
+event.2026-03-19.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 14 degrees.,fair,2026-03-19
+event.2026-03-20.dark.001,events,Dark-sky window,663 moon-free minutes. Low moon interference (2%).,excellent,2026-03-20
+event.2026-03-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 85 degrees.,excellent,2026-03-20
+event.2026-03-20.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 40 degrees.,fair,2026-03-20
+event.2026-03-20.conjunction.001,events,Neptune conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-03-20
+event.2026-03-20.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 15 degrees.,fair,2026-03-20
+event.2026-03-21.dark.001,events,Dark-sky window,664 moon-free minutes. Low moon interference (7%).,excellent,2026-03-21
+event.2026-03-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 86 degrees.,excellent,2026-03-21
+event.2026-03-21.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 40 degrees.,fair,2026-03-21
+event.2026-03-21.conjunction.001,events,Neptune conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-03-21
+event.2026-03-21.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 16 degrees.,fair,2026-03-21
+event.2026-03-22.dark.001,events,Dark-sky window,666 moon-free minutes. Low moon interference (14%).,excellent,2026-03-22
+event.2026-03-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 86 degrees.,excellent,2026-03-22
+event.2026-03-22.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 40 degrees.,fair,2026-03-22
+event.2026-03-22.conjunction.001,events,Neptune conjunction with Sun,Near-Sun conjunction around 21:15. Usually not observable; use for planning transitions.,info,2026-03-22
+event.2026-03-22.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 17 degrees.,fair,2026-03-22
+event.2026-03-23.dark.001,events,Dark-sky window,668 moon-free minutes. Low moon interference (22%).,excellent,2026-03-23
+event.2026-03-23.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 87 degrees.,excellent,2026-03-23
+event.2026-03-23.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 40 degrees.,fair,2026-03-23
+event.2026-03-23.conjunction.001,events,Neptune conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-03-23
+event.2026-03-23.conjunction.002,events,Saturn conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-03-23
+event.2026-03-23.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 18 degrees.,fair,2026-03-23
+event.2026-03-24.dark.001,events,Dark-sky window,476 moon-free minutes. Low moon interference (32%).,excellent,2026-03-24
+event.2026-03-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 87 degrees.,excellent,2026-03-24
+event.2026-03-24.planet-jupiter.001,events,Jupiter observing window,Best local time 19:00 with altitude near 39 degrees.,fair,2026-03-24
+event.2026-03-24.conjunction.001,events,Neptune conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-03-24
+event.2026-03-24.conjunction.002,events,Saturn conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-03-24
+event.2026-03-24.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 18 degrees.,fair,2026-03-24
+event.2026-03-25.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-03-25
+event.2026-03-25.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 39 degrees.,fair,2026-03-25
+event.2026-03-25.conjunction.001,events,Neptune conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-03-25
+event.2026-03-25.conjunction.002,events,Saturn conjunction with Sun,Near-Sun conjunction around 19:00. Usually not observable; use for planning transitions.,info,2026-03-25
+event.2026-03-25.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 19 degrees.,fair,2026-03-25
+event.2026-03-26.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-03-26
+event.2026-03-26.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-03-26
+event.2026-03-26.conjunction.001,events,Saturn conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-03-26
+event.2026-03-26.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 19 degrees.,fair,2026-03-26
+event.2026-03-27.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-03-27
+event.2026-03-27.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-03-27
+event.2026-03-27.conjunction.001,events,Saturn conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-03-27
+event.2026-03-27.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-03-27
+event.2026-03-28.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-03-28
+event.2026-03-28.conjunction.001,events,Saturn conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-03-28
+event.2026-03-28.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-03-28
+event.2026-03-29.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-03-29
+event.2026-03-29.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-03-29
+event.2026-03-29.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-03-29
+event.2026-03-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-03-30
+event.2026-03-30.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-03-30
+event.2026-03-30.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-03-30
+event.2026-03-31.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-03-31
+event.2026-03-31.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-03-31
+event.2026-03-31.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 21 degrees.,fair,2026-03-31
+event.2026-04-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-01
+event.2026-04-01.planet-jupiter.001,events,Jupiter observing window,Best local time 18:30 with altitude near 40 degrees.,fair,2026-04-01
+event.2026-04-01.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 21 degrees.,fair,2026-04-01
+event.2026-04-02.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 21 degrees.,fair,2026-04-02
+event.2026-04-03.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 21 degrees.,fair,2026-04-03
+event.2026-04-04.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 21 degrees.,fair,2026-04-04
+event.2026-04-05.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-04-05
+event.2026-04-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-04-06
+event.2026-04-06.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-04-06
+event.2026-04-07.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-04-07
+event.2026-04-08.minor.001,events,Minor planet: 15;,"Predicted mag 10.0, altitude 77.29 degrees.",excellent,2026-04-08
+event.2026-04-08.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-04-08
+event.2026-04-09.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 20 degrees.,fair,2026-04-09
+event.2026-04-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 25 degrees.,fair,2026-04-10
+event.2026-04-10.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 19 degrees.,fair,2026-04-10
+event.2026-04-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-11
+event.2026-04-11.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 19 degrees.,fair,2026-04-11
+event.2026-04-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-12
+event.2026-04-12.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 18 degrees.,fair,2026-04-12
+event.2026-04-13.dark.001,events,Dark-sky window,701 moon-free minutes. Low moon interference (32%).,excellent,2026-04-13
+event.2026-04-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-04-13
+event.2026-04-13.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 18 degrees.,fair,2026-04-13
+event.2026-04-14.dark.001,events,Dark-sky window,702 moon-free minutes. Low moon interference (22%).,excellent,2026-04-14
+event.2026-04-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-14
+event.2026-04-14.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 18 degrees.,fair,2026-04-14
+event.2026-04-15.dark.001,events,Dark-sky window,704 moon-free minutes. Low moon interference (14%).,excellent,2026-04-15
+event.2026-04-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-15
+event.2026-04-15.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 17 degrees.,fair,2026-04-15
+event.2026-04-16.dark.001,events,Dark-sky window,705 moon-free minutes. Low moon interference (7%).,excellent,2026-04-16
+event.2026-04-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-04-16
+event.2026-04-16.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 16 degrees.,fair,2026-04-16
+event.2026-04-17.dark.001,events,Dark-sky window,707 moon-free minutes. Low moon interference (3%).,excellent,2026-04-17
+event.2026-04-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-17
+event.2026-04-17.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 16 degrees.,fair,2026-04-17
+event.2026-04-18.dark.001,events,Dark-sky window,708 moon-free minutes. Low moon interference (1%).,excellent,2026-04-18
+event.2026-04-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-18
+event.2026-04-18.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 15 degrees.,fair,2026-04-18
+event.2026-04-19.dark.001,events,Dark-sky window,709 moon-free minutes. Low moon interference (5%).,excellent,2026-04-19
+event.2026-04-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-04-19
+event.2026-04-19.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 15 degrees.,fair,2026-04-19
+event.2026-04-20.dark.001,events,Dark-sky window,711 moon-free minutes. Low moon interference (11%).,excellent,2026-04-20
+event.2026-04-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-04-20
+event.2026-04-20.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 14 degrees.,fair,2026-04-20
+event.2026-04-21.dark.001,events,Dark-sky window,712 moon-free minutes. Low moon interference (19%).,excellent,2026-04-21
+event.2026-04-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-21
+event.2026-04-21.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 13 degrees.,fair,2026-04-21
+event.2026-04-22.dark.001,events,Dark-sky window,490 moon-free minutes. Low moon interference (29%).,excellent,2026-04-22
+event.2026-04-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-04-22
+event.2026-04-22.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 13 degrees.,fair,2026-04-22
+event.2026-04-23.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-23
+event.2026-04-23.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 12 degrees.,fair,2026-04-23
+event.2026-04-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-24
+event.2026-04-24.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 11 degrees.,fair,2026-04-24
+event.2026-04-25.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-25
+event.2026-04-25.planet-mercury.001,events,Mercury observing window,Best twilight time 05:30 with altitude near 10 degrees.,fair,2026-04-25
+event.2026-04-27.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-27
+event.2026-04-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-28
+event.2026-04-29.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-04-29
+event.2026-04-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 82 degrees.,excellent,2026-04-30
+event.2026-05-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 69 degrees.,good,2026-05-01
+event.2026-05-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-05
+event.2026-05-06.meteor.001,events,Meteor shower: Eta Aquariids,Peak night with ZHR 50 and moon illumination 88%.,poor,2026-05-06
+event.2026-05-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 22 degrees.,fair,2026-05-07
+event.2026-05-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 33 degrees.,fair,2026-05-08
+event.2026-05-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 46 degrees.,good,2026-05-09
+event.2026-05-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-10
+event.2026-05-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-11
+event.2026-05-11.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 16 degrees.,fair,2026-05-11
+event.2026-05-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-05-12
+event.2026-05-12.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-05-12
+event.2026-05-12.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 16 degrees.,fair,2026-05-12
+event.2026-05-13.dark.001,events,Dark-sky window,740 moon-free minutes. Low moon interference (27%).,excellent,2026-05-13
+event.2026-05-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-13
+event.2026-05-13.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-05-13
+event.2026-05-13.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 16 degrees.,fair,2026-05-13
+event.2026-05-14.dark.001,events,Dark-sky window,741 moon-free minutes. Low moon interference (18%).,excellent,2026-05-14
+event.2026-05-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-14
+event.2026-05-14.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 16 degrees.,fair,2026-05-14
+event.2026-05-15.dark.001,events,Dark-sky window,742 moon-free minutes. Low moon interference (10%).,excellent,2026-05-15
+event.2026-05-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-05-15
+event.2026-05-15.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 17 degrees.,fair,2026-05-15
+event.2026-05-16.dark.001,events,Dark-sky window,743 moon-free minutes. Low moon interference (4%).,excellent,2026-05-16
+event.2026-05-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-16
+event.2026-05-16.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-05-16
+event.2026-05-16.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 17 degrees.,fair,2026-05-16
+event.2026-05-17.dark.001,events,Dark-sky window,744 moon-free minutes. Low moon interference (0%).,excellent,2026-05-17
+event.2026-05-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-05-17
+event.2026-05-17.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-05-17
+event.2026-05-17.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 17 degrees.,fair,2026-05-17
+event.2026-05-18.dark.001,events,Dark-sky window,745 moon-free minutes. Low moon interference (3%).,excellent,2026-05-18
+event.2026-05-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-18
+event.2026-05-18.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 17 degrees.,fair,2026-05-18
+event.2026-05-19.dark.001,events,Dark-sky window,746 moon-free minutes. Low moon interference (9%).,excellent,2026-05-19
+event.2026-05-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-19
+event.2026-05-19.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-05-19
+event.2026-05-19.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 17 degrees.,fair,2026-05-19
+event.2026-05-20.dark.001,events,Dark-sky window,746 moon-free minutes. Low moon interference (16%).,excellent,2026-05-20
+event.2026-05-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-05-20
+event.2026-05-20.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-05-20
+event.2026-05-20.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 18 degrees.,fair,2026-05-20
+event.2026-05-21.dark.001,events,Dark-sky window,502 moon-free minutes. Low moon interference (26%).,excellent,2026-05-21
+event.2026-05-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-21
+event.2026-05-21.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-05-21
+event.2026-05-21.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 18 degrees.,fair,2026-05-21
+event.2026-05-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-22
+event.2026-05-22.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-05-22
+event.2026-05-22.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 18 degrees.,fair,2026-05-22
+event.2026-05-23.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-23
+event.2026-05-23.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 00:30. Usually not observable; use for planning transitions.,info,2026-05-23
+event.2026-05-23.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 18 degrees.,fair,2026-05-23
+event.2026-05-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-05-24
+event.2026-05-24.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-05-24
+event.2026-05-24.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 18 degrees.,fair,2026-05-24
+event.2026-05-25.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-05-25
+event.2026-05-25.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 19 degrees.,fair,2026-05-25
+event.2026-05-26.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-05-26
+event.2026-05-26.conjunction.001,events,Uranus conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-05-26
+event.2026-05-26.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 19 degrees.,fair,2026-05-26
+event.2026-05-27.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 85 degrees.,excellent,2026-05-27
+event.2026-05-27.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 19 degrees.,fair,2026-05-27
+event.2026-05-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 73 degrees.,excellent,2026-05-28
+event.2026-05-28.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 19 degrees.,fair,2026-05-28
+event.2026-05-29.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 60 degrees.,good,2026-05-29
+event.2026-05-29.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 20 degrees.,fair,2026-05-29
+event.2026-05-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 47 degrees.,fair,2026-05-30
+event.2026-05-30.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 20 degrees.,fair,2026-05-30
+event.2026-05-31.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 20 degrees.,fair,2026-05-31
+event.2026-06-01.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 20 degrees.,fair,2026-06-01
+event.2026-06-02.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 21 degrees.,fair,2026-06-02
+event.2026-06-03.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 21 degrees.,fair,2026-06-03
+event.2026-06-04.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-04
+event.2026-06-04.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 21 degrees.,fair,2026-06-04
+event.2026-06-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 41 degrees.,fair,2026-06-05
+event.2026-06-05.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 22 degrees.,fair,2026-06-05
+event.2026-06-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 55 degrees.,good,2026-06-06
+event.2026-06-06.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 22 degrees.,fair,2026-06-06
+event.2026-06-06.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 10 degrees.,fair,2026-06-06
+event.2026-06-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 69 degrees.,excellent,2026-06-07
+event.2026-06-07.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 22 degrees.,fair,2026-06-07
+event.2026-06-07.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 11 degrees.,fair,2026-06-07
+event.2026-06-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 81 degrees.,excellent,2026-06-08
+event.2026-06-08.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 23 degrees.,fair,2026-06-08
+event.2026-06-08.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 11 degrees.,fair,2026-06-08
+event.2026-06-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-09
+event.2026-06-09.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 23 degrees.,fair,2026-06-09
+event.2026-06-09.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 12 degrees.,fair,2026-06-09
+event.2026-06-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-10
+event.2026-06-10.conjunction.001,events,Venus-Jupiter conjunction,"Closest approach near 17:30, separation 1.678 degrees. Altitudes 23/24 degrees.",fair,2026-06-10
+event.2026-06-10.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 23 degrees.,fair,2026-06-10
+event.2026-06-10.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 12 degrees.,fair,2026-06-10
+event.2026-06-11.dark.001,events,Dark-sky window,760 moon-free minutes. Low moon interference (31%).,excellent,2026-06-11
+event.2026-06-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-11
+event.2026-06-11.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 24 degrees.,fair,2026-06-11
+event.2026-06-11.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 13 degrees.,fair,2026-06-11
+event.2026-06-12.dark.001,events,Dark-sky window,760 moon-free minutes. Low moon interference (21%).,excellent,2026-06-12
+event.2026-06-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-12
+event.2026-06-12.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 24 degrees.,fair,2026-06-12
+event.2026-06-12.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 13 degrees.,fair,2026-06-12
+event.2026-06-13.dark.001,events,Dark-sky window,761 moon-free minutes. Low moon interference (13%).,excellent,2026-06-13
+event.2026-06-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-06-13
+event.2026-06-13.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 24 degrees.,fair,2026-06-13
+event.2026-06-13.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 13 degrees.,fair,2026-06-13
+event.2026-06-14.dark.001,events,Dark-sky window,761 moon-free minutes. Low moon interference (6%).,excellent,2026-06-14
+event.2026-06-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-14
+event.2026-06-14.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 25 degrees.,fair,2026-06-14
+event.2026-06-14.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-14
+event.2026-06-15.dark.001,events,Dark-sky window,761 moon-free minutes. Low moon interference (0%).,excellent,2026-06-15
+event.2026-06-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-15
+event.2026-06-15.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 25 degrees.,fair,2026-06-15
+event.2026-06-15.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-15
+event.2026-06-16.dark.001,events,Dark-sky window,761 moon-free minutes. Low moon interference (2%).,excellent,2026-06-16
+event.2026-06-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-16
+event.2026-06-16.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 25 degrees.,fair,2026-06-16
+event.2026-06-16.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-16
+event.2026-06-17.dark.001,events,Dark-sky window,762 moon-free minutes. Low moon interference (7%).,excellent,2026-06-17
+event.2026-06-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-17
+event.2026-06-17.conjunction.001,events,Moon-Jupiter conjunction,"Closest approach near 18:00, separation 2.453 degrees. Moon illumination 7%.",fair,2026-06-17
+event.2026-06-17.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 26 degrees.,fair,2026-06-17
+event.2026-06-17.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-17
+event.2026-06-18.dark.001,events,Dark-sky window,762 moon-free minutes. Low moon interference (14%).,excellent,2026-06-18
+event.2026-06-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-06-18
+event.2026-06-18.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 26 degrees.,fair,2026-06-18
+event.2026-06-18.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-18
+event.2026-06-19.dark.001,events,Dark-sky window,762 moon-free minutes. Low moon interference (22%).,excellent,2026-06-19
+event.2026-06-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-19
+event.2026-06-19.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 26 degrees.,fair,2026-06-19
+event.2026-06-19.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 15 degrees.,fair,2026-06-19
+event.2026-06-20.dark.001,events,Dark-sky window,457 moon-free minutes. Low moon interference (32%).,excellent,2026-06-20
+event.2026-06-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-20
+event.2026-06-20.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-20
+event.2026-06-20.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 27 degrees.,fair,2026-06-20
+event.2026-06-20.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 15 degrees.,fair,2026-06-20
+event.2026-06-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-21
+event.2026-06-21.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-21
+event.2026-06-21.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 27 degrees.,fair,2026-06-21
+event.2026-06-21.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 15 degrees.,fair,2026-06-21
+event.2026-06-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-06-22
+event.2026-06-22.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-22
+event.2026-06-22.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 27 degrees.,fair,2026-06-22
+event.2026-06-22.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-22
+event.2026-06-23.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-23
+event.2026-06-23.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 28 degrees.,fair,2026-06-23
+event.2026-06-23.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-23
+event.2026-06-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 77 degrees.,excellent,2026-06-24
+event.2026-06-24.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-24
+event.2026-06-24.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 28 degrees.,fair,2026-06-24
+event.2026-06-24.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-24
+event.2026-06-25.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 64 degrees.,excellent,2026-06-25
+event.2026-06-25.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-25
+event.2026-06-25.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 28 degrees.,fair,2026-06-25
+event.2026-06-25.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 14 degrees.,fair,2026-06-25
+event.2026-06-26.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 51 degrees.,good,2026-06-26
+event.2026-06-26.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-26
+event.2026-06-26.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 29 degrees.,fair,2026-06-26
+event.2026-06-26.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 13 degrees.,fair,2026-06-26
+event.2026-06-27.planet-neptune.001,events,Neptune observing window,Best local time 06:00 with altitude near 62 degrees.,excellent,2026-06-27
+event.2026-06-27.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 38 degrees.,fair,2026-06-27
+event.2026-06-27.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 29 degrees.,fair,2026-06-27
+event.2026-06-27.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 13 degrees.,fair,2026-06-27
+event.2026-06-28.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-06-28
+event.2026-06-28.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 30 degrees.,fair,2026-06-28
+event.2026-06-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 26 degrees.,fair,2026-06-28
+event.2026-06-28.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 12 degrees.,fair,2026-06-28
+event.2026-06-29.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-06-29
+event.2026-06-29.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 30 degrees.,fair,2026-06-29
+event.2026-06-29.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 12 degrees.,fair,2026-06-29
+event.2026-06-30.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-06-30
+event.2026-06-30.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-06-30
+event.2026-06-30.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 30 degrees.,fair,2026-06-30
+event.2026-06-30.planet-mercury.001,events,Mercury observing window,Best twilight time 17:30 with altitude near 11 degrees.,fair,2026-06-30
+event.2026-07-01.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-07-01
+event.2026-07-01.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-01
+event.2026-07-01.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 31 degrees.,fair,2026-07-01
+event.2026-07-02.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-07-02
+event.2026-07-02.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-02
+event.2026-07-02.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 37 degrees.,fair,2026-07-02
+event.2026-07-02.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 31 degrees.,fair,2026-07-02
+event.2026-07-03.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 51 degrees.,good,2026-07-03
+event.2026-07-03.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-07-03
+event.2026-07-03.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-03
+event.2026-07-03.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 31 degrees.,fair,2026-07-03
+event.2026-07-04.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 65 degrees.,excellent,2026-07-04
+event.2026-07-04.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-07-04
+event.2026-07-04.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-04
+event.2026-07-04.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 32 degrees.,fair,2026-07-04
+event.2026-07-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-05
+event.2026-07-05.planet-neptune.001,events,Neptune observing window,Best local time 05:30 with altitude near 62 degrees.,excellent,2026-07-05
+event.2026-07-05.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-05
+event.2026-07-05.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 32 degrees.,fair,2026-07-05
+event.2026-07-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-06
+event.2026-07-06.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-06
+event.2026-07-06.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-06
+event.2026-07-06.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 32 degrees.,fair,2026-07-06
+event.2026-07-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-07-07
+event.2026-07-07.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-07
+event.2026-07-07.planet-saturn.001,events,Saturn observing window,Best local time 06:00 with altitude near 59 degrees.,good,2026-07-07
+event.2026-07-07.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 33 degrees.,fair,2026-07-07
+event.2026-07-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-08
+event.2026-07-08.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-08
+event.2026-07-08.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-08
+event.2026-07-08.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 33 degrees.,fair,2026-07-08
+event.2026-07-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-07-09
+event.2026-07-09.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-09
+event.2026-07-09.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-09
+event.2026-07-09.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 34 degrees.,fair,2026-07-09
+event.2026-07-10.dark.001,events,Dark-sky window,756 moon-free minutes. Low moon interference (34%).,excellent,2026-07-10
+event.2026-07-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-10
+event.2026-07-10.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-10
+event.2026-07-10.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-10
+event.2026-07-10.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 34 degrees.,fair,2026-07-10
+event.2026-07-11.dark.001,events,Dark-sky window,756 moon-free minutes. Low moon interference (24%).,excellent,2026-07-11
+event.2026-07-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-11
+event.2026-07-11.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-11
+event.2026-07-11.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-11
+event.2026-07-11.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 34 degrees.,fair,2026-07-11
+event.2026-07-12.dark.001,events,Dark-sky window,755 moon-free minutes. Low moon interference (15%).,excellent,2026-07-12
+event.2026-07-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-12
+event.2026-07-12.planet-neptune.001,events,Neptune observing window,Best local time 05:00 with altitude near 62 degrees.,excellent,2026-07-12
+event.2026-07-12.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-12
+event.2026-07-12.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 35 degrees.,fair,2026-07-12
+event.2026-07-13.dark.001,events,Dark-sky window,755 moon-free minutes. Low moon interference (8%).,excellent,2026-07-13
+event.2026-07-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-13
+event.2026-07-13.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-13
+event.2026-07-13.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-13
+event.2026-07-13.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 35 degrees.,fair,2026-07-13
+event.2026-07-14.dark.001,events,Dark-sky window,754 moon-free minutes. Low moon interference (3%).,excellent,2026-07-14
+event.2026-07-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-07-14
+event.2026-07-14.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-14
+event.2026-07-14.planet-saturn.001,events,Saturn observing window,Best local time 05:30 with altitude near 59 degrees.,good,2026-07-14
+event.2026-07-14.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 35 degrees.,fair,2026-07-14
+event.2026-07-15.dark.001,events,Dark-sky window,753 moon-free minutes. Low moon interference (1%).,excellent,2026-07-15
+event.2026-07-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-15
+event.2026-07-15.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-15
+event.2026-07-15.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-15
+event.2026-07-15.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 36 degrees.,fair,2026-07-15
+event.2026-07-16.dark.001,events,Dark-sky window,753 moon-free minutes. Low moon interference (5%).,excellent,2026-07-16
+event.2026-07-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-07-16
+event.2026-07-16.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-16
+event.2026-07-16.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-16
+event.2026-07-16.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 36 degrees.,fair,2026-07-16
+event.2026-07-17.dark.001,events,Dark-sky window,752 moon-free minutes. Low moon interference (11%).,excellent,2026-07-17
+event.2026-07-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-17
+event.2026-07-17.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-17
+event.2026-07-17.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-17
+event.2026-07-17.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 36 degrees.,fair,2026-07-17
+event.2026-07-18.dark.001,events,Dark-sky window,751 moon-free minutes. Low moon interference (19%).,excellent,2026-07-18
+event.2026-07-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-07-18
+event.2026-07-18.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-18
+event.2026-07-18.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-18
+event.2026-07-18.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 37 degrees.,fair,2026-07-18
+event.2026-07-19.dark.001,events,Dark-sky window,750 moon-free minutes. Low moon interference (28%).,excellent,2026-07-19
+event.2026-07-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-19
+event.2026-07-19.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-19
+event.2026-07-19.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-19
+event.2026-07-19.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 37 degrees.,fair,2026-07-19
+event.2026-07-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 70 degrees.,excellent,2026-07-20
+event.2026-07-20.planet-neptune.001,events,Neptune observing window,Best local time 04:30 with altitude near 62 degrees.,excellent,2026-07-20
+event.2026-07-20.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-20
+event.2026-07-20.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 37 degrees.,fair,2026-07-20
+event.2026-07-21.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-07-21
+event.2026-07-21.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-21
+event.2026-07-21.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-21
+event.2026-07-21.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 38 degrees.,fair,2026-07-21
+event.2026-07-22.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-22
+event.2026-07-22.planet-saturn.001,events,Saturn observing window,Best local time 05:00 with altitude near 59 degrees.,good,2026-07-22
+event.2026-07-22.planet-venus.001,events,Venus observing window,Best twilight time 17:30 with altitude near 38 degrees.,fair,2026-07-22
+event.2026-07-23.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 56 degrees.,good,2026-07-23
+event.2026-07-23.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-23
+event.2026-07-23.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-23
+event.2026-07-23.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 33 degrees.,fair,2026-07-23
+event.2026-07-24.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-24
+event.2026-07-24.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-24
+event.2026-07-24.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 43 degrees.,fair,2026-07-24
+event.2026-07-24.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 33 degrees.,fair,2026-07-24
+event.2026-07-25.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-25
+event.2026-07-25.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-25
+event.2026-07-25.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 33 degrees.,fair,2026-07-25
+event.2026-07-25.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 30 degrees.,fair,2026-07-25
+event.2026-07-25.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-07-25
+event.2026-07-26.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-26
+event.2026-07-26.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-26
+event.2026-07-26.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 34 degrees.,fair,2026-07-26
+event.2026-07-26.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-07-26
+event.2026-07-27.planet-neptune.001,events,Neptune observing window,Best local time 04:00 with altitude near 62 degrees.,excellent,2026-07-27
+event.2026-07-27.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-27
+event.2026-07-27.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 34 degrees.,fair,2026-07-27
+event.2026-07-27.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-07-27
+event.2026-07-28.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-07-28
+event.2026-07-28.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-28
+event.2026-07-28.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 34 degrees.,fair,2026-07-28
+event.2026-07-28.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-07-28
+event.2026-07-29.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-07-29
+event.2026-07-29.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-29
+event.2026-07-29.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 34 degrees.,fair,2026-07-29
+event.2026-07-29.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 22:00. Usually not observable; use for planning transitions.,info,2026-07-29
+event.2026-07-30.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-07-30
+event.2026-07-30.planet-saturn.001,events,Saturn observing window,Best local time 04:30 with altitude near 59 degrees.,good,2026-07-30
+event.2026-07-30.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-07-30
+event.2026-07-30.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-07-30
+event.2026-07-31.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-07-31
+event.2026-07-31.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-07-31
+event.2026-07-31.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 60 degrees.,fair,2026-07-31
+event.2026-07-31.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-07-31
+event.2026-07-31.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-07-31
+event.2026-08-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 72 degrees.,good,2026-08-01
+event.2026-08-01.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-08-01
+event.2026-08-01.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-08-01
+event.2026-08-01.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-08-01
+event.2026-08-01.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-08-01
+event.2026-08-02.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 86 degrees.,excellent,2026-08-02
+event.2026-08-02.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-08-02
+event.2026-08-02.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-08-02
+event.2026-08-02.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-08-02
+event.2026-08-02.conjunction.001,events,Jupiter conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-08-02
+event.2026-08-03.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-08-03
+event.2026-08-03.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-08-03
+event.2026-08-03.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-08-03
+event.2026-08-03.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-08-03
+event.2026-08-04.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-04
+event.2026-08-04.planet-neptune.001,events,Neptune observing window,Best local time 03:30 with altitude near 62 degrees.,excellent,2026-08-04
+event.2026-08-04.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-08-04
+event.2026-08-04.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-08-04
+event.2026-08-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-05
+event.2026-08-05.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-05
+event.2026-08-05.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-08-05
+event.2026-08-05.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-08-05
+event.2026-08-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-06
+event.2026-08-06.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-06
+event.2026-08-06.planet-saturn.001,events,Saturn observing window,Best local time 04:00 with altitude near 59 degrees.,good,2026-08-06
+event.2026-08-06.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-08-06
+event.2026-08-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-07
+event.2026-08-07.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-07
+event.2026-08-07.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-07
+event.2026-08-07.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-08-07
+event.2026-08-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-08-08
+event.2026-08-08.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-08
+event.2026-08-08.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-08
+event.2026-08-08.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-08
+event.2026-08-09.dark.001,events,Dark-sky window,729 moon-free minutes. Low moon interference (26%).,excellent,2026-08-09
+event.2026-08-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-09
+event.2026-08-09.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-09
+event.2026-08-09.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-09
+event.2026-08-09.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-09
+event.2026-08-10.dark.001,events,Dark-sky window,728 moon-free minutes. Low moon interference (17%).,excellent,2026-08-10
+event.2026-08-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-08-10
+event.2026-08-10.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-10
+event.2026-08-10.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-10
+event.2026-08-10.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-10
+event.2026-08-11.dark.001,events,Dark-sky window,727 moon-free minutes. Low moon interference (10%).,excellent,2026-08-11
+event.2026-08-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-11
+event.2026-08-11.planet-neptune.001,events,Neptune observing window,Best local time 03:00 with altitude near 62 degrees.,excellent,2026-08-11
+event.2026-08-11.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-11
+event.2026-08-11.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-11
+event.2026-08-12.dark.001,events,Dark-sky window,726 moon-free minutes. Low moon interference (4%).,excellent,2026-08-12
+event.2026-08-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-08-12
+event.2026-08-12.meteor.001,events,Meteor shower: Perseids,Peak night with ZHR 100 and moon illumination 4%.,good,2026-08-12
+event.2026-08-12.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-12
+event.2026-08-12.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-12
+event.2026-08-12.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-12
+event.2026-08-13.dark.001,events,Dark-sky window,724 moon-free minutes. Low moon interference (1%).,excellent,2026-08-13
+event.2026-08-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-13
+event.2026-08-13.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-13
+event.2026-08-13.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-13
+event.2026-08-13.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-13
+event.2026-08-14.dark.001,events,Dark-sky window,723 moon-free minutes. Low moon interference (3%).,excellent,2026-08-14
+event.2026-08-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-14
+event.2026-08-14.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-14
+event.2026-08-14.planet-saturn.001,events,Saturn observing window,Best local time 03:30 with altitude near 59 degrees.,good,2026-08-14
+event.2026-08-14.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-08-14
+event.2026-08-15.dark.001,events,Dark-sky window,722 moon-free minutes. Low moon interference (8%).,excellent,2026-08-15
+event.2026-08-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-15
+event.2026-08-15.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-15
+event.2026-08-15.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-15
+event.2026-08-15.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-15
+event.2026-08-16.dark.001,events,Dark-sky window,720 moon-free minutes. Low moon interference (15%).,excellent,2026-08-16
+event.2026-08-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-16
+event.2026-08-16.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-16
+event.2026-08-16.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-16
+event.2026-08-16.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-16
+event.2026-08-17.dark.001,events,Dark-sky window,719 moon-free minutes. Low moon interference (23%).,excellent,2026-08-17
+event.2026-08-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-08-17
+event.2026-08-17.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-17
+event.2026-08-17.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-17
+event.2026-08-17.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-17
+event.2026-08-18.dark.001,events,Dark-sky window,415 moon-free minutes. Low moon interference (32%).,good,2026-08-18
+event.2026-08-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 49 degrees.,good,2026-08-18
+event.2026-08-18.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-18
+event.2026-08-18.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-18
+event.2026-08-18.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-18
+event.2026-08-19.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-08-19
+event.2026-08-19.minor.001,events,Minor planet: 3;,"Predicted mag 9.222, altitude 69.86 degrees.",excellent,2026-08-19
+event.2026-08-19.planet-neptune.001,events,Neptune observing window,Best local time 02:30 with altitude near 62 degrees.,excellent,2026-08-19
+event.2026-08-19.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-19
+event.2026-08-19.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-19
+event.2026-08-20.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-20
+event.2026-08-20.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-20
+event.2026-08-20.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-20
+event.2026-08-20.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-20
+event.2026-08-21.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-21
+event.2026-08-21.planet-saturn.001,events,Saturn observing window,Best local time 03:00 with altitude near 59 degrees.,good,2026-08-21
+event.2026-08-21.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-21
+event.2026-08-22.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-22
+event.2026-08-22.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-22
+event.2026-08-22.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-22
+event.2026-08-22.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 22 degrees.,fair,2026-08-22
+event.2026-08-23.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-23
+event.2026-08-23.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-23
+event.2026-08-23.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-23
+event.2026-08-24.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-24
+event.2026-08-24.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-24
+event.2026-08-24.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-24
+event.2026-08-25.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-25
+event.2026-08-25.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-25
+event.2026-08-25.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-25
+event.2026-08-25.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-08-25
+event.2026-08-26.planet-neptune.001,events,Neptune observing window,Best local time 02:00 with altitude near 62 degrees.,excellent,2026-08-26
+event.2026-08-26.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-26
+event.2026-08-26.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-26
+event.2026-08-26.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-08-26
+event.2026-08-27.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-08-27
+event.2026-08-27.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-27
+event.2026-08-27.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-08-27
+event.2026-08-27.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-27
+event.2026-08-27.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-08-27
+event.2026-08-28.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-08-28
+event.2026-08-28.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-28
+event.2026-08-28.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-08-28
+event.2026-08-28.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-28
+event.2026-08-28.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 04:00. Usually not observable; use for planning transitions.,info,2026-08-28
+event.2026-08-29.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-08-29
+event.2026-08-29.planet-saturn.001,events,Saturn observing window,Best local time 02:30 with altitude near 59 degrees.,good,2026-08-29
+event.2026-08-29.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-08-29
+event.2026-08-29.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-29
+event.2026-08-29.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-08-29
+event.2026-08-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-30
+event.2026-08-30.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-08-30
+event.2026-08-30.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 59 degrees.,good,2026-08-30
+event.2026-08-30.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-08-30
+event.2026-08-30.minor.001,events,Minor planet: 1;,"Predicted mag 8.933, altitude 29.73 degrees.",fair,2026-08-30
+event.2026-08-30.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-30
+event.2026-08-30.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-08-30
+event.2026-08-31.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-08-31
+event.2026-08-31.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-08-31
+event.2026-08-31.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 59 degrees.,good,2026-08-31
+event.2026-08-31.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-08-31
+event.2026-08-31.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-08-31
+event.2026-09-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-01
+event.2026-09-01.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-09-01
+event.2026-09-01.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 60 degrees.,good,2026-09-01
+event.2026-09-01.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-09-01
+event.2026-09-01.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-01
+event.2026-09-02.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-09-02
+event.2026-09-02.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-09-02
+event.2026-09-02.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 60 degrees.,good,2026-09-02
+event.2026-09-02.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-09-02
+event.2026-09-02.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-02
+event.2026-09-03.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-03
+event.2026-09-03.planet-neptune.001,events,Neptune observing window,Best local time 01:30 with altitude near 62 degrees.,excellent,2026-09-03
+event.2026-09-03.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 60 degrees.,good,2026-09-03
+event.2026-09-03.planet-uranus.001,events,Uranus observing window,Best local time 05:30 with altitude near 41 degrees.,good,2026-09-03
+event.2026-09-03.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-03
+event.2026-09-04.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-09-04
+event.2026-09-04.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-04
+event.2026-09-04.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 60 degrees.,good,2026-09-04
+event.2026-09-04.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-04
+event.2026-09-04.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-04
+event.2026-09-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-05
+event.2026-09-05.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-05
+event.2026-09-05.planet-saturn.001,events,Saturn observing window,Best local time 02:00 with altitude near 59 degrees.,good,2026-09-05
+event.2026-09-05.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-05
+event.2026-09-05.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-05
+event.2026-09-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-06
+event.2026-09-06.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-06
+event.2026-09-06.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-06
+event.2026-09-06.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-06
+event.2026-09-06.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-06
+event.2026-09-07.dark.001,events,Dark-sky window,689 moon-free minutes. Low moon interference (29%).,excellent,2026-09-07
+event.2026-09-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-07
+event.2026-09-07.conjunction.001,events,Moon-Mars conjunction,"Closest approach near 05:30, separation 2.951 degrees. Moon illumination 29%.",fair,2026-09-07
+event.2026-09-07.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-07
+event.2026-09-07.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-07
+event.2026-09-07.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-07
+event.2026-09-07.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 38 degrees.,fair,2026-09-07
+event.2026-09-08.dark.001,events,Dark-sky window,687 moon-free minutes. Low moon interference (20%).,excellent,2026-09-08
+event.2026-09-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-08
+event.2026-09-08.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-08
+event.2026-09-08.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-08
+event.2026-09-08.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-08
+event.2026-09-08.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-09-08
+event.2026-09-09.dark.001,events,Dark-sky window,686 moon-free minutes. Low moon interference (12%).,excellent,2026-09-09
+event.2026-09-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-09-09
+event.2026-09-09.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-09
+event.2026-09-09.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-09
+event.2026-09-09.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-09
+event.2026-09-09.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-09-09
+event.2026-09-10.dark.001,events,Dark-sky window,684 moon-free minutes. Low moon interference (5%).,excellent,2026-09-10
+event.2026-09-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-10
+event.2026-09-10.planet-neptune.001,events,Neptune observing window,Best local time 01:00 with altitude near 62 degrees.,excellent,2026-09-10
+event.2026-09-10.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-10
+event.2026-09-10.planet-uranus.001,events,Uranus observing window,Best local time 05:00 with altitude near 41 degrees.,good,2026-09-10
+event.2026-09-10.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-09-10
+event.2026-09-11.dark.001,events,Dark-sky window,683 moon-free minutes. Low moon interference (0%).,excellent,2026-09-11
+event.2026-09-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-09-11
+event.2026-09-11.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-11
+event.2026-09-11.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-11
+event.2026-09-11.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-11
+event.2026-09-11.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 37 degrees.,fair,2026-09-11
+event.2026-09-12.dark.001,events,Dark-sky window,681 moon-free minutes. Low moon interference (2%).,excellent,2026-09-12
+event.2026-09-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-12
+event.2026-09-12.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-12
+event.2026-09-12.planet-saturn.001,events,Saturn observing window,Best local time 01:30 with altitude near 60 degrees.,good,2026-09-12
+event.2026-09-12.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-12
+event.2026-09-12.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-09-12
+event.2026-09-13.dark.001,events,Dark-sky window,680 moon-free minutes. Low moon interference (6%).,excellent,2026-09-13
+event.2026-09-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 89 degrees.,excellent,2026-09-13
+event.2026-09-13.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-13
+event.2026-09-13.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-13
+event.2026-09-13.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-13
+event.2026-09-13.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-09-13
+event.2026-09-14.dark.001,events,Dark-sky window,678 moon-free minutes. Low moon interference (11%).,excellent,2026-09-14
+event.2026-09-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-14
+event.2026-09-14.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-14
+event.2026-09-14.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-14
+event.2026-09-14.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-14
+event.2026-09-14.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-09-14
+event.2026-09-15.dark.001,events,Dark-sky window,676 moon-free minutes. Low moon interference (18%).,excellent,2026-09-15
+event.2026-09-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 88 degrees.,excellent,2026-09-15
+event.2026-09-15.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-15
+event.2026-09-15.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-15
+event.2026-09-15.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-15
+event.2026-09-15.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 36 degrees.,fair,2026-09-15
+event.2026-09-16.dark.001,events,Dark-sky window,402 moon-free minutes. Low moon interference (26%).,good,2026-09-16
+event.2026-09-16.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-16
+event.2026-09-16.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-16
+event.2026-09-16.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-16
+event.2026-09-16.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-09-16
+event.2026-09-16.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 28 degrees.,fair,2026-09-16
+event.2026-09-17.dark.001,events,Dark-sky window,344 moon-free minutes. Low moon interference (34%).,good,2026-09-17
+event.2026-09-17.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-17
+event.2026-09-17.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-17
+event.2026-09-17.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-17
+event.2026-09-17.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-09-17
+event.2026-09-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 85 degrees.,excellent,2026-09-18
+event.2026-09-18.planet-neptune.001,events,Neptune observing window,Best local time 00:30 with altitude near 62 degrees.,excellent,2026-09-18
+event.2026-09-18.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-18
+event.2026-09-18.planet-uranus.001,events,Uranus observing window,Best local time 04:30 with altitude near 41 degrees.,good,2026-09-18
+event.2026-09-18.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 35 degrees.,fair,2026-09-18
+event.2026-09-19.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 62 degrees.,excellent,2026-09-19
+event.2026-09-19.planet-saturn.001,events,Saturn observing window,Best local time 01:00 with altitude near 60 degrees.,good,2026-09-19
+event.2026-09-19.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-19
+event.2026-09-19.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 34 degrees.,fair,2026-09-19
+event.2026-09-20.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 62 degrees.,excellent,2026-09-20
+event.2026-09-20.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,good,2026-09-20
+event.2026-09-20.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-20
+event.2026-09-20.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 34 degrees.,fair,2026-09-20
+event.2026-09-21.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 63 degrees.,excellent,2026-09-21
+event.2026-09-21.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,excellent,2026-09-21
+event.2026-09-21.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-21
+event.2026-09-21.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 33 degrees.,fair,2026-09-21
+event.2026-09-21.planet-mercury.001,events,Mercury observing window,Best twilight time 18:00 with altitude near 14 degrees.,fair,2026-09-21
+event.2026-09-22.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 63 degrees.,excellent,2026-09-22
+event.2026-09-22.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,excellent,2026-09-22
+event.2026-09-22.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-22
+event.2026-09-22.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 33 degrees.,fair,2026-09-22
+event.2026-09-22.planet-mercury.001,events,Mercury observing window,Best twilight time 18:00 with altitude near 15 degrees.,fair,2026-09-22
+event.2026-09-23.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 63 degrees.,excellent,2026-09-23
+event.2026-09-23.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,excellent,2026-09-23
+event.2026-09-23.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-23
+event.2026-09-23.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 32 degrees.,fair,2026-09-23
+event.2026-09-23.planet-mercury.001,events,Mercury observing window,Best twilight time 18:00 with altitude near 15 degrees.,fair,2026-09-23
+event.2026-09-24.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 63 degrees.,excellent,2026-09-24
+event.2026-09-24.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,excellent,2026-09-24
+event.2026-09-24.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-24
+event.2026-09-24.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 32 degrees.,fair,2026-09-24
+event.2026-09-24.planet-mercury.001,events,Mercury observing window,Best twilight time 18:00 with altitude near 16 degrees.,fair,2026-09-24
+event.2026-09-25.planet-neptune.001,events,Neptune observing window,Best local time 00:00 with altitude near 62 degrees.,excellent,2026-09-25
+event.2026-09-25.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,excellent,2026-09-25
+event.2026-09-25.planet-uranus.001,events,Uranus observing window,Best local time 04:00 with altitude near 41 degrees.,good,2026-09-25
+event.2026-09-25.planet-venus.001,events,Venus observing window,Best twilight time 18:00 with altitude near 31 degrees.,fair,2026-09-25
+event.2026-09-25.planet-mercury.001,events,Mercury observing window,Best twilight time 18:00 with altitude near 17 degrees.,fair,2026-09-25
+event.2026-09-26.conjunction.001,events,Moon-Neptune conjunction,"Closest approach near 23:45, separation 4.342 degrees. Moon illumination 99%.",good,2026-09-26
+event.2026-09-26.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 63 degrees.,excellent,2026-09-26
+event.2026-09-26.planet-saturn.001,events,Saturn observing window,Best local time 00:30 with altitude near 60 degrees.,excellent,2026-09-26
+event.2026-09-26.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-09-26
+event.2026-09-26.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 24 degrees.,fair,2026-09-26
+event.2026-09-26.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 10 degrees.,fair,2026-09-26
+event.2026-09-27.conjunction.001,events,Moon-Neptune conjunction,"Closest approach near 01:00, separation 4.273 degrees. Moon illumination 100%.",good,2026-09-27
+event.2026-09-27.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 63 degrees.,excellent,2026-09-27
+event.2026-09-27.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-09-27
+event.2026-09-27.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-09-27
+event.2026-09-27.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 23 degrees.,fair,2026-09-27
+event.2026-09-27.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 11 degrees.,fair,2026-09-27
+event.2026-09-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 76 degrees.,good,2026-09-28
+event.2026-09-28.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 63 degrees.,excellent,2026-09-28
+event.2026-09-28.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-09-28
+event.2026-09-28.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-09-28
+event.2026-09-28.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 23 degrees.,fair,2026-09-28
+event.2026-09-28.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 12 degrees.,fair,2026-09-28
+event.2026-09-29.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 75 degrees.,excellent,2026-09-29
+event.2026-09-29.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 63 degrees.,excellent,2026-09-29
+event.2026-09-29.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-09-29
+event.2026-09-29.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-09-29
+event.2026-09-29.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 22 degrees.,fair,2026-09-29
+event.2026-09-29.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 12 degrees.,fair,2026-09-29
+event.2026-09-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 74 degrees.,excellent,2026-09-30
+event.2026-09-30.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 63 degrees.,excellent,2026-09-30
+event.2026-09-30.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-09-30
+event.2026-09-30.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-09-30
+event.2026-09-30.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 21 degrees.,fair,2026-09-30
+event.2026-09-30.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 13 degrees.,fair,2026-09-30
+event.2026-10-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 73 degrees.,excellent,2026-10-01
+event.2026-10-01.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 63 degrees.,excellent,2026-10-01
+event.2026-10-01.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-10-01
+event.2026-10-01.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-10-01
+event.2026-10-01.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 21 degrees.,fair,2026-10-01
+event.2026-10-01.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 13 degrees.,fair,2026-10-01
+event.2026-10-02.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 72 degrees.,excellent,2026-10-02
+event.2026-10-02.planet-neptune.001,events,Neptune observing window,Best local time 23:30 with altitude near 62 degrees.,excellent,2026-10-02
+event.2026-10-02.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-10-02
+event.2026-10-02.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-10-02
+event.2026-10-02.planet-venus.001,events,Venus observing window,Best twilight time 18:30 with altitude near 20 degrees.,fair,2026-10-02
+event.2026-10-02.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 13 degrees.,fair,2026-10-02
+event.2026-10-03.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 71 degrees.,excellent,2026-10-03
+event.2026-10-03.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-03
+event.2026-10-03.planet-saturn.001,events,Saturn observing window,Best local time 00:00 with altitude near 60 degrees.,excellent,2026-10-03
+event.2026-10-03.planet-uranus.001,events,Uranus observing window,Best local time 03:30 with altitude near 41 degrees.,good,2026-10-03
+event.2026-10-03.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 14 degrees.,fair,2026-10-03
+event.2026-10-04.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 70 degrees.,excellent,2026-10-04
+event.2026-10-04.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-04
+event.2026-10-04.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 60 degrees.,excellent,2026-10-04
+event.2026-10-04.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-04
+event.2026-10-04.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 14 degrees.,fair,2026-10-04
+event.2026-10-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 69 degrees.,excellent,2026-10-05
+event.2026-10-05.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-05
+event.2026-10-05.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 61 degrees.,excellent,2026-10-05
+event.2026-10-05.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-05
+event.2026-10-05.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 15 degrees.,fair,2026-10-05
+event.2026-10-06.dark.001,events,Dark-sky window,642 moon-free minutes. Low moon interference (32%).,excellent,2026-10-06
+event.2026-10-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 68 degrees.,excellent,2026-10-06
+event.2026-10-06.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-06
+event.2026-10-06.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 61 degrees.,excellent,2026-10-06
+event.2026-10-06.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-06
+event.2026-10-06.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 15 degrees.,fair,2026-10-06
+event.2026-10-07.dark.001,events,Dark-sky window,640 moon-free minutes. Low moon interference (22%).,excellent,2026-10-07
+event.2026-10-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 67 degrees.,excellent,2026-10-07
+event.2026-10-07.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-07
+event.2026-10-07.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 61 degrees.,excellent,2026-10-07
+event.2026-10-07.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-07
+event.2026-10-07.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 15 degrees.,fair,2026-10-07
+event.2026-10-08.dark.001,events,Dark-sky window,638 moon-free minutes. Low moon interference (14%).,excellent,2026-10-08
+event.2026-10-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 66 degrees.,excellent,2026-10-08
+event.2026-10-08.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-08
+event.2026-10-08.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 61 degrees.,excellent,2026-10-08
+event.2026-10-08.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-08
+event.2026-10-08.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-08
+event.2026-10-09.dark.001,events,Dark-sky window,637 moon-free minutes. Low moon interference (8%).,excellent,2026-10-09
+event.2026-10-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 65 degrees.,excellent,2026-10-09
+event.2026-10-09.planet-neptune.001,events,Neptune observing window,Best local time 23:00 with altitude near 63 degrees.,excellent,2026-10-09
+event.2026-10-09.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 61 degrees.,excellent,2026-10-09
+event.2026-10-09.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-09
+event.2026-10-09.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-09
+event.2026-10-10.dark.001,events,Dark-sky window,635 moon-free minutes. Low moon interference (3%).,excellent,2026-10-10
+event.2026-10-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 64 degrees.,excellent,2026-10-10
+event.2026-10-10.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-10
+event.2026-10-10.planet-saturn.001,events,Saturn observing window,Best local time 23:30 with altitude near 60 degrees.,excellent,2026-10-10
+event.2026-10-10.planet-uranus.001,events,Uranus observing window,Best local time 03:00 with altitude near 41 degrees.,good,2026-10-10
+event.2026-10-10.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-10
+event.2026-10-11.dark.001,events,Dark-sky window,634 moon-free minutes. Low moon interference (1%).,excellent,2026-10-11
+event.2026-10-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 63 degrees.,excellent,2026-10-11
+event.2026-10-11.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-11
+event.2026-10-11.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-11
+event.2026-10-11.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-11
+event.2026-10-11.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-11
+event.2026-10-12.dark.001,events,Dark-sky window,632 moon-free minutes. Low moon interference (3%).,excellent,2026-10-12
+event.2026-10-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 62 degrees.,excellent,2026-10-12
+event.2026-10-12.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-12
+event.2026-10-12.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-12
+event.2026-10-12.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-12
+event.2026-10-12.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-12
+event.2026-10-13.dark.001,events,Dark-sky window,630 moon-free minutes. Low moon interference (8%).,excellent,2026-10-13
+event.2026-10-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 61 degrees.,excellent,2026-10-13
+event.2026-10-13.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-13
+event.2026-10-13.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-13
+event.2026-10-13.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-13
+event.2026-10-13.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 17 degrees.,fair,2026-10-13
+event.2026-10-14.dark.001,events,Dark-sky window,628 moon-free minutes. Low moon interference (14%).,excellent,2026-10-14
+event.2026-10-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 60 degrees.,excellent,2026-10-14
+event.2026-10-14.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-14
+event.2026-10-14.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-14
+event.2026-10-14.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-14
+event.2026-10-14.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 17 degrees.,fair,2026-10-14
+event.2026-10-15.dark.001,events,Dark-sky window,627 moon-free minutes. Low moon interference (20%).,excellent,2026-10-15
+event.2026-10-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 59 degrees.,excellent,2026-10-15
+event.2026-10-15.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-15
+event.2026-10-15.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-15
+event.2026-10-15.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-15
+event.2026-10-15.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 17 degrees.,fair,2026-10-15
+event.2026-10-16.dark.001,events,Dark-sky window,335 moon-free minutes. Low moon interference (28%).,good,2026-10-16
+event.2026-10-16.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-16
+event.2026-10-16.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-16
+event.2026-10-16.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-16
+event.2026-10-16.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 17 degrees.,fair,2026-10-16
+event.2026-10-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 57 degrees.,good,2026-10-17
+event.2026-10-17.planet-neptune.001,events,Neptune observing window,Best local time 22:30 with altitude near 63 degrees.,excellent,2026-10-17
+event.2026-10-17.planet-saturn.001,events,Saturn observing window,Best local time 23:00 with altitude near 61 degrees.,excellent,2026-10-17
+event.2026-10-17.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-17
+event.2026-10-17.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-17
+event.2026-10-18.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 56 degrees.,good,2026-10-18
+event.2026-10-18.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-18
+event.2026-10-18.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-18
+event.2026-10-18.planet-uranus.001,events,Uranus observing window,Best local time 02:30 with altitude near 41 degrees.,good,2026-10-18
+event.2026-10-18.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-18
+event.2026-10-19.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-19
+event.2026-10-19.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-19
+event.2026-10-19.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 41 degrees.,good,2026-10-19
+event.2026-10-19.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-19
+event.2026-10-20.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-20
+event.2026-10-20.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-20
+event.2026-10-20.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 41 degrees.,good,2026-10-20
+event.2026-10-20.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 16 degrees.,fair,2026-10-20
+event.2026-10-21.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-21
+event.2026-10-21.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-21
+event.2026-10-21.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 42 degrees.,good,2026-10-21
+event.2026-10-21.meteor.001,events,Meteor shower: Orionids,Peak night with ZHR 20 and moon illumination 71%.,poor,2026-10-21
+event.2026-10-21.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 15 degrees.,fair,2026-10-21
+event.2026-10-22.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-22
+event.2026-10-22.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-22
+event.2026-10-22.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 42 degrees.,good,2026-10-22
+event.2026-10-22.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 15 degrees.,fair,2026-10-22
+event.2026-10-23.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-23
+event.2026-10-23.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-23
+event.2026-10-23.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 42 degrees.,good,2026-10-23
+event.2026-10-23.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 14 degrees.,fair,2026-10-23
+event.2026-10-24.planet-neptune.001,events,Neptune observing window,Best local time 22:00 with altitude near 63 degrees.,excellent,2026-10-24
+event.2026-10-24.planet-saturn.001,events,Saturn observing window,Best local time 22:30 with altitude near 61 degrees.,excellent,2026-10-24
+event.2026-10-24.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 41 degrees.,good,2026-10-24
+event.2026-10-24.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 13 degrees.,fair,2026-10-24
+event.2026-10-25.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-25
+event.2026-10-25.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-25
+event.2026-10-25.planet-uranus.001,events,Uranus observing window,Best local time 02:00 with altitude near 41 degrees.,good,2026-10-25
+event.2026-10-25.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 12 degrees.,fair,2026-10-25
+event.2026-10-26.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-26
+event.2026-10-26.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-26
+event.2026-10-26.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 41 degrees.,good,2026-10-26
+event.2026-10-26.planet-mercury.001,events,Mercury observing window,Best twilight time 18:30 with altitude near 11 degrees.,fair,2026-10-26
+event.2026-10-27.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-27
+event.2026-10-27.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-27
+event.2026-10-27.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 41 degrees.,good,2026-10-27
+event.2026-10-28.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-28
+event.2026-10-28.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-28
+event.2026-10-28.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 46 degrees.,good,2026-10-28
+event.2026-10-28.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 42 degrees.,good,2026-10-28
+event.2026-10-29.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-29
+event.2026-10-29.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-29
+event.2026-10-29.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 45 degrees.,good,2026-10-29
+event.2026-10-29.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 42 degrees.,good,2026-10-29
+event.2026-10-30.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-30
+event.2026-10-30.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-30
+event.2026-10-30.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 44 degrees.,good,2026-10-30
+event.2026-10-30.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 42 degrees.,good,2026-10-30
+event.2026-10-31.planet-neptune.001,events,Neptune observing window,Best local time 21:30 with altitude near 63 degrees.,excellent,2026-10-31
+event.2026-10-31.planet-saturn.001,events,Saturn observing window,Best local time 22:00 with altitude near 61 degrees.,excellent,2026-10-31
+event.2026-10-31.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 43 degrees.,fair,2026-10-31
+event.2026-10-31.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 42 degrees.,good,2026-10-31
+event.2026-11-01.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-01
+event.2026-11-01.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-01
+event.2026-11-01.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 42 degrees.,fair,2026-11-01
+event.2026-11-01.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 42 degrees.,good,2026-11-01
+event.2026-11-02.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-02
+event.2026-11-02.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-02
+event.2026-11-02.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 41 degrees.,fair,2026-11-02
+event.2026-11-02.planet-uranus.001,events,Uranus observing window,Best local time 01:30 with altitude near 41 degrees.,good,2026-11-02
+event.2026-11-03.conjunction.001,events,Moon-Jupiter conjunction,"Closest approach near 04:30, separation 2.458 degrees. Moon illumination 45%.",fair,2026-11-03
+event.2026-11-03.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-03
+event.2026-11-03.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-03
+event.2026-11-03.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 40 degrees.,fair,2026-11-03
+event.2026-11-03.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-03
+event.2026-11-03.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-11-03
+event.2026-11-04.minor.001,events,Minor planet: 2;,"Predicted mag 8.565, altitude 82.28 degrees.",excellent,2026-11-04
+event.2026-11-04.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-04
+event.2026-11-04.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-04
+event.2026-11-04.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 39 degrees.,fair,2026-11-04
+event.2026-11-04.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-04
+event.2026-11-04.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-11-04
+event.2026-11-05.dark.001,events,Dark-sky window,593 moon-free minutes. Low moon interference (26%).,excellent,2026-11-05
+event.2026-11-05.minor.001,events,Minor planet: 4;,"Predicted mag 6.786, altitude 66.92 degrees.",excellent,2026-11-05
+event.2026-11-05.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-05
+event.2026-11-05.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-05
+event.2026-11-05.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 38 degrees.,fair,2026-11-05
+event.2026-11-05.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-05
+event.2026-11-05.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 01:00. Usually not observable; use for planning transitions.,info,2026-11-05
+event.2026-11-06.dark.001,events,Dark-sky window,591 moon-free minutes. Low moon interference (18%).,excellent,2026-11-06
+event.2026-11-06.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-06
+event.2026-11-06.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-06
+event.2026-11-06.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 37 degrees.,fair,2026-11-06
+event.2026-11-06.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-06
+event.2026-11-06.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 00:00. Usually not observable; use for planning transitions.,info,2026-11-06
+event.2026-11-07.dark.001,events,Dark-sky window,590 moon-free minutes. Low moon interference (11%).,excellent,2026-11-07
+event.2026-11-07.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-07
+event.2026-11-07.planet-saturn.001,events,Saturn observing window,Best local time 21:30 with altitude near 61 degrees.,excellent,2026-11-07
+event.2026-11-07.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 36 degrees.,fair,2026-11-07
+event.2026-11-07.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-07
+event.2026-11-08.dark.001,events,Dark-sky window,588 moon-free minutes. Low moon interference (5%).,excellent,2026-11-08
+event.2026-11-08.planet-neptune.001,events,Neptune observing window,Best local time 21:00 with altitude near 63 degrees.,excellent,2026-11-08
+event.2026-11-08.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-08
+event.2026-11-08.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-08
+event.2026-11-08.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 35 degrees.,fair,2026-11-08
+event.2026-11-09.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-09
+event.2026-11-09.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-09
+event.2026-11-09.planet-uranus.001,events,Uranus observing window,Best local time 01:00 with altitude near 42 degrees.,good,2026-11-09
+event.2026-11-09.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 34 degrees.,fair,2026-11-09
+event.2026-11-10.dark.001,events,Dark-sky window,586 moon-free minutes. Low moon interference (1%).,excellent,2026-11-10
+event.2026-11-10.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-10
+event.2026-11-10.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-10
+event.2026-11-10.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-10
+event.2026-11-10.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 33 degrees.,fair,2026-11-10
+event.2026-11-11.dark.001,events,Dark-sky window,584 moon-free minutes. Low moon interference (4%).,excellent,2026-11-11
+event.2026-11-11.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-11
+event.2026-11-11.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-11
+event.2026-11-11.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-11
+event.2026-11-11.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 32 degrees.,fair,2026-11-11
+event.2026-11-12.dark.001,events,Dark-sky window,583 moon-free minutes. Low moon interference (9%).,excellent,2026-11-12
+event.2026-11-12.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-12
+event.2026-11-12.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 62 degrees.,excellent,2026-11-12
+event.2026-11-12.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-12
+event.2026-11-12.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 31 degrees.,fair,2026-11-12
+event.2026-11-13.dark.001,events,Dark-sky window,581 moon-free minutes. Low moon interference (15%).,excellent,2026-11-13
+event.2026-11-13.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-13
+event.2026-11-13.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-13
+event.2026-11-13.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-13
+event.2026-11-13.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 30 degrees.,fair,2026-11-13
+event.2026-11-14.dark.001,events,Dark-sky window,580 moon-free minutes. Low moon interference (21%).,excellent,2026-11-14
+event.2026-11-14.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-14
+event.2026-11-14.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-14
+event.2026-11-14.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-14
+event.2026-11-14.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 29 degrees.,fair,2026-11-14
+event.2026-11-15.dark.001,events,Dark-sky window,578 moon-free minutes. Low moon interference (29%).,excellent,2026-11-15
+event.2026-11-15.planet-neptune.001,events,Neptune observing window,Best local time 20:30 with altitude near 63 degrees.,excellent,2026-11-15
+event.2026-11-15.planet-saturn.001,events,Saturn observing window,Best local time 21:00 with altitude near 61 degrees.,excellent,2026-11-15
+event.2026-11-15.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-15
+event.2026-11-15.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 28 degrees.,fair,2026-11-15
+event.2026-11-16.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-16
+event.2026-11-16.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 61 degrees.,excellent,2026-11-16
+event.2026-11-16.planet-uranus.001,events,Uranus observing window,Best local time 00:30 with altitude near 42 degrees.,good,2026-11-16
+event.2026-11-16.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 18 degrees.,fair,2026-11-16
+event.2026-11-17.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-17
+event.2026-11-17.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 62 degrees.,excellent,2026-11-17
+event.2026-11-17.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-17
+event.2026-11-17.milkyway.001,events,Milky Way core window,Core visibility window with max altitude about 26 degrees.,fair,2026-11-17
+event.2026-11-17.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 18 degrees.,fair,2026-11-17
+event.2026-11-18.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-18
+event.2026-11-18.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 62 degrees.,excellent,2026-11-18
+event.2026-11-18.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-18
+event.2026-11-18.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 19 degrees.,fair,2026-11-18
+event.2026-11-19.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-19
+event.2026-11-19.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 62 degrees.,excellent,2026-11-19
+event.2026-11-19.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-19
+event.2026-11-19.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 19 degrees.,fair,2026-11-19
+event.2026-11-20.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-20
+event.2026-11-20.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 62 degrees.,excellent,2026-11-20
+event.2026-11-20.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-20
+event.2026-11-20.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 20 degrees.,fair,2026-11-20
+event.2026-11-21.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-21
+event.2026-11-21.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 62 degrees.,excellent,2026-11-21
+event.2026-11-21.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-21
+event.2026-11-21.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 21 degrees.,fair,2026-11-21
+event.2026-11-22.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-22
+event.2026-11-22.planet-saturn.001,events,Saturn observing window,Best local time 20:30 with altitude near 61 degrees.,excellent,2026-11-22
+event.2026-11-22.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-22
+event.2026-11-22.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 21 degrees.,fair,2026-11-22
+event.2026-11-23.planet-neptune.001,events,Neptune observing window,Best local time 20:00 with altitude near 63 degrees.,excellent,2026-11-23
+event.2026-11-23.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 61 degrees.,excellent,2026-11-23
+event.2026-11-23.planet-uranus.001,events,Uranus observing window,Best local time 00:00 with altitude near 42 degrees.,good,2026-11-23
+event.2026-11-23.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 22 degrees.,fair,2026-11-23
+event.2026-11-24.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-24
+event.2026-11-24.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 62 degrees.,excellent,2026-11-24
+event.2026-11-24.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-24
+event.2026-11-24.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 16 degrees.,fair,2026-11-24
+event.2026-11-25.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-25
+event.2026-11-25.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 62 degrees.,excellent,2026-11-25
+event.2026-11-25.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-25
+event.2026-11-25.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 16 degrees.,fair,2026-11-25
+event.2026-11-26.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-26
+event.2026-11-26.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 62 degrees.,excellent,2026-11-26
+event.2026-11-26.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-26
+event.2026-11-26.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 16 degrees.,fair,2026-11-26
+event.2026-11-27.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-27
+event.2026-11-27.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 62 degrees.,excellent,2026-11-27
+event.2026-11-27.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-27
+event.2026-11-27.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 17 degrees.,fair,2026-11-27
+event.2026-11-28.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-28
+event.2026-11-28.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 62 degrees.,excellent,2026-11-28
+event.2026-11-28.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-28
+event.2026-11-28.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 17 degrees.,fair,2026-11-28
+event.2026-11-29.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-29
+event.2026-11-29.planet-saturn.001,events,Saturn observing window,Best local time 20:00 with altitude near 62 degrees.,excellent,2026-11-29
+event.2026-11-29.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-29
+event.2026-11-29.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 18 degrees.,fair,2026-11-29
+event.2026-11-30.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-11-30
+event.2026-11-30.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 61 degrees.,excellent,2026-11-30
+event.2026-11-30.planet-uranus.001,events,Uranus observing window,Best local time 23:30 with altitude near 42 degrees.,good,2026-11-30
+event.2026-11-30.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 18 degrees.,fair,2026-11-30
+event.2026-12-01.conjunction.001,events,Moon-Mars conjunction,"Closest approach near 03:00, separation 2.996 degrees. Moon illumination 60%.",good,2026-12-01
+event.2026-12-01.planet-neptune.001,events,Neptune observing window,Best local time 19:30 with altitude near 63 degrees.,excellent,2026-12-01
+event.2026-12-01.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-01
+event.2026-12-01.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-01
+event.2026-12-01.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 19 degrees.,fair,2026-12-01
+event.2026-12-02.planet-neptune.001,events,Neptune observing window,Best local time 19:00 with altitude near 63 degrees.,excellent,2026-12-02
+event.2026-12-02.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-02
+event.2026-12-02.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-02
+event.2026-12-02.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 19 degrees.,fair,2026-12-02
+event.2026-12-03.planet-neptune.001,events,Neptune observing window,Best local time 19:00 with altitude near 63 degrees.,excellent,2026-12-03
+event.2026-12-03.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-03
+event.2026-12-03.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-03
+event.2026-12-03.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 19 degrees.,fair,2026-12-03
+event.2026-12-04.dark.001,events,Dark-sky window,558 moon-free minutes. Low moon interference (30%).,excellent,2026-12-04
+event.2026-12-04.planet-neptune.001,events,Neptune observing window,Best local time 19:00 with altitude near 63 degrees.,excellent,2026-12-04
+event.2026-12-04.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-04
+event.2026-12-04.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-04
+event.2026-12-04.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 20 degrees.,fair,2026-12-04
+event.2026-12-05.dark.001,events,Dark-sky window,557 moon-free minutes. Low moon interference (22%).,excellent,2026-12-05
+event.2026-12-05.planet-neptune.001,events,Neptune observing window,Best local time 19:00 with altitude near 63 degrees.,excellent,2026-12-05
+event.2026-12-05.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-05
+event.2026-12-05.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-05
+event.2026-12-05.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 20 degrees.,fair,2026-12-05
+event.2026-12-06.dark.001,events,Dark-sky window,556 moon-free minutes. Low moon interference (14%).,excellent,2026-12-06
+event.2026-12-06.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-06
+event.2026-12-06.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-06
+event.2026-12-06.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 20 degrees.,fair,2026-12-06
+event.2026-12-07.dark.001,events,Dark-sky window,556 moon-free minutes. Low moon interference (9%).,excellent,2026-12-07
+event.2026-12-07.planet-saturn.001,events,Saturn observing window,Best local time 19:30 with altitude near 62 degrees.,excellent,2026-12-07
+event.2026-12-07.planet-uranus.001,events,Uranus observing window,Best local time 23:00 with altitude near 42 degrees.,good,2026-12-07
+event.2026-12-07.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 21 degrees.,fair,2026-12-07
+event.2026-12-08.dark.001,events,Dark-sky window,555 moon-free minutes. Low moon interference (4%).,excellent,2026-12-08
+event.2026-12-08.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-08
+event.2026-12-08.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 21 degrees.,fair,2026-12-08
+event.2026-12-09.dark.001,events,Dark-sky window,555 moon-free minutes. Low moon interference (0%).,excellent,2026-12-09
+event.2026-12-09.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-09
+event.2026-12-09.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 21 degrees.,fair,2026-12-09
+event.2026-12-10.dark.001,events,Dark-sky window,554 moon-free minutes. Low moon interference (2%).,excellent,2026-12-10
+event.2026-12-10.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-10
+event.2026-12-10.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 22 degrees.,fair,2026-12-10
+event.2026-12-11.dark.001,events,Dark-sky window,554 moon-free minutes. Low moon interference (5%).,excellent,2026-12-11
+event.2026-12-11.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-11
+event.2026-12-11.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 22 degrees.,fair,2026-12-11
+event.2026-12-12.dark.001,events,Dark-sky window,553 moon-free minutes. Low moon interference (10%).,excellent,2026-12-12
+event.2026-12-12.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-12
+event.2026-12-12.planet-venus.001,events,Venus observing window,Best twilight time 04:00 with altitude near 22 degrees.,fair,2026-12-12
+event.2026-12-13.dark.001,events,Dark-sky window,553 moon-free minutes. Low moon interference (15%).,excellent,2026-12-13
+event.2026-12-13.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-13
+event.2026-12-13.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 29 degrees.,fair,2026-12-13
+event.2026-12-14.dark.001,events,Dark-sky window,552 moon-free minutes. Low moon interference (22%).,excellent,2026-12-14
+event.2026-12-14.meteor.001,events,Meteor shower: Geminids,Peak night with ZHR 120 and moon illumination 22%.,good,2026-12-14
+event.2026-12-14.planet-uranus.001,events,Uranus observing window,Best local time 22:30 with altitude near 42 degrees.,good,2026-12-14
+event.2026-12-14.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 29 degrees.,fair,2026-12-14
+event.2026-12-15.dark.001,events,Dark-sky window,552 moon-free minutes. Low moon interference (30%).,excellent,2026-12-15
+event.2026-12-15.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-15
+event.2026-12-15.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-15
+event.2026-12-15.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 30 degrees.,fair,2026-12-15
+event.2026-12-16.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-16
+event.2026-12-16.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-16
+event.2026-12-16.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 30 degrees.,fair,2026-12-16
+event.2026-12-17.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-17
+event.2026-12-17.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-17
+event.2026-12-17.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 30 degrees.,fair,2026-12-17
+event.2026-12-18.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-18
+event.2026-12-18.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-18
+event.2026-12-18.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 30 degrees.,fair,2026-12-18
+event.2026-12-19.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-19
+event.2026-12-19.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-19
+event.2026-12-19.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 31 degrees.,fair,2026-12-19
+event.2026-12-20.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-20
+event.2026-12-20.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-20
+event.2026-12-20.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 31 degrees.,fair,2026-12-20
+event.2026-12-21.planet-jupiter.001,events,Jupiter observing window,Best local time 04:00 with altitude near 49 degrees.,good,2026-12-21
+event.2026-12-21.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-21
+event.2026-12-21.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 31 degrees.,fair,2026-12-21
+event.2026-12-22.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-22
+event.2026-12-22.planet-uranus.001,events,Uranus observing window,Best local time 22:00 with altitude near 42 degrees.,good,2026-12-22
+event.2026-12-22.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 31 degrees.,fair,2026-12-22
+event.2026-12-23.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-23
+event.2026-12-23.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-23
+event.2026-12-23.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 31 degrees.,fair,2026-12-23
+event.2026-12-24.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-24
+event.2026-12-24.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-24
+event.2026-12-24.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 31 degrees.,fair,2026-12-24
+event.2026-12-25.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-25
+event.2026-12-25.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-25
+event.2026-12-25.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-25
+event.2026-12-26.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-26
+event.2026-12-26.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-26
+event.2026-12-26.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-26
+event.2026-12-27.conjunction.001,events,Moon-Jupiter conjunction,"Closest approach near 23:45, separation 2.124 degrees. Moon illumination 91%.",fair,2026-12-27
+event.2026-12-27.planet-mars.001,events,Mars observing window,Best local time 04:00 with altitude near 51 degrees.,good,2026-12-27
+event.2026-12-27.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-27
+event.2026-12-27.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-27
+event.2026-12-27.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-27
+event.2026-12-28.conjunction.001,events,Moon-Jupiter conjunction,"Closest approach near 02:30, separation 1.38 degrees. Moon illumination 84%.",good,2026-12-28
+event.2026-12-28.conjunction.002,events,Moon-Mars conjunction,"Closest approach near 23:30, separation 4.737 degrees. Moon illumination 84%.",fair,2026-12-28
+event.2026-12-28.planet-mars.001,events,Mars observing window,Best local time 04:00 with altitude near 51 degrees.,good,2026-12-28
+event.2026-12-28.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-28
+event.2026-12-28.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-28
+event.2026-12-28.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-28
+event.2026-12-28.conjunction.003,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-12-28
+event.2026-12-29.conjunction.001,events,Moon-Mars conjunction,"Closest approach near 00:00, separation 4.746 degrees. Moon illumination 75%.",fair,2026-12-29
+event.2026-12-29.planet-mars.001,events,Mars observing window,Best local time 04:00 with altitude near 51 degrees.,good,2026-12-29
+event.2026-12-29.planet-jupiter.001,events,Jupiter observing window,Best local time 03:30 with altitude near 49 degrees.,good,2026-12-29
+event.2026-12-29.planet-uranus.001,events,Uranus observing window,Best local time 21:30 with altitude near 42 degrees.,good,2026-12-29
+event.2026-12-29.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-29
+event.2026-12-29.conjunction.002,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-12-29
+event.2026-12-30.planet-mars.001,events,Mars observing window,Best local time 04:00 with altitude near 52 degrees.,good,2026-12-30
+event.2026-12-30.planet-jupiter.001,events,Jupiter observing window,Best local time 03:00 with altitude near 49 degrees.,good,2026-12-30
+event.2026-12-30.planet-uranus.001,events,Uranus observing window,Best local time 21:00 with altitude near 42 degrees.,good,2026-12-30
+event.2026-12-30.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-30
+event.2026-12-30.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-12-30
+event.2026-12-31.planet-mars.001,events,Mars observing window,Best local time 04:00 with altitude near 52 degrees.,good,2026-12-31
+event.2026-12-31.planet-jupiter.001,events,Jupiter observing window,Best local time 03:00 with altitude near 49 degrees.,good,2026-12-31
+event.2026-12-31.planet-uranus.001,events,Uranus observing window,Best local time 21:00 with altitude near 42 degrees.,good,2026-12-31
+event.2026-12-31.planet-venus.001,events,Venus observing window,Best twilight time 04:30 with altitude near 32 degrees.,fair,2026-12-31
+event.2026-12-31.conjunction.001,events,Mercury conjunction with Sun,Near-Sun conjunction around 23:45. Usually not observable; use for planning transitions.,info,2026-12-31

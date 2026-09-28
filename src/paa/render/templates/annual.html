@@ -82,7 +82,7 @@
 
     <aside class="data-callout illustrated-callout" aria-labelledby="data-callout-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/telescope-dark.webp" alt=""></span>
-      <div><p class="eyebrow">Data and downloads</p><h2 id="data-callout-title">Need the full observing tables?</h2><p>Download the complete dates, times and measurements behind each guide.</p></div>
+      <div><p class="eyebrow">Data and downloads</p><h2 id="data-callout-title">Need the full observing tables?</h2><p>Download the complete dates, times and measurements behind each guide.</p>{% if pdf_href %}<p><a class="context-link" href="{{ pdf_href }}">Download the field edition PDF →</a></p>{% endif %}</div>
       <a href="data/index.html">Browse data and downloads <span aria-hidden="true">→</span></a>
     </aside>
   </div>

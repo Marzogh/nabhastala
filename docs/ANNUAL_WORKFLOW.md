@@ -22,6 +22,21 @@ The command performs these steps for each configured observing site:
 The generated manifest records `published: false`. Publishing remains a separate,
 deliberate release step.
 
+## Assemble the reviewed website
+
+Once the local editions and field PDFs have been inspected, package them without
+recalculating any astronomy data:
+
+```bash
+astro-almanac release --years 2028 --sites all --dest site
+astro-almanac release-check --dest site
+```
+
+Inspect `site/`, then commit it. A push to `main` deploys those committed bytes
+through GitHub Pages. The workflow validates links and assets, but deliberately
+does not run `build`, `annual-release`, PostgreSQL or any external astronomy
+query.
+
 ## Focused local reruns
 
 During review, a calculation family can be rerun without rebuilding everything:

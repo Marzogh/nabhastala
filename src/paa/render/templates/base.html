@@ -6,6 +6,7 @@
     <meta name="color-scheme" content="light dark">
     <meta name="author" content="Prajwal Bhattaram">
     <meta name="generator" content="Nabhastala">
+    {% if page_description|default %}<meta name="description" content="{{ page_description }}">{% endif %}
     <title>{{ document_title }}</title>
     <script>
       try {

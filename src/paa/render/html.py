@@ -320,6 +320,9 @@ def render_landing_html(output_dir: Path) -> Path:
         .render(
             **_identity_context(),
             document_title="Nabhastala: astronomy planning at three horizons",
+            page_description=(
+                "Practical annual astronomy and nightscape guides for three local horizons."
+            ),
             asset_prefix="assets/",
             identity_href="index.html",
             nav_items=(
@@ -612,6 +615,15 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         page_eyebrow="Annual observing reference",
         page_description=(
             f"A complete astronomy and astrophotography reference for {common['site_name']}."
+        ),
+        pdf_href=(
+            f"../../pdf/nabhastala-{year}-{public_site_slug(site_id)}-field-edition.pdf"
+            if (
+                output_dir
+                / "pdf"
+                / f"nabhastala-{year}-{public_site_slug(site_id)}-field-edition.pdf"
+            ).is_file()
+            else None
         ),
         overview=overview,
         horizon_links=_horizon_links(

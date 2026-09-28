@@ -1,0 +1,6 @@
+id,name,peak_date_local,radiant_alt_peak_deg,radiant_alt_predawn_deg,moon_illumination_fraction,zhr,score,rating,notes
+quadrantids,Quadrantids,2026-01-03,-82.21,-28.59,0.993,120.0,1,poor,Short peak window; weather sensitive.
+eta_aquariids,Eta Aquariids,2026-05-06,-37.26,23.72,0.881,50.0,1,poor,Often favorable from southern latitudes pre-dawn.
+perseids,Perseids,2026-08-12,-50.13,-13.95,0.04,100.0,4,good,High northern radiant; can be modest in SE QLD.
+orionids,Orionids,2026-10-21,-27.25,28.13,0.712,20.0,0,poor,Halley stream; best after midnight.
+geminids,Geminids,2026-12-14,-12.99,14.31,0.223,120.0,3,fair,"Strong annual shower, geometry varies by hemisphere."

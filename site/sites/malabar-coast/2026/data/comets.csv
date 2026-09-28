@@ -1,0 +1,62 @@
+target,best_datetime_utc,best_datetime_local,best_altitude_deg,best_apmag,solar_elong_deg,score,rating,amateur_chaseable,source,calc_status,magnitude_note
+10P,2026-04-23T00:00:00,2026-04-23T05:30:00+05:30,69.31,15.394,107.647,4,good,True,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+11P,2026-07-01T00:00:00,2026-07-01T05:30:00+05:30,83.77,21.983,97.255,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+14P,2026-07-05T00:00:00,2026-07-05T05:30:00+05:30,80.13,19.596,94.327,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+21P,2026-05-11T12:00:00,2026-05-11T17:30:00+05:30,68.9,21.123,90.046,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+22P,2026-12-08T00:00:00,2026-12-08T05:30:00+05:30,88.18,21.099,105.951,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+24P,2026-02-24T00:00:00,2026-02-24T05:30:00+05:30,85.11,14.631,107.707,4,good,True,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+29P,2026-01-01T00:00:00,2026-01-01T05:30:00+05:30,75.06,17.584,104.684,4,good,True,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+2P,2026-07-29T00:00:00,2026-07-29T05:30:00+05:30,84.18,19.535,98.131,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+30P,2026-04-14T00:00:00,2026-04-14T05:30:00+05:30,60.35,21.435,107.099,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+31P,2026-09-06T00:00:00,2026-09-06T05:30:00+05:30,85.22,20.889,101.717,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+33P,2026-02-10T00:00:00,2026-02-10T05:30:00+05:30,85.41,20.704,108.582,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+34D,2026-01-16T00:00:00,2026-01-16T05:30:00+05:30,86.97,21.418,108.398,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+3D,2026-04-05T00:00:00,2026-04-05T05:30:00+05:30,62.92,15.762,106.871,4,good,True,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+40P,2026-04-07T00:00:00,2026-04-07T05:30:00+05:30,68.73,17.71,107.027,4,good,True,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+42P,2026-08-04T00:00:00,2026-08-04T05:30:00+05:30,87.43,20.335,101.897,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+43P,2026-06-08T12:00:00,2026-06-08T17:30:00+05:30,70.82,18.475,90.207,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+44P,2026-01-01T00:00:00,2026-01-01T05:30:00+05:30,74.21,21.442,101.763,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+47P,2026-09-23T00:00:00,2026-09-23T05:30:00+05:30,64.67,18.017,97.246,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+48P,2026-11-03T00:00:00,2026-11-03T05:30:00+05:30,82.14,21.948,104.236,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+49P,2026-02-28T00:00:00,2026-02-28T05:30:00+05:30,82.66,19.445,108.564,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+4P,2026-08-11T12:00:00,2026-08-11T17:30:00+05:30,63.74,21.812,90.313,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+53P,2026-12-29T00:00:00,2026-12-29T05:30:00+05:30,83.32,20.579,105.222,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+5D,2026-05-19T00:00:00,2026-05-19T05:30:00+05:30,52.39,19.482,109.146,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+7P,2026-12-30T00:00:00,2026-12-30T05:30:00+05:30,75.71,19.781,110.149,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+9P,2026-12-03T00:00:00,2026-12-03T05:30:00+05:30,77.47,20.26,107.987,4,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+C/2023 A3,2026-04-19T00:00:00,2026-04-19T05:30:00+05:30,82.42,17.82,98.796,4,good,True,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+17P,2026-07-21T12:00:00,2026-07-21T17:30:00+05:30,49.64,21.204,90.055,3,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+41P,2026-12-31T12:00:00,2026-12-31T17:30:00+05:30,38.85,21.981,125.946,3,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+56P,2026-10-23T12:00:00,2026-10-23T17:30:00+05:30,50.01,20.994,73.175,3,good,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+25D,2026-02-02T00:00:00,2026-02-02T05:30:00+05:30,5.79,21.995,27.66,-4,poor,False,computed_catalog,visible,JPL Horizons total magnitude; comet brightness remains uncertain.
+12P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+13P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+15P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+16P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+18D,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+19P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+1P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+20D,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+23P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+26P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+27P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+28P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+32P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+35P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+36P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+37P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+38P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+39P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+45P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+46P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+50P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+51P-A,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+51P-D,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+52P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+54P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+55P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+57P-A,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+6P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+8P,,,,,,0,not_useful,False,computed_catalog,not_visible,Predicted magnitude; uncertain.
+51P,,,,,,0,query_failed,False,computed_catalog,query_failed,Predicted magnitude; uncertain.
+57P,,,,,,0,query_failed,False,computed_catalog,query_failed,Predicted magnitude; uncertain.

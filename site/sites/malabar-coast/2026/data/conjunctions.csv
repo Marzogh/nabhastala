@@ -1,0 +1,236 @@
+date_local,event_type,primary_body,secondary_body,separation_deg,event_time_local,alt_primary_deg,alt_secondary_deg,sun_altitude_deg,solar_elong_deg,moon_illumination_fraction,visibility_rating,score,is_solar_transit,safety_note
+2026-01-01,sun_planet_conjunction,Mars,Sun,2.129,2026-01-01T23:30:00+05:30,-69.37,-71.42,-71.42,2.129,0.907,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-01,sun_planet_conjunction,Venus,Sun,1.297,2026-01-01T23:30:00+05:30,-71.92,-71.42,-71.42,1.297,0.907,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-02,sun_planet_conjunction,Mars,Sun,1.906,2026-01-02T23:30:00+05:30,-69.53,-71.39,-71.39,1.906,0.963,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-02,sun_planet_conjunction,Venus,Sun,1.102,2026-01-02T23:30:00+05:30,-71.69,-71.39,-71.39,1.102,0.963,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-03,moon_planet_conjunction,Moon,Jupiter,4.857,2026-01-03T23:30:00+05:30,64.83,65.02,-71.36,173.901,0.993,good,6,False,
+2026-01-03,sun_planet_conjunction,Mars,Sun,1.693,2026-01-03T23:30:00+05:30,-69.69,-71.36,-71.36,1.693,0.993,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-03,sun_planet_conjunction,Venus,Sun,0.929,2026-01-03T23:30:00+05:30,-71.47,-71.36,-71.36,0.929,0.993,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-04,moon_planet_conjunction,Moon,Jupiter,3.618,2026-01-04T04:30:00+05:30,39.11,39.59,-32.22,171.62,0.999,good,6,False,
+2026-01-04,sun_planet_conjunction,Mars,Sun,1.491,2026-01-04T23:30:00+05:30,-69.85,-71.34,-71.34,1.491,0.999,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-04,sun_planet_conjunction,Venus,Sun,0.793,2026-01-04T23:30:00+05:30,-71.25,-71.34,-71.34,0.793,0.999,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-05,sun_planet_conjunction,Mars,Sun,1.307,2026-01-05T23:30:00+05:30,-70.01,-71.32,-71.32,1.307,0.979,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-05,sun_planet_conjunction,Venus,Sun,0.714,2026-01-05T23:30:00+05:30,-71.03,-71.32,-71.32,0.714,0.979,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-06,sun_planet_conjunction,Mars,Sun,1.148,2026-01-06T23:30:00+05:30,-70.18,-71.3,-71.3,1.148,0.937,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-06,sun_planet_conjunction,Venus,Sun,0.703,2026-01-06T12:00:00+05:30,54.64,55.32,55.32,0.703,0.937,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-07,sun_planet_conjunction,Mars,Sun,1.026,2026-01-07T23:30:00+05:30,-70.35,-71.29,-71.29,1.026,0.875,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-07,sun_planet_conjunction,Venus,Sun,0.714,2026-01-07T00:00:00+05:30,-75.72,-76.36,-76.36,0.714,0.875,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-08,sun_planet_conjunction,Mars,Sun,0.955,2026-01-08T23:30:00+05:30,-70.52,-71.28,-71.28,0.955,0.803,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-08,sun_planet_conjunction,Venus,Sun,0.791,2026-01-08T00:00:00+05:30,-75.62,-76.4,-76.4,0.791,0.803,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-09,sun_planet_conjunction,Mars,Sun,0.941,2026-01-09T15:00:00+05:30,40.6,41.07,41.07,0.941,0.719,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-09,sun_planet_conjunction,Venus,Sun,0.927,2026-01-09T00:00:00+05:30,-75.52,-76.45,-76.45,0.927,0.719,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-10,sun_planet_conjunction,Mars,Sun,0.946,2026-01-10T00:00:00+05:30,-75.71,-76.5,-76.5,0.946,0.633,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-10,sun_planet_conjunction,Venus,Sun,1.098,2026-01-10T00:00:00+05:30,-75.42,-76.5,-76.5,1.098,0.633,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-11,sun_planet_conjunction,Mars,Sun,1.0,2026-01-11T00:00:00+05:30,-75.88,-76.56,-76.56,1.0,0.536,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-11,sun_planet_conjunction,Venus,Sun,1.292,2026-01-11T00:00:00+05:30,-75.33,-76.56,-76.56,1.292,0.536,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-12,sun_planet_conjunction,Mars,Sun,1.107,2026-01-12T00:00:00+05:30,-76.06,-76.62,-76.62,1.107,0.453,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-12,sun_planet_conjunction,Venus,Sun,1.499,2026-01-12T00:00:00+05:30,-75.23,-76.62,-76.62,1.499,0.453,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-13,sun_planet_conjunction,Mars,Sun,1.254,2026-01-13T00:00:00+05:30,-76.24,-76.69,-76.69,1.254,0.364,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-13,sun_planet_conjunction,Venus,Sun,1.715,2026-01-13T00:00:00+05:30,-75.13,-76.69,-76.69,1.715,0.364,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-14,sun_planet_conjunction,Mars,Sun,1.427,2026-01-14T00:00:00+05:30,-76.42,-76.76,-76.76,1.427,0.279,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-14,sun_planet_conjunction,Venus,Sun,1.936,2026-01-14T00:00:00+05:30,-75.04,-76.76,-76.76,1.936,0.279,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-15,sun_planet_conjunction,Mars,Sun,1.618,2026-01-15T00:00:00+05:30,-76.61,-76.83,-76.83,1.618,0.201,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-15,sun_planet_conjunction,Venus,Sun,2.161,2026-01-15T00:00:00+05:30,-74.94,-76.83,-76.83,2.161,0.201,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-16,sun_planet_conjunction,Mars,Sun,1.822,2026-01-16T00:00:00+05:30,-76.8,-76.91,-76.91,1.822,0.134,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-16,sun_planet_conjunction,Venus,Sun,2.389,2026-01-16T00:00:00+05:30,-74.85,-76.91,-76.91,2.389,0.134,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-17,sun_planet_conjunction,Mars,Sun,2.034,2026-01-17T00:00:00+05:30,-76.99,-77.0,-77.0,2.034,0.078,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-17,sun_planet_conjunction,Venus,Sun,2.619,2026-01-17T00:00:00+05:30,-74.75,-77.0,-77.0,2.619,0.078,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-18,sun_planet_conjunction,Mars,Sun,2.251,2026-01-18T00:00:00+05:30,-77.19,-77.08,-77.08,2.251,0.037,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-18,sun_planet_conjunction,Mercury,Sun,2.724,2026-01-18T23:30:00+05:30,-71.46,-71.41,-71.41,2.724,0.037,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-18,sun_planet_conjunction,Venus,Sun,2.85,2026-01-18T00:00:00+05:30,-74.66,-77.08,-77.08,2.85,0.037,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-19,sun_planet_conjunction,Mars,Sun,2.472,2026-01-19T00:00:00+05:30,-77.39,-77.17,-77.17,2.472,0.004,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-19,sun_planet_conjunction,Mercury,Sun,2.358,2026-01-19T23:30:00+05:30,-71.03,-71.44,-71.44,2.358,0.004,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-20,sun_planet_conjunction,Mars,Sun,2.696,2026-01-20T00:00:00+05:30,-77.6,-77.27,-77.27,2.696,0.026,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-20,sun_planet_conjunction,Mercury,Sun,2.118,2026-01-20T23:30:00+05:30,-70.59,-71.47,-71.47,2.118,0.026,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-21,sun_planet_conjunction,Mars,Sun,2.923,2026-01-21T00:00:00+05:30,-77.81,-77.36,-77.36,2.923,0.066,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-21,sun_planet_conjunction,Mercury,Sun,2.053,2026-01-21T19:00:00+05:30,-8.77,-8.86,-8.86,2.053,0.066,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-22,sun_planet_conjunction,Mercury,Sun,2.057,2026-01-22T00:00:00+05:30,-75.71,-77.46,-77.46,2.057,0.124,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-23,moon_planet_conjunction,Moon,Neptune,3.16,2026-01-23T19:00:00+05:30,46.71,47.63,-8.66,56.507,0.196,fair,5,False,
+2026-01-23,moon_planet_conjunction,Moon,Saturn,4.591,2026-01-23T19:00:00+05:30,46.71,45.63,-8.66,56.507,0.196,fair,5,False,
+2026-01-23,sun_planet_conjunction,Mercury,Sun,2.202,2026-01-23T00:00:00+05:30,-75.44,-77.57,-77.57,2.202,0.196,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-24,sun_planet_conjunction,Mercury,Sun,2.522,2026-01-24T00:00:00+05:30,-75.15,-77.67,-77.67,2.522,0.288,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-25,sun_planet_conjunction,Mercury,Sun,2.967,2026-01-25T00:00:00+05:30,-74.83,-77.78,-77.78,2.967,0.381,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-01-27,planet_planet_conjunction,Saturn,Neptune,2.0,2026-01-27T21:30:00+05:30,5.85,7.43,-43.75,50.532,0.595,fair,4,False,
+2026-01-28,planet_planet_conjunction,Saturn,Neptune,1.937,2026-01-28T21:30:00+05:30,4.97,6.49,-43.71,49.612,0.705,fair,4,False,
+2026-01-29,planet_planet_conjunction,Saturn,Neptune,1.875,2026-01-29T21:30:00+05:30,4.1,5.55,-43.68,48.693,0.798,fair,4,False,
+2026-01-30,planet_planet_conjunction,Saturn,Neptune,1.813,2026-01-30T21:30:00+05:30,3.23,4.61,-43.64,47.775,0.876,fair,4,False,
+2026-01-31,planet_planet_conjunction,Saturn,Neptune,1.75,2026-01-31T21:30:00+05:30,2.36,3.67,-43.61,46.859,0.942,fair,4,False,
+2026-01-31,moon_planet_conjunction,Moon,Jupiter,4.549,2026-01-31T05:00:00+05:30,2.72,4.74,-27.05,153.749,0.942,poor,3,False,
+2026-02-01,planet_planet_conjunction,Saturn,Neptune,1.688,2026-02-01T21:30:00+05:30,1.49,2.73,-43.58,45.944,0.982,fair,4,False,
+2026-02-02,planet_planet_conjunction,Saturn,Neptune,1.626,2026-02-02T21:30:00+05:30,0.62,1.79,-43.56,45.031,0.999,fair,4,False,
+2026-02-03,planet_planet_conjunction,Saturn,Neptune,1.566,2026-02-03T21:00:00+05:30,7.12,8.22,-36.34,44.138,0.994,fair,4,False,
+2026-02-04,planet_planet_conjunction,Saturn,Neptune,1.504,2026-02-04T21:00:00+05:30,6.25,7.29,-36.3,43.227,0.965,fair,4,False,
+2026-02-05,planet_planet_conjunction,Saturn,Neptune,1.444,2026-02-05T21:00:00+05:30,5.39,6.35,-36.27,42.317,0.92,fair,4,False,
+2026-02-06,planet_planet_conjunction,Saturn,Neptune,1.384,2026-02-06T21:00:00+05:30,4.52,5.41,-36.24,41.408,0.859,fair,4,False,
+2026-02-07,planet_planet_conjunction,Saturn,Neptune,1.325,2026-02-07T21:00:00+05:30,3.66,4.48,-36.21,40.501,0.783,fair,4,False,
+2026-02-08,planet_planet_conjunction,Saturn,Neptune,1.267,2026-02-08T21:00:00+05:30,2.79,3.54,-36.19,39.595,0.703,fair,4,False,
+2026-02-09,planet_planet_conjunction,Saturn,Neptune,1.211,2026-02-09T21:00:00+05:30,1.93,2.6,-36.16,38.69,0.617,fair,4,False,
+2026-02-10,planet_planet_conjunction,Saturn,Neptune,1.157,2026-02-10T21:00:00+05:30,1.07,1.67,-36.14,37.787,0.528,fair,4,False,
+2026-02-11,planet_planet_conjunction,Saturn,Neptune,1.106,2026-02-11T21:00:00+05:30,0.21,0.73,-36.11,36.884,0.445,fair,4,False,
+2026-02-12,planet_planet_conjunction,Saturn,Neptune,1.057,2026-02-12T20:30:00+05:30,6.71,7.17,-28.83,36.002,0.356,fair,4,False,
+2026-02-13,planet_planet_conjunction,Saturn,Neptune,1.011,2026-02-13T20:30:00+05:30,5.86,6.23,-28.8,35.102,0.272,fair,4,False,
+2026-02-14,planet_planet_conjunction,Saturn,Neptune,0.969,2026-02-14T20:30:00+05:30,5.0,5.3,-28.77,34.203,0.195,fair,5,False,
+2026-02-15,planet_planet_conjunction,Saturn,Neptune,0.932,2026-02-15T20:30:00+05:30,4.14,4.36,-28.75,33.305,0.123,fair,5,False,
+2026-02-16,planet_planet_conjunction,Saturn,Neptune,0.899,2026-02-16T20:30:00+05:30,3.28,3.43,-28.73,32.409,0.07,fair,5,False,
+2026-02-17,planet_planet_conjunction,Saturn,Neptune,0.872,2026-02-17T20:30:00+05:30,2.43,2.5,-28.7,31.513,0.028,fair,5,False,
+2026-02-18,planet_planet_conjunction,Saturn,Neptune,0.852,2026-02-18T20:30:00+05:30,1.57,1.56,-28.68,30.619,0.011,fair,5,False,
+2026-02-18,moon_planet_conjunction,Moon,Mercury,4.997,2026-02-18T19:00:00+05:30,4.94,10.69,-6.87,13.055,0.011,poor,2,False,
+2026-02-18,moon_planet_conjunction,Moon,Venus,3.319,2026-02-18T19:00:00+05:30,4.94,3.5,-6.87,13.055,0.011,poor,2,False,
+2026-02-19,planet_planet_conjunction,Saturn,Neptune,0.839,2026-02-19T20:30:00+05:30,0.72,0.63,-28.66,29.726,0.04,fair,5,False,
+2026-02-19,moon_planet_conjunction,Moon,Neptune,4.698,2026-02-19T20:00:00+05:30,2.84,8.0,-21.37,26.16,0.04,poor,3,False,
+2026-02-20,planet_planet_conjunction,Saturn,Neptune,0.833,2026-02-20T20:00:00+05:30,7.23,7.07,-21.34,28.853,0.093,fair,5,False,
+2026-02-21,planet_planet_conjunction,Saturn,Neptune,0.835,2026-02-21T19:00:00+05:30,21.07,20.85,-6.76,28.0,0.164,good,6,False,
+2026-02-22,planet_planet_conjunction,Saturn,Neptune,0.844,2026-02-22T19:00:00+05:30,20.23,19.92,-6.72,27.111,0.251,fair,5,False,
+2026-02-23,planet_planet_conjunction,Saturn,Neptune,0.861,2026-02-23T19:00:00+05:30,19.38,18.99,-6.69,26.223,0.349,fair,5,False,
+2026-02-24,planet_planet_conjunction,Saturn,Neptune,0.886,2026-02-24T19:00:00+05:30,18.53,18.06,-6.66,25.337,0.455,fair,5,False,
+2026-02-25,planet_planet_conjunction,Saturn,Neptune,0.917,2026-02-25T19:00:00+05:30,17.68,17.14,-6.63,24.452,0.562,fair,5,False,
+2026-02-26,planet_planet_conjunction,Saturn,Neptune,0.955,2026-02-26T19:00:00+05:30,16.84,16.21,-6.6,23.568,0.666,fair,5,False,
+2026-02-27,planet_planet_conjunction,Saturn,Neptune,0.998,2026-02-27T19:00:00+05:30,15.99,15.28,-6.57,22.685,0.763,fair,5,False,
+2026-02-28,planet_planet_conjunction,Saturn,Neptune,1.046,2026-02-28T19:00:00+05:30,15.14,14.35,-6.55,21.804,0.848,fair,4,False,
+2026-03-01,planet_planet_conjunction,Saturn,Neptune,1.099,2026-03-01T19:00:00+05:30,14.29,13.42,-6.53,20.924,0.917,fair,4,False,
+2026-03-02,planet_planet_conjunction,Saturn,Neptune,1.155,2026-03-02T19:00:00+05:30,13.45,12.49,-6.51,20.046,0.966,fair,4,False,
+2026-03-03,planet_planet_conjunction,Saturn,Neptune,1.215,2026-03-03T19:00:00+05:30,12.6,11.56,-6.49,19.169,0.993,fair,4,False,
+2026-03-04,planet_planet_conjunction,Saturn,Neptune,1.277,2026-03-04T19:00:00+05:30,11.75,10.63,-6.47,18.293,1.0,fair,4,False,
+2026-03-05,planet_planet_conjunction,Saturn,Neptune,1.343,2026-03-05T19:00:00+05:30,10.91,9.7,-6.45,17.418,0.985,poor,3,False,
+2026-03-06,planet_planet_conjunction,Venus,Neptune,1.081,2026-03-06T19:30:00+05:30,0.33,1.4,-13.78,14.221,0.952,fair,4,False,
+2026-03-06,planet_planet_conjunction,Saturn,Neptune,1.41,2026-03-06T19:00:00+05:30,10.06,8.77,-6.44,16.546,0.952,poor,3,False,
+2026-03-07,planet_planet_conjunction,Venus,Neptune,0.123,2026-03-07T19:00:00+05:30,7.92,7.84,-6.42,14.456,0.906,fair,5,False,
+2026-03-07,planet_planet_conjunction,Venus,Saturn,1.42,2026-03-07T19:30:00+05:30,0.58,1.84,-13.77,14.461,0.906,fair,4,False,
+2026-03-07,planet_planet_conjunction,Saturn,Neptune,1.479,2026-03-07T19:00:00+05:30,9.21,7.84,-6.42,15.675,0.906,poor,3,False,
+2026-03-08,planet_planet_conjunction,Venus,Saturn,0.913,2026-03-08T19:00:00+05:30,8.17,8.37,-6.41,14.697,0.841,fair,4,False,
+2026-03-08,planet_planet_conjunction,Saturn,Neptune,1.55,2026-03-08T19:00:00+05:30,8.37,6.91,-6.41,14.805,0.841,poor,3,False,
+2026-03-08,planet_planet_conjunction,Venus,Neptune,1.311,2026-03-08T19:00:00+05:30,8.17,6.91,-6.41,14.697,0.841,poor,3,False,
+2026-03-09,planet_planet_conjunction,Saturn,Neptune,1.623,2026-03-09T19:00:00+05:30,7.52,5.98,-6.4,13.937,0.776,poor,3,False,
+2026-03-09,planet_planet_conjunction,Venus,Saturn,1.455,2026-03-09T19:00:00+05:30,8.41,7.52,-6.4,14.938,0.776,poor,3,False,
+2026-03-10,planet_planet_conjunction,Saturn,Neptune,1.697,2026-03-10T19:00:00+05:30,6.67,5.05,-6.39,13.072,0.696,poor,3,False,
+2026-03-11,planet_planet_conjunction,Saturn,Neptune,1.772,2026-03-11T19:00:00+05:30,5.83,4.12,-6.37,12.209,0.609,poor,3,False,
+2026-03-12,planet_planet_conjunction,Saturn,Neptune,1.849,2026-03-12T19:00:00+05:30,4.98,3.19,-6.37,11.348,0.519,poor,3,False,
+2026-03-13,planet_planet_conjunction,Saturn,Neptune,1.926,2026-03-13T19:00:00+05:30,4.14,2.26,-6.36,10.49,0.429,poor,3,False,
+2026-03-18,moon_planet_conjunction,Moon,Mars,2.522,2026-03-18T06:00:00+05:30,1.48,3.21,-8.79,13.292,0.05,poor,2,False,
+2026-03-19,sun_planet_conjunction,Neptune,Sun,2.911,2026-03-19T23:30:00+05:30,-68.25,-70.61,-70.61,2.911,0.002,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-20,moon_planet_conjunction,Moon,Venus,4.851,2026-03-20T19:00:00+05:30,11.33,11.06,-6.31,20.094,0.023,poor,3,False,
+2026-03-20,sun_planet_conjunction,Neptune,Sun,2.101,2026-03-20T23:30:00+05:30,-69.05,-70.44,-70.44,2.101,0.023,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-21,sun_planet_conjunction,Neptune,Sun,1.477,2026-03-21T23:30:00+05:30,-69.85,-70.27,-70.27,1.477,0.07,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-22,sun_planet_conjunction,Neptune,Sun,1.306,2026-03-22T17:00:00+05:30,23.36,23.11,23.11,1.306,0.135,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-23,sun_planet_conjunction,Neptune,Sun,1.337,2026-03-23T00:00:00+05:30,-76.19,-75.29,-75.29,1.337,0.216,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-23,sun_planet_conjunction,Saturn,Sun,2.549,2026-03-23T23:30:00+05:30,-68.98,-69.9,-69.9,2.549,0.216,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-24,sun_planet_conjunction,Neptune,Sun,1.801,2026-03-24T00:00:00+05:30,-76.75,-75.0,-75.0,1.801,0.318,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-24,sun_planet_conjunction,Saturn,Sun,2.194,2026-03-24T23:30:00+05:30,-69.68,-69.71,-69.71,2.194,0.318,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-25,sun_planet_conjunction,Neptune,Sun,2.553,2026-03-25T00:00:00+05:30,-77.26,-74.71,-74.71,2.553,0.422,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-25,sun_planet_conjunction,Saturn,Sun,2.127,2026-03-25T14:30:00+05:30,59.55,59.47,59.47,2.127,0.422,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-26,moon_planet_conjunction,Moon,Jupiter,3.824,2026-03-26T19:00:00+05:30,73.51,77.57,-6.28,99.855,0.529,fair,5,False,
+2026-03-26,sun_planet_conjunction,Saturn,Sun,2.155,2026-03-26T00:00:00+05:30,-75.84,-74.41,-74.41,2.155,0.529,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-27,moon_planet_conjunction,Moon,Jupiter,4.854,2026-03-27T00:00:00+05:30,24.89,22.03,-74.12,102.544,0.635,fair,5,False,
+2026-03-27,sun_planet_conjunction,Saturn,Sun,2.448,2026-03-27T00:00:00+05:30,-76.32,-74.12,-74.12,2.448,0.635,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-03-28,sun_planet_conjunction,Saturn,Sun,2.973,2026-03-28T00:00:00+05:30,-76.75,-73.81,-73.81,2.973,0.727,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-04-11,planet_planet_conjunction,Mars,Neptune,1.667,2026-04-11T06:00:00+05:30,10.94,9.42,-5.19,20.225,0.503,poor,2,False,
+2026-04-12,planet_planet_conjunction,Mars,Neptune,0.95,2026-04-12T06:00:00+05:30,11.27,10.36,-5.04,20.428,0.412,fair,4,False,
+2026-04-13,planet_planet_conjunction,Mars,Neptune,0.354,2026-04-13T06:00:00+05:30,11.6,11.29,-4.91,20.631,0.317,fair,5,False,
+2026-04-14,planet_planet_conjunction,Mars,Neptune,0.655,2026-04-14T05:30:00+05:30,4.57,4.86,-11.98,20.83,0.222,fair,4,False,
+2026-04-15,planet_planet_conjunction,Mars,Neptune,1.351,2026-04-15T05:30:00+05:30,4.9,5.79,-11.84,21.033,0.139,poor,3,False,
+2026-04-16,planet_planet_conjunction,Mercury,Neptune,1.988,2026-04-16T06:00:00+05:30,14.57,14.1,-4.5,24.918,0.074,poor,3,False,
+2026-04-16,moon_planet_conjunction,Moon,Mars,3.528,2026-04-16T05:30:00+05:30,5.3,5.23,-11.7,20.312,0.074,poor,2,False,
+2026-04-16,moon_planet_conjunction,Moon,Neptune,4.824,2026-04-16T05:30:00+05:30,5.3,6.73,-11.7,20.312,0.074,poor,2,False,
+2026-04-16,moon_planet_conjunction,Moon,Saturn,4.733,2026-04-16T06:00:00+05:30,12.46,9.82,-4.5,20.041,0.074,poor,1,False,
+2026-04-17,planet_planet_conjunction,Mercury,Neptune,1.319,2026-04-17T06:00:00+05:30,14.35,15.04,-4.37,24.453,0.028,poor,3,False,
+2026-04-18,planet_planet_conjunction,Mars,Saturn,1.729,2026-04-18T06:00:00+05:30,13.26,11.55,-4.24,21.646,0.012,poor,3,False,
+2026-04-18,planet_planet_conjunction,Mercury,Neptune,1.867,2026-04-18T05:30:00+05:30,6.77,8.61,-11.42,23.968,0.012,poor,3,False,
+2026-04-19,planet_planet_conjunction,Mars,Saturn,1.335,2026-04-19T06:00:00+05:30,13.59,12.42,-4.11,21.849,0.051,poor,3,False,
+2026-04-20,planet_planet_conjunction,Mercury,Saturn,0.826,2026-04-20T05:30:00+05:30,6.21,5.91,-11.15,22.886,0.108,fair,4,False,
+2026-04-20,planet_planet_conjunction,Mars,Saturn,1.197,2026-04-20T05:30:00+05:30,6.56,5.91,-11.15,22.048,0.108,poor,3,False,
+2026-04-20,planet_planet_conjunction,Mercury,Mars,1.811,2026-04-20T05:30:00+05:30,6.21,6.56,-11.15,22.886,0.108,poor,3,False,
+2026-04-21,planet_planet_conjunction,Mercury,Saturn,0.884,2026-04-21T05:30:00+05:30,5.9,6.78,-11.01,22.3,0.189,fair,4,False,
+2026-04-21,planet_planet_conjunction,Mars,Saturn,1.387,2026-04-21T05:30:00+05:30,6.89,6.78,-11.01,22.251,0.189,poor,3,False,
+2026-04-21,planet_planet_conjunction,Mercury,Mars,1.652,2026-04-21T05:30:00+05:30,5.9,6.89,-11.01,22.3,0.189,poor,3,False,
+2026-04-22,planet_planet_conjunction,Venus,Uranus,1.849,2026-04-22T20:00:00+05:30,5.51,7.26,-20.05,25.626,0.288,fair,4,False,
+2026-04-22,moon_planet_conjunction,Moon,Jupiter,4.638,2026-04-22T23:30:00+05:30,4.19,6.84,-62.66,72.412,0.288,poor,3,False,
+2026-04-22,planet_planet_conjunction,Mars,Saturn,1.808,2026-04-22T05:30:00+05:30,7.22,7.65,-10.88,22.454,0.288,poor,3,False,
+2026-04-22,planet_planet_conjunction,Mercury,Mars,1.857,2026-04-22T05:30:00+05:30,5.56,7.22,-10.88,21.685,0.288,poor,3,False,
+2026-04-23,planet_planet_conjunction,Venus,Uranus,0.918,2026-04-23T20:00:00+05:30,5.81,6.4,-20.0,25.869,0.389,fair,5,False,
+2026-04-24,planet_planet_conjunction,Venus,Uranus,0.957,2026-04-24T19:00:00+05:30,20.0,19.55,-5.83,26.101,0.496,fair,4,False,
+2026-04-25,planet_planet_conjunction,Venus,Uranus,1.907,2026-04-25T19:00:00+05:30,20.29,18.68,-5.8,26.343,0.595,poor,3,False,
+2026-05-12,sun_planet_conjunction,Mercury,Sun,2.238,2026-05-12T23:30:00+05:30,-59.21,-57.68,-57.68,2.238,0.364,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-13,moon_planet_conjunction,Moon,Neptune,4.983,2026-05-13T05:30:00+05:30,36.21,32.05,-8.79,52.326,0.272,fair,5,False,
+2026-05-13,sun_planet_conjunction,Mercury,Sun,1.03,2026-05-13T23:30:00+05:30,-58.11,-57.46,-57.46,1.03,0.272,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-14,solar_transit,Mercury,Sun,0.148,2026-05-14T19:30:00+05:30,-11.8,-11.79,-11.79,0.148,0.176,fair,2,True,Use approved solar filters for any near-Sun observing.
+2026-05-15,moon_planet_conjunction,Moon,Mars,4.824,2026-05-15T04:30:00+05:30,0.92,0.08,-22.16,26.587,0.102,poor,3,False,
+2026-05-15,sun_planet_conjunction,Mercury,Sun,0.274,2026-05-15T00:00:00+05:30,-59.19,-59.44,-59.44,0.274,0.102,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-16,sun_planet_conjunction,Mercury,Sun,1.47,2026-05-16T00:00:00+05:30,-58.26,-59.21,-59.21,1.47,0.043,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-17,sun_planet_conjunction,Mercury,Sun,2.7,2026-05-17T00:00:00+05:30,-57.32,-58.98,-58.98,2.7,0.005,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-19,sun_planet_conjunction,Uranus,Sun,2.582,2026-05-19T23:30:00+05:30,-54.73,-56.2,-56.2,2.582,0.088,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-20,moon_planet_conjunction,Moon,Jupiter,3.01,2026-05-20T19:30:00+05:30,40.71,40.94,-11.36,52.829,0.164,fair,5,False,
+2026-05-20,sun_planet_conjunction,Uranus,Sun,1.68,2026-05-20T23:30:00+05:30,-55.12,-56.01,-56.01,1.68,0.164,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-21,sun_planet_conjunction,Uranus,Sun,0.785,2026-05-21T23:30:00+05:30,-55.49,-55.81,-55.81,0.785,0.258,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-22,sun_planet_conjunction,Uranus,Sun,0.162,2026-05-22T20:00:00+05:30,-17.91,-17.89,-17.89,0.162,0.357,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-23,sun_planet_conjunction,Uranus,Sun,0.223,2026-05-23T00:00:00+05:30,-57.93,-57.72,-57.72,0.223,0.463,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-24,sun_planet_conjunction,Uranus,Sun,1.07,2026-05-24T00:00:00+05:30,-58.06,-57.53,-57.53,1.07,0.562,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-25,sun_planet_conjunction,Uranus,Sun,1.967,2026-05-25T00:00:00+05:30,-58.18,-57.35,-57.35,1.967,0.659,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-05-26,sun_planet_conjunction,Uranus,Sun,2.867,2026-05-26T00:00:00+05:30,-58.26,-57.17,-57.17,2.867,0.749,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-06-08,planet_planet_conjunction,Venus,Jupiter,1.972,2026-06-08T21:00:00+05:30,5.65,6.18,-29.12,36.578,0.617,fair,4,False,
+2026-06-09,planet_planet_conjunction,Venus,Jupiter,1.617,2026-06-09T21:00:00+05:30,5.86,5.46,-29.04,36.792,0.511,fair,4,False,
+2026-06-10,planet_planet_conjunction,Venus,Jupiter,1.77,2026-06-10T19:30:00+05:30,26.67,25.6,-9.85,36.992,0.412,fair,5,False,
+2026-06-10,moon_planet_conjunction,Moon,Neptune,4.85,2026-06-10T02:00:00+05:30,6.38,7.05,-48.77,72.333,0.412,poor,3,False,
+2026-06-16,moon_planet_conjunction,Moon,Mercury,4.315,2026-06-16T20:00:00+05:30,4.2,7.58,-16.01,21.431,0.023,poor,3,False,
+2026-06-17,moon_planet_conjunction,Moon,Jupiter,4.404,2026-06-17T19:30:00+05:30,23.91,20.55,-9.42,34.854,0.07,fair,4,False,
+2026-06-17,moon_planet_conjunction,Moon,Venus,2.83,2026-06-17T21:00:00+05:30,3.93,7.29,-28.5,35.704,0.07,poor,3,False,
+2026-07-02,planet_planet_conjunction,Mars,Uranus,1.493,2026-07-02T05:30:00+05:30,27.71,26.29,-9.23,37.889,0.979,fair,5,False,
+2026-07-03,planet_planet_conjunction,Mars,Uranus,0.836,2026-07-03T05:30:00+05:30,27.94,27.17,-9.3,38.132,0.941,good,6,False,
+2026-07-04,planet_planet_conjunction,Mars,Uranus,0.2,2026-07-04T05:30:00+05:30,28.18,28.04,-9.36,38.377,0.891,good,7,False,
+2026-07-05,planet_planet_conjunction,Mars,Uranus,0.447,2026-07-05T03:30:00+05:30,0.57,1.01,-34.58,38.602,0.822,good,6,False,
+2026-07-06,planet_planet_conjunction,Mars,Uranus,1.098,2026-07-06T03:30:00+05:30,0.82,1.87,-34.66,38.849,0.748,fair,4,False,
+2026-07-07,moon_planet_conjunction,Moon,Neptune,4.226,2026-07-07T04:00:00+05:30,64.44,61.66,-28.79,100.814,0.649,good,6,False,
+2026-07-07,planet_planet_conjunction,Mars,Uranus,1.754,2026-07-07T03:30:00+05:30,1.08,2.73,-34.75,39.097,0.649,fair,4,False,
+2026-07-17,moon_planet_conjunction,Moon,Venus,1.799,2026-07-17T20:30:00+05:30,13.95,15.88,-22.11,43.616,0.113,fair,5,False,
+2026-07-25,sun_planet_conjunction,Jupiter,Sun,2.796,2026-07-25T23:30:00+05:30,-54.23,-55.48,-55.48,2.796,0.811,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-07-26,sun_planet_conjunction,Jupiter,Sun,2.077,2026-07-26T23:30:00+05:30,-54.66,-55.67,-55.67,2.077,0.876,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-07-27,sun_planet_conjunction,Jupiter,Sun,1.372,2026-07-27T23:30:00+05:30,-55.07,-55.87,-55.87,1.372,0.926,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-07-28,sun_planet_conjunction,Jupiter,Sun,0.729,2026-07-28T23:30:00+05:30,-55.48,-56.08,-56.08,0.729,0.966,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-07-29,sun_planet_conjunction,Jupiter,Sun,0.473,2026-07-29T17:30:00+05:30,18.6,18.43,18.43,0.473,0.993,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-07-30,sun_planet_conjunction,Jupiter,Sun,0.512,2026-07-30T00:00:00+05:30,-58.55,-59.02,-59.02,0.512,1.0,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-07-31,sun_planet_conjunction,Jupiter,Sun,1.043,2026-07-31T00:00:00+05:30,-58.79,-59.26,-59.26,1.043,0.991,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-01,sun_planet_conjunction,Jupiter,Sun,1.731,2026-08-01T00:00:00+05:30,-59.01,-59.5,-59.5,1.731,0.962,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-02,sun_planet_conjunction,Jupiter,Sun,2.446,2026-08-02T00:00:00+05:30,-59.22,-59.74,-59.74,2.446,0.916,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-03,moon_planet_conjunction,Moon,Neptune,4.709,2026-08-03T06:00:00+05:30,54.8,57.87,-4.35,128.551,0.853,fair,4,False,
+2026-08-12,moon_planet_conjunction,Moon,Jupiter,1.356,2026-08-12T06:00:00+05:30,3.79,5.21,-4.67,9.832,0.04,poor,2,False,
+2026-08-15,planet_planet_conjunction,Mercury,Jupiter,0.897,2026-08-15T06:00:00+05:30,8.01,7.32,-4.74,12.973,0.084,poor,3,False,
+2026-08-16,moon_planet_conjunction,Moon,Venus,3.802,2026-08-16T19:00:00+05:30,33.04,32.8,-4.22,49.164,0.152,fair,4,False,
+2026-08-16,planet_planet_conjunction,Mercury,Jupiter,1.091,2026-08-16T05:30:00+05:30,0.06,1.0,-11.84,12.068,0.152,poor,3,False,
+2026-08-25,sun_planet_conjunction,Mercury,Sun,2.655,2026-08-25T23:30:00+05:30,-62.37,-63.72,-63.72,2.655,0.892,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-26,sun_planet_conjunction,Mercury,Sun,2.009,2026-08-26T23:30:00+05:30,-62.53,-64.05,-64.05,2.009,0.942,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-27,sun_planet_conjunction,Mercury,Sun,1.747,2026-08-27T23:30:00+05:30,-62.67,-64.38,-64.38,1.747,0.979,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-28,sun_planet_conjunction,Mercury,Sun,1.747,2026-08-28T00:00:00+05:30,-66.0,-67.74,-67.74,1.747,0.997,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-29,sun_planet_conjunction,Mercury,Sun,2.013,2026-08-29T00:00:00+05:30,-66.41,-68.1,-68.1,2.013,0.998,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-08-30,sun_planet_conjunction,Mercury,Sun,2.627,2026-08-30T00:00:00+05:30,-66.79,-68.46,-68.46,2.627,0.977,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-09-07,moon_planet_conjunction,Moon,Mars,3.078,2026-09-07T02:30:00+05:30,0.79,2.68,-54.37,56.176,0.286,poor,3,False,
+2026-09-09,moon_planet_conjunction,Moon,Jupiter,2.619,2026-09-09T04:30:00+05:30,0.41,4.0,-26.68,28.421,0.117,poor,3,False,
+2026-09-14,moon_planet_conjunction,Moon,Venus,1.081,2026-09-14T19:00:00+05:30,21.5,21.32,-8.55,42.042,0.113,fair,5,False,
+2026-09-26,moon_planet_conjunction,Moon,Neptune,4.273,2026-09-26T20:30:00+05:30,34.18,32.17,-32.56,177.01,0.989,good,6,False,
+2026-09-27,moon_planet_conjunction,Moon,Neptune,4.682,2026-09-27T00:00:00+05:30,82.0,77.8,-79.23,176.889,1.0,good,6,False,
+2026-10-05,moon_planet_conjunction,Moon,Mars,3.369,2026-10-05T06:00:00+05:30,61.71,60.15,-4.69,70.882,0.42,fair,4,False,
+2026-10-12,moon_planet_conjunction,Moon,Mercury,3.222,2026-10-12T19:00:00+05:30,2.82,6.95,-12.84,22.943,0.034,poor,3,False,
+2026-10-24,moon_planet_conjunction,Moon,Neptune,4.295,2026-10-24T04:00:00+05:30,4.16,6.79,-34.03,150.813,0.93,poor,3,False,
+2026-11-03,moon_planet_conjunction,Moon,Jupiter,0.503,2026-11-03T04:30:00+05:30,46.35,46.96,-26.91,75.891,0.453,excellent,8,False,
+2026-11-03,moon_planet_conjunction,Moon,Mars,3.635,2026-11-03T01:30:00+05:30,4.14,8.27,-70.29,77.472,0.453,poor,3,False,
+2026-11-03,sun_planet_conjunction,Mercury,Sun,2.073,2026-11-03T23:30:00+05:30,-77.39,-79.39,-79.39,2.073,0.453,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-11-04,sun_planet_conjunction,Mercury,Sun,0.369,2026-11-04T20:30:00+05:30,-36.54,-36.35,-36.35,0.369,0.356,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-11-05,sun_planet_conjunction,Mercury,Sun,0.504,2026-11-05T00:00:00+05:30,-85.08,-85.02,-85.02,0.504,0.257,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-11-06,sun_planet_conjunction,Mercury,Sun,2.684,2026-11-06T00:00:00+05:30,-86.26,-84.75,-84.75,2.684,0.176,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-11-12,planet_planet_conjunction,Mars,Jupiter,1.908,2026-11-12T06:00:00+05:30,77.23,76.52,-5.96,85.675,0.088,fair,5,False,
+2026-11-13,planet_planet_conjunction,Mars,Jupiter,1.636,2026-11-13T06:00:00+05:30,77.75,77.38,-6.04,86.22,0.146,good,6,False,
+2026-11-14,planet_planet_conjunction,Mars,Jupiter,1.41,2026-11-14T06:00:00+05:30,78.28,78.24,-6.12,86.769,0.209,good,6,False,
+2026-11-15,planet_planet_conjunction,Mars,Jupiter,1.254,2026-11-15T06:00:00+05:30,78.82,79.11,-6.2,87.323,0.288,good,6,False,
+2026-11-16,planet_planet_conjunction,Mars,Jupiter,1.194,2026-11-16T06:00:00+05:30,79.35,79.97,-6.28,87.881,0.373,good,6,False,
+2026-11-17,planet_planet_conjunction,Mars,Jupiter,1.222,2026-11-17T00:30:00+05:30,0.55,0.92,-81.2,88.314,0.463,fair,4,False,
+2026-11-18,planet_planet_conjunction,Mars,Jupiter,1.347,2026-11-18T00:30:00+05:30,1.04,1.78,-81.01,88.881,0.554,fair,4,False,
+2026-11-19,planet_planet_conjunction,Mars,Jupiter,1.548,2026-11-19T00:30:00+05:30,1.54,2.64,-80.82,89.452,0.651,fair,4,False,
+2026-11-20,planet_planet_conjunction,Mars,Jupiter,1.798,2026-11-20T00:30:00+05:30,2.05,3.51,-80.64,90.029,0.742,fair,4,False,
+2026-11-30,moon_planet_conjunction,Moon,Jupiter,4.704,2026-11-30T06:00:00+05:30,81.77,86.45,-7.64,105.717,0.703,fair,5,False,
+2026-12-01,moon_planet_conjunction,Moon,Mars,3.213,2026-12-01T00:30:00+05:30,6.78,8.01,-78.98,95.842,0.601,poor,3,False,
+2026-12-17,moon_planet_conjunction,Moon,Neptune,4.629,2026-12-17T22:30:00+05:30,32.02,34.0,-60.5,95.526,0.488,good,6,False,
+2026-12-18,moon_planet_conjunction,Moon,Neptune,4.698,2026-12-18T00:00:00+05:30,10.54,11.99,-76.7,96.266,0.587,fair,4,False,
+2026-12-27,moon_planet_conjunction,Moon,Jupiter,1.38,2026-12-27T22:00:00+05:30,2.14,2.84,-52.81,129.333,0.911,fair,4,False,
+2026-12-28,moon_planet_conjunction,Moon,Jupiter,1.863,2026-12-28T00:00:00+05:30,30.23,31.81,-76.23,128.221,0.835,good,7,False,
+2026-12-28,sun_planet_conjunction,Mercury,Sun,2.73,2026-12-28T23:30:00+05:30,-72.17,-71.62,-71.62,2.73,0.835,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-12-29,sun_planet_conjunction,Mercury,Sun,2.323,2026-12-29T23:30:00+05:30,-71.68,-71.56,-71.56,2.323,0.748,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-12-30,sun_planet_conjunction,Mercury,Sun,1.995,2026-12-30T23:30:00+05:30,-71.19,-71.52,-71.52,1.995,0.649,not_observable,0,False,Use approved solar filters for any near-Sun observing.
+2026-12-31,sun_planet_conjunction,Mercury,Sun,1.793,2026-12-31T23:30:00+05:30,-70.7,-71.47,-71.47,1.793,0.552,not_observable,0,False,Use approved solar filters for any near-Sun observing.

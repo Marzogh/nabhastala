@@ -1,0 +1,2206 @@
+@font-face {
+  font-family: "Atkinson";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/atkinson-regular-latin.woff2") format("woff2");
+  unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02bb-02bc, U+02c6, U+02da, U+02dc, U+0304, U+0308, U+0329, U+2000-206f, U+20ac, U+2122, U+2191, U+2193, U+2212, U+2215, U+feff, U+fffd;
+}
+
+@font-face {
+  font-family: "Atkinson";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/atkinson-regular-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02ba, U+02bd-02c5, U+02c7-02cc, U+02ce-02d7, U+02dd-02ff, U+0304, U+0308, U+0329, U+1d00-1dbf, U+1e00-1e9f, U+1ef2-1eff, U+2020, U+20a0-20ab, U+20ad-20c0, U+2113, U+2c60-2c7f, U+a720-a7ff;
+}
+
+@font-face {
+  font-family: "Atkinson";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/atkinson-bold-latin.woff2") format("woff2");
+  unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02bb-02bc, U+02c6, U+02da, U+02dc, U+0304, U+0308, U+0329, U+2000-206f, U+20ac, U+2122, U+2191, U+2193, U+2212, U+2215, U+feff, U+fffd;
+}
+
+@font-face {
+  font-family: "Atkinson";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/atkinson-bold-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02ba, U+02bd-02c5, U+02c7-02cc, U+02ce-02d7, U+02dd-02ff, U+0304, U+0308, U+0329, U+1d00-1dbf, U+1e00-1e9f, U+1ef2-1eff, U+2020, U+20a0-20ab, U+20ad-20c0, U+2113, U+2c60-2c7f, U+a720-a7ff;
+}
+
+@font-face {
+  font-family: "Noto Sans Devanagari";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fonts/noto-sans-devanagari.woff2") format("woff2");
+  unicode-range: U+0900-097f, U+1cd0-1cf9, U+200c-200d, U+20a8, U+20b9, U+20f0, U+25cc, U+a830-a839, U+a8e0-a8ff, U+11b00-11b09;
+}
+
+:root {
+  color-scheme: light;
+  --paper: #f4efe5;
+  --surface: #fbf7ef;
+  --surface-raised: #fffdf8;
+  --ink: #29251f;
+  --ink-soft: #655e52;
+  --accent: #9b5849;
+  --accent-soft: rgb(166 95 79 / 10%);
+  --sage: #70805e;
+  --border: rgb(41 37 31 / 15%);
+  --border-strong: rgb(41 37 31 / 28%);
+  --focus: rgb(166 95 79 / 35%);
+  --header-bg: rgb(244 239 229 / 94%);
+  --moon-shadow: #292d32;
+  --moon-light: #f0e8d5;
+  --font-sans: "Atkinson", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-devanagari: "Noto Sans Devanagari", "Nirmala UI", Mangal, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --container: 1320px;
+  --reading: 780px;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --space-1: 0.375rem;
+  --space-2: 0.625rem;
+  --space-3: 0.875rem;
+  --space-4: 1.125rem;
+  --space-5: 1.25rem;
+  --space-6: 1.625rem;
+  --space-7: 2.125rem;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #181b1f;
+  --surface: #1d2126;
+  --surface-raised: #242930;
+  --ink: #ebe5d6;
+  --ink-soft: #b6ae9d;
+  --accent: #d7ccb2;
+  --accent-soft: rgb(215 204 178 / 10%);
+  --sage: #93a67c;
+  --border: rgb(235 229 214 / 12%);
+  --border-strong: rgb(235 229 214 / 22%);
+  --focus: rgb(215 204 178 / 32%);
+  --header-bg: rgb(24 27 31 / 94%);
+  --moon-shadow: #242930;
+  --moon-light: #eee5d2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #181b1f;
+    --surface: #1d2126;
+    --surface-raised: #242930;
+    --ink: #ebe5d6;
+    --ink-soft: #b6ae9d;
+    --accent: #d7ccb2;
+    --accent-soft: rgb(215 204 178 / 10%);
+    --sage: #93a67c;
+    --border: rgb(235 229 214 / 12%);
+    --border-strong: rgb(235 229 214 / 22%);
+    --focus: rgb(215 204 178 / 32%);
+    --header-bg: rgb(24 27 31 / 94%);
+    --moon-shadow: #242930;
+    --moon-light: #eee5d2;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.js-only {
+  display: none;
+}
+
+.js .js-only {
+  display: inline-grid;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--ink);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+  background: var(--header-bg);
+}
+
+.site-header__inner,
+.site-footer__inner,
+.page-shell {
+  width: min(calc(100% - 2 * var(--space-5)), var(--container));
+  margin-inline: auto;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: var(--space-4);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.identity__primary,
+.identity__translation {
+  display: grid;
+  line-height: 1.12;
+}
+
+.identity__primary {
+  gap: 0.05rem;
+}
+
+.identity__devanagari {
+  font-family: var(--font-devanagari);
+  font-size: clamp(2rem, 4vw, 2.65rem);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.identity__sanskrit {
+  color: var(--ink);
+  font-family: var(--font-devanagari), var(--font-sans);
+  font-size: 0.72rem;
+}
+
+.identity__translation {
+  gap: 0.1rem;
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--border-strong);
+  color: var(--ink-soft);
+}
+
+.identity__english {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.identity__motto {
+  font-size: 0.67rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+
+.theme-toggle {
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-raised);
+}
+
+.page-shell {
+  padding-block: var(--space-6) var(--space-7);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: var(--space-5);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.page-header {
+  padding-block: var(--space-5) var(--space-7);
+  border-block: 1px solid var(--border-strong);
+}
+
+.eyebrow,
+.row-count,
+.page-meta dt,
+.page-meta dd,
+.table-note,
+figcaption {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.page-meta dt {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+h1 {
+  max-width: 16ch;
+  margin-top: var(--space-2);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.page-header__description {
+  max-width: var(--reading);
+  margin: var(--space-4) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+}
+
+.page-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-6) 0 0;
+}
+
+.page-meta div {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.page-meta dd {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.month-nav {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(4rem, 1fr));
+  margin-block: var(--space-6) var(--space-7);
+  overflow-x: auto;
+  border-block: 1px solid var(--border-strong);
+  background: var(--paper);
+  scrollbar-width: thin;
+}
+
+.month-nav a {
+  display: grid;
+  place-items: center;
+  min-height: 4rem;
+  padding: var(--space-2);
+  border-inline-end: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.month-nav a:hover,
+.month-nav a[aria-current="page"] {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.month-nav a[aria-current="page"] {
+  box-shadow: inset 0 -3px var(--accent);
+}
+
+.month-nav__number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.dataset-list,
+.chart-section {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.data-section,
+.chart-section {
+  min-width: 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-strong);
+}
+
+.chart-section {
+  margin-bottom: var(--space-7);
+}
+
+.data-section__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.data-section__header .eyebrow {
+  margin-bottom: var(--space-1);
+}
+
+.row-count,
+.table-note,
+figcaption {
+  color: var(--ink-soft);
+}
+
+.table-region {
+  max-width: 100%;
+  overflow: auto;
+  border-block: 1px solid var(--border-strong);
+  scrollbar-width: thin;
+}
+
+.table-region:focus-visible {
+  outline-offset: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+.table-note {
+  margin-top: var(--space-2);
+}
+
+.empty-state {
+  margin: 0;
+  padding: var(--space-5);
+  border-block: 1px solid var(--border);
+  color: var(--ink-soft);
+  background: var(--surface);
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+  gap: var(--space-6);
+}
+
+.landing-page,
+.data-library-page {
+  display: grid;
+  gap: clamp(4rem, 9vw, 8rem);
+}
+
+.landing-intro {
+  min-height: min(60vh, 38rem);
+  display: grid;
+  align-content: center;
+  padding-block: var(--space-7);
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.landing-intro h1 {
+  max-width: 13ch;
+}
+
+.landing-intro > p:last-child {
+  max-width: 42rem;
+  margin: var(--space-5) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+}
+
+.horizons,
+.dataset-library {
+  display: grid;
+  gap: var(--space-6);
+  scroll-margin-top: var(--space-5);
+}
+
+.section-heading {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--reading);
+}
+
+.horizon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid var(--border-strong);
+}
+
+.horizon-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  border-inline-end: 1px solid var(--border);
+}
+
+.horizon-card:last-child {
+  border-inline-end: 0;
+}
+
+.horizon-card__number,
+.horizon-card__coordinates,
+.availability-note {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.horizon-card__number {
+  margin: 0 0 var(--space-7);
+  color: var(--accent);
+}
+
+.horizon-card h3 {
+  min-height: 2.4em;
+}
+
+.horizon-card__coordinates {
+  margin: var(--space-3) 0 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.horizon-card > p:not(.horizon-card__number, .horizon-card__coordinates, .availability-note) {
+  margin: var(--space-1) 0 var(--space-5);
+  color: var(--ink-soft);
+}
+
+.edition-links {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.edition-links a,
+.download-link {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.edition-links a:hover,
+.download-link:hover {
+  color: var(--accent);
+}
+
+.availability-note {
+  margin: auto 0 0;
+}
+
+.landing-about {
+  max-width: var(--reading);
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.landing-about h2 {
+  margin-top: var(--space-2);
+}
+
+.landing-about > p:last-child {
+  margin: var(--space-4) 0 0;
+  color: var(--ink-soft);
+}
+
+.data-library-page {
+  gap: clamp(3.5rem, 7vw, 6rem);
+}
+
+.data-provenance {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr);
+  gap: var(--space-7);
+  align-items: end;
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.data-provenance h2 { margin-top: var(--space-2); }
+
+.data-provenance > p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.dataset-group-nav {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  overflow-x: auto;
+  border-block: 1px solid var(--border-strong);
+  background: var(--header-bg);
+  scrollbar-width: thin;
+}
+
+.dataset-group-nav a {
+  flex: 1 0 auto;
+  padding: var(--space-2) var(--space-4);
+  border-right: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dataset-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border-strong);
+}
+
+.dataset-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.dataset-card:nth-child(even) {
+  border-right: 0;
+}
+
+.dataset-card h3 {
+  margin-top: var(--space-2);
+}
+
+.dataset-card p:not(.row-count) {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-soft);
+}
+
+.dataset-card details {
+  border-top: 1px solid var(--border);
+}
+
+.dataset-card summary {
+  padding-block: var(--space-2);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.dataset-card details dl { margin: 0 0 var(--space-3); }
+
+.dataset-card details dl > div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-3);
+  padding-block: var(--space-1);
+}
+
+.dataset-card details dt {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.dataset-card details dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+}
+
+.library-return {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border-strong);
+}
+
+.library-return p {
+  max-width: var(--reading);
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.library-return a {
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.annual-overview {
+  display: grid;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+.annual-overview .month-nav {
+  margin-block: calc(-1 * var(--space-5)) calc(-1 * var(--space-4));
+}
+
+.year-glance,
+.annual-highlights,
+.seasonal-sky,
+.month-index {
+  display: grid;
+  gap: var(--space-6);
+  scroll-margin-top: var(--space-6);
+}
+
+.section-heading > p:last-child {
+  margin: var(--space-2) 0 0;
+  color: var(--ink-soft);
+}
+
+.glance-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--border-strong);
+  border-left: 1px solid var(--border);
+}
+
+.glance-month {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-1) var(--space-2);
+  min-height: 11rem;
+  padding: var(--space-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.glance-month::before,
+.month-card::before,
+.highlight-list > li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--tone, var(--border-strong));
+  content: "";
+}
+
+.glance-month:hover {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.glance-month__number,
+.month-card__number,
+.highlight-list__date,
+.rating-label {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.glance-month__number {
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+
+.glance-month strong {
+  grid-column: 1 / -1;
+  font-size: 1.15rem;
+}
+
+.glance-month > span:nth-last-of-type(1) {
+  align-self: end;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.glance-month small {
+  align-self: end;
+  justify-self: end;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tone-excellent { --tone: var(--sage); }
+.tone-good { --tone: #9b7b4f; }
+.tone-fair { --tone: var(--accent); }
+.tone-poor,
+.tone-unavailable,
+.tone-neutral { --tone: var(--border-strong); }
+
+.highlight-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border-strong);
+  list-style: none;
+  counter-reset: annual-highlight;
+}
+
+.highlight-list > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.7fr) minmax(16rem, 2fr) auto;
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  counter-increment: annual-highlight;
+}
+
+.highlight-list__date {
+  display: grid;
+  gap: var(--space-1);
+  color: var(--ink);
+}
+
+.highlight-list__date::before {
+  color: var(--accent);
+  content: counter(annual-highlight, decimal-leading-zero);
+  font-size: 0.7rem;
+}
+
+.highlight-list__date small,
+.rating-label {
+  color: var(--ink-soft);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.highlight-list h3 { margin-bottom: var(--space-1); }
+
+.highlight-list p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.rating-label {
+  padding-left: var(--space-2);
+  border-left: 3px solid var(--tone, var(--border-strong));
+}
+
+.seasonal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 0.8fr);
+  gap: var(--space-6);
+  align-items: start;
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border-strong);
+}
+
+.seasonal-chart figcaption {
+  max-width: 62ch;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: normal;
+  line-height: 1.45;
+  text-transform: none;
+}
+
+.seasonal-chart figcaption strong {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.planet-seasons {
+  padding: var(--space-5);
+  background: var(--surface);
+}
+
+.planet-seasons h3 { margin-top: var(--space-1); }
+
+.planet-seasons ul {
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planet-seasons li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 var(--space-3);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.planet-seasons li span {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.planet-seasons li small {
+  grid-column: 1 / -1;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+/* Stage 4 observing instruments */
+.instrument-card,
+.moon-system-section {
+  min-width: 0;
+  width: 100%;
+  margin-top: var(--space-6);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--border-strong);
+}
+
+.instrument-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-5);
+  align-items: end;
+  margin-bottom: var(--space-4);
+}
+
+.instrument-heading h3,
+.moon-system-section h3,
+.moon-system h4 { margin: 0 0 var(--space-2); }
+
+.instrument-heading p { max-width: 72ch; }
+
+.chart-controls {
+  display: flex;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.chart-controls button {
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.scroll-instrument {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--accent) var(--surface);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.milky-year-chart {
+  position: relative;
+  min-width: max(100%, calc(var(--year-days) * 7px + 5rem));
+  height: 24rem;
+  padding: 2.5rem 0 1.5rem 4.5rem;
+}
+
+.milky-year-chart__months {
+  position: absolute;
+  inset: 0 0 auto 4.5rem;
+  height: 2.5rem;
+}
+
+.milky-year-chart__months span {
+  position: absolute;
+  left: calc(var(--day) / var(--year-days) * 100%);
+  padding: 0.65rem 0.5rem;
+  border-left: 1px solid var(--border-strong);
+  color: var(--ink-soft);
+  font: 0.68rem var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.milky-year-chart__axis {
+  position: absolute;
+  inset: 2.5rem auto 1.5rem 0;
+  width: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 0.7rem;
+  color: var(--ink-soft);
+  font: 0.64rem var(--font-mono);
+  text-align: right;
+}
+
+.milky-year-chart__plot {
+  position: relative;
+  height: 20rem;
+  background:
+    linear-gradient(to bottom, transparent 49.8%, var(--border-strong) 50%, transparent 50.2%),
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-cream) 70%, transparent), color-mix(in srgb, var(--ink) 8%, transparent) 50%, color-mix(in srgb, var(--accent-cream) 70%, transparent));
+  background-size: 100% 100%, calc(100% / 12) 100%, 100% 100%;
+}
+
+.milky-window {
+  position: absolute;
+  left: calc(var(--day) / var(--year-days) * 100%);
+  top: var(--start);
+  width: max(4px, calc(100% / var(--year-days) * 0.8));
+  height: var(--height);
+  min-height: 3px;
+  border-radius: 2px;
+  background: #9b7b4f;
+  cursor: help;
+}
+
+.milky-window--excellent { background: var(--sage); }
+
+.milky-window i {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: calc(100% + 0.45rem);
+  width: 12rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border-strong);
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0 0.35rem 1rem rgb(0 0 0 / 12%);
+  font: 0.72rem/1.45 var(--font-sans);
+  font-style: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.milky-window:hover i,
+.milky-window:focus i { opacity: 1; }
+
+.instrument-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+  color: var(--ink-soft);
+  font: 0.7rem var(--font-mono);
+  text-transform: uppercase;
+}
+
+.instrument-legend span::before {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.4rem;
+  border: 1px solid var(--border-strong);
+  content: "";
+  vertical-align: -0.1rem;
+}
+
+.legend-useful::before { background: #9b7b4f; }
+.legend-excellent::before { background: var(--sage); }
+
+.milky-month-summary {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: var(--space-4) 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+
+.milky-month-summary li {
+  display: grid;
+  gap: 0.15rem;
+  padding: var(--space-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-top: 3px solid var(--tone);
+}
+
+.milky-month-summary time,
+.milky-month-summary span { font-size: 0.8rem; }
+.milky-month-summary small { color: var(--ink-soft); font-size: 0.68rem; }
+
+.planet-year-chart { min-width: 68rem; }
+
+.planet-lane {
+  display: grid;
+  grid-template-columns: 7rem repeat(12, minmax(4.8rem, 1fr));
+  border-bottom: 1px solid var(--border);
+}
+
+.planet-lane > strong,
+.planet-lane > span { padding: 0.65rem 0.5rem; }
+
+.planet-lane > strong {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  border-right: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.planet-lane--head {
+  color: var(--ink-soft);
+  font: 0.68rem var(--font-mono);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.planet-cell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 0.35rem;
+  border-left: 3px solid var(--tone, var(--border));
+  background: color-mix(in srgb, var(--tone, var(--surface)) 10%, var(--surface));
+}
+
+.planet-cell i,
+.planet-cell small { color: var(--ink-soft); }
+.planet-cell i { font: 0.65rem var(--font-mono); font-style: normal; }
+.planet-cell b { text-align: right; }
+.planet-cell small { grid-column: 1 / -1; font-size: 0.62rem; text-transform: uppercase; }
+.planet-cell--empty { display: block; color: var(--ink-soft); text-align: center; }
+
+.moon-system-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.moon-system {
+  min-width: 0;
+  padding: var(--space-4);
+  background: var(--surface);
+}
+
+.moon-night-scroll {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-bottom: var(--space-3);
+}
+
+.moon-night {
+  flex: 0 0 17rem;
+  margin: 0;
+}
+
+.moon-night figcaption { display: grid; margin-bottom: var(--space-2); }
+.moon-night figcaption span { color: var(--ink-soft); font-size: 0.72rem; }
+
+.moon-offset-plot {
+  position: relative;
+  height: 17rem;
+  border: 1px solid var(--border);
+  background: repeating-linear-gradient(to bottom, transparent 0 2.75rem, var(--border) 2.8rem);
+}
+
+.moon-offset-axis {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 0.2rem;
+  background: var(--ink);
+}
+
+.moon-offset-point {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 0.46rem;
+  height: 0.46rem;
+  border: 1px solid var(--paper);
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translate(-50%, -50%);
+}
+
+.moon-offset-point--1, .moon-key--1::before { background: #557a95; }
+.moon-offset-point--2, .moon-key--2::before { background: #7b6948; }
+.moon-offset-point--3, .moon-key--3::before { background: #6b8058; }
+.moon-offset-point--4, .moon-key--4::before { background: #96627b; }
+.moon-offset-point--5, .moon-key--5::before { background: #7b6b9a; }
+.moon-offset-point--6, .moon-key--6::before { background: #956c46; }
+.moon-offset-point--7, .moon-key--7::before { background: #557c78; }
+
+.moon-offset-scale,
+.moon-key {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  color: var(--ink-soft);
+  font: 0.62rem var(--font-mono);
+}
+
+.moon-key {
+  flex-wrap: wrap;
+  justify-content: start;
+  padding: 0;
+  list-style: none;
+}
+
+.moon-key li::before {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+/* Stage 4A date-driven instruments */
+.night-planner {
+  display: grid;
+  grid-template-columns: auto minmax(11rem, 15rem) 1fr;
+  gap: var(--space-3) var(--space-4);
+  align-items: center;
+  padding: var(--space-5);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.night-planner > label,
+.moon-system > label {
+  color: var(--ink-soft);
+  font: 0.68rem var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.night-planner input,
+.moon-system input {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: var(--paper);
+  font: 0.85rem var(--font-mono);
+}
+
+.night-planner__summary {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.night-planner__timeline {
+  position: relative;
+  grid-column: 1 / -1;
+  height: 7rem;
+  overflow: hidden;
+  border: 1px solid #5e6977;
+  background: linear-gradient(180deg, #1a2030, #080b13 52%, #182033);
+}
+
+.night-planner__track {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 35%, rgb(255 255 255 / 48%) 0 1px, transparent 1.5px) 0 0 / 4.2rem 3.2rem;
+  opacity: 0.45;
+}
+
+.night-segment {
+  position: absolute;
+  z-index: 1;
+  height: 1rem;
+  border: 1px solid rgb(255 255 255 / 72%);
+}
+
+.night-segment--moon-free {
+  bottom: 2.2rem;
+  background: #2cc7c9;
+}
+
+.night-segment--milky {
+  bottom: 0.65rem;
+  background: #ffb000;
+}
+
+.night-planner__axis {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(-1 * var(--space-2));
+  color: var(--ink-soft);
+  font: 0.65rem var(--font-mono);
+}
+
+.night-planner__facts {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.night-planner__facts > div { padding: var(--space-3); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.night-planner__facts dt { color: var(--ink-soft); font: 0.62rem var(--font-mono); text-transform: uppercase; }
+.night-planner__facts dd { margin: var(--space-1) 0 0; font-size: 0.82rem; }
+.night-planner__planets { grid-column: 1 / -1; }
+.night-planner__planets h3 { margin-bottom: var(--space-2); font-size: 1rem; }
+.night-planner__planets ul { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.night-planner__planets li { display: grid; min-width: 9rem; padding: var(--space-2) var(--space-3); border-left: 3px solid var(--accent); background: var(--accent-soft); }
+.night-planner__planets span { color: var(--ink-soft); font-size: 0.72rem; }
+
+.moon-system { border: 1px solid var(--border); }
+.moon-system > label { display: inline-block; margin-right: var(--space-3); }
+.moon-chart-status { min-height: 1.5em; color: var(--ink-soft); font-size: 0.82rem; }
+.moon-track { margin: var(--space-3) 0; }
+.moon-track svg { display: block; width: 100%; height: auto; min-height: 20rem; border: 1px solid var(--border-strong); background: var(--paper); }
+.moon-track figcaption { margin-top: var(--space-2); color: var(--ink-soft); font-size: 0.72rem; }
+.moon-grid-line { stroke: var(--border); stroke-width: 1; }
+.moon-planet-axis { stroke: var(--ink); stroke-width: 3; }
+.moon-axis-label { fill: var(--ink-soft); font: 14px var(--font-mono); }
+.moon-track-line { fill: none; stroke-width: 4; }
+.moon-track-point { stroke: var(--paper); stroke-width: 2; }
+.moon-series-0 { stroke: #e31a1c; fill: #e31a1c; color: #e31a1c; }
+.moon-series-1 { stroke: #0066cc; fill: #0066cc; color: #0066cc; stroke-dasharray: 12 5; }
+.moon-series-2 { stroke: #16833b; fill: #16833b; color: #16833b; stroke-dasharray: 3 5; }
+.moon-series-3 { stroke: #9c3fc7; fill: #9c3fc7; color: #9c3fc7; stroke-dasharray: 18 5 3 5; }
+.moon-series-4 { stroke: #d05a00; fill: #d05a00; color: #d05a00; stroke-dasharray: 8 4; }
+.moon-series-5 { stroke: #007f86; fill: #007f86; color: #007f86; stroke-dasharray: 2 4 10 4; }
+.moon-series-6 { stroke: #c00066; fill: #c00066; color: #c00066; stroke-dasharray: 14 4 2 4; }
+.moon-series-7 { stroke: #5b5bd6; fill: #5b5bd6; color: #5b5bd6; stroke-dasharray: 5 3; }
+.moon-key--0::before { background: #e31a1c !important; }
+.moon-key--1::before { background: #0066cc !important; }
+.moon-key--2::before { background: #16833b !important; }
+.moon-key--3::before { background: #9c3fc7 !important; }
+.moon-key--4::before { background: #d05a00 !important; }
+.moon-key--5::before { background: #007f86 !important; }
+.moon-key--6::before { background: #c00066 !important; }
+.moon-key--7::before { background: #5b5bd6 !important; }
+
+@media (max-width: 760px) {
+  .instrument-heading { align-items: start; }
+  .chart-controls { display: none; }
+  .moon-system-grid { grid-template-columns: 1fr; }
+  .milky-year-chart { min-width: calc(var(--year-days) * 9px + 4.5rem); }
+  .milky-month-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .night-planner { grid-template-columns: 1fr; }
+  .night-planner__summary { grid-column: 1; }
+  .night-planner__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.month-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border-strong);
+  border-left: 1px solid var(--border);
+}
+
+.month-card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.month-card header {
+  display: flex;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.month-card__number {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.month-card header p {
+  margin: 0 0 var(--space-1);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.month-card__verdict {
+  min-height: 4.8em;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.month-card dl,
+.month-card ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month-card dl > div {
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.month-card dt {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.month-card dd {
+  margin: var(--space-1) 0 0;
+  font-size: 0.85rem;
+}
+
+.month-card ul {
+  padding-left: var(--space-4);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.month-card > a {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.month-card > a:hover { color: var(--accent); }
+
+.data-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 0.5fr);
+  gap: var(--space-6);
+  align-items: end;
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.data-callout h2 { margin-top: var(--space-1); }
+
+.data-callout p:last-child {
+  max-width: 54rem;
+  margin: var(--space-3) 0 0;
+  color: var(--ink-soft);
+}
+
+.data-callout > a {
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.monthly-guide {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.monthly-guide .back-link {
+  margin-bottom: calc(-1 * var(--space-5));
+}
+
+.monthly-guide .month-nav {
+  margin-block: calc(-1 * var(--space-5)) 0;
+}
+
+.monthly-verdict {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 0.75fr);
+  gap: var(--space-7);
+  align-items: end;
+  padding: var(--space-7);
+  border-left: 4px solid var(--tone, var(--accent));
+  background: var(--surface);
+}
+
+.monthly-verdict h2 {
+  max-width: 27ch;
+  margin-top: var(--space-2);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.monthly-verdict dl {
+  margin: 0;
+}
+
+.monthly-verdict dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.monthly-verdict dt,
+.monthly-verdict dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.monthly-verdict dt {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.guide-nav {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  overflow-x: auto;
+  border-block: 1px solid var(--border-strong);
+  background: var(--header-bg);
+  scrollbar-width: thin;
+}
+
+.guide-nav a {
+  flex: 1 0 auto;
+  padding: var(--space-2) var(--space-4);
+  border-right: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.guide-nav a:hover {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.monthly-editorial-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+  gap: var(--space-7) var(--space-6);
+  align-items: start;
+}
+
+.monthly-editorial-grid > section {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-strong);
+  scroll-margin-top: 4rem;
+}
+
+.night-plan,
+.deep-sky-panel,
+.other-opportunities {
+  grid-column: 1;
+}
+
+.month-highlights,
+.moon-panel,
+.planet-panel {
+  grid-column: 2;
+}
+
+.month-highlights { grid-row: 1 / span 2; }
+.moon-panel { grid-row: 3; }
+.planet-panel { grid-row: 4 / span 2; }
+
+.twilight-band {
+  display: grid;
+  grid-template-columns: auto minmax(5rem, 1fr) auto;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #20262d;
+  color: #f4efe5;
+}
+
+.twilight-band div {
+  display: grid;
+}
+
+.twilight-band div:last-child { text-align: right; }
+
+.twilight-band small {
+  color: #beb6a5;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.twilight-band span {
+  height: 1px;
+  background: linear-gradient(90deg, #b47760, #f1dfb2 8%, #657181 18%, #303842 50%, #657181 82%, #f1dfb2 92%, #b47760);
+}
+
+.session-list,
+.compact-highlights,
+.other-opportunities ul,
+.planet-periods ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.session-list {
+  border-top: 1px solid var(--border);
+}
+
+.session-list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5rem minmax(10rem, 1fr) auto;
+  gap: var(--space-4);
+  align-items: baseline;
+  padding: var(--space-3) var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.session-list time,
+.session-list span,
+.compact-highlights time,
+.compact-highlights small,
+.other-opportunities time {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.session-list span { text-align: right; }
+
+.context-link {
+  justify-self: start;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.compact-highlights {
+  counter-reset: month-highlight;
+}
+
+.compact-highlights li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4) 0 var(--space-4) var(--space-3);
+  border-top: 1px solid var(--border);
+  counter-increment: month-highlight;
+}
+
+.compact-highlights li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--tone, var(--border-strong));
+  content: "";
+}
+
+.compact-highlights time::before {
+  display: block;
+  color: var(--accent);
+  content: counter(month-highlight, decimal-leading-zero);
+}
+
+.compact-highlights h3 { margin-top: var(--space-1); }
+
+.compact-highlights p {
+  margin: var(--space-1) 0 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.moon-progression {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.moon-progression > div {
+  display: grid;
+  place-items: center;
+  gap: var(--space-1);
+}
+
+.moon-disc {
+  display: block;
+  width: clamp(2rem, 4vw, 2.8rem);
+  aspect-ratio: 1;
+  overflow: visible;
+}
+
+.moon-disc__shadow { fill: var(--moon-shadow); }
+.moon-disc__light { fill: var(--moon-light); }
+.moon-disc__rim { fill: none; stroke: var(--border-strong); stroke-width: 2; }
+
+@media print {
+  .moon-disc__shadow { fill: #000; }
+  .moon-disc__light { fill: #fff; }
+  .moon-disc__rim { stroke: #000; }
+}
+
+.moon-progression time,
+.moon-progression small {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+
+.field-note {
+  margin: 0;
+  padding: var(--space-4);
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.milky-sessions li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--tone, var(--border-strong));
+  content: "";
+}
+
+.planet-periods {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.planet-periods h3 {
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.planet-periods li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 var(--space-2);
+  padding: var(--space-2) 0 var(--space-2) var(--space-2);
+  border-top: 1px solid var(--border);
+  border-left: 3px solid var(--tone, var(--border-strong));
+}
+
+.planet-periods li span,
+.planet-periods li small {
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+}
+
+.planet-periods li small {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.other-opportunities li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.other-opportunities li div { display: grid; }
+.other-opportunities li span { color: var(--ink-soft); }
+
+.monthly-data {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
+  gap: var(--space-7);
+  padding: var(--space-7);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  scroll-margin-top: 4rem;
+}
+
+.monthly-data h2 { margin-top: var(--space-1); }
+
+.monthly-data p:not(.eyebrow) {
+  margin: var(--space-3) 0 0;
+  color: var(--ink-soft);
+}
+
+.monthly-downloads {
+  display: grid;
+  align-content: start;
+}
+
+.monthly-downloads a {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--border-strong);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.monthly-downloads span {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+figcaption {
+  padding-top: var(--space-2);
+}
+
+.site-footer {
+  border-top: 1px solid var(--border-strong);
+}
+
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.site-footer__identity,
+.site-footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.site-footer strong {
+  color: var(--ink);
+}
+
+@media (max-width: 52rem) {
+  .site-header__inner,
+  .site-footer__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .month-nav {
+    grid-template-columns: repeat(12, 4.5rem);
+  }
+
+  .horizon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .horizon-card,
+  .horizon-card:last-child {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .horizon-card:last-child {
+    border-bottom: 0;
+  }
+
+  .horizon-card h3 {
+    min-height: 0;
+  }
+
+  .glance-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .seasonal-grid,
+  .data-callout {
+    grid-template-columns: 1fr;
+  }
+
+  .month-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .monthly-verdict,
+  .monthly-editorial-grid,
+  .monthly-data,
+  .data-provenance {
+    grid-template-columns: 1fr;
+  }
+
+  .night-plan,
+  .deep-sky-panel,
+  .other-opportunities,
+  .month-highlights,
+  .moon-panel,
+  .planet-panel {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 36rem) {
+  .site-header__inner,
+  .site-footer__inner,
+  .page-shell {
+    width: min(calc(100% - 2 * var(--space-3)), var(--container));
+  }
+
+  .identity__sanskrit,
+  .identity__motto {
+    font-size: 0.68rem;
+  }
+
+  .identity {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .identity__translation {
+    display: flex;
+    gap: var(--space-2);
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .site-nav {
+    gap: var(--space-3);
+    overflow-x: auto;
+  }
+
+  .page-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-intro {
+    min-height: 28rem;
+  }
+
+  .horizon-card,
+  .landing-about {
+    padding: var(--space-5);
+  }
+
+  .dataset-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dataset-card,
+  .dataset-card:nth-child(even) {
+    border-right: 0;
+  }
+
+  .annual-overview {
+    gap: 4rem;
+  }
+
+  .glance-grid,
+  .month-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glance-month {
+    min-height: 8.5rem;
+  }
+
+  .highlight-list > li {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .rating-label {
+    justify-self: start;
+  }
+
+  .month-card__verdict {
+    min-height: 0;
+  }
+
+  .data-callout,
+  .planet-seasons,
+  .monthly-verdict,
+  .monthly-data,
+  .data-provenance {
+    padding: var(--space-5);
+  }
+
+  .library-return {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .session-list li {
+    grid-template-columns: 4rem 1fr;
+    gap: var(--space-1) var(--space-3);
+  }
+
+  .session-list span {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .twilight-band {
+    grid-template-columns: 1fr;
+  }
+
+  .twilight-band div:last-child { text-align: left; }
+
+  .data-section__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  th,
+  td {
+    padding-inline: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --surface: #fff;
+    --surface-raised: #fff;
+    --ink: #000;
+    --ink-soft: #333;
+    --accent: #000;
+    --border: #bbb;
+    --border-strong: #666;
+  }
+
+  body {
+    font-size: 9pt;
+  }
+
+  .site-nav,
+  .month-nav,
+  .skip-link,
+  .back-link,
+  .theme-toggle {
+    display: none !important;
+  }
+
+  .site-header {
+    position: static;
+    background: transparent;
+  }
+
+  .site-header__inner,
+  .site-footer__inner,
+  .page-shell {
+    width: 100%;
+  }
+
+  .data-section,
+  .glance-month,
+  .highlight-list > li,
+  .month-card,
+  .seasonal-grid,
+  figure,
+  table {
+    break-inside: avoid;
+  }
+
+  .data-section__header,
+  thead {
+    break-after: avoid;
+  }
+
+  .table-region {
+    overflow: visible;
+  }
+
+  th {
+    position: static;
+  }
+
+  a {
+    color: #000;
+  }
+}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="Prajwal Bhattaram">
+    <meta name="generator" content="Nabhastala">
+<meta name="description" content="Choose a local date and time for South East Queensland, Australia.">    <title>Night sky chart: South East Queensland, Australia, 2026</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("nabhastala-theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+        document.documentElement.classList.add("js");
+      } catch (_) {}
+    </script>
+    <link rel="stylesheet" href="../assets/styles.css?v=stage-4a-chipsncode">
+    <link rel="stylesheet" href="../assets/editorial.css?v=stage-4a-chipsncode">
+    <script defer src="../assets/theme.js?v=stage-4a"></script>
+    <script defer src="../assets/charts.js?v=stage-4a"></script>
+    <script defer src="../assets/conditions.js?v=stage-5c"></script>
+<script defer src="../assets/sky.js?v=stage-5d"></script>    <link rel="canonical" href="https://marzogh.github.io/nabhastala/sites/se-qld/2026/sky/">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to almanac</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="identity" href="../../../../index.html" aria-label="Nabhastala home">
+      <span class="identity__primary">
+        <span class="identity__devanagari" lang="sa-Deva">नभस्तल</span>
+        <span class="identity__sanskrit" lang="sa-Latn">त्रिषु दिगन्तेष्वेकं नभः (Triṣu diganteṣv ekaṃ nabhaḥ)</span>
+      </span>
+      <span class="identity__translation" aria-label="English translation">
+        <span class="identity__english">Nabhastala</span>
+        <span class="identity__motto">One sky at three horizons.</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../index.html">Annual</a>
+        <a href="../months/01.html">Months</a>
+        <a href="index.html" aria-current="page">Sky</a>
+        <a href="../data/index.html">Data</a>
+        <a href="https://chipsncode.com/">Chips’nCode</a>
+      <button class="theme-toggle js-only" type="button" data-theme-toggle aria-label="Change colour theme" title="Change colour theme">◐</button>
+    </nav>
+  </div>
+</header>    <main id="main-content" tabindex="-1">
+  <div class="page-shell sky-tool-page editorial-page">
+    <a class="back-link" href="../index.html">← Annual almanac</a>
+<header class="page-header editorial-hero">
+  <div class="editorial-hero__copy">
+    <p class="eyebrow">Date and time finder</p>
+    <h1>Night sky chart</h1>
+    <p class="page-header__description">Choose a local date and time for South East Queensland, Australia.</p>
+    <dl class="page-meta">
+      <div class="horizon-meta">
+        <dt>Observing horizon</dt>
+        <dd>
+          <details class="horizon-switcher">
+            <summary>South East Queensland, Australia</summary>
+            <ul>
+                <li><a href="index.html" aria-current="location">South East Queensland, Australia</a></li>
+                <li><a href="../../../southern-tasmania/2026/sky/index.html">Southern Tasmania, Australia</a></li>
+                <li><a href="../../../malabar-coast/2026/sky/index.html">Malabar Coast, India</a></li>
+            </ul>
+          </details>
+        </dd>
+      </div>
+      <div><dt>Site ID</dt><dd>SE_QLD</dd></div>
+      <div><dt>Year</dt><dd>2026</dd></div>
+    </dl>
+  </div>
+  <figure class="editorial-hero__art">
+    <img class="theme-art theme-art--light" src="../assets/art/landscape-light.webp" alt="A hand-drawn crescent Moon above a distant horizon and trees">
+    <img class="theme-art theme-art--dark" src="../assets/art/landscape-dark.webp" alt="A hand-drawn crescent Moon above a distant horizon and trees">
+    <figcaption>One sky at three horizons.</figcaption>
+  </figure>
+</header>
+    <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-year="2026" data-timezone="Australia/Brisbane" aria-labelledby="sky-tool-title">
+      <header class="section-heading sky-tool__heading">
+        <p class="eyebrow">Set the sky</p>
+        <h2 id="sky-tool-title">Choose when you will observe.</h2>
+        <p>Times are local to South East Queensland, Australia.</p>
+      </header>
+
+      <form class="sky-controls" data-sky-controls>
+        <label>Date <input type="date" min="2026-01-01" max="2026-12-31" data-sky-date></label>
+        <label>Local time <input type="time" step="60" data-sky-time></label>
+        <label>Faintest stars <input type="range" min="3" max="6.5" step="0.5" value="5.5" data-sky-magnitude><output data-sky-magnitude-value>5.5</output></label>
+        <label class="sky-check"><input type="checkbox" checked data-sky-constellations> Constellation lines</label>
+        <button type="button" data-sky-now>Use current time</button>
+        <button type="button" data-sky-print>Print chart</button>
+      </form>
+
+      <div class="sky-stage">
+        <div class="sky-canvas-wrap"><canvas width="900" height="900" data-sky-canvas aria-label="Interactive all-sky chart"></canvas></div>
+        <aside class="sky-readout" aria-live="polite">
+          <p data-sky-status>Loading the sky chart…</p>
+          <h3>Above the horizon</h3>
+          <ul data-sky-objects></ul>
+          <p class="sky-legend"><span class="sky-legend__star">●</span> Star <span class="sky-legend__body">●</span> Solar System object</p>
+        </aside>
+      </div>
+    </section>
+
+    <noscript>
+      <section class="static-sky-fallback"><h2>Monthly charts</h2><p>Choose the nearest month, then adjust for the time of night.</p><ul><li><a href="../charts/sky/month-01.svg">January</a></li><li><a href="../charts/sky/month-02.svg">February</a></li><li><a href="../charts/sky/month-03.svg">March</a></li><li><a href="../charts/sky/month-04.svg">April</a></li><li><a href="../charts/sky/month-05.svg">May</a></li><li><a href="../charts/sky/month-06.svg">June</a></li><li><a href="../charts/sky/month-07.svg">July</a></li><li><a href="../charts/sky/month-08.svg">August</a></li><li><a href="../charts/sky/month-09.svg">September</a></li><li><a href="../charts/sky/month-10.svg">October</a></li><li><a href="../charts/sky/month-11.svg">November</a></li><li><a href="../charts/sky/month-12.svg">December</a></li></ul></section>
+    </noscript>
+  </div>
+    </main>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__identity">
+      <strong>Nabhastala</strong>
+      <span>Astronomy and nightscape planning.</span>
+    </div>
+    <div class="site-footer__meta">
+<span>South East Queensland, Australia</span><span>2026</span>      <a href="https://chipsncode.com/">A Chips’nCode project</a>
+    </div>
+  </div>
+</footer>  </body>
+</html>
