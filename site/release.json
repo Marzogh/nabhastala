@@ -1,5 +1,5 @@
 {
-  "assembled_at_utc": "2026-09-28T21:54:47.041771+00:00",
+  "assembled_at_utc": "2026-09-28T22:27:49.757682+00:00",
   "base_url": "https://chipsncode.com/nabhastala",
   "files_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -109,7 +109,7 @@
     "sites/malabar-coast/2026/data/ui_notes.recommendations.csv": "8489e2ae8971c2c0e09206d5ee0f71878b8a67207f074ca68222a2560207ce69",
     "sites/malabar-coast/2026/data/ui_notes.tonight.csv": "aabf2ef6f91fb5f99d79debeb9205d02eecdfbebeb6b1bb8b75901867847920a",
     "sites/malabar-coast/2026/data/ui_notes.validation.csv": "229becc6ecd3c542c70a57264e16dccb8d7e7edb4631a66ccd16b1290037e8e6",
-    "sites/malabar-coast/2026/index.html": "d8288993a45b808110fd0ed6d5e19375f3369cab4249e6646ac145357ab3b678",
+    "sites/malabar-coast/2026/index.html": "b20d563f93f1fad5c1054288e491eb38f0ce69e0d100322f118f6c716291283f",
     "sites/malabar-coast/2026/months/01.html": "8a3913c330dd6c5044c01783f44560b6d179446169f4f21d23ea9d5092200255",
     "sites/malabar-coast/2026/months/02.html": "f333d38e90b0dd01686a646c762659fda9d48a6d99d29d8f16a8eb180c8462af",
     "sites/malabar-coast/2026/months/03.html": "26bf9fee69f49f600c0d2d93aaf8e9bc6acc2881bd491b506fe7babc7167ef51",
@@ -195,7 +195,7 @@
     "sites/se-qld/2026/data/ui_notes.recommendations.csv": "8489e2ae8971c2c0e09206d5ee0f71878b8a67207f074ca68222a2560207ce69",
     "sites/se-qld/2026/data/ui_notes.tonight.csv": "de518b36aa657674241d1c23cd074b78671e0aa58f4f21ba36cd54626a86b047",
     "sites/se-qld/2026/data/ui_notes.validation.csv": "229becc6ecd3c542c70a57264e16dccb8d7e7edb4631a66ccd16b1290037e8e6",
-    "sites/se-qld/2026/index.html": "6fba3756f58833264a9cffbedbe0ef3c6d97b1fae6bd81d47f4eade18bf05867",
+    "sites/se-qld/2026/index.html": "44985c0f0aa54c3a67ae185b2e11e2651c940fce10d352810c5b89eecc751c41",
     "sites/se-qld/2026/months/01.html": "104a7829a32b939ccde0fac23220bff1e0d5a4ed152d810e4c96f2b40edf8762",
     "sites/se-qld/2026/months/02.html": "c0c0518359c06764690dbc2322fddaf910083ab0896bc364791f61bfc31941c8",
     "sites/se-qld/2026/months/03.html": "e85c7853a1ba36356fd27db7676e460fbe8de4738aabd4342b138c16a6384d5f",
@@ -279,7 +279,7 @@
     "sites/southern-tasmania/2026/data/ui_notes.recommendations.csv": "8489e2ae8971c2c0e09206d5ee0f71878b8a67207f074ca68222a2560207ce69",
     "sites/southern-tasmania/2026/data/ui_notes.tonight.csv": "32a93c63c156b2c264b59da40a37a4c50a4fe0a4d743fcbeac232afc9fb5af0a",
     "sites/southern-tasmania/2026/data/ui_notes.validation.csv": "229becc6ecd3c542c70a57264e16dccb8d7e7edb4631a66ccd16b1290037e8e6",
-    "sites/southern-tasmania/2026/index.html": "b009d3dd382fd413e8ea9d120dcc0e33998331887f0910c22484303284059652",
+    "sites/southern-tasmania/2026/index.html": "da2dfd79c16cdaadd968a8efa5aeb07fa1c80588f05fe2a80c955afec3033aa6",
     "sites/southern-tasmania/2026/months/01.html": "d02b4c8b0d2a4c9c1ede1042d009913b8fd433299c8632139d90d021920a7225",
     "sites/southern-tasmania/2026/months/02.html": "2c57141d04c4de598c787c82020e2506ed78c95345d8eb78e1fe03fce0a2c11b",
     "sites/southern-tasmania/2026/months/03.html": "39f6c2c18a43ea0005c453d87423945a9cc47e404147edcbb91233e452d4824d",

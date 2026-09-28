@@ -9,7 +9,6 @@
         <div><p class="eyebrow">The year ahead</p><h2 id="annual-highlights-title">Best observing opportunities in {{ year }}</h2></div>
         <a class="context-link" href="#monthly-guides">See all twelve months →</a>
       </header>
-      <p class="section-intro">A concise shortlist selected from complete, observable records in this edition.</p>
       {% if overview.highlights %}
         <ol class="annual-feature-grid">
           {% for highlight in overview.highlights %}
@@ -22,7 +21,7 @@
             </li>
           {% endfor %}
         </ol>
-      {% else %}<p class="empty-state">No complete, observable highlights are available for this edition.</p>{% endif %}
+      {% else %}<p class="empty-state">No highlights available.</p>{% endif %}
     </section>
 
     <section class="seasonal-sky" aria-labelledby="seasonal-sky-title">
@@ -42,7 +41,7 @@
           </div>
           <div class="instrument-legend"><span class="legend-useful">Useful, at least 20°</span><span class="legend-excellent">Excellent, at least 25°</span></div>
           <ol class="milky-month-summary" aria-label="Best Milky Way window in each available month">{% for window in instruments.milky_way.summaries %}<li class="tone-{{ rating_tone('excellent' if window.quality == 'excellent' else 'good') }}"><strong>{{ window.month_name }}</strong><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><span>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</span><small>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ window.quality|title }}</small></li>{% endfor %}</ol>
-        {% else %}<p class="empty-state">No usable Galactic Centre window is available for this edition.</p>{% endif %}
+        {% else %}<p class="empty-state">No Galactic Centre window available.</p>{% endif %}
         <a class="context-link" href="data/milky_way_windows.csv" download>Download exact Milky Way windows →</a>
       </article>
 
