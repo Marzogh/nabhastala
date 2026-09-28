@@ -37,6 +37,16 @@
     if (text !== undefined) node.textContent = text;
     return node;
   };
+  const planetNames = new Set(["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune"]);
+  const planetIcon = (name, base) => {
+    const key = String(name).toLowerCase();
+    if (!planetNames.has(key)) return null;
+    const icon = element("img", "planet-icon");
+    icon.src = `${base}/planet-${key}.png`;
+    icon.alt = "";
+    icon.setAttribute("aria-hidden", "true");
+    return icon;
+  };
   document.querySelectorAll("[data-chart-scroll]").forEach((button) => {
     button.addEventListener("click", () => {
       const target = document.getElementById(button.dataset.chartTarget);
@@ -104,6 +114,8 @@
         const list = element("ul");
         plan.planets.slice(0, 7).forEach((planet) => {
           const item = element("li");
+          const icon = planetIcon(planet.planet, planner.dataset.planetIconBase);
+          if (icon) item.append(icon);
           item.append(
             element("strong", "", planet.planet),
             element("span", "", `${localTime(planet.time)} · ${Math.round(planet.altitude)}° · ${planet.rating}`),

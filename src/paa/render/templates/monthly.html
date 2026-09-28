@@ -44,7 +44,7 @@
           <p>Choose a date to see astronomical darkness, Moon interference, Galactic Centre visibility, and planet altitudes and times.</p>
         </header>
         {% if guide.night_plans %}
-        <div class="night-planner" data-night-planner>
+        <div class="night-planner" data-night-planner data-planet-icon-base="{{ asset_prefix }}art">
           <label for="night-date-{{ guide.month }}">Observing date</label>
           <input id="night-date-{{ guide.month }}" type="date" value="{{ guide.planner_default_date }}" min="{{ guide.night_plans[0].date }}" max="{{ guide.night_plans[-1].date }}" data-site-timezone="{{ site_timezone }}" data-night-date>
           <div class="night-planner__summary" aria-live="polite" data-night-summary></div>
@@ -106,7 +106,7 @@
         <header class="section-heading"><h2 id="planet-panel-title">Planet visibility</h2></header>
         {% if guide.planet_groups %}<div class="planet-periods">
           {% for group in guide.planet_groups %}<section><h3>{{ group.period }}</h3><ul>
-            {% for planet in group.planets %}<li class="tone-{{ rating_tone(planet.rating) }}"><strong>{{ planet.planet }}</strong><span>{{ format_local_date(planet.best_date) }} · {{ format_local_time(planet.best_time_local) }}</span><small>{{ planet.altitude_deg|round|int }}° · {{ planet.rating|title }}</small></li>{% endfor %}
+            {% for planet in group.planets %}<li class="tone-{{ rating_tone(planet.rating) }}"><img class="planet-icon" src="{{ asset_prefix }}art/planet-{{ planet.planet|lower }}.png" alt="" aria-hidden="true"><strong>{{ planet.planet }}</strong><span>{{ format_local_date(planet.best_date) }} · {{ format_local_time(planet.best_time_local) }}</span><small>{{ planet.altitude_deg|round|int }}° · {{ planet.rating|title }}</small></li>{% endfor %}
           </ul></section>{% endfor %}
         </div>{% else %}<p class="empty-state">No planet visibility result available.</p>{% endif %}
         <a class="context-link" href="../data/planet_visibility_daily.csv" download>Download planet CSV →</a>

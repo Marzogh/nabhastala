@@ -60,6 +60,7 @@ def test_annual_page_is_an_editorial_overview_not_a_dataset_dump(tmp_path: Path)
     assert 'href="data/index.html"' in html
     assert html.count('class="month-card ') == 12
     assert 'src="assets/art/landscape-light.webp"' in html
+    assert 'src="assets/art/planet-jupiter.png"' in html
     assert "<table" not in html
     assert "dataset-list" not in html
 
@@ -85,7 +86,13 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert '<details class="monthly-sky-disclosure">' in html
     assert '<details class="monthly-sky-disclosure" open>' not in html
     assert 'src="../charts/sky/month-01.svg"' in html
+    assert 'data-planet-icon-base="../assets/art"' in html
+    assert "planetIcon" in (annual.parent / "assets" / "charts.js").read_text(
+        encoding="utf-8"
+    )
     assert (annual.parent / "charts" / "sky" / "month-01.svg").exists()
+    for planet in ("mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune"):
+        assert (annual.parent / "assets" / "art" / f"planet-{planet}.png").exists()
     assert "1 Jan" in html
     assert "<table" not in html
     assert len(list((annual.parent / "months").glob("*.html"))) == 12
@@ -123,6 +130,8 @@ def test_packaged_assets_cover_theme_accessibility_print_and_local_fonts(tmp_pat
     assert "@media print" in css
     assert "fonts.googleapis.com" not in css
     assert "theme-art--dark" in editorial
+    assert ".planet-icon" in css
+    assert "grayscale(1)" in css
     assert ".monthly-sky-disclosure:not([open]) > :not(summary) { display: none; }" in editorial
     assert ".monthly-sky-chart { max-width: 45rem;" in editorial
     assert sum(path.stat().st_size for path in (assets / "art").glob("*.webp")) < 800_000

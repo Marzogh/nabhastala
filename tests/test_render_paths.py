@@ -57,7 +57,7 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
         rendered.parent / "months" / "01.html"
     ).read_text(encoding="utf-8")
     assert 'data-chart-target="milky-year-chart"' in html
-    assert 'src="assets/charts.js?v=stage-4a"' in html
+    assert 'src="assets/charts.js?v=planet-icons-1"' in html
     assert "Monthly guides" in html
     assert "Browse data and downloads" in html
     assert "<table" not in html

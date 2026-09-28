@@ -13,6 +13,20 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Stage 6: Reviewed release builder and GitHub Pages deployment
 
+### Planet identification artwork
+
+- Cropped Mercury, Venus, Mars, Jupiter, Saturn, Uranus and Neptune from the
+  supplied transparent Solar System artwork without regenerating the images.
+- Added the icons to the selected-night cards, monthly planet summaries and
+  annual planet matrix. Names and observing values remain the accessible text;
+  the images are decorative and hidden from assistive technology.
+- Icons retain their natural colours in both screen themes and switch to a
+  high-contrast greyscale treatment for print.
+- Rebuilt all three 2026 editions and the 320-file reviewed release tree.
+- Visually checked the selected-night cards in the exact release tree. The
+  release validator, JavaScript syntax check, changed-file Ruff check and all
+  82 tests passed.
+
 ### Compact monthly sky-chart hand-off
 
 - Replaced the full-width monthly chart with a compact dated band between

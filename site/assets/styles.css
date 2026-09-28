@@ -1183,9 +1183,14 @@ tbody tr:hover {
   position: sticky;
   left: 0;
   z-index: 2;
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
   border-right: 1px solid var(--border-strong);
   background: var(--surface);
 }
+
+.planet-lane > strong .planet-icon { width: 1.45rem; height: 1.45rem; flex: 0 0 auto; }
 
 .planet-lane--head {
   color: var(--ink-soft);
@@ -1388,8 +1393,18 @@ tbody tr:hover {
 .night-planner__planets { grid-column: 1 / -1; }
 .night-planner__planets h3 { margin-bottom: var(--space-2); font-size: 1rem; }
 .night-planner__planets ul { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
-.night-planner__planets li { display: grid; min-width: 9rem; padding: var(--space-2) var(--space-3); border-left: 3px solid var(--accent); background: var(--accent-soft); }
+.night-planner__planets li { display: grid; grid-template-columns: 2.4rem minmax(7rem, 1fr); gap: 0 var(--space-2); align-items: center; min-width: 11rem; padding: var(--space-2) var(--space-3); border-left: 3px solid var(--accent); background: var(--accent-soft); }
+.night-planner__planets .planet-icon { grid-row: 1 / span 2; }
+.night-planner__planets strong,
+.night-planner__planets span { grid-column: 2; }
 .night-planner__planets span { color: var(--ink-soft); font-size: 0.72rem; }
+
+.planet-icon {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 20%));
+}
 
 .moon-system { border: 1px solid var(--border); }
 .moon-system > label { display: inline-block; margin-right: var(--space-3); }
@@ -1835,12 +1850,17 @@ tbody tr:hover {
 
 .planet-periods li {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 2.25rem 1fr auto;
   gap: 0 var(--space-2);
+  align-items: center;
   padding: var(--space-2) 0 var(--space-2) var(--space-2);
   border-top: 1px solid var(--border);
   border-left: 3px solid var(--tone, var(--border-strong));
 }
+
+.planet-periods li .planet-icon { grid-row: 1 / span 2; }
+.planet-periods li strong { grid-column: 2; }
+.planet-periods li span { grid-column: 3; }
 
 .planet-periods li span,
 .planet-periods li small {
@@ -1849,7 +1869,7 @@ tbody tr:hover {
 }
 
 .planet-periods li small {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
   font-family: var(--font-mono);
   text-transform: uppercase;
 }
@@ -2202,5 +2222,9 @@ figcaption {
 
   a {
     color: #000;
+  }
+
+  .planet-icon {
+    filter: grayscale(1) contrast(1.15);
   }
 }
