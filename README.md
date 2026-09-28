@@ -97,7 +97,9 @@ astro-almanac release-check --dest site
 The command writes stable routes below `site/sites/<site-slug>/<year>/`, copies
 the curated PDFs to `site/downloads/`, creates the sitemap and release manifest,
 and excludes caches and logs. The committed `site/` directory is the only input
-to the GitHub Pages deployment workflow.
+to the GitHub Pages deployment workflow. The public site is
+`https://chipsncode.com/nabhastala/`; the repository's standard
+`marzogh.github.io/nabhastala/` address redirects there.
 
 Existing `output/<year>/` trees are supported as read-only legacy inputs. New
 commands never write to the legacy layout.

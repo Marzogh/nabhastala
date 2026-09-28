@@ -69,7 +69,7 @@ def test_release_assembles_stable_routes_without_private_build_files(
     ).read_text(encoding="utf-8")
     assert 'rel="canonical"' in annual.read_text(encoding="utf-8")
     assert (
-        'href="https://marzogh.github.io/nabhastala/"'
+        'href="https://chipsncode.com/nabhastala/"'
         in (destination / "index.html").read_text(encoding="utf-8")
     )
     assert not list(destination.rglob("cache"))

@@ -13,7 +13,7 @@ from urllib.parse import urlsplit, urlunsplit
 from paa.paths import public_site_slug, site_year_dir
 from paa.validate.reports import validation_failures
 
-PUBLIC_BASE_URL = "https://marzogh.github.io/nabhastala"
+PUBLIC_BASE_URL = "https://chipsncode.com/nabhastala"
 PUBLISH_DIRECTORIES = ("assets", "charts", "data", "months", "sky")
 LINK_ATTRIBUTE = re.compile(
     r'(?P<prefix>\b(?:href|src|data-source|data-moon-src)=["\'])'

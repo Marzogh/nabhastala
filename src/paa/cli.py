@@ -718,7 +718,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sites", default="all", help="'all' or comma-separated site IDs")
     p.add_argument("--dest", default="site")
     p.add_argument("--config-dir", default="config")
-    p.add_argument("--base-url", default="https://marzogh.github.io/nabhastala")
+    p.add_argument("--base-url", default="https://chipsncode.com/nabhastala")
     p.set_defaults(func=cmd_release)
 
     p = sub.add_parser("release-check", help="Validate a committed static release tree")

@@ -59,12 +59,18 @@ Results:
   the `/nabhastala/` GitHub Pages project path.
 - Added canonical metadata, descriptions, sitemap, robots file, `.nojekyll` and
   a SHA-256 release manifest. Caches, logs and local source material are absent.
+- GitHub Pages resolves the repository through the account's existing custom
+  domain at `https://chipsncode.com/nabhastala/`; the `marzogh.github.io` project
+  URL redirects to that final public address.
 - Added a Pages workflow that validates and uploads only the committed `site/`
   tree, then deploys it using GitHub's supported Pages actions. It does not
   install astronomy dependencies, query external astronomy services or use a
   database.
 - Verified the exact release tree through a local web server, including stable
   site selection, annual navigation, assets, downloads and PDF links.
+- Enabled GitHub Pages with the workflow publishing source. Deployment run
+  `36488960627` completed successfully, and both the public landing page and a
+  stable edition route returned the expected live content.
 - Full regression suite: 81 passed. Release validation, changed-file Ruff
   checks, workflow YAML parsing and `git diff --check` passed.
 - Checkpoint tag: `stage-6-pages-release`.
