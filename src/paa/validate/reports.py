@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 from pathlib import Path
 
 from paa.paths import resolve_site_year_dir, site_year_dir
@@ -8,7 +9,13 @@ from paa.paths import resolve_site_year_dir, site_year_dir
 def validation_failures(year: int, site_id: str, output_dir: Path) -> list[str]:
     source_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
     data_dir = source_dir / "data"
-    return [name for name in EXPECTED_DATASETS if not (data_dir / name).exists()]
+    failures = [name for name in EXPECTED_DATASETS if not (data_dir / name).exists()]
+    comet_path = data_dir / "comets.csv"
+    if comet_path.exists():
+        failed, total = _comet_query_failures(comet_path)
+        if total and failed / total > 0.5:
+            failures.append(f"comets.csv query_failed={failed}/{total}")
+    return failures
 
 
 EXPECTED_DATASETS = (
@@ -27,6 +34,12 @@ EXPECTED_DATASETS = (
 )
 
 
+def _comet_query_failures(path: Path) -> tuple[int, int]:
+    with path.open(encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    return sum(row.get("calc_status") == "query_failed" for row in rows), len(rows)
+
+
 def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Path:
     source_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
     data_dir = source_dir / "data"
@@ -41,6 +54,17 @@ def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Pat
             continue
         content = p.read_text(encoding="utf-8").strip().splitlines()
         rows = max(0, len(content) - 1)
+        if name == "comets.csv" and rows:
+            failed, total = _comet_query_failures(p)
+            if failed / total > 0.5:
+                lines.append(
+                    f"- [FAIL] `{name}` rows={rows} query_failed={failed}/{total}"
+                )
+                continue
+            lines.append(
+                f"- [PASS] `{name}` rows={rows} query_failed={failed}/{total}"
+            )
+            continue
         status = "PASS" if rows > 0 else "WARN"
         lines.append(f"- [{status}] `{name}` rows={rows}")
 

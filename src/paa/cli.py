@@ -290,6 +290,7 @@ def cmd_build(args: argparse.Namespace) -> int:
                     site_elev=site.elevation_m,
                     timezone_name=site.timezone,
                     config_dir=config_dir,
+                    cache_dir=year_out / "cache" / "horizons" / "small-bodies",
                 )
             if section == "minor_planets":
                 _write_csv(out / "minor_planets.csv", minor_rows)

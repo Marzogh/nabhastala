@@ -5,12 +5,62 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 5, curated field PDF
+- Stage: 5A1, comet source repair
 - State: complete
-- Objective: generate a compact technical PDF for each reviewed 2026 horizon
-  from a dedicated print composition, while leaving complete datasets in the
-  web edition
+- Objective: resolve comet designations unambiguously through JPL, parse comet
+  magnitude fields correctly, cache all source responses locally, and make
+  widespread query failure a validation error
 - Started: 2026-09-29
+
+## Stage 5A1: Comet source repair
+
+Affected files:
+
+- `src/paa/compute/minor_planets.py`
+- `src/paa/sources/horizons.py`
+- `src/paa/sources/sbdb.py`
+- `src/paa/cli.py`
+- `src/paa/validate/reports.py`
+- focused source, computation and validation tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Periodic and non-periodic comet designations resolve to a current integrated
+  Horizons solution without manual record numbers.
+- Horizons `T-mag`, `N-mag` and `APmag` outputs parse safely.
+- Raw SBDB and Horizons responses are cached under the local edition.
+- Missing magnitude is distinguished from query failure.
+- A release fails when comet source queries fail beyond the allowed threshold.
+- Existing CSV columns and non-comet computation remain compatible.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_horizons_parser.py tests/test_minor_planets.py tests/test_validation.py
+PYTHONPATH=src .venv/bin/astro-almanac build --year 2026 --site se_qld --skip-db --sections comets --force
+```
+
+Results:
+
+- Replaced ambiguous bare periodic-comet queries with JPL Horizons current
+  integrated-solution queries using `DES=<designation>;CAP`.
+- Added safe parsing for Horizons `T-mag`, `N-mag` and `APmag` fields, while
+  retaining a distinct state when no usable magnitude is supplied.
+- Cached the SBDB catalogue and every Horizons response, including negative
+  responses, under each local edition. All three annual comet builds now rerun
+  offline in under two seconds combined.
+- Generated 61 catalogue rows for each 2026 horizon. South East Queensland has
+  9 potentially amateur-observable entries, Southern Tasmania has 8, and the
+  Malabar Coast has 6 under the configured limits.
+- JPL provides no complete 2026 ephemeris for `51P` and `57P`; these remain
+  explicit isolated `query_failed` rows rather than silently disappearing.
+- All three validation reports pass with 2 isolated source failures out of 61
+  candidates. Validation now fails when more than half of comet queries fail.
+- Focused tests: 9 passed. Full regression suite: 67 passed. Ruff passed for all
+  affected Python and test files; `git diff --check` passed.
+- Checkpoint tag: `stage-5a1-comet-source-repair`.
 
 ## Stage 5: Curated field PDF
 

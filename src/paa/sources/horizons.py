@@ -65,11 +65,11 @@ def fetch_observer_ephemeris(query: HorizonsQuery, cache_path: Path | None = Non
     response = requests.get(API_URL, params=params, timeout=30)
     response.raise_for_status()
     raw = response.text
-    if "$$SOE" not in raw or "$$EOE" not in raw:
-        raise ValueError("Horizons response did not contain a complete ephemeris block")
     if cache_path is not None:
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_text(raw, encoding="utf-8")
+    if "$$SOE" not in raw or "$$EOE" not in raw:
+        raise ValueError("Horizons response did not contain a complete ephemeris block")
     return raw
 
 
@@ -148,19 +148,32 @@ def parse_horizons_observer_quantities(raw: str) -> list[dict]:
 
     date_col = _find_col(["date__(ut)"])
     elev_col = _find_col(["elev_"])
-    mag_col = _find_col(["apmag"])
+    mag_cols = [
+        idx
+        for idx, header in enumerate(headers)
+        if any(candidate in header.lower() for candidate in ("apmag", "t-mag", "n-mag"))
+    ]
+    if not mag_cols:
+        raise ValueError("Missing apparent-magnitude column")
     sot_col = _find_col(["s-o-t"])
 
     out: list[dict] = []
     for row in data:
-        if len(row) <= max(date_col, elev_col, mag_col, sot_col):
+        if len(row) <= max(date_col, elev_col, sot_col, *mag_cols):
             continue
         dt = datetime.strptime(row[date_col].strip(), "%Y-%b-%d %H:%M")  # noqa: DTZ007
+        magnitude = None
+        for mag_col in mag_cols:
+            try:
+                magnitude = float(row[mag_col].strip())
+                break
+            except ValueError:
+                continue
         out.append(
             {
                 "datetime_utc": dt,
                 "elevation_deg": float(row[elev_col].strip()),
-                "apmag": float(row[mag_col].strip()),
+                "apmag": magnitude,
                 "solar_elong_deg": float(row[sot_col].strip()),
             }
         )
