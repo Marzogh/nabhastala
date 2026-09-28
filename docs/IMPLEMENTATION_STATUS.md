@@ -114,6 +114,17 @@ Results:
   browser inspection confirmed the new month leads and removal of the Moon markers.
   Full regression suite: 60 passed. Ruff and `git diff --check` passed.
 - Follow-up tag: `stage-4a-editorial-month-fix`.
+- Chips’nCode visual alignment follow-up: restored Atkinson for headings, prose,
+  navigation and UI; retained Noto Sans Devanagari for the Sanskrit identity and
+  monospace for metadata. Reduced the shared spacing scale, header height, hero
+  scale, section padding, card padding and editorial gaps. The compact project
+  header now keeps its quiet navigation and active underline through tablet widths.
+- Visual alignment acceptance command:
+  `PYTHONPATH=src .venv/bin/pytest -q && PYTHONPATH=src .venv/bin/astro-almanac render --year 2026 --site se_qld --format html`.
+- Visual alignment verification: annual and monthly pages were inspected at the
+  available tablet viewport. The complete four-line identity remains visible,
+  navigation stays on one compact row, and the denser hierarchy remains legible.
+  Full regression suite: 60 passed; `git diff --check` passed.
 
 ## Stage 4: Reproducible observing instruments
 
