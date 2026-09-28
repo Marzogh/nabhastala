@@ -94,7 +94,18 @@ def test_three_sites_coexist_and_landing_links_each_edition(tmp_path: Path) -> N
         assert f'href="{site_id}/2027/almanac.html"' in landing
         html = edition.read_text(encoding="utf-8")
         assert f">{site_id.upper()}</dd>" in html
-        assert all(f"/{other}/" not in html for other in SITES if other != site_id)
+        for other in SITES:
+            assert f'href="../../{other}/2027/almanac.html"' in html
+        assert html.count('aria-current="location"') == 1
+
+        september = edition.parent / "months" / "09.html"
+        september_html = september.read_text(encoding="utf-8")
+        for other in SITES:
+            assert f'href="../../../{other}/2027/months/09.html"' in september_html
+
+        data_html = (edition.parent / "data" / "index.html").read_text(encoding="utf-8")
+        for other in SITES:
+            assert f'href="../../../{other}/2027/data/index.html"' in data_html
 
 
 def test_core_views_need_no_javascript_and_reflow_rules_are_scoped(tmp_path: Path) -> None:

@@ -125,6 +125,13 @@ Results:
   available tablet viewport. The complete four-line identity remains visible,
   navigation stays on one compact row, and the denser hierarchy remains legible.
   Full regression suite: 60 passed; `git diff --check` passed.
+- Horizon navigation follow-up: the static page metadata now includes an
+  accessible no-JavaScript disclosure linking all three observing horizons.
+  Annual, monthly and data pages preserve the visitor's current page type and
+  month when switching sites. All three 2026 editions were rerendered locally.
+  Focused information-architecture tests and the full 60-test suite pass; Ruff,
+  link resolution and `git diff --check` pass. Browser inspection confirmed the
+  compact menu and visible current-site state at tablet width.
 
 ## Stage 4: Reproducible observing instruments
 

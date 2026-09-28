@@ -185,6 +185,72 @@ body { background-image: var(--paper-wash); }
   text-transform: none;
 }
 
+.horizon-meta { position: relative; z-index: 7; }
+
+.horizon-switcher { position: relative; }
+
+.horizon-switcher summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.25em;
+}
+
+.horizon-switcher summary::-webkit-details-marker { display: none; }
+
+.horizon-switcher summary::after {
+  color: var(--accent);
+  content: "▾";
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.horizon-switcher[open] summary::after { content: "▴"; }
+
+.horizon-switcher ul {
+  position: absolute;
+  z-index: 8;
+  top: calc(100% + 0.45rem);
+  left: 0;
+  width: min(22rem, calc(100vw - 2rem));
+  margin: 0;
+  padding: 0.35rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  box-shadow: 0 0.6rem 1.5rem rgb(0 0 0 / 12%);
+  list-style: none;
+}
+
+.horizon-switcher a {
+  display: block;
+  padding: 0.55rem 0.65rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.horizon-switcher a:hover,
+.horizon-switcher a:focus-visible,
+.horizon-switcher a[aria-current="location"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.horizon-switcher a[aria-current="location"]::after {
+  float: right;
+  content: "Current";
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .annual-overview .month-nav {
   position: relative;
   top: auto;

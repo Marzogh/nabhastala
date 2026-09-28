@@ -248,6 +248,20 @@ def _identity_context() -> dict[str, str]:
     }
 
 
+def _horizon_links(
+    *, year: int, current_site_id: str, root_prefix: str, page_suffix: str
+) -> tuple[dict[str, object], ...]:
+    return tuple(
+        {
+            "id": site["id"],
+            "name": site["name"],
+            "href": f"{root_prefix}{site['id']}/{year}/{page_suffix}",
+            "current": site["id"] == current_site_id,
+        }
+        for site in SITE_CATALOG
+    )
+
+
 def _edition_catalog(output_dir: Path) -> list[dict[str, object]]:
     editions: list[dict[str, object]] = []
     for site in SITE_CATALOG:
@@ -356,6 +370,12 @@ def _render_data_library(
             site_id=site_id,
             site_name=site_name,
             year=year,
+            horizon_links=_horizon_links(
+                year=year,
+                current_site_id=site_id,
+                root_prefix="../../../",
+                page_suffix="data/index.html",
+            ),
             groups=groups,
             asset_prefix="../assets/",
             identity_href="../../../index.html",
@@ -424,6 +444,12 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             page_eyebrow="Monthly field almanac",
             page_description=f"Observing reference for {common['site_name']}.",
             guide=guide,
+            horizon_links=_horizon_links(
+                year=year,
+                current_site_id=site_id,
+                root_prefix="../../../",
+                page_suffix=f"months/{month:02d}.html",
+            ),
             month_links=[{**item, "href": f"{item['number']:02d}.html"} for item in month_links],
             active_month=month,
             annual_href="../almanac.html",
@@ -471,6 +497,12 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             f"A complete astronomy and astrophotography reference for {common['site_name']}."
         ),
         overview=overview,
+        horizon_links=_horizon_links(
+            year=year,
+            current_site_id=site_id,
+            root_prefix="../../",
+            page_suffix="almanac.html",
+        ),
         instruments=instruments,
         charts=[chart for chart in charts if chart["src"] == "charts/milky_way_windows.png"],
         month_links=month_links,
