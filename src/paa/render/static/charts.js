@@ -20,6 +20,17 @@
   const localDate = (value) => new Intl.DateTimeFormat(undefined, {
     weekday: "short", day: "numeric", month: "short", year: "numeric",
   }).format(new Date(`${value}T12:00:00`));
+  const currentDateInZone = (timeZone) => {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: timeZone || "UTC", year: "numeric", month: "2-digit", day: "2-digit",
+    }).formatToParts(new Date());
+    const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    return `${value.year}-${value.month}-${value.day}`;
+  };
+  const useCurrentDateWhenAvailable = (input) => {
+    const today = currentDateInZone(input.dataset.siteTimezone);
+    if (today >= input.min && today <= input.max) input.value = today;
+  };
   const element = (name, className, text) => {
     const node = document.createElement(name);
     if (className) node.className = className;
@@ -47,6 +58,7 @@
     const facts = planner.querySelector("[data-night-facts]");
     const planetBox = planner.querySelector("[data-night-planets]");
     if (!input || !dataNode || !timeline || !summary || !axis || !facts || !planetBox) return;
+    useCurrentDateWhenAvailable(input);
     const plans = new Map(JSON.parse(dataNode.textContent).map((plan) => [plan.date, plan]));
     const render = () => {
       const plan = plans.get(input.value);
@@ -112,6 +124,7 @@
     const caption = instrument.querySelector("[data-moon-caption]");
     const key = instrument.querySelector("[data-moon-key]");
     if (!input || !chart || !status || !caption || !key) return;
+    useCurrentDateWhenAvailable(input);
     let payload;
     try {
       const response = await fetch(instrument.dataset.moonSrc);
@@ -161,12 +174,6 @@
         const coordinates = points.map((point) => `${x(point.offset_arcsec)},${y(point.datetime_local)}`).join(" ");
         chart.append(svgElement("polyline", { points: coordinates, class: `moon-track-line moon-series-${moonIndex % 8}` }));
         points.forEach((point) => chart.append(svgElement("circle", { cx: x(point.offset_arcsec), cy: y(point.datetime_local), r: 4.5, class: `moon-track-point moon-series-${moonIndex % 8}` })));
-        chart.append(svgElement("text", {
-          x: right - 8,
-          y: top + 20 + moonIndex * 23,
-          class: `moon-direct-label moon-series-${moonIndex % 8}`,
-          "text-anchor": "end",
-        }, moon));
         const item = element("li", `moon-key--${moonIndex % 8}`, moon);
         key.append(item);
       });

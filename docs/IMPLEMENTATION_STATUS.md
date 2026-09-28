@@ -95,6 +95,10 @@ Results:
   Stage 4A Python and test files. `git diff --check` passed. Edition validation
   passed.
 - Checkpoint tag: `stage-4a-date-driven-instruments`.
+- Follow-up UI correction: removed colliding in-chart satellite labels and made
+  date controls default to the current observing-site date whenever it falls
+  within the page's available edition range. The selectable text key remains.
+  Follow-up tag: `stage-4a-current-date-fix`.
 
 ## Stage 4: Reproducible observing instruments
 

@@ -27,7 +27,7 @@
         {% if guide.night_plans %}
         <div class="night-planner" data-night-planner>
           <label for="night-date-{{ guide.month }}">Observing date</label>
-          <input id="night-date-{{ guide.month }}" type="date" value="{{ guide.planner_default_date }}" min="{{ guide.night_plans[0].date }}" max="{{ guide.night_plans[-1].date }}" data-night-date>
+          <input id="night-date-{{ guide.month }}" type="date" value="{{ guide.planner_default_date }}" min="{{ guide.night_plans[0].date }}" max="{{ guide.night_plans[-1].date }}" data-site-timezone="{{ site_timezone }}" data-night-date>
           <div class="night-planner__summary" aria-live="polite" data-night-summary></div>
           <div class="night-planner__timeline" aria-label="Selected night timeline" data-night-timeline>
             <div class="night-planner__track"></div>

@@ -409,6 +409,9 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         "year": year,
         "site_id": site_id,
         "site_name": SITE_NAMES.get(site_id, humanize_label(site_id)),
+        "site_timezone": next(
+            (site["timezone"] for site in SITE_CATALOG if site["id"] == site_id), "UTC"
+        ),
         **_identity_context(),
     }
     environment = _environment()

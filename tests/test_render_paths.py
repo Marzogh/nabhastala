@@ -53,6 +53,9 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert "astronomical darkness, acceptable Moon interference" in html
     assert "When each planet is actually observable." in html
     assert "Choose a date for Jupiter and Saturn." in html
+    assert 'data-site-timezone="Australia/Brisbane"' in (
+        rendered.parent / "months" / "01.html"
+    ).read_text(encoding="utf-8")
     assert 'data-chart-target="milky-year-chart"' in html
     assert 'src="assets/charts.js?v=stage-4a"' in html
     assert "Monthly field guides" in html

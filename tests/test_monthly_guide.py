@@ -166,6 +166,7 @@ def test_rendered_month_is_a_field_guide_with_contextual_downloads(tmp_path: Pat
     assert "Plan the sky for your date" in html
     assert "data-night-planner" in html
     assert 'type="date"' in html
+    assert 'data-site-timezone="Australia/Brisbane"' in html
     assert "Recommended core sessions" in html
     assert "Useful at twilight" in html
     assert 'href="../data/moon_dark_windows.csv" download' in html

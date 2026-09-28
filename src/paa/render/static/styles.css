@@ -1407,7 +1407,6 @@ tbody tr:hover {
 .moon-axis-label { fill: var(--ink-soft); font: 14px var(--font-mono); }
 .moon-track-line { fill: none; stroke-width: 4; }
 .moon-track-point { stroke: var(--paper); stroke-width: 2; }
-.moon-direct-label { font: 800 15px var(--font-sans); paint-order: stroke; stroke: var(--paper); stroke-width: 5px; }
 .moon-series-0 { stroke: #e31a1c; fill: #e31a1c; color: #e31a1c; }
 .moon-series-1 { stroke: #0066cc; fill: #0066cc; color: #0066cc; stroke-dasharray: 12 5; }
 .moon-series-2 { stroke: #16833b; fill: #16833b; color: #16833b; stroke-dasharray: 3 5; }
