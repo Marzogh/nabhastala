@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from paa.compute.dark_windows import Interval, subtract_many
+from paa.compute.dark_windows import Interval
 from paa.models import Site
 
 
@@ -22,7 +22,9 @@ def _astral_imports():
 def generate_sun_moon_tables(year: int, site: Site) -> tuple[list[dict], list[dict], list[dict]]:
     Observer, sun, moon_phase, moonrise, moonset = _astral_imports()
     tz = ZoneInfo(site.timezone)
-    observer = Observer(latitude=site.latitude_deg, longitude=site.longitude_deg, elevation=site.elevation_m)
+    observer = Observer(
+        latitude=site.latitude_deg, longitude=site.longitude_deg, elevation=site.elevation_m
+    )
 
     twilight_rows: list[dict] = []
     moon_phase_rows: list[dict] = []
@@ -54,7 +56,9 @@ def generate_sun_moon_tables(year: int, site: Site) -> tuple[list[dict], list[di
             {
                 "date": day.isoformat(),
                 "moon_phase_index": float(moon_phase(day)),
-                "moon_illumination_fraction": _phase_to_illumination_fraction(float(moon_phase(day))),
+                "moon_illumination_fraction": _phase_to_illumination_fraction(
+                    float(moon_phase(day))
+                ),
             }
         )
         moonrise_rows.append(
@@ -78,9 +82,20 @@ def _phase_to_illumination_fraction(phase_index: float) -> float:
 
 
 def build_dark_windows(
-    twilight_rows: list[dict], moon_phase_rows: list[dict], moonrise_rows: list[dict], min_dark_minutes: int, max_illum: float
+    twilight_rows: list[dict],
+    moon_phase_rows: list[dict],
+    moonrise_rows: list[dict],
+    min_dark_minutes: int,
+    max_illum: float,
 ) -> list[dict]:
     phase_by_date = {row["date"]: row for row in moon_phase_rows}
+    moon_events: list[tuple[datetime, str]] = []
+    for row in moonrise_rows:
+        if row.get("moonrise_local"):
+            moon_events.append((datetime.fromisoformat(row["moonrise_local"]), "rise"))
+        if row.get("moonset_local"):
+            moon_events.append((datetime.fromisoformat(row["moonset_local"]), "set"))
+    moon_events.sort(key=lambda event: event[0])
 
     dark_rows: list[dict] = []
     for tw in twilight_rows:
@@ -93,22 +108,11 @@ def build_dark_windows(
             # Astronomical dawn is next day in local wall time.
             base = Interval(start=base.start, end=base.end + timedelta(days=1))
 
-        cuts: list[Interval] = []
         phase = phase_by_date[d]
         illum = float(phase["moon_illumination_fraction"])
-        rise_row = next((m for m in moonrise_rows if m["date"] == d), None)
-
-        if rise_row and illum > max_illum:
-            rise = rise_row["moonrise_local"]
-            set_ = rise_row["moonset_local"]
-            if rise and set_:
-                rise_dt = datetime.fromisoformat(rise)
-                set_dt = datetime.fromisoformat(set_)
-                if set_dt <= rise_dt:
-                    set_dt += timedelta(days=1)
-                cuts.append(Interval(start=rise_dt, end=set_dt))
-
-        remaining = subtract_many(base, cuts)
+        remaining = [base]
+        if illum > max_illum:
+            remaining = _moon_below_horizon_intervals(base, moon_events)
         for w in remaining:
             minutes = w.minutes
             if minutes < min_dark_minutes:
@@ -124,3 +128,34 @@ def build_dark_windows(
             )
 
     return dark_rows
+
+
+def _moon_below_horizon_intervals(
+    base: Interval, events: list[tuple[datetime, str]]
+) -> list[Interval]:
+    """Return portions of a night when the Moon is below the horizon.
+
+    Rise and set records are events, not a same-date pair. Looking at the event
+    sequence avoids treating a set after dusk as if it belonged to a later rise.
+    """
+    before = [event for event in events if event[0] <= base.start]
+    after = [event for event in events if event[0] > base.start]
+    if before:
+        moon_up = before[-1][1] == "rise"
+    elif after:
+        moon_up = after[0][1] == "set"
+    else:
+        return []
+
+    cursor = base.start
+    below: list[Interval] = []
+    for timestamp, kind in after:
+        if timestamp >= base.end:
+            break
+        if not moon_up and timestamp > cursor:
+            below.append(Interval(cursor, timestamp))
+        moon_up = kind == "rise"
+        cursor = timestamp
+    if not moon_up and cursor < base.end:
+        below.append(Interval(cursor, base.end))
+    return below

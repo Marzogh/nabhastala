@@ -44,22 +44,25 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     assert (rendered.parent / "charts" / "milky_way_windows.png").read_bytes() == b"fixture-chart"
     assert (rendered.parent / "data" / "moon_phase.csv").exists()
     assert (rendered.parent / "data" / "index.html").exists()
+    assert (rendered.parent / "assets" / "data" / "jupiter-moons.json").exists()
+    assert (rendered.parent / "assets" / "data" / "saturn-moons.json").exists()
     assert (output / "index.html").exists()
     html = rendered.read_text(encoding="utf-8")
     assert "The year ahead" in html
-    assert "Moon-free core windows, night by night." in html
+    assert "Usable Galactic Centre viewing windows." in html
+    assert "astronomical darkness, acceptable Moon interference" in html
     assert "When each planet is actually observable." in html
-    assert "Jupiter and Saturn, one observing night at a time." in html
+    assert "Choose a date for Jupiter and Saturn." in html
     assert 'data-chart-target="milky-year-chart"' in html
-    assert 'src="assets/charts.js"' in html
+    assert 'src="assets/charts.js?v=stage-4a"' in html
     assert "Monthly field guides" in html
     assert "Browse data and downloads" in html
     assert "<table" not in html
     assert "<script>unsafe</script>" not in html
     assert "&lt;script&gt;unsafe&lt;/script&gt;" not in html
-    assert "<script>unsafe</script>" in (
-        rendered.parent / "data" / "comets.csv"
-    ).read_text(encoding="utf-8")
+    assert "<script>unsafe</script>" in (rendered.parent / "data" / "comets.csv").read_text(
+        encoding="utf-8"
+    )
 
 
 def test_validation_reads_legacy_data_and_writes_canonical_report(tmp_path: Path) -> None:

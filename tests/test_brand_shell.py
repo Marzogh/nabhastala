@@ -69,13 +69,13 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     january = annual.parent / "months" / "01.html"
     html = january.read_text(encoding="utf-8")
 
-    assert '../assets/styles.css' in html
-    assert '../assets/editorial.css' in html
-    assert '../assets/theme.js' in html
+    assert "../assets/styles.css" in html
+    assert "../assets/editorial.css" in html
+    assert "../assets/theme.js" in html
     assert 'href="../almanac.html"' in html
     assert 'href="../data/index.html"' in html
-    assert "Night-planning overview" in html
-    assert "Darkness across a representative night." in html
+    assert "The date selector requires JavaScript" in html
+    assert "Plan the sky for your date." in html
     assert "Top picks for January." in html
     assert "1 Jan" in html
     assert "<table" not in html

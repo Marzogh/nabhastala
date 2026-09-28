@@ -152,6 +152,8 @@ class MonthGuideView:
     representative_date: str | None = None
     dusk_local: str | None = None
     dawn_local: str | None = None
+    planner_default_date: str | None = None
+    night_plans: tuple[dict[str, object], ...] = ()
     moon_samples: tuple[MoonSampleView, ...] = ()
     dark_windows: tuple[NightWindowView, ...] = ()
     milky_way_sessions: tuple[MilkyWaySessionView, ...] = ()

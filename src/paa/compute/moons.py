@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import csv
 import math
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, time, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -57,16 +57,21 @@ def _best_dates(rows: list[dict], planet_name: str, top_n: int = 3) -> list[str]
 
 def _fetch_body_series(
     target_id: str,
-    centre_utc: datetime,
+    start_utc: datetime,
+    stop_utc: datetime,
     cadence_min: int,
     site: HorizonsSite,
+    cache_path: Path | None = None,
 ) -> dict[datetime, tuple[float, float]]:
-    start = centre_utc - timedelta(hours=5)
-    stop = centre_utc + timedelta(hours=5)
     raw = fetch_observer_ephemeris(
         HorizonsQuery(
-            command=target_id, start_utc=start, stop_utc=stop, step_minutes=cadence_min, site=site
-        )
+            command=target_id,
+            start_utc=start_utc,
+            stop_utc=stop_utc,
+            step_minutes=cadence_min,
+            site=site,
+        ),
+        cache_path=cache_path,
     )
     rows = parse_horizons_observer_ra_dec(raw)
     return {r["datetime_utc"]: (r["ra_deg"], r["dec_deg"]) for r in rows}
@@ -90,9 +95,9 @@ def _observable_timestamps(
     )
     utc_times = [timestamp.replace(tzinfo=UTC) for timestamp in timestamps]
     time_array = Time(utc_times)
-    sun_altitudes = get_sun(time_array).transform_to(
-        AltAz(obstime=time_array, location=location)
-    ).alt.deg
+    sun_altitudes = (
+        get_sun(time_array).transform_to(AltAz(obstime=time_array, location=location)).alt.deg
+    )
     return {
         timestamp
         for timestamp, sun_altitude in zip(timestamps, sun_altitudes, strict=True)
@@ -108,11 +113,15 @@ def compute_moon_offsets(
     site_tz: str,
     config_dir: Path,
     planet_daily_csv: Path,
+    cache_dir: Path | None = None,
 ) -> tuple[list[dict], list[dict]]:
     ids = _load_horizons_ids(config_dir)
-    planet_rows = _read_planet_daily_csv(planet_daily_csv)
     site = HorizonsSite(latitude_deg=site_lat, longitude_deg=site_lon, elevation_m=site_elev)
     tz = ZoneInfo(site_tz)
+    start_local = datetime.combine(date(year, 1, 1), time.min, tzinfo=tz) - timedelta(hours=12)
+    stop_local = datetime.combine(date(year + 1, 1, 1), time.min, tzinfo=tz) + timedelta(hours=12)
+    start_utc = start_local.astimezone(UTC).replace(tzinfo=None)
+    stop_utc = stop_local.astimezone(UTC).replace(tzinfo=None)
 
     systems = [
         (
@@ -133,41 +142,54 @@ def compute_moon_offsets(
     saturn_rows: list[dict] = []
 
     for system_name, planet_id, moon_map, cadence in systems:
-        dates = _best_dates(planet_rows, system_name, top_n=3)
-        rows_by_date = {row["date"]: row for row in planet_rows if row.get("planet") == system_name}
-        for date_iso in dates:
-            best_local = datetime.fromisoformat(rows_by_date[date_iso]["best_time_local"])
-            centre_utc = best_local.astimezone(UTC).replace(tzinfo=None)
-            planet_series = _fetch_body_series(str(planet_id), centre_utc, cadence, site)
-            observable_timestamps = _observable_timestamps(list(planet_series), site)
-            moon_series_map = {
-                moon_name: _fetch_body_series(str(moon_id), centre_utc, cadence, site)
-                for moon_name, moon_id in moon_map.items()
-            }
 
-            for moon_name, moon_series in moon_series_map.items():
-                for dt_utc, (moon_ra, moon_dec) in moon_series.items():
-                    if dt_utc not in observable_timestamps:
-                        continue
-                    planet = planet_series.get(dt_utc)
-                    if planet is None:
-                        continue
-                    p_ra, p_dec = planet
-                    dra = _wrap_delta_ra_deg(moon_ra, p_ra) * math.cos(math.radians(p_dec)) * 3600.0
-                    ddec = (moon_dec - p_dec) * 3600.0
-                    row = {
-                        "system": system_name,
-                        "date": date_iso,
-                        "datetime_utc": dt_utc.isoformat(),
-                        "datetime_local": dt_utc.replace(tzinfo=UTC).astimezone(tz).isoformat(),
-                        "moon": moon_name,
-                        "dra_arcsec": round(dra, 3),
-                        "ddec_arcsec": round(ddec, 3),
-                    }
-                    if system_name == "Jupiter":
-                        jupiter_rows.append(row)
-                    else:
-                        saturn_rows.append(row)
+        def cached(
+            target: str, system_label: str = system_name, step_minutes: int = cadence
+        ) -> Path | None:
+            if cache_dir is None:
+                return None
+            return cache_dir / f"{system_label.lower()}-{target}-{year}-{step_minutes}m.txt"
+
+        planet_series = _fetch_body_series(
+            str(planet_id), start_utc, stop_utc, cadence, site, cached(str(planet_id))
+        )
+        observable_timestamps = _observable_timestamps(list(planet_series), site)
+        moon_series_map = {
+            moon_name: _fetch_body_series(
+                str(moon_id), start_utc, stop_utc, cadence, site, cached(str(moon_id))
+            )
+            for moon_name, moon_id in moon_map.items()
+        }
+
+        for moon_name, moon_series in moon_series_map.items():
+            for dt_utc, (moon_ra, moon_dec) in moon_series.items():
+                if dt_utc not in observable_timestamps:
+                    continue
+                planet = planet_series.get(dt_utc)
+                if planet is None:
+                    continue
+                local_dt = dt_utc.replace(tzinfo=UTC).astimezone(tz)
+                observing_date = (
+                    local_dt.date() - timedelta(days=1) if local_dt.hour < 12 else local_dt.date()
+                )
+                if observing_date.year != year:
+                    continue
+                p_ra, p_dec = planet
+                dra = _wrap_delta_ra_deg(moon_ra, p_ra) * math.cos(math.radians(p_dec)) * 3600.0
+                ddec = (moon_dec - p_dec) * 3600.0
+                row = {
+                    "system": system_name,
+                    "date": observing_date.isoformat(),
+                    "datetime_utc": dt_utc.isoformat(),
+                    "datetime_local": local_dt.isoformat(),
+                    "moon": moon_name,
+                    "dra_arcsec": round(dra, 3),
+                    "ddec_arcsec": round(ddec, 3),
+                }
+                if system_name == "Jupiter":
+                    jupiter_rows.append(row)
+                else:
+                    saturn_rows.append(row)
 
     return jupiter_rows, saturn_rows
 

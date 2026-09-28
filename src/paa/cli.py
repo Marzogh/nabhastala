@@ -273,6 +273,7 @@ def cmd_build(args: argparse.Namespace) -> int:
                 site_tz=site.timezone,
                 config_dir=config_dir,
                 planet_daily_csv=out / "planet_visibility_daily.csv",
+                cache_dir=year_out / "cache" / "horizons" / "moons",
             )
             _write_csv(out / "jupiter_moons.csv", jupiter_moons)
             _write_csv(out / "saturn_moons.csv", saturn_moons)

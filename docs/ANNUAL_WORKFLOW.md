@@ -32,5 +32,8 @@ astro-almanac render --year 2028 --site se_qld --format html
 ```
 
 Milky Way and planet calculations use Astropy locally. The Jupiter and Saturn
-satellite series use JPL Horizons as an upstream ephemeris source, then all
-selection, chart modelling, rendering, validation, and hashing run locally.
+satellite series use JPL Horizons as an upstream ephemeris source. The annual
+download is cached under the uncommitted edition cache, so an unchanged rebuild
+does not request the same source response again. All filtering, observing-night
+assignment, chart modelling, date selection, rendering, validation, and hashing
+run locally without model calls.

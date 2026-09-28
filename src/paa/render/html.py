@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import calendar
 import csv
+import json
 import re
 import shutil
 from dataclasses import dataclass
@@ -29,7 +30,7 @@ SECTIONS = [
     ("sun_twilight.csv", "Sun and twilight"),
     ("moon_phase.csv", "Moon phase and illumination"),
     ("moonrise_moonset.csv", "Moonrise and moonset"),
-    ("moon_dark_windows.csv", "Moon-free dark windows"),
+    ("moon_dark_windows.csv", "Low-Moon dark periods"),
     ("milky_way_windows.csv", "Milky Way core visibility"),
     ("milky_way_monthly_summary.csv", "Milky Way monthly summary"),
     ("planet_visibility_daily.csv", "Daily planet visibility"),
@@ -82,7 +83,7 @@ DATASET_DESCRIPTIONS = {
     "sun_twilight.csv": "Astronomical dusk and dawn for every local date.",
     "moon_phase.csv": "Daily lunar phase index and illuminated fraction.",
     "moonrise_moonset.csv": "Local Moon rise and set times.",
-    "moon_dark_windows.csv": "Moon-free intervals during astronomical darkness.",
+    "moon_dark_windows.csv": "Astronomical darkness with acceptably low Moon interference.",
     "milky_way_windows.csv": "Computed Milky Way core observing windows.",
     "milky_way_monthly_summary.csv": "Monthly Milky Way opportunity totals and maxima.",
     "planet_visibility_daily.csv": "Daily planet visibility calculations.",
@@ -442,6 +443,23 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     charts = _copy_charts(source_year_dir, year_dir)
     overview = build_annual_overview(year, site_id, data_dir)
     instruments = build_observing_instruments(year, data_dir)
+    moon_asset_dir = year_dir / "assets" / "data"
+    moon_asset_dir.mkdir(parents=True, exist_ok=True)
+    moon_systems = []
+    for system in instruments["moon_systems"]:
+        filename = f"{str(system['system']).lower()}-moons.json"
+        (moon_asset_dir / filename).write_text(
+            json.dumps(system["nights"], ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        moon_systems.append(
+            {
+                **{key: value for key, value in system.items() if key != "nights"},
+                "has_nights": bool(system["nights"]),
+                "data_href": f"assets/data/{filename}",
+            }
+        )
+    instruments = {**instruments, "moon_systems": tuple(moon_systems)}
     annual = environment.get_template("annual.html").render(
         **common,
         document_title=f"Nabhastala — {year} field almanac",

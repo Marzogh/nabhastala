@@ -1301,12 +1301,139 @@ tbody tr:hover {
   content: "";
 }
 
+/* Stage 4A date-driven instruments */
+.night-planner {
+  display: grid;
+  grid-template-columns: auto minmax(11rem, 15rem) 1fr;
+  gap: var(--space-3) var(--space-4);
+  align-items: center;
+  padding: var(--space-5);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.night-planner > label,
+.moon-system > label {
+  color: var(--ink-soft);
+  font: 0.68rem var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.night-planner input,
+.moon-system input {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: var(--paper);
+  font: 0.85rem var(--font-mono);
+}
+
+.night-planner__summary {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.night-planner__timeline {
+  position: relative;
+  grid-column: 1 / -1;
+  height: 7rem;
+  overflow: hidden;
+  border: 1px solid #5e6977;
+  background: linear-gradient(180deg, #1a2030, #080b13 52%, #182033);
+}
+
+.night-planner__track {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 35%, rgb(255 255 255 / 48%) 0 1px, transparent 1.5px) 0 0 / 4.2rem 3.2rem;
+  opacity: 0.45;
+}
+
+.night-segment {
+  position: absolute;
+  z-index: 1;
+  height: 1rem;
+  border: 1px solid rgb(255 255 255 / 72%);
+}
+
+.night-segment--moon-free {
+  bottom: 2.2rem;
+  background: #2cc7c9;
+}
+
+.night-segment--milky {
+  bottom: 0.65rem;
+  background: #ffb000;
+}
+
+.night-planner__axis {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(-1 * var(--space-2));
+  color: var(--ink-soft);
+  font: 0.65rem var(--font-mono);
+}
+
+.night-planner__facts {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.night-planner__facts > div { padding: var(--space-3); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.night-planner__facts dt { color: var(--ink-soft); font: 0.62rem var(--font-mono); text-transform: uppercase; }
+.night-planner__facts dd { margin: var(--space-1) 0 0; font-size: 0.82rem; }
+.night-planner__planets { grid-column: 1 / -1; }
+.night-planner__planets h3 { margin-bottom: var(--space-2); font-size: 1rem; }
+.night-planner__planets ul { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.night-planner__planets li { display: grid; min-width: 9rem; padding: var(--space-2) var(--space-3); border-left: 3px solid var(--accent); background: var(--accent-soft); }
+.night-planner__planets span { color: var(--ink-soft); font-size: 0.72rem; }
+
+.moon-system { border: 1px solid var(--border); }
+.moon-system > label { display: inline-block; margin-right: var(--space-3); }
+.moon-chart-status { min-height: 1.5em; color: var(--ink-soft); font-size: 0.82rem; }
+.moon-track { margin: var(--space-3) 0; }
+.moon-track svg { display: block; width: 100%; height: auto; min-height: 20rem; border: 1px solid var(--border-strong); background: var(--paper); }
+.moon-track figcaption { margin-top: var(--space-2); color: var(--ink-soft); font-size: 0.72rem; }
+.moon-grid-line { stroke: var(--border); stroke-width: 1; }
+.moon-planet-axis { stroke: var(--ink); stroke-width: 3; }
+.moon-axis-label { fill: var(--ink-soft); font: 14px var(--font-mono); }
+.moon-track-line { fill: none; stroke-width: 4; }
+.moon-track-point { stroke: var(--paper); stroke-width: 2; }
+.moon-direct-label { font: 800 15px var(--font-sans); paint-order: stroke; stroke: var(--paper); stroke-width: 5px; }
+.moon-series-0 { stroke: #e31a1c; fill: #e31a1c; color: #e31a1c; }
+.moon-series-1 { stroke: #0066cc; fill: #0066cc; color: #0066cc; stroke-dasharray: 12 5; }
+.moon-series-2 { stroke: #16833b; fill: #16833b; color: #16833b; stroke-dasharray: 3 5; }
+.moon-series-3 { stroke: #9c3fc7; fill: #9c3fc7; color: #9c3fc7; stroke-dasharray: 18 5 3 5; }
+.moon-series-4 { stroke: #d05a00; fill: #d05a00; color: #d05a00; stroke-dasharray: 8 4; }
+.moon-series-5 { stroke: #007f86; fill: #007f86; color: #007f86; stroke-dasharray: 2 4 10 4; }
+.moon-series-6 { stroke: #c00066; fill: #c00066; color: #c00066; stroke-dasharray: 14 4 2 4; }
+.moon-series-7 { stroke: #5b5bd6; fill: #5b5bd6; color: #5b5bd6; stroke-dasharray: 5 3; }
+.moon-key--0::before { background: #e31a1c !important; }
+.moon-key--1::before { background: #0066cc !important; }
+.moon-key--2::before { background: #16833b !important; }
+.moon-key--3::before { background: #9c3fc7 !important; }
+.moon-key--4::before { background: #d05a00 !important; }
+.moon-key--5::before { background: #007f86 !important; }
+.moon-key--6::before { background: #c00066 !important; }
+.moon-key--7::before { background: #5b5bd6 !important; }
+
 @media (max-width: 760px) {
   .instrument-heading { align-items: start; }
   .chart-controls { display: none; }
   .moon-system-grid { grid-template-columns: 1fr; }
   .milky-year-chart { min-width: calc(var(--year-days) * 9px + 4.5rem); }
   .milky-month-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .night-planner { grid-template-columns: 1fr; }
+  .night-planner__summary { grid-column: 1; }
+  .night-planner__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .month-card-grid {

@@ -4,9 +4,9 @@ import csv
 from dataclasses import dataclass
 from datetime import datetime
 from io import StringIO
+from pathlib import Path
 
 import requests
-
 
 API_URL = "https://ssd.jpl.nasa.gov/api/horizons.api"
 
@@ -33,13 +33,19 @@ def parse_horizons_csv(raw: str) -> list[list[str]]:
     end = raw.find("$$EOE")
     if start == -1 or end == -1 or end <= start:
         raise ValueError("Horizons output missing $$SOE/$$EOE data block")
-    lines = [line.strip() for line in raw[start + len("$$SOE") : end].strip().splitlines() if line.strip()]
+    lines = [
+        line.strip()
+        for line in raw[start + len("$$SOE") : end].strip().splitlines()
+        if line.strip()
+    ]
     if not lines:
         raise ValueError("Horizons data block is empty")
     return [line.split(",") for line in lines]
 
 
-def fetch_observer_ephemeris(query: HorizonsQuery) -> str:
+def fetch_observer_ephemeris(query: HorizonsQuery, cache_path: Path | None = None) -> str:
+    if cache_path is not None and cache_path.exists():
+        return cache_path.read_text(encoding="utf-8")
     params = {
         "format": "text",
         "COMMAND": f"'{query.command}'",
@@ -58,7 +64,13 @@ def fetch_observer_ephemeris(query: HorizonsQuery) -> str:
     }
     response = requests.get(API_URL, params=params, timeout=30)
     response.raise_for_status()
-    return response.text
+    raw = response.text
+    if "$$SOE" not in raw or "$$EOE" not in raw:
+        raise ValueError("Horizons response did not contain a complete ephemeris block")
+    if cache_path is not None:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        cache_path.write_text(raw, encoding="utf-8")
+    return raw
 
 
 def parse_horizons_observer_ra_dec(raw: str) -> list[dict]:
@@ -96,7 +108,7 @@ def parse_horizons_observer_ra_dec(raw: str) -> list[dict]:
     for row in data:
         if len(row) <= max(date_col, ra_col, dec_col):
             continue
-        dt = datetime.strptime(row[date_col].strip(), "%Y-%b-%d %H:%M")
+        dt = datetime.strptime(row[date_col].strip(), "%Y-%b-%d %H:%M")  # noqa: DTZ007
         out.append(
             {
                 "datetime_utc": dt,
@@ -143,7 +155,7 @@ def parse_horizons_observer_quantities(raw: str) -> list[dict]:
     for row in data:
         if len(row) <= max(date_col, elev_col, mag_col, sot_col):
             continue
-        dt = datetime.strptime(row[date_col].strip(), "%Y-%b-%d %H:%M")
+        dt = datetime.strptime(row[date_col].strip(), "%Y-%b-%d %H:%M")  # noqa: DTZ007
         out.append(
             {
                 "datetime_utc": dt,

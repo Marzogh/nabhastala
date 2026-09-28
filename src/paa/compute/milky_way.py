@@ -10,6 +10,8 @@ from pathlib import Path
 class MilkyWayPoint:
     timestamp_local: datetime
     altitude_deg: float
+    observing_date: str = ""
+    window_end_local: datetime | None = None
 
 
 def _imports():
@@ -24,13 +26,14 @@ def _imports():
     return u, AltAz, EarthLocation, SkyCoord, Time
 
 
-def _parse_windows(dark_windows_csv: Path) -> list[tuple[datetime, datetime]]:
-    out: list[tuple[datetime, datetime]] = []
+def _parse_windows(dark_windows_csv: Path) -> list[tuple[str, datetime, datetime]]:
+    out: list[tuple[str, datetime, datetime]] = []
     with dark_windows_csv.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             out.append(
                 (
+                    row["date"],
                     datetime.fromisoformat(row["start_local"]),
                     datetime.fromisoformat(row["end_local"]),
                 )
@@ -39,7 +42,7 @@ def _parse_windows(dark_windows_csv: Path) -> list[tuple[datetime, datetime]]:
 
 
 def _scan_gc_altitudes(
-    windows: list[tuple[datetime, datetime]],
+    windows: list[tuple[str, datetime, datetime]],
     latitude_deg: float,
     longitude_deg: float,
     elevation_m: float,
@@ -53,11 +56,18 @@ def _scan_gc_altitudes(
 
     points: list[MilkyWayPoint] = []
     step = timedelta(minutes=step_minutes)
-    for start, end in windows:
+    for observing_date, start, end in windows:
         t = start
-        while t <= end:
+        while t < end:
             altaz = gc.transform_to(AltAz(obstime=Time(t), location=loc))
-            points.append(MilkyWayPoint(timestamp_local=t, altitude_deg=float(altaz.alt.deg)))
+            points.append(
+                MilkyWayPoint(
+                    timestamp_local=t,
+                    altitude_deg=float(altaz.alt.deg),
+                    observing_date=observing_date,
+                    window_end_local=end,
+                )
+            )
             t += step
     return points
 
@@ -84,16 +94,23 @@ def _group_visibility_windows(
             current = {
                 "start_local": p.timestamp_local,
                 "last_sample_local": p.timestamp_local,
+                "window_end_local": p.window_end_local,
+                "observing_date": p.observing_date,
                 "max_altitude_deg": p.altitude_deg,
                 "quality": quality,
             }
             continue
 
-        if p.timestamp_local - current["last_sample_local"] > gap_limit:
+        if (
+            p.observing_date != current["observing_date"]
+            or p.timestamp_local - current["last_sample_local"] > gap_limit
+        ):
             windows.append(current)
             current = {
                 "start_local": p.timestamp_local,
                 "last_sample_local": p.timestamp_local,
+                "window_end_local": p.window_end_local,
+                "observing_date": p.observing_date,
                 "max_altitude_deg": p.altitude_deg,
                 "quality": quality,
             }
@@ -110,10 +127,12 @@ def _group_visibility_windows(
     rows: list[dict] = []
     for w in windows:
         end_local = w["last_sample_local"] + timedelta(minutes=step_minutes)
+        if w["window_end_local"] is not None:
+            end_local = min(end_local, w["window_end_local"])
         dur = (end_local - w["start_local"]).total_seconds() / 60.0
         rows.append(
             {
-                "date": w["start_local"].date().isoformat(),
+                "date": w["observing_date"] or w["start_local"].date().isoformat(),
                 "start_local": w["start_local"].isoformat(),
                 "end_local": end_local.isoformat(),
                 "duration_minutes": round(dur, 1),

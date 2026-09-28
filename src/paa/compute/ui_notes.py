@@ -25,7 +25,9 @@ def _safe_float(value: Any) -> float | None:
         return None
 
 
-def _in_night_window(best_time_local: str | None, dusk_local: str | None, dawn_local: str | None) -> bool:
+def _in_night_window(
+    best_time_local: str | None, dusk_local: str | None, dawn_local: str | None
+) -> bool:
     if not best_time_local or not dusk_local or not dawn_local:
         return False
     try:
@@ -70,7 +72,14 @@ def generate_ui_notes(
 ) -> list[dict[str, Any]]:
     notes: list[dict[str, Any]] = []
 
-    def add(note_id: str, section: str, title: str, body: str, score: str = "info", date_local: str | None = None) -> None:
+    def add(
+        note_id: str,
+        section: str,
+        title: str,
+        body: str,
+        score: str = "info",
+        date_local: str | None = None,
+    ) -> None:
         notes.append(
             {
                 "note_id": note_id,
@@ -116,7 +125,7 @@ def generate_ui_notes(
     moon0 = moon_phase_rows[0] if moon_phase_rows else {}
     rise0 = moonrise_rows[0] if moonrise_rows else {}
     illum = _safe_float(moon0.get("moon_illumination_fraction"))
-    illum_pct = int(round(illum * 100)) if illum is not None else None
+    illum_pct = round(illum * 100) if illum is not None else None
 
     tonight_score = "Fair"
     if illum is not None and illum <= 0.1:
@@ -143,7 +152,7 @@ def generate_ui_notes(
         f"{illum_pct if illum_pct is not None else '--'}%",
         (
             f"Moon rises {_fmt_time(rise0.get('moonrise_local'))}, sets {_fmt_time(rise0.get('moonset_local'))}. "
-            "Use moon-free windows first for deep sky."
+            "Use low-Moon dark periods first for deep sky."
         ),
         "info",
         rise0.get("date"),
@@ -178,16 +187,16 @@ def generate_ui_notes(
             raw = min(raw, 4.9)
         score = "excellent" if raw >= 8 else "good" if raw >= 5 else "fair"
         if ill <= 0.35:
-            moon_note = f"Low moon interference ({int(round(ill * 100))}%)."
+            moon_note = f"Low moon interference ({round(ill * 100)}%)."
         elif ill <= 0.7:
-            moon_note = f"Moderate moon interference ({int(round(ill * 100))}%)."
+            moon_note = f"Moderate moon interference ({round(ill * 100)}%)."
         else:
-            moon_note = f"High moon interference ({int(round(ill * 100))}%)."
+            moon_note = f"High moon interference ({round(ill * 100)}%)."
         candidates.append(
             {
                 "date_local": d,
                 "title": "Dark-sky window",
-                "body": f"{int(round(dur))} moon-free minutes. {moon_note}",
+                "body": f"{round(dur)} low-Moon dark minutes. {moon_note}",
                 "score": score,
                 "raw": raw,
             }
@@ -202,7 +211,7 @@ def generate_ui_notes(
             {
                 "date_local": r.get("date", ""),
                 "title": "Milky Way core window",
-                "body": f"Core visibility window with max altitude about {int(round(alt))} degrees.",
+                "body": f"Core visibility window with max altitude about {round(alt)} degrees.",
                 "score": score,
                 "raw": raw,
             }
@@ -255,7 +264,7 @@ def generate_ui_notes(
             {
                 "date_local": r.get("date", ""),
                 "title": f"{pname} observing window",
-                "body": f"{timing_note} {best_time_local[11:16]} with altitude near {int(round(alt))} degrees.",
+                "body": f"{timing_note} {best_time_local[11:16]} with altitude near {round(alt)} degrees.",
                 "score": score,
                 "raw": raw,
             }
@@ -293,7 +302,7 @@ def generate_ui_notes(
             {
                 "date_local": r.get("peak_date_local", ""),
                 "title": f"Meteor shower: {r.get('name', 'shower')}",
-                "body": f"Peak night with ZHR {int(float(r.get('zhr', 0)))} and moon illumination {int(float(r.get('moon_illumination_fraction', 0))*100)}%.",
+                "body": f"Peak night with ZHR {int(float(r.get('zhr', 0)))} and moon illumination {int(float(r.get('moon_illumination_fraction', 0)) * 100)}%.",
                 "score": str(r.get("rating", "fair")).lower(),
                 "raw": raw,
             }
@@ -328,17 +337,17 @@ def generate_ui_notes(
 
         # Keep upcoming list observer-usable: both bodies up and sky dark enough.
         if et in {"planet_planet_conjunction", "moon_planet_conjunction"}:
-            if (alt_p is None or alt_s is None or sun_alt is None):
+            if alt_p is None or alt_s is None or sun_alt is None:
                 continue
             if min(alt_p, alt_s) < 10 or sun_alt > -6:
                 continue
 
         if et == "planet_planet_conjunction":
             title = f"{p}-{s} conjunction"
-            body = f"Closest approach near {_fmt_time(r.get('event_time_local'))}, separation {sep if sep is not None else '--'} degrees. Altitudes {int(round(alt_p or 0))}/{int(round(alt_s or 0))} degrees."
+            body = f"Closest approach near {_fmt_time(r.get('event_time_local'))}, separation {sep if sep is not None else '--'} degrees. Altitudes {round(alt_p or 0)}/{round(alt_s or 0)} degrees."
         elif et == "moon_planet_conjunction":
             title = f"Moon-{s if p.lower() == 'moon' else p} conjunction"
-            body = f"Closest approach near {_fmt_time(r.get('event_time_local'))}, separation {sep if sep is not None else '--'} degrees. Moon illumination {int(round((_safe_float(r.get('moon_illumination_fraction')) or 0)*100))}%."
+            body = f"Closest approach near {_fmt_time(r.get('event_time_local'))}, separation {sep if sep is not None else '--'} degrees. Moon illumination {round((_safe_float(r.get('moon_illumination_fraction')) or 0) * 100)}%."
         elif et == "solar_transit":
             if sun_alt is not None and sun_alt <= 0:
                 continue
@@ -368,7 +377,14 @@ def generate_ui_notes(
         k = (str(c.get("date_local", "")), str(c.get("title", "")))
         if k not in merged or float(c.get("raw", 0)) > float(merged[k].get("raw", 0)):
             merged[k] = c
-    ranked = sorted(merged.values(), key=lambda c: (str(c.get("date_local", "")), -float(c.get("raw", 0)), str(c.get("title", ""))))
+    ranked = sorted(
+        merged.values(),
+        key=lambda c: (
+            str(c.get("date_local", "")),
+            -float(c.get("raw", 0)),
+            str(c.get("title", "")),
+        ),
+    )
     kind_counters: dict[tuple[str, str], int] = {}
     for c in ranked:
         d = str(c.get("date_local", "")) or "undated"

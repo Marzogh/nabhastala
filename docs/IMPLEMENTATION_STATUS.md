@@ -5,12 +5,96 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 4, reproducible observing instruments
+- Stage: 4A, date-driven observing instruments
 - State: complete
-- Objective: correct observing-window calculations, replace static scientific
-  plots with understandable interactive views, and provide one local annual
-  command that regenerates, validates, renders, and records a reviewed edition
-- Started: 2026-09-19
+- Objective: replace fixed-night displays with date-selectable local-data
+  instruments, make satellite tracks distinguishable, clarify Galactic Centre
+  visibility, audit Moon-free intervals, and remove internal release language
+- Started: 2026-09-29
+
+## Stage 4A: Date-driven observing instruments
+
+Implementation order:
+
+1. Audit and correct the Moon-free interval calculation.
+2. Generate full-year Jupiter and Saturn satellite tracks locally, using cached
+   authoritative source responses.
+3. Add a shared date-selected nightly planner and satellite chart that filter
+   precomputed edition data in the browser.
+4. Clarify that the annual Milky Way chart shows Galactic Centre visibility
+   after darkness, Moon, and altitude constraints are applied.
+5. Replace internal implementation copy, render locally, visually inspect, run
+   focused and regression tests, then commit and tag the checkpoint.
+
+Affected files:
+
+- `src/paa/compute/sun_moon.py`
+- `src/paa/compute/moons.py`
+- `src/paa/sources/horizons.py`
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/templates/annual.html`
+- `src/paa/render/templates/monthly.html`
+- `src/paa/render/templates/data_library.html`
+- `src/paa/render/static/styles.css`
+- `src/paa/render/static/charts.js`
+- focused computation and renderer tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Every date in the edition can drive the nightly darkness display.
+- Every date with observable Jupiter or Saturn data can drive its satellite plot.
+- Satellite identity remains understandable without colour alone.
+- The Galactic Centre chart states exactly which constraints it combines.
+- Authoritative responses are downloaded and cached by local code without model
+  calls; repeated builds reuse the cache.
+- Existing CSV columns and commands remain compatible.
+- Focused tests, full regression tests, local render, and visual inspection pass.
+
+Focused test command:
+
+```bash
+PYTHONPATH=src .venv/bin/pytest -q tests/test_dark_windows.py tests/test_moons.py tests/test_monthly_guide.py tests/test_render_paths.py
+```
+
+Exact resume command:
+
+```bash
+git status --short
+sed -n '/## Stage 4A:/,/## Stage 4:/p' docs/IMPLEMENTATION_STATUS.md
+PYTHONPATH=src .venv/bin/pytest -q tests/test_dark_windows.py tests/test_moons.py tests/test_monthly_guide.py tests/test_render_paths.py
+```
+
+Results:
+
+- Monthly pages now provide a date picker for every date in the month. The
+  locally rendered view combines astronomical dusk and dawn, low-Moon darkness,
+  usable Galactic Centre intervals, Moon rise/set and illumination, and daily
+  planet samples.
+- Moon rise and set events are evaluated chronologically across midnight. This
+  fixes the former same-calendar-date pairing error in low-Moon intervals.
+- Milky Way samples retain their observing-night date and are clamped to the
+  source darkness interval. A pre-dawn sample can no longer appear outside the
+  selected evening's displayed night.
+- Jupiter and Saturn now have full-year locally generated JPL Horizons series:
+  16,640 Jupiter rows and 12,654 Saturn rows for the reviewed 2026 SE Queensland
+  edition. Raw source responses are cached locally and reused on rebuild.
+- Satellite charts accept any edition date and clearly report dates with no
+  observable nighttime samples. High-contrast colour, line patterns, points,
+  direct labels, and a text key distinguish moons without relying on colour.
+- Large satellite chart records are emitted as separate static JSON assets; the
+  annual HTML remains 83 KB and the browser performs filtering only.
+- The annual chart now describes usable Galactic Centre viewing as the overlap
+  of astronomical darkness, acceptable Moon interference and core altitude. It
+  no longer presents the result as generic Moon-free time.
+- Internal release wording in the public data library was replaced with concise
+  visitor-facing download copy.
+- Local browser QA confirmed date changes redraw the monthly planner and both
+  satellite charts. Site-local wall times remain stable across visitor zones.
+- Focused tests passed. Full regression suite: 59 passed. Ruff passed for all
+  Stage 4A Python and test files. `git diff --check` passed. Edition validation
+  passed.
+- Checkpoint tag: `stage-4a-date-driven-instruments`.
 
 ## Stage 4: Reproducible observing instruments
 

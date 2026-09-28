@@ -118,10 +118,9 @@ def _milky_way_instrument(year: int, data_dir: Path) -> dict[str, object]:
         month = int(str(window["date"])[5:7])
         current = best_by_month.get(month)
         if current is None or (
-            float(window["duration_minutes"]), float(window["max_altitude_deg"] or -90)
-        ) > (
-            float(current["duration_minutes"]), float(current["max_altitude_deg"] or -90)
-        ):
+            float(window["duration_minutes"]),
+            float(window["max_altitude_deg"] or -90),
+        ) > (float(current["duration_minutes"]), float(current["max_altitude_deg"] or -90)):
             best_by_month[month] = window
     summaries = tuple(
         {
@@ -170,7 +169,7 @@ def _planet_instrument(year: int, data_dir: Path) -> dict[str, object]:
     }
 
 
-def _moon_instrument(data_dir: Path, filename: str, system: str) -> dict[str, object]:
+def _moon_instrument(year: int, data_dir: Path, filename: str, system: str) -> dict[str, object]:
     rows = _read_rows(data_dir, filename)
     by_date: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
@@ -215,7 +214,12 @@ def _moon_instrument(data_dir: Path, filename: str, system: str) -> dict[str, ob
                 "points": points,
             }
         )
-    return {"system": system, "nights": nights}
+    return {
+        "system": system,
+        "year": year,
+        "default_date": nights[0]["date"] if nights else f"{year}-01-01",
+        "nights": nights,
+    }
 
 
 def build_observing_instruments(year: int, data_dir: Path) -> dict[str, object]:
@@ -224,8 +228,8 @@ def build_observing_instruments(year: int, data_dir: Path) -> dict[str, object]:
         "milky_way": _milky_way_instrument(year, data_dir),
         "planets": _planet_instrument(year, data_dir),
         "moon_systems": (
-            _moon_instrument(data_dir, "jupiter_moons.csv", "Jupiter"),
-            _moon_instrument(data_dir, "saturn_moons.csv", "Saturn"),
+            _moon_instrument(year, data_dir, "jupiter_moons.csv", "Jupiter"),
+            _moon_instrument(year, data_dir, "saturn_moons.csv", "Saturn"),
         ),
     }
 
@@ -454,7 +458,7 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
         elif best_dark:
             rating = "fair"
             lead_category = "Dark sky"
-            verdict = "Use the longest Moon-free window for general observing."
+            verdict = "Use the longest low-Moon dark period for general observing."
         else:
             rating = "unavailable"
             lead_category = "No recommendation"
@@ -535,6 +539,61 @@ def build_month_guide(
         )
         if twilight_rows
         else None
+    )
+
+    phase_by_date = {row.get("date", ""): row for row in moon_rows}
+    rise_set_by_date = {
+        row.get("date", ""): row
+        for row in _month_rows(data_dir, "moonrise_moonset.csv", year, month)
+    }
+    dark_by_date: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in _month_rows(data_dir, "moon_dark_windows.csv", year, month):
+        dark_by_date[row.get("date", "")].append(row)
+    milky_by_date: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in _month_rows(data_dir, "milky_way_windows.csv", year, month):
+        milky_by_date[row.get("date", "")].append(row)
+    planets_by_date: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in _month_rows(data_dir, "planet_visibility_daily.csv", year, month):
+        altitude = _number(row.get("twilight_max_altitude_deg"))
+        if altitude is None or altitude <= 0 or not row.get("twilight_best_time_local"):
+            continue
+        planets_by_date[row.get("date", "")].append(
+            {
+                "planet": row.get("planet", ""),
+                "time": row.get("twilight_best_time_local", ""),
+                "altitude": altitude,
+                "rating": row.get("visibility_rating", "unavailable"),
+            }
+        )
+    night_plans = tuple(
+        {
+            "date": row.get("date", ""),
+            "dusk": row.get("dusk_astronomical_local", ""),
+            "dawn": row.get("dawn_astronomical_local", ""),
+            "illumination": _number(
+                phase_by_date.get(row.get("date", ""), {}).get("moon_illumination_fraction")
+            ),
+            "moonrise": rise_set_by_date.get(row.get("date", ""), {}).get("moonrise_local", ""),
+            "moonset": rise_set_by_date.get(row.get("date", ""), {}).get("moonset_local", ""),
+            "dark": [
+                {"start": item.get("start_local", ""), "end": item.get("end_local", "")}
+                for item in dark_by_date.get(row.get("date", ""), [])
+            ],
+            "milky": [
+                {
+                    "start": item.get("start_local", ""),
+                    "end": item.get("end_local", ""),
+                    "altitude": _number(item.get("max_altitude_deg")),
+                    "quality": item.get("quality", "useful"),
+                }
+                for item in milky_by_date.get(row.get("date", ""), [])
+            ],
+            "planets": sorted(
+                planets_by_date.get(row.get("date", ""), []),
+                key=lambda item: (-float(item["altitude"]), str(item["planet"])),
+            ),
+        }
+        for row in sorted(twilight_rows, key=lambda item: item.get("date", ""))
     )
 
     dark_rows = _month_rows(data_dir, "moon_dark_windows.csv", year, month)
@@ -653,7 +712,7 @@ def build_month_guide(
     elif highlights:
         verdict = f"{highlights[0].title} is the clearest observing opportunity this month."
     elif dark_windows:
-        verdict = "Plan general observing around the longest Moon-free window."
+        verdict = "Plan general observing around the longest low-Moon dark period."
         rating = "fair"
     else:
         verdict = "No strong observing recommendation is supported by the available data."
@@ -686,6 +745,14 @@ def build_month_guide(
         representative_date=representative.get("date") if representative else None,
         dusk_local=representative.get("dusk_astronomical_local") if representative else None,
         dawn_local=representative.get("dawn_astronomical_local") if representative else None,
+        planner_default_date=(
+            dark_windows[0].date
+            if dark_windows
+            else representative.get("date")
+            if representative
+            else None
+        ),
+        night_plans=night_plans,
         moon_samples=moon_samples,
         dark_windows=dark_windows,
         milky_way_sessions=milky_sessions,

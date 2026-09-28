@@ -17,11 +17,13 @@ def _fixture(data_dir: Path) -> None:
     _write(
         data_dir,
         "sun_twilight.csv",
-        [{
-            "date": "2027-01-15",
-            "dusk_astronomical_local": "2027-01-15T19:20:00+10:00",
-            "dawn_astronomical_local": "2027-01-15T04:30:00+10:00",
-        }],
+        [
+            {
+                "date": "2027-01-15",
+                "dusk_astronomical_local": "2027-01-15T19:20:00+10:00",
+                "dawn_astronomical_local": "2027-01-15T04:30:00+10:00",
+            }
+        ],
     )
     _write(
         data_dir,
@@ -54,56 +56,84 @@ def _fixture(data_dir: Path) -> None:
     _write(
         data_dir,
         "milky_way_windows.csv",
-        [{
-            "date": "2027-01-15",
-            "start_local": "2027-01-15T02:00:00+10:00",
-            "end_local": "2027-01-15T04:00:00+10:00",
-            "duration_minutes": 120,
-            "max_altitude_deg": 48,
-            "quality": "excellent",
-        }],
+        [
+            {
+                "date": "2027-01-15",
+                "start_local": "2027-01-15T02:00:00+10:00",
+                "end_local": "2027-01-15T04:00:00+10:00",
+                "duration_minutes": 120,
+                "max_altitude_deg": 48,
+                "quality": "excellent",
+            }
+        ],
     )
     _write(
         data_dir,
         "planet_visibility_monthly_summary.csv",
         [
-            {"month": "2027-01", "planet": "Jupiter", "best_date": "2027-01-10", "best_altitude_deg": 60, "rating": "good"},
-            {"month": "2027-01", "planet": "Mars", "best_date": "2027-01-11", "best_altitude_deg": 70, "rating": "excellent"},
+            {
+                "month": "2027-01",
+                "planet": "Jupiter",
+                "best_date": "2027-01-10",
+                "best_altitude_deg": 60,
+                "rating": "good",
+            },
+            {
+                "month": "2027-01",
+                "planet": "Mars",
+                "best_date": "2027-01-11",
+                "best_altitude_deg": 70,
+                "rating": "excellent",
+            },
         ],
     )
     _write(
         data_dir,
         "planet_visibility_daily.csv",
         [
-            {"date": "2027-01-10", "planet": "Jupiter", "twilight_best_time_local": "2027-01-10T19:30:00+10:00", "twilight_max_altitude_deg": 40},
-            {"date": "2027-01-11", "planet": "Mars", "twilight_best_time_local": "2027-01-11T19:30:00+10:00", "twilight_max_altitude_deg": -2},
+            {
+                "date": "2027-01-10",
+                "planet": "Jupiter",
+                "twilight_best_time_local": "2027-01-10T19:30:00+10:00",
+                "twilight_max_altitude_deg": 40,
+            },
+            {
+                "date": "2027-01-11",
+                "planet": "Mars",
+                "twilight_best_time_local": "2027-01-11T19:30:00+10:00",
+                "twilight_max_altitude_deg": -2,
+            },
         ],
     )
     _write(
         data_dir,
         "meteor_showers.csv",
-        [{
-            "id": "quadrantids",
-            "name": "Quadrantids",
-            "peak_date_local": "2027-01-03",
-            "radiant_alt_predawn_deg": 18,
-            "moon_illumination_fraction": 0.9,
-            "score": 1,
-            "rating": "poor",
-        }],
+        [
+            {
+                "id": "quadrantids",
+                "name": "Quadrantids",
+                "peak_date_local": "2027-01-03",
+                "radiant_alt_predawn_deg": 18,
+                "moon_illumination_fraction": 0.9,
+                "score": 1,
+                "rating": "poor",
+            }
+        ],
     )
     _write(
         data_dir,
         "comets.csv",
-        [{
-            "target": "10P",
-            "best_datetime_local": "",
-            "best_altitude_deg": "",
-            "best_apmag": "",
-            "rating": "query_failed",
-            "amateur_chaseable": "False",
-            "calc_status": "query_failed",
-        }],
+        [
+            {
+                "target": "10P",
+                "best_datetime_local": "",
+                "best_altitude_deg": "",
+                "best_apmag": "",
+                "rating": "query_failed",
+                "amateur_chaseable": "False",
+                "calc_status": "query_failed",
+            }
+        ],
     )
 
 
@@ -133,7 +163,9 @@ def test_rendered_month_is_a_field_guide_with_contextual_downloads(tmp_path: Pat
     html = (annual.parent / "months" / "01.html").read_text(encoding="utf-8")
 
     assert "The month in one sentence" in html
-    assert "Astronomical dusk" in html
+    assert "Plan the sky for your date" in html
+    assert "data-night-planner" in html
+    assert 'type="date"' in html
     assert "Recommended core sessions" in html
     assert "Useful at twilight" in html
     assert 'href="../data/moon_dark_windows.csv" download' in html

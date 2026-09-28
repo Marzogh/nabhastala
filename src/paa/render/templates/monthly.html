@@ -21,22 +21,33 @@
     <div class="monthly-editorial-grid">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
-          <p class="eyebrow">Night-planning overview</p><h2 id="night-plan-title">Darkness across a representative night.</h2>
-          {% if guide.representative_date %}<p>A representative night around {{ format_local_date(guide.representative_date) }}.</p>{% endif %}
+          <p class="eyebrow">Night planner</p><h2 id="night-plan-title">Plan the sky for your date.</h2>
+          <p>Choose an observing date to see astronomical darkness, Moon interference, Galactic Centre visibility and the strongest planets.</p>
         </header>
-        <div class="twilight-band" aria-label="Representative astronomical darkness">
-          <div><small>Astronomical dusk</small><strong>{{ format_local_time(guide.dusk_local) }}</strong></div>
-          <span aria-hidden="true"><i></i></span>
-          <div><small>Astronomical dawn</small><strong>{{ format_local_time(guide.dawn_local) }}</strong></div>
+        {% if guide.night_plans %}
+        <div class="night-planner" data-night-planner>
+          <label for="night-date-{{ guide.month }}">Observing date</label>
+          <input id="night-date-{{ guide.month }}" type="date" value="{{ guide.planner_default_date }}" min="{{ guide.night_plans[0].date }}" max="{{ guide.night_plans[-1].date }}" data-night-date>
+          <div class="night-planner__summary" aria-live="polite" data-night-summary></div>
+          <div class="night-planner__timeline" aria-label="Selected night timeline" data-night-timeline>
+            <div class="night-planner__track"></div>
+          </div>
+          <div class="night-planner__axis" data-night-axis></div>
+          <dl class="night-planner__facts" data-night-facts></dl>
+          <div class="night-planner__planets" data-night-planets></div>
+          <script type="application/json" data-night-data>{{ guide.night_plans|tojson }}</script>
         </div>
+        {% endif %}
+        <noscript><p class="field-note">The date selector requires JavaScript.{% if guide.planner_default_date %} Start with {{ format_local_date(guide.planner_default_date) }} or use the best supported dates listed below.{% endif %}</p></noscript>
         {% if guide.dark_windows %}
+          <h3>Best low-Moon dark periods this month</h3>
           <ol class="session-list">
             {% for window in guide.dark_windows %}
               <li><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><strong>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</strong><span>{{ format_duration_minutes(window.duration_minutes) }}{% if window.moon_illumination is not none %} · {{ (window.moon_illumination * 100)|round|int }}% Moon{% endif %}</span></li>
             {% endfor %}
           </ol>
-        {% else %}<p class="empty-state">No Moon-free dark window is available.</p>{% endif %}
-        <a class="context-link" href="../data/moon_dark_windows.csv" download>Complete dark-window data →</a>
+        {% else %}<p class="empty-state">No supported low-Moon dark period is available.</p>{% endif %}
+        <a class="context-link" href="../data/moon_dark_windows.csv" download>Download complete night-planning data →</a>
       </section>
 
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
