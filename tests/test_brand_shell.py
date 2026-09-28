@@ -87,6 +87,21 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert len(list((annual.parent / "months").glob("*.html"))) == 12
 
 
+def test_sky_finder_is_linked_and_has_a_static_fallback(tmp_path: Path) -> None:
+    annual = _render_fixture(tmp_path)
+    sky_page = annual.parent / "sky" / "index.html"
+    html = sky_page.read_text(encoding="utf-8")
+
+    assert 'href="sky/index.html"' in annual.read_text(encoding="utf-8")
+    assert "Choose when you will observe." in html
+    assert 'data-sky-date' in html
+    assert 'data-sky-time' in html
+    assert 'src="../assets/sky.js?v=stage-5d"' in html
+    assert 'data-source="../assets/data/sky-data.json"' in html
+    assert "<noscript>" in html
+    assert (annual.parent / "assets" / "data" / "sky-data.json").exists()
+
+
 def test_packaged_assets_cover_theme_accessibility_print_and_local_fonts(tmp_path: Path) -> None:
     annual = _render_fixture(tmp_path)
     assets = annual.parent / "assets"

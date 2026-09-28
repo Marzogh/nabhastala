@@ -113,6 +113,8 @@ class MilkyWaySessionView:
 class MoonSampleView:
     date: str
     illumination: float
+    phase_index: float
+    illuminated_path: str
 
 
 @dataclass(frozen=True)

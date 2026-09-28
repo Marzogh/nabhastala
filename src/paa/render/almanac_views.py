@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import calendar
 import csv
+import math
 from collections import defaultdict
 from datetime import date, datetime
 from pathlib import Path
@@ -59,6 +60,33 @@ def _duration(value: str | None) -> str:
         return "duration unavailable"
     hours, remainder = divmod(round(minutes), 60)
     return f"{hours}h {remainder:02d}m" if hours else f"{remainder}m"
+
+
+def _moon_illuminated_path(phase_index: float, illumination: float) -> str:
+    """Return an illuminated lunar-disc path for Astral's 0 to 29.53 phase index."""
+    centre = 50.0
+    radius = 46.0
+    if illumination <= 0.002:
+        return ""
+    if illumination >= 0.998:
+        return f"M {centre - radius:.2f} {centre:.2f} a {radius} {radius} 0 1 0 {radius * 2:.2f} 0 a {radius} {radius} 0 1 0 {-radius * 2:.2f} 0"
+
+    phase = (phase_index % 29.53058867) / 29.53058867
+    waxing = phase <= 0.5
+    cosine = math.cos(phase * 2 * math.pi)
+    points: list[tuple[float, float]] = []
+    steps = 48
+    for step in range(steps + 1):
+        y = -radius + (2 * radius * step / steps)
+        limb = math.sqrt(max(0.0, radius**2 - y**2))
+        x = centre + (limb if waxing else -limb)
+        points.append((x, centre + y))
+    for step in range(steps, -1, -1):
+        y = -radius + (2 * radius * step / steps)
+        limb = math.sqrt(max(0.0, radius**2 - y**2))
+        terminator = cosine * limb if waxing else -cosine * limb
+        points.append((centre + terminator, centre + y))
+    return "M " + " L ".join(f"{x:.2f} {y:.2f}" for x, y in points) + " Z"
 
 
 def _short_date(value: str) -> str:
@@ -689,9 +717,20 @@ def build_month_guide(
     moon_values = [(row, value) for row, value in moon_values if value is not None]
     new_moon = min(moon_values, key=lambda item: item[1])[0] if moon_values else None
     full_moon = max(moon_values, key=lambda item: item[1])[0] if moon_values else None
-    moon_samples = tuple(
-        MoonSampleView(row.get("date", ""), value) for row, value in moon_values[::7][:5]
-    )
+    moon_samples_list: list[MoonSampleView] = []
+    for row, value in moon_values[::7][:5]:
+        phase_index = _number(row.get("moon_phase_index"))
+        if phase_index is None:
+            phase_index = math.acos(max(-1.0, min(1.0, 1 - 2 * value))) * 29.53058867 / math.pi
+        moon_samples_list.append(
+            MoonSampleView(
+                date=row.get("date", ""),
+                illumination=value,
+                phase_index=phase_index,
+                illuminated_path=_moon_illuminated_path(phase_index, value),
+            )
+        )
+    moon_samples = tuple(moon_samples_list)
 
     twilight_rows = _month_rows(data_dir, "sun_twilight.csv", year, month)
     representative = (

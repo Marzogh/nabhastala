@@ -31,6 +31,21 @@
     return "Haze may reduce contrast";
   };
 
+  const observingVerdict = ({ cloud, rain, wind, visibility, particles }) => {
+    if (rain > 0) return "Poor for observing: rain is falling.";
+    if (cloud >= 80) return "Poor for observing: cloud is likely to block the sky.";
+    if (visibility < 10 || particles > 25) {
+      return "Limited for observing: haze may wash out faint objects.";
+    }
+    if (cloud <= 20 && wind <= 20 && visibility >= 20 && particles <= 15) {
+      return "Good for observing: the sky is mostly clear with manageable wind.";
+    }
+    if (cloud <= 50 && wind <= 25) {
+      return "Fair for observing: clear gaps should be possible.";
+    }
+    return "Mixed conditions: check outside before setting up.";
+  };
+
   const localTimestamp = (value, abbreviation) => {
     const [date, time] = String(value).split("T");
     if (!date || !time) return "just now";
@@ -47,6 +62,7 @@
     const latitude = panel.dataset.latitude;
     const longitude = panel.dataset.longitude;
     const status = panel.querySelector("[data-conditions-status]");
+    const verdict = panel.querySelector("[data-conditions-verdict]");
     const values = panel.querySelector("[data-conditions-values]");
     const weatherUrl = new URL("https://api.open-meteo.com/v1/forecast");
     weatherUrl.search = new URLSearchParams({
@@ -77,24 +93,34 @@
       const currentAir = air.current || {};
       const cloud = Number(current.cloud_cover);
       const particles = Number(currentAir.pm2_5);
+      const rain = Number(current.precipitation);
+      const wind = Number(current.wind_speed_10m);
+      const visibility = Number(current.visibility) / 1000;
+      verdict.textContent = observingVerdict({
+        cloud,
+        rain,
+        wind,
+        visibility,
+        particles,
+      });
       addValue(values, "Cloud", `${number(cloud)}%`, describeCloud(cloud));
       addValue(
         values,
         "Rain",
-        `${number(current.precipitation, 1)} mm`,
-        Number(current.precipitation) > 0 ? "Falling now" : "None now",
+        `${number(rain, 1)} mm`,
+        rain > 0 ? "Falling now" : "None now",
       );
       addValue(
         values,
         "Wind",
-        `${number(current.wind_speed_10m)} km/h`,
-        Number(current.wind_speed_10m) <= 15 ? "Usually manageable" : "Check equipment",
+        `${number(wind)} km/h`,
+        wind <= 15 ? "Usually manageable" : "Check equipment",
       );
       addValue(
         values,
         "Visibility",
-        `${number(Number(current.visibility) / 1000, 1)} km`,
-        Number(current.visibility) >= 20000 ? "Good transparency" : "Reduced transparency",
+        `${number(visibility, 1)} km`,
+        visibility >= 20 ? "Good transparency" : "Reduced transparency",
       );
       addValue(
         values,
@@ -108,7 +134,8 @@
       )}`;
       values.hidden = false;
     } catch (_) {
-      status.textContent = "Live conditions are unavailable. Use the date planner and check the local forecast before setting out.";
+      verdict.textContent = "Live conditions are unavailable.";
+      status.textContent = "Use the date planner and check the local forecast before setting out.";
     }
   };
 

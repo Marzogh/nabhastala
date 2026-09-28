@@ -5,11 +5,77 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 5C, monthly sky charts and observing conditions
+- Stage: 5D, interactive date-and-time sky chart
 - State: complete
-- Objective: add locally generated monthly sky charts and concise live
-  observing conditions from free public sources
+- Objective: add a site-aware chart for any date and local time in the edition,
+  backed entirely by locally generated annual data
 - Started: 2026-09-29
+
+## Stage 5D: Interactive date-and-time sky chart
+
+Affected files:
+
+- `src/paa/render/sky_charts.py`
+- `src/paa/render/html.py`
+- `src/paa/render/templates/sky.html`
+- `src/paa/render/templates/base.html`
+- `src/paa/render/templates/monthly.html`
+- `src/paa/render/static/sky.js`
+- `src/paa/render/static/editorial.css`
+- `src/paa/render/static/styles.css`
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/view_models.py`
+- focused sky-chart and navigation tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- A visitor can choose any date and local time within the edition year and see
+  an immediate all-sky chart for the selected horizon.
+- The chart includes naked-eye stars, constellation figures, named bright
+  stars, the Sun, Moon and planets where they are above the horizon.
+- Date conversion respects each edition's named time zone, including daylight
+  saving changes, rather than the visitor's computer time zone.
+- All runtime astronomy is limited to coordinate projection over data generated
+  on the Mac. The published page makes no astronomy-service requests.
+- The chart is keyboard operable, responsive, printable and still links to the
+  twelve static monthly charts when JavaScript is unavailable.
+- Compass bearings include intercardinal points, 5-degree ticks and numbered
+  30-degree intervals. Constellation stars, field stars, planets and the Moon
+  remain distinguishable in light and dark themes and in monochrome print.
+- Lunar samples use curved waxing and waning geometry rather than percentage
+  blocks, and remain legible in light, dark and monochrome print output.
+- All three editions render, local links resolve and regression tests pass.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_sky_charts.py tests/test_brand_shell.py tests/test_information_architecture.py
+PYTHONPATH=src .venv/bin/astro-almanac render --year 2026 --site se_qld --format html
+```
+
+Results:
+
+- Added a dedicated Sky page with local date and time controls, a limiting-
+  magnitude control, optional constellation figures, visible-object readout,
+  current-time shortcut and print action.
+- Generated a compact annual browser dataset for each horizon from the locally
+  cached Hipparcos catalogue and JPL ephemeris. Browser interaction performs
+  only coordinate projection and makes no astronomy-service request.
+- Added complete compass graduations, named bright stars, distinct field and
+  constellation stars, and deliberate light and dark palettes for every Solar
+  System object. Monochrome print uses outlines, fills and direct labels.
+- Current conditions now lead with a plain-language observing verdict while
+  retaining the individual measurements below it.
+- Replaced the clipped lunar phase blocks with accurately directed, curved
+  waxing and waning SVG silhouettes.
+- Regenerated and validated all three 2026 editions. Interactive and monthly
+  pages were visually checked in light and dark themes.
+- Focused checks: 18 passed. Full regression suite: 79 passed. All three data
+  editions validated. Changed-file Ruff checks, JavaScript syntax checks and
+  `git diff --check` passed.
+- Checkpoint tag: `stage-5d-interactive-sky-chart`.
 
 ## Stage 5C: Monthly sky charts and observing conditions
 

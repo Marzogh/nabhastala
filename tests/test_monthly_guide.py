@@ -29,8 +29,16 @@ def _fixture(data_dir: Path) -> None:
         data_dir,
         "moon_phase.csv",
         [
-            {"date": "2027-01-01", "moon_illumination_fraction": 0.96},
-            {"date": "2027-01-15", "moon_illumination_fraction": 0.02},
+            {
+                "date": "2027-01-01",
+                "moon_phase_index": 13.0,
+                "moon_illumination_fraction": 0.96,
+            },
+            {
+                "date": "2027-01-15",
+                "moon_phase_index": 0.5,
+                "moon_illumination_fraction": 0.02,
+            },
         ],
     )
     _write(
@@ -147,6 +155,7 @@ def test_month_guide_selects_field_information_without_recalculating_scores(
 
     assert guide.new_moon_date == "2027-01-15"
     assert guide.full_moon_date == "2027-01-01"
+    assert guide.moon_samples[0].illuminated_path.startswith("M ")
     assert guide.dark_windows[0].duration_minutes == 480
     assert guide.milky_way_sessions[0].max_altitude_deg == 48
     assert guide.planet_groups[0].period == "Evening"

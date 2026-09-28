@@ -4,6 +4,7 @@ import numpy as np
 import pytest
 
 from paa.render.sky_charts import (
+    _compass_ring,
     generate_placeholder_sky_charts,
     project_altaz,
 )
@@ -24,3 +25,12 @@ def test_placeholder_chart_set_keeps_partial_render_links_valid(tmp_path: Path) 
     assert len(outputs) == 12
     assert outputs[0].name == "month-01.svg"
     assert "Sky chart unavailable" in outputs[0].read_text(encoding="utf-8")
+
+
+def test_compass_ring_includes_intercardinal_points_and_degree_bearings() -> None:
+    ring = _compass_ring()
+
+    assert ">NE<" in ring
+    assert ">SW<" in ring
+    assert ">30°<" in ring
+    assert ring.count('class="bearing-tick"') == 72

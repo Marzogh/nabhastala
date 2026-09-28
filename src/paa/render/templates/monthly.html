@@ -20,7 +20,8 @@
 
     <section class="conditions-panel" id="conditions" aria-labelledby="conditions-title" data-conditions data-latitude="{{ site_latitude }}" data-longitude="{{ site_longitude }}">
       <header class="section-heading"><p class="eyebrow">Conditions now</p><h2 id="conditions-title">Is the sky likely to cooperate?</h2></header>
-      <p data-conditions-status>Checking cloud, rain, wind and haze near {{ site_name }}…</p>
+      <p class="conditions-verdict" data-conditions-verdict>Checking the sky near {{ site_name }}…</p>
+      <p class="conditions-updated" data-conditions-status></p>
       <dl class="conditions-grid" data-conditions-values hidden></dl>
       <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Forecast by Open-Meteo</a></small>
     </section>
@@ -77,7 +78,7 @@
         <header class="section-heading"><p class="eyebrow">Moon and darkness</p><h2 id="moon-panel-title">Read the lunar month.</h2></header>
         {% if guide.moon_samples %}<div class="moon-progression">
           {% for sample in guide.moon_samples %}
-            <div><span class="moon-disc" style="--moon-fill: {{ (sample.illumination * 100)|round|int }}%" aria-label="{{ (sample.illumination * 100)|round|int }}% illuminated"></span><time datetime="{{ sample.date }}">{{ format_local_date(sample.date) }}</time><small>{{ (sample.illumination * 100)|round|int }}%</small></div>
+            <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="{{ (sample.illumination * 100)|round|int }}% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/>{% if sample.illuminated_path %}<path class="moon-disc__light" d="{{ sample.illuminated_path }}"/>{% endif %}<circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="{{ sample.date }}">{{ format_local_date(sample.date) }}</time><small>{{ (sample.illumination * 100)|round|int }}%</small></div>
           {% endfor %}
         </div>{% else %}<p class="empty-state">Moon phase data is unavailable.</p>{% endif %}
         <p class="field-note">Prefer minimum illumination for faint targets; bright lunar observing belongs near the fullest phase.</p>

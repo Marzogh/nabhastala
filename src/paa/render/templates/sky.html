@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block page_head %}<script defer src="{{ asset_prefix }}sky.js?v=stage-5d"></script>{% endblock %}
+{% block content %}
+  <div class="page-shell sky-tool-page editorial-page">
+    <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
+    {% include "_page_header.html" %}
+
+    <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-year="{{ year }}" data-timezone="{{ site_timezone }}" aria-labelledby="sky-tool-title">
+      <header class="section-heading sky-tool__heading">
+        <p class="eyebrow">Set the sky</p>
+        <h2 id="sky-tool-title">Choose when you will observe.</h2>
+        <p>Times are local to {{ site_name }}.</p>
+      </header>
+
+      <form class="sky-controls" data-sky-controls>
+        <label>Date <input type="date" min="{{ year }}-01-01" max="{{ year }}-12-31" data-sky-date></label>
+        <label>Local time <input type="time" step="60" data-sky-time></label>
+        <label>Faintest stars <input type="range" min="3" max="6.5" step="0.5" value="5.5" data-sky-magnitude><output data-sky-magnitude-value>5.5</output></label>
+        <label class="sky-check"><input type="checkbox" checked data-sky-constellations> Constellation lines</label>
+        <button type="button" data-sky-now>Use current time</button>
+        <button type="button" data-sky-print>Print chart</button>
+      </form>
+
+      <div class="sky-stage">
+        <div class="sky-canvas-wrap"><canvas width="900" height="900" data-sky-canvas aria-label="Interactive all-sky chart"></canvas></div>
+        <aside class="sky-readout" aria-live="polite">
+          <p data-sky-status>Loading the sky chart…</p>
+          <h3>Above the horizon</h3>
+          <ul data-sky-objects></ul>
+          <p class="sky-legend"><span class="sky-legend__star">●</span> Star <span class="sky-legend__body">●</span> Solar System object</p>
+        </aside>
+      </div>
+    </section>
+
+    <noscript>
+      <section class="static-sky-fallback"><h2>Monthly charts</h2><p>Choose the nearest month, then adjust for the time of night.</p><ul>{% for month in month_links %}<li><a href="{{ month.href }}">{{ month.label }}</a></li>{% endfor %}</ul></section>
+    </noscript>
+  </div>
+{% endblock %}

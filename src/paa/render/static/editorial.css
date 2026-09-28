@@ -524,6 +524,15 @@ body { background-image: var(--paper-wash); }
   border-block: 1px solid var(--border);
 }
 
+.conditions-verdict {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 700;
+}
+
+.conditions-updated { margin: 0; color: var(--ink-soft); font-size: 0.72rem; }
+
 .conditions-grid > div {
   padding: 0.75rem;
   border-left: 1px solid var(--border);
@@ -732,6 +741,89 @@ body { background-image: var(--paper-wash); }
   text-align: center;
 }
 
+.sky-tool-page { gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+.sky-tool {
+  display: grid;
+  gap: 1.2rem;
+  scroll-margin-top: 5rem;
+}
+
+.sky-tool__heading { display: grid; gap: 0.25rem; }
+
+.sky-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(9rem, 1fr)) auto auto;
+  gap: 0.75rem;
+  align-items: end;
+  padding: 0.9rem;
+  border-block: 1px solid var(--border-strong);
+}
+
+.sky-controls label {
+  display: grid;
+  gap: 0.3rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.sky-controls input[type="date"],
+.sky-controls input[type="time"] {
+  min-height: 2.5rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: 0.9rem var(--font-mono);
+}
+
+.sky-controls input[type="range"] { width: 100%; accent-color: var(--accent); }
+.sky-controls output { color: var(--ink); font-weight: 700; }
+.sky-controls .sky-check { display: flex; align-items: center; min-height: 2.5rem; }
+
+.sky-controls button {
+  min-height: 2.5rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: 0.72rem var(--font-mono);
+  text-transform: uppercase;
+}
+
+.sky-stage {
+  display: grid;
+  grid-template-columns: minmax(22rem, 1fr) minmax(14rem, 0.28fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.sky-canvas-wrap {
+  min-width: 0;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+}
+
+.sky-canvas-wrap canvas { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+
+.sky-readout {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-top: 2px solid var(--olive-deep);
+}
+
+.sky-readout > p:first-child { font-family: var(--font-editorial); font-size: 1.1rem; font-weight: 700; }
+.sky-readout ul { display: grid; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.sky-readout li { display: flex; justify-content: space-between; gap: 0.7rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
+.sky-readout li span { color: var(--ink-soft); font-size: 0.75rem; text-align: right; }
+.sky-legend { color: var(--ink-soft); font-size: 0.7rem; }
+.sky-legend__star { color: var(--ink); }
+.sky-legend__body { margin-left: 0.75rem; color: var(--accent); }
+.static-sky-fallback ul { display: flex; flex-wrap: wrap; gap: 0.7rem; padding: 0; list-style: none; }
+
 @media (max-width: 72rem) {
   .identity__primary { min-width: 0; }
   .annual-feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -741,6 +833,7 @@ body { background-image: var(--paper-wash); }
   .monthly-verdict dl > div:first-child { border-left: 0; }
   .dataset-group-row { grid-template-columns: 1fr; }
   .dataset-group-heading { border-right: 0; border-bottom: 1px solid var(--border); padding: 0 0 1rem; }
+  .sky-controls { grid-template-columns: repeat(3, minmax(9rem, 1fr)); }
 }
 
 @media (max-width: 52rem) {
@@ -780,6 +873,7 @@ body { background-image: var(--paper-wash); }
   .data-intro-band .catalog-button { grid-column: 1 / -1; justify-self: start; }
   .library-return.illustrated-callout { grid-template-columns: 5rem 1fr; }
   .library-return.illustrated-callout > a { grid-column: 1 / -1; justify-self: start; }
+  .sky-stage { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 36rem) {
@@ -813,6 +907,7 @@ body { background-image: var(--paper-wash); }
   .library-return.illustrated-callout > a { grid-column: auto; width: 100%; min-width: 0; }
   .dataset-row { grid-template-columns: 1fr; gap: 0.3rem; }
   .dataset-row .download-link { justify-self: start; margin-top: 0.4rem; }
+  .sky-controls { grid-template-columns: 1fr; }
 }
 
 @media print {
@@ -821,4 +916,10 @@ body { background-image: var(--paper-wash); }
   .theme-art--dark { display: none !important; }
   .theme-art--light { display: block !important; }
   .annual-feature-grid { grid-template-columns: repeat(3, 1fr); }
+  .sky-controls,
+  .sky-tool-page .site-header,
+  .sky-tool-page .back-link,
+  .sky-readout { display: none !important; }
+  .sky-stage { display: block; }
+  .sky-canvas-wrap { max-width: 100%; border: 0; }
 }

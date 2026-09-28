@@ -18,6 +18,7 @@ from paa.render.almanac_views import (
     build_observing_instruments,
 )
 from paa.render.sky_charts import (
+    generate_interactive_sky_data,
     generate_monthly_sky_charts,
     generate_placeholder_sky_charts,
 )
@@ -399,12 +400,67 @@ def _render_data_library(
             nav_items=(
                 {"href": "../almanac.html", "label": "Annual", "current": False},
                 {"href": "../months/01.html", "label": "Months", "current": False},
+                {"href": "../sky/index.html", "label": "Sky", "current": False},
                 {"href": "index.html", "label": "Data", "current": True},
                 {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
             ),
         )
     )
     output = data_dir / "index.html"
+    output.write_text(page, encoding="utf-8")
+    return output
+
+
+def _render_sky_tool(
+    *, year_dir: Path, site_record: dict[str, object], year: int
+) -> Path:
+    sky_dir = year_dir / "sky"
+    sky_dir.mkdir(parents=True, exist_ok=True)
+    site_id = str(site_record["id"])
+    site_name = str(site_record["name"])
+    page = (
+        _environment()
+        .get_template("sky.html")
+        .render(
+            **_identity_context(),
+            document_title=f"Night sky chart: {site_name}, {year}",
+            page_title="Night sky chart",
+            page_eyebrow="Date and time finder",
+            page_description=f"Choose a local date and time for {site_name}.",
+            site_id=site_id,
+            site_name=site_name,
+            site_timezone=site_record["timezone"],
+            year=year,
+            horizon_links=_horizon_links(
+                year=year,
+                current_site_id=site_id,
+                root_prefix="../../../",
+                page_suffix="sky/index.html",
+            ),
+            month_links=tuple(
+                {
+                    "label": calendar.month_name[month],
+                    "href": f"../charts/sky/month-{month:02d}.svg",
+                }
+                for month in range(1, 13)
+            ),
+            asset_prefix="../assets/",
+            identity_href="../../../index.html",
+            annual_href="../almanac.html",
+            nav_items=(
+                {"href": "../almanac.html", "label": "Annual", "current": False},
+                {"href": "../months/01.html", "label": "Months", "current": False},
+                {"href": "index.html", "label": "Sky", "current": True},
+                {"href": "../data/index.html", "label": "Data", "current": False},
+                {
+                    "href": "https://chipsncode.com/",
+                    "label": "Chips’nCode",
+                    "current": False,
+                },
+            ),
+        )
+    )
+    output = sky_dir / "index.html"
     output.write_text(page, encoding="utf-8")
     return output
 
@@ -445,8 +501,34 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             destination=sky_destination,
             source_root=source_root,
         )
+        generate_interactive_sky_data(
+            year=year,
+            latitude_deg=float(site_record["latitude"]),
+            longitude_deg=float(site_record["longitude"]),
+            elevation_m=float(site_record["elevation"]),
+            timezone_name=str(site_record["timezone"]),
+            destination=year_dir / "assets" / "data" / "sky-data.json",
+            source_root=source_root,
+        )
     else:
         generate_placeholder_sky_charts(year=year, destination=sky_destination)
+        sky_data = year_dir / "assets" / "data" / "sky-data.json"
+        sky_data.parent.mkdir(parents=True, exist_ok=True)
+        sky_data.write_text(
+            json.dumps(
+                {
+                    "year": year,
+                    "latitude": site_record["latitude"],
+                    "longitude": site_record["longitude"],
+                    "timezone": site_record["timezone"],
+                    "stars": [],
+                    "constellations": [],
+                    "bodies": {},
+                },
+                separators=(",", ":"),
+            ),
+            encoding="utf-8",
+        )
 
     month_links = [
         {
@@ -492,6 +574,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             nav_items=(
                 {"href": "../almanac.html", "label": "Annual", "current": False},
                 {"href": f"{month:02d}.html", "label": "Months", "current": True},
+                {"href": "../sky/index.html", "label": "Sky", "current": False},
                 {"href": "../data/index.html", "label": "Data", "current": False},
                 {
                     "href": "https://chipsncode.com/",
@@ -547,12 +630,14 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         nav_items=(
             {"href": "almanac.html", "label": "Annual", "current": True},
             {"href": "months/01.html", "label": "Months", "current": False},
+            {"href": "sky/index.html", "label": "Sky", "current": False},
             {"href": "data/index.html", "label": "Data", "current": False},
             {"href": "https://chipsncode.com/", "label": "Chips’nCode", "current": False},
         ),
     )
     output = year_dir / "almanac.html"
     output.write_text(annual, encoding="utf-8")
+    _render_sky_tool(year_dir=year_dir, site_record=site_record, year=year)
     _render_data_library(
         year_dir=year_dir,
         site_id=site_id,
