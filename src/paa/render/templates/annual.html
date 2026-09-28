@@ -26,7 +26,7 @@
     </section>
 
     <section class="seasonal-sky" aria-labelledby="seasonal-sky-title">
-      <header class="section-heading section-heading--split"><div><p class="eyebrow">The seasonal sky</p><h2 id="seasonal-sky-title">Read the year as observing time.</h2></div><p>Generated locally from this edition’s reviewed data.</p></header>
+      <header class="section-heading section-heading--split"><div><p class="eyebrow">The seasonal sky</p><h2 id="seasonal-sky-title">Read the year as observing time.</h2></div><p>Compare the Galactic Centre, planets and major moons across the year.</p></header>
 
       <article class="instrument-card" aria-labelledby="milky-instrument-title">
         <header class="instrument-heading"><div><p class="eyebrow">Milky Way Galactic Centre</p><h3 id="milky-instrument-title">Usable Galactic Centre viewing windows.</h3><p>Each mark shows when three conditions overlap: astronomical darkness, acceptable Moon interference, and the Galactic Centre at least 20° above the horizon. Wider marks mean a longer usable core-viewing period, not a larger Milky Way.</p></div><div class="chart-controls" aria-label="Milky Way chart controls"><button type="button" data-chart-scroll="back" data-chart-target="milky-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="milky-year-chart" aria-label="Scroll chart forward">→</button></div></header>
@@ -59,9 +59,9 @@
       </article>
 
       <section class="moon-system-section" aria-labelledby="moon-system-title">
-        <header class="section-heading"><p class="eyebrow">Satellite systems</p><h3 id="moon-system-title">Choose a date for Jupiter and Saturn.</h3><p>Each chart is generated from the edition’s locally cached JPL Horizons data. Position is east-west offset from the planet; time runs downward. Colour, line pattern, points and the text key distinguish every moon.</p></header>
+        <header class="section-heading"><p class="eyebrow">Satellite systems</p><h3 id="moon-system-title">Choose a date for Jupiter and Saturn.</h3><p>Follow the major moons across the selected night. The centre line marks the planet; west is left and east is right.</p></header>
         <div class="moon-system-grid">
-          {% for system in instruments.moon_systems %}<article class="moon-system" data-moon-system data-moon-src="{{ system.data_href }}"><h4>{{ system.system }}</h4>{% if system.has_nights %}<label for="{{ system.system|lower }}-moon-date">Observing date</label><input id="{{ system.system|lower }}-moon-date" type="date" min="{{ system.year }}-01-01" max="{{ system.year }}-12-31" value="{{ system.default_date }}" data-site-timezone="{{ site_timezone }}" data-moon-date><p class="moon-chart-status" aria-live="polite" data-moon-status>Loading locally generated ephemeris…</p><figure class="moon-track"><svg viewBox="0 0 800 430" role="img" aria-label="{{ system.system }} moon positions through the selected night" data-moon-chart></svg><figcaption data-moon-caption></figcaption></figure><ul class="moon-key" data-moon-key></ul><noscript><p class="field-note">The date selector requires JavaScript. Download the complete offsets below.</p></noscript>{% else %}<p class="empty-state">No validated observing-night offsets are available.</p>{% endif %}<a class="context-link" href="data/{{ system.system|lower }}_moons.csv" download>Download {{ system.system }} moon offsets →</a></article>{% endfor %}
+          {% for system in instruments.moon_systems %}<article class="moon-system" data-moon-system data-moon-src="{{ system.data_href }}"><h4>{{ system.system }}</h4>{% if system.has_nights %}<label for="{{ system.system|lower }}-moon-date">Observing date</label><input id="{{ system.system|lower }}-moon-date" type="date" min="{{ system.year }}-01-01" max="{{ system.year }}-12-31" value="{{ system.default_date }}" data-site-timezone="{{ site_timezone }}" data-moon-date><p class="moon-chart-status" aria-live="polite" data-moon-status>Loading moon positions…</p><figure class="moon-track"><svg viewBox="0 0 800 430" role="img" aria-label="{{ system.system }} moon positions through the selected night" data-moon-chart></svg><figcaption data-moon-caption></figcaption></figure><ul class="moon-key" data-moon-key></ul><noscript><p class="field-note">The date selector requires JavaScript. Download the complete offsets below.</p></noscript>{% else %}<p class="empty-state">No observing-night offsets are available.</p>{% endif %}<a class="context-link" href="data/{{ system.system|lower }}_moons.csv" download>Download {{ system.system }} moon offsets →</a></article>{% endfor %}
         </div>
       </section>
     </section>
@@ -71,9 +71,9 @@
       <div class="month-card-grid">
         {% for month in overview.months %}
           <article class="month-card tone-{{ rating_tone(month.rating) }}">
-            <header><span class="month-card__number">{{ "%02d"|format(month.month) }}</span><span class="moon-marker"{% if month.moon_illumination is not none %} style="--moon-fill: {{ (month.moon_illumination * 100)|round|int }}%"{% endif %} aria-label="{{ month.moon_state }}"></span><div><p>{{ month.rating|replace("_", " ")|title }}</p><h3>{{ month.month_name }}</h3></div></header>
+            <header><span class="month-card__number">{{ "%02d"|format(month.month) }}</span><div><p>{{ month.lead_category }}</p><h3>{{ month.month_name }}</h3></div></header>
             <p class="month-card__verdict">{{ month.verdict }}</p>
-            <dl><div><dt>Theme</dt><dd>{{ month.lead_category }}</dd></div><div><dt>Longest dark window</dt><dd>{{ month.best_dark_window or "Not available" }}</dd></div></dl>
+            <dl><div><dt>Best low-Moon period</dt><dd>{{ month.best_dark_window or "Not available" }}</dd></div></dl>
             <a href="{{ month.href }}">Open {{ month.month_name }} field guide <span aria-hidden="true">→</span></a>
           </article>
         {% endfor %}
@@ -82,7 +82,7 @@
 
     <aside class="data-callout illustrated-callout" aria-labelledby="data-callout-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/telescope-dark.webp" alt=""></span>
-      <div><p class="eyebrow">Data and downloads</p><h2 id="data-callout-title">Need every generated value?</h2><p>The complete datasets, including unavailable results, remain downloadable for inspection and analysis.</p></div>
+      <div><p class="eyebrow">Data and downloads</p><h2 id="data-callout-title">Need the full observing tables?</h2><p>Download the complete dates, times and measurements behind each guide.</p></div>
       <a href="data/index.html">Browse data and downloads <span aria-hidden="true">→</span></a>
     </aside>
   </div>

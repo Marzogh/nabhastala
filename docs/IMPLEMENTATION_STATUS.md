@@ -99,6 +99,20 @@ Results:
   date controls default to the current observing-site date whenever it falls
   within the page's available edition range. The selectable text key remains.
   Follow-up tag: `stage-4a-current-date-fix`.
+- Editorial follow-up: removed the unexplained Moon circles and repetitive
+  Milky Way counts from the annual month cards. Cards now prioritise outer-planet
+  opposition, favourable meteor showers, then a specific Galactic Centre session.
+  Saturn is correctly promoted in October from the daily solar-elongation data;
+  December promotes the Geminids. Public implementation and release commentary
+  was replaced with observing guidance.
+- Follow-up acceptance command:
+  `PYTHONPATH=src .venv/bin/pytest -q tests/test_annual_overview.py tests/test_brand_shell.py tests/test_render_paths.py`.
+- Exact resume command:
+  `git status --short && PYTHONPATH=src .venv/bin/astro-almanac render --year 2026 --site se_qld --format html`.
+- Follow-up verification: the 2026 SE Queensland annual page rendered locally;
+  browser inspection confirmed the new month leads and removal of the Moon markers.
+  Full regression suite: 60 passed. Ruff and `git diff --check` passed.
+- Follow-up tag: `stage-4a-editorial-month-fix`.
 
 ## Stage 4: Reproducible observing instruments
 

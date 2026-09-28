@@ -328,9 +328,7 @@ body {
 }
 
 .month-card header > div { grid-column: 1 / -1; }
-.month-card .moon-marker { grid-column: 3; grid-row: 1; }
 .month-card__verdict { min-height: 0; font-family: var(--font-editorial); }
-.month-card dl > div:first-child { display: none; }
 
 .illustrated-callout {
   grid-template-columns: 6.5rem minmax(0, 1fr) auto;

@@ -123,7 +123,7 @@ def test_landing_page_lists_horizons_and_available_local_editions(tmp_path: Path
     assert "Southern Tasmania, Australia" in html
     assert "Malabar Coast, India" in html
     assert 'href="se_qld/2027/almanac.html"' in html
-    assert "No local edition generated yet." in html
+    assert "No edition is available yet." in html
     assert "<table" not in html
     assert 'href="#horizons"' in html
 

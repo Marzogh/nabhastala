@@ -351,8 +351,7 @@ def _render_data_library(
             page_title="Data and downloads",
             page_eyebrow="Complete reference files",
             page_description=(
-                "The full generated datasets remain available for detailed inspection, "
-                "export, and reproducible analysis."
+                "Download the complete dates, times and measurements behind each guide."
             ),
             site_id=site_id,
             site_name=site_name,

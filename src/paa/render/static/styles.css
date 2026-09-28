@@ -863,17 +863,6 @@ tbody tr:hover {
   text-transform: uppercase;
 }
 
-.moon-marker {
-  --moon-fill: 0%;
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  width: 1.65rem;
-  height: 1.65rem;
-  border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  background: linear-gradient(90deg, var(--ink) var(--moon-fill), transparent 0);
-}
-
 .tone-excellent { --tone: var(--sage); }
 .tone-good { --tone: #9b7b4f; }
 .tone-fair { --tone: var(--accent); }

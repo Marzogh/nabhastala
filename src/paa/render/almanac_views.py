@@ -69,6 +69,87 @@ def _short_date(value: str) -> str:
         return value
 
 
+def _short_time(value: str) -> str:
+    try:
+        moment = datetime.fromisoformat(value)
+    except (TypeError, ValueError):
+        return value
+    hour = moment.hour % 12 or 12
+    suffix = "am" if moment.hour < 12 else "pm"
+    return f"{hour}:{moment.minute:02d} {suffix}"
+
+
+def _best_milky_windows(year: int, data_dir: Path) -> dict[int, dict[str, str]]:
+    best: dict[int, dict[str, str]] = {}
+    for row in _read_rows(data_dir, "milky_way_windows.csv"):
+        date_value = row.get("date", "")
+        if not date_value.startswith(f"{year}-"):
+            continue
+        try:
+            month = int(date_value[5:7])
+        except ValueError:
+            continue
+        current = best.get(month)
+        rank = (
+            _number(row.get("max_altitude_deg")) or -90,
+            _number(row.get("duration_minutes")) or 0,
+        )
+        current_rank = (
+            (_number(current.get("max_altitude_deg")) or -90),
+            (_number(current.get("duration_minutes")) or 0),
+        ) if current else (-90, 0)
+        if current is None or rank > current_rank:
+            best[month] = row
+    return best
+
+
+def _planet_oppositions(year: int, data_dir: Path) -> dict[int, dict[str, str]]:
+    """Find outer-planet opposition dates from maximum annual solar elongation."""
+    best_by_planet: dict[str, dict[str, str]] = {}
+    for row in _read_rows(data_dir, "planet_visibility_daily.csv"):
+        date_value = row.get("date", "")
+        planet = row.get("planet", "")
+        elongation = _number(row.get("solar_elong_deg"))
+        if (
+            not date_value.startswith(f"{year}-")
+            or planet not in {"Jupiter", "Saturn", "Uranus", "Neptune"}
+            or elongation is None
+        ):
+            continue
+        current = best_by_planet.get(planet)
+        if current is None or elongation > (_number(current.get("solar_elong_deg")) or -1):
+            best_by_planet[planet] = row
+
+    by_month: dict[int, dict[str, str]] = {}
+    for row in best_by_planet.values():
+        elongation = _number(row.get("solar_elong_deg")) or 0
+        if elongation < 170:
+            continue
+        month = int(row["date"][5:7])
+        current = by_month.get(month)
+        if current is None or abs(180 - elongation) < abs(
+            180 - (_number(current.get("solar_elong_deg")) or 0)
+        ):
+            by_month[month] = row
+    return by_month
+
+
+def _notable_meteors(year: int, data_dir: Path) -> dict[int, dict[str, str]]:
+    by_month: dict[int, dict[str, str]] = {}
+    for row in _read_rows(data_dir, "meteor_showers.csv"):
+        date_value = row.get("peak_date_local", "")
+        rating = row.get("rating", "").lower()
+        if not date_value.startswith(f"{year}-") or rating not in {"good", "excellent"}:
+            continue
+        month = int(date_value[5:7])
+        current = by_month.get(month)
+        if current is None or RATING_PRIORITY.get(rating, 0) > RATING_PRIORITY.get(
+            current.get("rating", "").lower(), 0
+        ):
+            by_month[month] = row
+    return by_month
+
+
 def _night_minute(value: datetime) -> float:
     minutes = value.hour * 60 + value.minute
     if minutes < 12 * 60:
@@ -418,11 +499,9 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
         if current is None or duration > float(current["duration_minutes"]):
             dark_by_month[month] = row
 
-    milky_by_month = {
-        int(row["month"][5:7]): row
-        for row in _read_rows(data_dir, "milky_way_monthly_summary.csv")
-        if row.get("month", "").startswith(f"{year}-")
-    }
+    milky_by_month = _best_milky_windows(year, data_dir)
+    oppositions_by_month = _planet_oppositions(year, data_dir)
+    meteors_by_month = _notable_meteors(year, data_dir)
 
     months: list[MonthSummaryView] = []
     for month in range(1, 13):
@@ -443,14 +522,43 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
             candidate for candidate in candidates if candidate.date_local[5:7] == f"{month:02d}"
         ]
         month_highlights = rank_diverse_opportunities(month_candidates, limit=2)
-        milky = milky_by_month.get(month, {})
-        excellent_milky = int(float(milky.get("excellent_count", "0") or 0))
-        if excellent_milky:
-            rating = "excellent"
-            lead_category = "Milky Way"
-            verdict = (
-                f"{excellent_milky} excellent Milky Way windows make this a strong deep-sky month."
+        opposition = oppositions_by_month.get(month)
+        meteor = meteors_by_month.get(month)
+        milky = milky_by_month.get(month)
+        if opposition:
+            planet = opposition.get("planet", "A planet")
+            best_time = opposition.get("twilight_best_time_local") or opposition.get(
+                "best_time_local", ""
             )
+            rating = opposition.get("visibility_rating", "excellent").lower()
+            lead_category = "Planet opposition"
+            verdict = f"{planet} reaches opposition on {_short_date(opposition['date'])}"
+            verdict += f" and is highest around {_short_time(best_time)}." if best_time else "."
+        elif meteor:
+            name = meteor.get("name") or meteor.get("id", "Meteor shower").replace("_", " ").title()
+            illumination = _number(meteor.get("moon_illumination_fraction"))
+            radiant = _number(meteor.get("radiant_alt_predawn_deg"))
+            rating = meteor.get("rating", "good").lower()
+            lead_category = "Meteor shower"
+            verdict = f"{name} peak on {_short_date(meteor['peak_date_local'])}"
+            if illumination is not None:
+                verdict += f" under {illumination:.0%} Moon"
+            if radiant is not None and radiant < 10:
+                verdict += ", though the radiant stays low from this horizon."
+            elif radiant is not None:
+                verdict += f", with the radiant reaching about {radiant:.0f}° before dawn."
+            else:
+                verdict += "."
+        elif milky:
+            rating = "excellent" if milky.get("quality", "").lower() == "excellent" else "good"
+            lead_category = "Galactic Centre"
+            verdict = (
+                f"Galactic Centre viewing is best on {_short_date(milky['date'])}, "
+                f"from {_short_time(milky.get('start_local', ''))} to "
+                f"{_short_time(milky.get('end_local', ''))}"
+            )
+            altitude = _number(milky.get("max_altitude_deg"))
+            verdict += f", reaching {altitude:.0f}°." if altitude is not None else "."
         elif month_highlights:
             rating = month_highlights[0].rating.lower()
             lead_category = month_highlights[0].category

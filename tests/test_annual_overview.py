@@ -131,7 +131,8 @@ def test_annual_overview_selects_month_signals_and_diverse_complete_highlights(
     january = overview.months[0]
     assert january.moon_illumination == 0.05
     assert january.best_dark_window == "3 Jan 2027 · 4h 20m"
-    assert january.lead_category == "Milky Way"
+    assert january.lead_category == "Galactic Centre"
+    assert "2:00 am to 4:00 am" in january.verdict
     assert january.href == "months/01.html"
     assert {item.category for item in overview.highlights} == {
         "Milky Way",
@@ -142,6 +143,40 @@ def test_annual_overview_selects_month_signals_and_diverse_complete_highlights(
     assert all(item.category != "Comets" for item in overview.highlights)
     assert any(item.title == "Minor planet 4" for item in overview.highlights)
     assert overview.planet_seasons[0].best_date == "2027-01-10"
+
+
+def test_annual_overview_prioritises_outer_planet_opposition(tmp_path: Path) -> None:
+    data_dir = tmp_path / "data"
+    _write_overview_fixture(data_dir)
+    _write_csv(
+        data_dir,
+        "planet_visibility_daily.csv",
+        [
+            {
+                "date": "2027-10-04",
+                "planet": "Saturn",
+                "solar_elong_deg": 177.3,
+                "twilight_best_time_local": "2027-10-04T23:30:00+10:00",
+                "visibility_rating": "excellent",
+            },
+            {
+                "date": "2027-12-04",
+                "planet": "Saturn",
+                "solar_elong_deg": 120,
+                "twilight_best_time_local": "2027-12-04T20:30:00+10:00",
+                "visibility_rating": "excellent",
+            },
+        ],
+    )
+
+    overview = build_annual_overview(2027, "se_qld", data_dir)
+
+    october = overview.months[9]
+    december = overview.months[11]
+    assert october.lead_category == "Planet opposition"
+    assert october.verdict == "Saturn reaches opposition on 4 Oct 2027 and is highest around 11:30 pm."
+    assert december.lead_category == "Meteor shower"
+    assert "Geminids peak on 14 Dec 2027" in december.verdict
 
 
 def test_diverse_ranking_validates_limit() -> None:
