@@ -79,7 +79,11 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert ">Night planner<" in html
     assert "January highlights" in html
     assert ">Current conditions<" in html
-    assert "Mid-month sky at 10 pm" in html
+    assert "Sky chart: 15 Jan 2027, 10 pm" in html
+    assert 'href="../sky/index.html?date=2027-01-15&amp;time=22:00"' in html
+    assert "Show static monthly chart" in html
+    assert '<details class="monthly-sky-disclosure">' in html
+    assert '<details class="monthly-sky-disclosure" open>' not in html
     assert 'src="../charts/sky/month-01.svg"' in html
     assert (annual.parent / "charts" / "sky" / "month-01.svg").exists()
     assert "1 Jan" in html
@@ -96,8 +100,11 @@ def test_sky_finder_is_linked_and_has_a_static_fallback(tmp_path: Path) -> None:
     assert ">Night sky chart<" in html
     assert 'data-sky-date' in html
     assert 'data-sky-time' in html
-    assert 'src="../assets/sky.js?v=stage-5d"' in html
+    assert 'src="../assets/sky.js?v=monthly-sky-summary-1"' in html
     assert 'data-source="../assets/data/sky-data.json"' in html
+    assert "URLSearchParams" in (annual.parent / "assets" / "sky.js").read_text(
+        encoding="utf-8"
+    )
     assert "<noscript>" in html
     assert (annual.parent / "assets" / "data" / "sky-data.json").exists()
 
@@ -116,6 +123,8 @@ def test_packaged_assets_cover_theme_accessibility_print_and_local_fonts(tmp_pat
     assert "@media print" in css
     assert "fonts.googleapis.com" not in css
     assert "theme-art--dark" in editorial
+    assert ".monthly-sky-disclosure:not([open]) > :not(summary) { display: none; }" in editorial
+    assert ".monthly-sky-chart { max-width: 45rem;" in editorial
     assert sum(path.stat().st_size for path in (assets / "art").glob("*.webp")) < 800_000
     assert "nabhastala-theme" in script
     assert (assets / "fonts" / "atkinson-regular-latin.woff2").read_bytes()[:4] == b"wOF2"

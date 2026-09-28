@@ -13,6 +13,19 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Stage 6: Reviewed release builder and GitHub Pages deployment
 
+### Compact monthly sky-chart hand-off
+
+- Replaced the full-width monthly chart with a compact dated band between
+  current conditions and the night planner.
+- The primary action opens the interactive sky chart with the month’s reference
+  date and 10 pm local time already selected.
+- Kept the generated monthly SVG in a collapsed disclosure for reference and
+  print, constrained to a readable 45 rem width when opened.
+- Rebuilt all three editions and the 292-file release tree. The release check,
+  JavaScript syntax check, changed-file Ruff check and all 82 tests passed.
+- Visually checked the closed and expanded states in the exact release tree and
+  confirmed the interactive chart receives `2026-09-15` and `22:00`.
+
 ### Public-copy audit
 
 - Audited the landing page, annual and monthly guides, data library, sky tool,

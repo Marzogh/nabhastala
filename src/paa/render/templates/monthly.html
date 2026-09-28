@@ -14,8 +14,9 @@
       </dl>
     </section>
 
+    {% set chart_date = "%04d-%02d-15"|format(guide.year, guide.month) %}
     <nav class="guide-nav" aria-label="Sections in {{ guide.month_name }}">
-      <a href="#conditions">Conditions</a><a href="#sky-chart">Sky chart</a><a href="#night-plan">Night plan</a><a href="#highlights">Highlights</a><a href="#deep-sky">Deep sky</a><a href="#planets">Planets</a><a href="#downloads">Data</a>
+      <a href="#conditions">Conditions</a><a href="../sky/index.html?date={{ chart_date }}&amp;time=22:00">Sky chart</a><a href="#night-plan">Night plan</a><a href="#highlights">Highlights</a><a href="#deep-sky">Deep sky</a><a href="#planets">Planets</a><a href="#downloads">Data</a>
     </nav>
 
     <section class="conditions-panel" id="conditions" aria-labelledby="conditions-title" data-conditions data-latitude="{{ site_latitude }}" data-longitude="{{ site_longitude }}">
@@ -26,9 +27,13 @@
       <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather data: Open-Meteo</a></small>
     </section>
 
-    <section class="sky-chart-panel" id="sky-chart" aria-labelledby="sky-chart-title">
-      <header class="section-heading"><h2 id="sky-chart-title">Mid-month sky at 10 pm</h2><p>Face the matching compass direction and read outward from the centre toward the horizon.</p></header>
-      <figure class="monthly-sky-chart"><img src="../charts/sky/month-{{ '%02d'|format(guide.month) }}.svg" alt="All-sky chart for {{ guide.month_name }} {{ guide.year }} at {{ site_name }}"><figcaption>North is at the top; east is at the left. Planets shown are above the horizon at chart time.</figcaption></figure>
+    <section class="sky-chart-summary" id="sky-chart" aria-labelledby="sky-chart-title">
+      <header><h2 id="sky-chart-title">Sky chart: {{ format_local_date(chart_date, include_year=True) }}, 10 pm</h2><p>{{ site_name }} local time.</p></header>
+      <a class="sky-chart-tool-link" href="../sky/index.html?date={{ chart_date }}&amp;time=22:00">Open interactive sky chart →</a>
+      <details class="monthly-sky-disclosure">
+        <summary>Show static monthly chart</summary>
+        <figure class="monthly-sky-chart"><img src="../charts/sky/month-{{ '%02d'|format(guide.month) }}.svg" alt="All-sky chart for {{ format_local_date(chart_date, include_year=True) }} at 10 pm, {{ site_name }}"><figcaption>North is at the top; east is at the left. Solar System objects shown are above the horizon at 10 pm.</figcaption></figure>
+      </details>
     </section>
 
     <div class="monthly-editorial-grid">
