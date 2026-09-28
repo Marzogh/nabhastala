@@ -810,20 +810,9 @@ def build_month_guide(
     if not _month_rows(data_dir, "lunar_occultations.csv", year, month):
         data_notes.append("No lunar occultation is listed for this month.")
 
-    rating = highlights[0].rating.lower() if highlights else "unavailable"
-    if milky_sessions:
-        verdict = (
-            f"{calendar.month_name[month]} offers {len(milky_rows)} recommended Milky Way "
-            f"sessions, led by {highlights[0].title if highlights else 'the longest dark window'}."
-        )
-        rating = milky_sessions[0].rating
-    elif highlights:
-        verdict = f"{highlights[0].title} is the clearest observing opportunity this month."
-    elif dark_windows:
-        verdict = "Plan general observing around the longest low-Moon dark period."
-        rating = "fair"
-    else:
-        verdict = "No strong observing recommendation is supported by the available data."
+    annual_month = build_annual_overview(year, site_id, data_dir).months[month - 1]
+    verdict = annual_month.verdict
+    rating = annual_month.rating
 
     download_names = (
         ("Twilight", "sun_twilight.csv"),

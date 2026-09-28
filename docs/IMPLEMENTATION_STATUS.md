@@ -102,6 +102,7 @@ Results:
 - Editorial follow-up: removed the unexplained Moon circles and repetitive
   Milky Way counts from the annual month cards. Cards now prioritise outer-planet
   opposition, favourable meteor showers, then a specific Galactic Centre session.
+  Monthly guide introductions use the same event-led recommendation.
   Saturn is correctly promoted in October from the daily solar-elongation data;
   December promotes the Geminids. Public implementation and release commentary
   was replaced with observing guidance.

@@ -151,6 +151,10 @@ def test_month_guide_selects_field_information_without_recalculating_scores(
     assert guide.milky_way_sessions[0].max_altitude_deg == 48
     assert guide.planet_groups[0].period == "Evening"
     assert [planet.planet for planet in guide.planet_groups[0].planets] == ["Jupiter"]
+    assert guide.verdict == (
+        "Galactic Centre viewing is best on 15 Jan 2027, from 2:00 am to 4:00 am, "
+        "reaching 48°."
+    )
     assert any("comet calculations are unavailable" in note for note in guide.data_notes)
     assert all(item.category != "Comets" for item in guide.highlights)
 
