@@ -40,6 +40,7 @@ SECTIONS = [
     ("minor_planets.csv", "Minor planet opportunities"),
     ("comets.csv", "Comet opportunities"),
     ("lunar_occultations.csv", "Lunar occultations"),
+    ("astronomical_phenomena.csv", "Eclipses and planetary phenomena"),
     ("meteor_showers.csv", "Meteor showers"),
 ]
 
@@ -93,6 +94,7 @@ DATASET_DESCRIPTIONS = {
     "minor_planets.csv": "Ranked minor-planet opportunities.",
     "comets.csv": "Comet calculations, including unavailable query results.",
     "lunar_occultations.csv": "Site-specific disappearance and reappearance predictions.",
+    "astronomical_phenomena.csv": "Eclipses, elongations, oppositions and stationary dates.",
     "meteor_showers.csv": "Meteor shower peaks and local observing conditions.",
     "conjunctions.csv": "Computed close approaches and conjunction circumstances.",
 }
@@ -111,6 +113,7 @@ DATASET_GROUPS = {
     "minor_planets.csv": "Events and targets",
     "comets.csv": "Events and targets",
     "lunar_occultations.csv": "Events and targets",
+    "astronomical_phenomena.csv": "Events and targets",
     "meteor_showers.csv": "Events and targets",
     "conjunctions.csv": "Events and targets",
 }

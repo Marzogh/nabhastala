@@ -18,6 +18,9 @@ def validation_failures(year: int, site_id: str, output_dir: Path) -> list[str]:
     occultation_path = data_dir / "lunar_occultations.csv"
     if occultation_path.exists() and not _csv_has_rows(occultation_path):
         failures.append("lunar_occultations.csv empty")
+    phenomena_path = data_dir / "astronomical_phenomena.csv"
+    if phenomena_path.exists() and not _csv_has_rows(phenomena_path):
+        failures.append("astronomical_phenomena.csv empty")
     return failures
 
 
@@ -33,6 +36,7 @@ EXPECTED_DATASETS = (
     "minor_planets.csv",
     "comets.csv",
     "lunar_occultations.csv",
+    "astronomical_phenomena.csv",
     "meteor_showers.csv",
 )
 
@@ -73,7 +77,8 @@ def generate_validation_report(year: int, site_id: str, output_dir: Path) -> Pat
                 f"- [PASS] `{name}` rows={rows} query_failed={failed}/{total}"
             )
             continue
-        status = "PASS" if rows > 0 else "FAIL" if name == "lunar_occultations.csv" else "WARN"
+        required_nonempty = {"lunar_occultations.csv", "astronomical_phenomena.csv"}
+        status = "PASS" if rows > 0 else "FAIL" if name in required_nonempty else "WARN"
         lines.append(f"- [{status}] `{name}` rows={rows}")
 
     report.write_text("\n".join(lines) + "\n", encoding="utf-8")

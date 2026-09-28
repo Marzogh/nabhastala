@@ -5,12 +5,60 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 5A2, site-specific lunar occultations
+- Stage: 5B, eclipses and planetary phenomena
 - State: complete
-- Objective: replace the empty manual-import dependency with repeatable local
-  lunar-occultation predictions for every configured site, using cached
-  authoritative ephemerides and a stellar catalogue
+- Objective: add locally generated, site-aware eclipse circumstances and
+  annual planetary elongation, opposition and stationary-date tables
 - Started: 2026-09-29
+
+## Stage 5B: Eclipses and planetary phenomena
+
+Affected files:
+
+- `src/paa/compute/phenomena.py`
+- `src/paa/cli.py`
+- `src/paa/render/almanac_views.py`
+- `src/paa/render/html.py`
+- `src/paa/validate/reports.py`
+- focused phenomena and renderer tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Solar and lunar eclipse circumstances are calculated for each configured
+  observing horizon using the cached JPL ephemeris.
+- Mercury and Venus greatest elongations, outer-planet oppositions and planetary
+  stationary dates are generated annually without model calls.
+- Monthly and annual pages can rank useful phenomena without exposing internal
+  calculation language.
+- Complete phenomena remain downloadable as CSV and empty output fails validation.
+- All three editions build, validate and render before the checkpoint.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_phenomena.py tests/test_annual_overview.py tests/test_validation.py
+PYTHONPATH=src .venv/bin/astro-almanac build --year 2026 --site se_qld --skip-db --sections phenomena --force
+```
+
+Results:
+
+- Added annual, repeatable eclipse and planetary-event generation using the
+  already cached JPL DE440s ephemeris. No model or remote service is involved.
+- Generated 30 phenomena rows for each 2026 edition, including site-specific
+  eclipse visibility and altitude, Mercury and Venus greatest elongations,
+  outer-planet oppositions and planetary stationary dates.
+- Confirmed the 3 March total lunar eclipse, 28 August partial lunar eclipse,
+  10 January Jupiter opposition and 4 October Saturn opposition.
+- Integrated useful events into annual and monthly rankings using concise
+  observer-facing language. Complete source values remain downloadable in the
+  data library.
+- Empty phenomena output is now a validation failure. All three editions build,
+  validate and render successfully.
+- Focused tests: 10 passed. Full regression suite: 75 passed. Ruff and
+  `git diff --check` passed.
+- Checkpoint tag: `stage-5b-astronomical-phenomena`.
 
 ## Stage 5A2: Site-specific lunar occultations
 

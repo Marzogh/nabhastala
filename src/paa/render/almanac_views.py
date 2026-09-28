@@ -430,6 +430,46 @@ def _candidate_rows(data_dir: Path) -> list[OpportunityView]:
         )
         source_order += 1
 
+    for row in _read_rows(data_dir, "astronomical_phenomena.csv"):
+        event = row.get("event", "")
+        visibility = row.get("visibility", "")
+        visible = "below horizon" not in visibility.lower()
+        if "eclipse" in event.lower():
+            rating = "excellent" if visible else "poor"
+            category = "Eclipses"
+            title = event
+            reason_parts = [visibility, row.get("value", "")]
+        elif event == "Opposition" or "elongation" in event.lower():
+            rating = "good"
+            category = "Planetary events"
+            title = f"{row.get('target', '')} {event.lower()}".strip()
+            reason_parts = (
+                ["Visible for most of the night"]
+                if event == "Opposition"
+                else [visibility, f"{row.get('value', '')} from the Sun"]
+            )
+        else:
+            rating = "fair"
+            category = "Planetary events"
+            title = f"{row.get('target', '')} stationary point".strip()
+            reason_parts = ["Apparent motion changes direction"]
+        reason_parts = [part for part in reason_parts if part]
+        candidates.append(
+            OpportunityView(
+                key=f"phenomenon-{source_order}",
+                category=category,
+                title=title,
+                date_local=row.get("datetime_local", ""),
+                rating=rating,
+                reason="; ".join(reason_parts) + ".",
+                source_order=source_order,
+                observable=visible,
+                complete=bool(row.get("datetime_local") and event),
+                include_when_poor=False,
+            )
+        )
+        source_order += 1
+
     return candidates
 
 
@@ -838,6 +878,7 @@ def build_month_guide(
         ("Dark windows", "moon_dark_windows.csv"),
         ("Milky Way", "milky_way_windows.csv"),
         ("Planets", "planet_visibility_daily.csv"),
+        ("Eclipses and planetary events", "astronomical_phenomena.csv"),
         ("Events", "meteor_showers.csv"),
     )
     downloads = tuple(

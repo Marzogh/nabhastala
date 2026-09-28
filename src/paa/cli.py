@@ -16,6 +16,7 @@ from paa.compute.milky_way import compute_milky_way_outputs
 from paa.compute.minor_planets import compute_minor_planets_and_comets
 from paa.compute.moons import compute_moon_offsets
 from paa.compute.occultations import compute_lunar_occultations
+from paa.compute.phenomena import compute_astronomical_phenomena
 from paa.compute.planets import compute_planet_visibility
 from paa.compute.sun_moon import build_dark_windows, generate_sun_moon_tables
 from paa.compute.ui_notes import generate_ui_notes
@@ -81,6 +82,7 @@ SECTION_ORDER = [
     "minor_planets",
     "comets",
     "occultations",
+    "phenomena",
     "meteors",
     "conjunctions",
     "ui_notes_context",
@@ -100,6 +102,7 @@ SECTION_DEPS = {
     "minor_planets": set(),
     "comets": set(),
     "occultations": set(),
+    "phenomena": set(),
     "meteors": set(),
     "conjunctions": set(),
     "ui_notes_context": {"sun_moon"},
@@ -112,6 +115,7 @@ SECTION_DEPS = {
         "minor_planets",
         "comets",
         "occultations",
+        "phenomena",
         "meteors",
         "conjunctions",
     },
@@ -319,6 +323,21 @@ def cmd_build(args: argparse.Namespace) -> int:
                 )
             _write_csv(out / "lunar_occultations.csv", occult_rows)
             ctx["lunar_occultations"] = occult_rows
+        elif section == "phenomena":
+            print("[build] eclipses and planetary phenomena...", flush=True)
+            phenomena_rows = compute_astronomical_phenomena(
+                year=args.year,
+                latitude_deg=site.latitude_deg,
+                longitude_deg=site.longitude_deg,
+                elevation_m=site.elevation_m,
+                timezone_name=site.timezone,
+                source_cache=Path("output") / "_sources" / "occultations",
+                ephemeris_name=str(
+                    almanac.get("occultations", {}).get("ephemeris", "de440s.bsp")
+                ),
+            )
+            _write_csv(out / "astronomical_phenomena.csv", phenomena_rows)
+            ctx["astronomical_phenomena"] = phenomena_rows
         elif section == "meteors":
             print("[build] meteor showers...", flush=True)
             meteor_rows = compute_meteor_showers(
@@ -608,7 +627,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--sections",
         default="all",
-        help="Comma list: sun_moon,milky_way,planets,moons,minor_planets,comets,occultations,meteors,conjunctions,ui_notes_context,ui_notes_tonight,ui_notes_milky_way,ui_notes_events,ui_notes_validation,ui_notes_recommendations,ui_notes_bundle,ui_notes_all or 'all'",
+        help="Comma list: sun_moon,milky_way,planets,moons,minor_planets,comets,occultations,phenomena,meteors,conjunctions,ui_notes_context,ui_notes_tonight,ui_notes_milky_way,ui_notes_events,ui_notes_validation,ui_notes_recommendations,ui_notes_bundle,ui_notes_all or 'all'",
     )
     p.add_argument(
         "--force",
@@ -825,6 +844,7 @@ def _section_outputs_exist(section: str, out: Path) -> bool:
         "minor_planets": ["minor_planets.csv"],
         "comets": ["comets.csv"],
         "occultations": ["lunar_occultations.csv"],
+        "phenomena": ["astronomical_phenomena.csv"],
         "meteors": ["meteor_showers.csv"],
         "conjunctions": ["conjunctions.csv"],
         "ui_notes_context": ["ui_notes.context.csv"],
