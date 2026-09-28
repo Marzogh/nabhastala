@@ -68,9 +68,10 @@ Results:
   database.
 - Verified the exact release tree through a local web server, including stable
   site selection, annual navigation, assets, downloads and PDF links.
-- Enabled GitHub Pages with the workflow publishing source. Deployment run
-  `36488960627` completed successfully, and both the public landing page and a
-  stable edition route returned the expected live content.
+- Enabled GitHub Pages with the workflow publishing source. Final deployment
+  run `36489275541` completed successfully. HTTPS enforcement is active, and
+  the public landing page, stable edition route and field PDF all return the
+  expected live content.
 - Full regression suite: 81 passed. Release validation, changed-file Ruff
   checks, workflow YAML parsing and `git diff --check` passed.
 - Checkpoint tag: `stage-6-pages-release`.
