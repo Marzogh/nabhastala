@@ -5,12 +5,64 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 4A, date-driven observing instruments
+- Stage: 5, curated field PDF
 - State: complete
-- Objective: replace fixed-night displays with date-selectable local-data
-  instruments, make satellite tracks distinguishable, clarify Galactic Centre
-  visibility, audit Moon-free intervals, and remove internal release language
+- Objective: generate a compact technical PDF for each reviewed 2026 horizon
+  from a dedicated print composition, while leaving complete datasets in the
+  web edition
 - Started: 2026-09-29
+
+## Stage 5: Curated field PDF
+
+Affected files:
+
+- `src/paa/render/pdf.py`
+- `src/paa/render/templates/field_pdf.html`
+- `src/paa/render/static/field_pdf.css`
+- `src/paa/cli.py`
+- PDF-focused tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- A dedicated A4 print composition is used instead of printing the interactive site.
+- Each edition contains annual priorities, a yearly index, twelve monthly field
+  sheets, essential charting, field notes and source scope.
+- Exhaustive daily and satellite-offset tables remain in the web edition only.
+- Table headings repeat, pages do not clip, and ratings work in monochrome.
+- All pages from all three PDFs are rendered to images and visually inspected.
+- The focused and full regression test suites pass.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/astro-almanac render --year 2026 --site se_qld --format pdf
+find output/pdf -maxdepth 1 -type f -name '*.pdf' -print
+```
+
+Results:
+
+- Replaced the full-page website print path with a dedicated Jinja and CSS A4
+  field composition rendered locally by WeasyPrint. ReportLab is not used.
+- Generated three 16-page 2026 field editions in `output/pdf/`, one for each
+  configured observing horizon.
+- Each edition contains the exact four-line identity, annual priority table,
+  yearly index, a computed Galactic Centre time diagram, twelve monthly field
+  sheets, concise interpretation notes, and source scope.
+- Complete daily, satellite-offset and supporting tables remain in HTML and CSV
+  instead of being repeated in the PDF.
+- Every page from all three PDFs was rasterised and visually inspected. No
+  clipping, blank pages, orphaned headings or unintended colour-only encoding
+  was found.
+- PDF structure checks confirmed A4 portrait pages, 16 pages per edition,
+  extractable text on every page and all required sections.
+- All three edition validation reports pass required datasets. Each retains the
+  existing warning that no lunar-occultation rows are present.
+- Focused PDF tests: 2 passed. Full regression suite: 62 passed. Ruff passed for
+  all affected Python files; `git diff --check` passed. The repository-wide Ruff
+  command still reports unrelated pre-existing issues outside Stage 5.
+- Checkpoint tag: `stage-5-curated-field-pdf`.
 
 ## Stage 4A: Date-driven observing instruments
 

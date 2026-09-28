@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ document_title }}</title>
+  <link rel="stylesheet" href="{{ css_uri }}">
+</head>
+<body>
+  <section class="cover page">
+    <header class="identity">
+      <div class="identity-primary">
+        <div class="devanagari">{{ identity_devanagari }}</div>
+        <div class="sanskrit">{{ motto_sanskrit }}</div>
+      </div>
+      <div class="identity-translation">
+        <strong>{{ identity_english }}</strong>
+        <span>{{ motto_english }}</span>
+      </div>
+    </header>
+
+    <div class="rule"></div>
+    <p class="eyebrow">FIELD EDITION / {{ site_id|upper }} / {{ year }}</p>
+    <h1>{{ year }} observing almanac</h1>
+    <p class="dek">A compact astronomical planning reference for {{ site_name }}.</p>
+
+    <dl class="edition-grid">
+      <div><dt>Horizon</dt><dd>{{ site_name }}</dd></div>
+      <div><dt>Edition</dt><dd>{{ year }}</dd></div>
+      <div><dt>Scope</dt><dd>Night planning, Moon, Galactic Centre, planets and events</dd></div>
+    </dl>
+
+    <h2>Priority observations</h2>
+    <table class="technical-table highlights">
+      <thead><tr><th>No.</th><th>Date</th><th>Category</th><th>Observation</th><th>Rating</th></tr></thead>
+      <tbody>
+      {% for item in overview.highlights %}
+        <tr>
+          <td>{{ "%02d"|format(loop.index) }}</td>
+          <td>{{ format_local_date(item.date_local, include_year=True) }}</td>
+          <td>{{ item.category }}</td>
+          <td><strong>{{ item.title }}</strong><br>{{ item.reason }}</td>
+          <td class="rating">{{ item.rating|upper }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="cover-note">
+      Use the monthly sheets for exact local dates and times. Complete datasets remain available in the web edition.
+    </div>
+  </section>
+
+  <section class="page annual-page">
+    <header class="running-head"><span>{{ year }} FIELD EDITION</span><span>{{ site_name }}</span></header>
+    <p class="eyebrow">ANNUAL INDEX</p>
+    <h1>Year at a glance</h1>
+    <p class="intro">The principal observing lead, darkest low-Moon interval and darkest lunar date for each month.</p>
+
+    <table class="technical-table year-table">
+      <thead><tr><th>Month</th><th>Primary observing lead</th><th>Best low-Moon darkness</th><th>Darkest Moon</th><th>Rating</th></tr></thead>
+      <tbody>
+      {% for month in overview.months %}
+        <tr>
+          <td><strong>{{ "%02d"|format(month.month) }} {{ month.month_name|upper }}</strong></td>
+          <td><span class="micro">{{ month.lead_category|upper }}</span><br>{{ month.verdict }}</td>
+          <td>{{ month.best_dark_window or "No interval listed" }}</td>
+          <td>{{ month.moon_state }}</td>
+          <td class="rating">{{ month.rating|upper }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+  </section>
+
+  <section class="page chart-page">
+    <header class="running-head"><span>{{ year }} FIELD EDITION</span><span>{{ site_name }}</span></header>
+    <p class="eyebrow">ANNUAL NIGHT CHART</p>
+    <h1>Galactic Centre observing time</h1>
+    <p class="intro">Each vertical trace is a usable core-viewing interval. Dates run left to right; local night time runs downward from 6 pm to 6 am.</p>
+
+    <figure class="chart-block technical-chart">
+      <svg viewBox="0 0 760 350" role="img" aria-label="Usable Galactic Centre intervals through the year">
+        <rect x="70" y="28" width="655" height="280" fill="#fbfaf6" stroke="#25231f" stroke-width="1"/>
+        {% for hour in range(0, 13, 2) %}
+          {% set y = 28 + (hour / 12 * 280) %}
+          <line x1="70" y1="{{ y }}" x2="725" y2="{{ y }}" stroke="#d1cdc4" stroke-width="0.7"/>
+          <text x="60" y="{{ y + 3 }}" text-anchor="end" font-family="Atkinson, sans-serif" font-size="8" fill="#55524c">{% if hour == 0 %}6 pm{% elif hour == 6 %}midnight{% elif hour == 12 %}6 am{% elif hour < 6 %}{{ 6 + hour }} pm{% else %}{{ hour - 6 }} am{% endif %}</text>
+        {% endfor %}
+        {% for tick in milky_instrument.month_ticks %}
+          {% set x = 70 + (tick.day / milky_instrument.year_days * 655) %}
+          <line x1="{{ x }}" y1="28" x2="{{ x }}" y2="308" stroke="#9c9990" stroke-width="0.65" stroke-dasharray="2 3"/>
+          <text x="{{ x + 3 }}" y="321" font-family="Atkinson, sans-serif" font-size="8" fill="#55524c">{{ tick.label|upper }}</text>
+        {% endfor %}
+        {% for window in milky_instrument.windows %}
+          {% set x = 70 + (window.day / milky_instrument.year_days * 655) %}
+          {% set y = 28 + (window.start_pct / 100 * 280) %}
+          {% set h = window.height_pct / 100 * 280 %}
+          <rect x="{{ x }}" y="{{ y }}" width="1.7" height="{{ h }}" fill="{% if window.quality == 'excellent' %}#273b2b{% else %}#52674b{% endif %}"/>
+        {% endfor %}
+      </svg>
+      <figcaption>Only intervals that pass astronomical darkness, Moon and core-altitude constraints are shown.</figcaption>
+    </figure>
+
+    <h2>Best session by month</h2>
+    <table class="technical-table core-summary">
+      <thead><tr><th>Month</th><th>Date</th><th>Local interval</th><th>Duration</th><th>Max altitude</th><th>Rating</th></tr></thead>
+      <tbody>
+      {% for guide in guides %}
+        {% set item = guide.milky_way_sessions[0] if guide.milky_way_sessions else none %}
+        <tr><td><strong>{{ guide.month_name }}</strong></td>{% if item %}<td>{{ format_local_date(item.date, include_year=True) }}</td><td>{{ format_local_time(item.start_local) }} to {{ format_local_time(item.end_local) }}</td><td>{{ format_duration_minutes(item.duration_minutes) }}</td><td>{{ "%.0f°"|format(item.max_altitude_deg) }}</td><td class="rating">{{ item.rating|upper }}</td>{% else %}<td colspan="5">No qualifying session</td>{% endif %}</tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  {% for guide in guides %}
+  <section class="page month-page">
+    <header class="running-head"><span>{{ year }} FIELD EDITION</span><span>{{ site_name }}</span></header>
+    <div class="month-title">
+      <div>
+        <p class="eyebrow">MONTH {{ "%02d"|format(guide.month) }}</p>
+        <h1>{{ guide.month_name }} {{ year }}</h1>
+      </div>
+      <div class="month-rating">{{ guide.rating|upper }}</div>
+    </div>
+    <p class="verdict">{{ guide.verdict }}</p>
+
+    <div class="lunar-strip">
+      <div><span>NEW MOON</span><strong>{{ format_local_date(guide.new_moon_date, include_year=True) }}</strong></div>
+      <div><span>FULL MOON</span><strong>{{ format_local_date(guide.full_moon_date, include_year=True) }}</strong></div>
+      <div><span>REFERENCE NIGHT</span><strong>{{ format_local_date(guide.representative_date, include_year=True) }}</strong></div>
+      <div><span>DARKNESS</span><strong>{{ format_local_time(guide.dusk_local) }} to {{ format_local_time(guide.dawn_local) }}</strong></div>
+    </div>
+
+    <div class="two-column">
+      <div>
+        <h2>Best low-Moon dark periods</h2>
+        <table class="technical-table compact">
+          <thead><tr><th>Date</th><th>Local interval</th><th>Duration</th><th>Moon</th></tr></thead>
+          <tbody>
+          {% for item in guide.dark_windows %}
+            <tr><td>{{ format_local_date(item.date, include_year=True) }}</td><td>{{ format_local_time(item.start_local) }} to {{ format_local_time(item.end_local) }}</td><td>{{ format_duration_minutes(item.duration_minutes) }}</td><td>{% if item.moon_illumination is not none %}{{ "%.0f%%"|format(item.moon_illumination * 100) }}{% else %}NA{% endif %}</td></tr>
+          {% else %}<tr><td colspan="4">No qualifying interval is listed.</td></tr>{% endfor %}
+          </tbody>
+        </table>
+
+        <h2>Galactic Centre sessions</h2>
+        <table class="technical-table compact">
+          <thead><tr><th>Date</th><th>Local interval</th><th>Duration</th><th>Max alt.</th><th>Rating</th></tr></thead>
+          <tbody>
+          {% for item in guide.milky_way_sessions %}
+            <tr><td>{{ format_local_date(item.date, include_year=True) }}</td><td>{{ format_local_time(item.start_local) }} to {{ format_local_time(item.end_local) }}</td><td>{{ format_duration_minutes(item.duration_minutes) }}</td><td>{{ "%.0f°"|format(item.max_altitude_deg) }}</td><td class="rating">{{ item.rating|upper }}</td></tr>
+          {% else %}<tr><td colspan="5">No qualifying core session is listed.</td></tr>{% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2>Planet visibility</h2>
+        <table class="technical-table compact planets">
+          <thead><tr><th>Period</th><th>Planet</th><th>Date / time</th><th>Alt.</th><th>Rating</th></tr></thead>
+          <tbody>
+          {% for group in guide.planet_groups %}
+            {% for planet in group.planets %}
+            <tr><td>{{ group.period }}</td><td><strong>{{ planet.planet }}</strong></td><td>{{ format_local_date(planet.best_date) }}<br>{{ format_local_time(planet.best_time_local) }}</td><td>{{ "%.0f°"|format(planet.altitude_deg) }}</td><td class="rating">{{ planet.rating|upper }}</td></tr>
+            {% endfor %}
+          {% else %}<tr><td colspan="5">No planet summary is listed.</td></tr>{% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2>Events and observing leads</h2>
+    <table class="technical-table compact events">
+      <thead><tr><th>Date</th><th>Category</th><th>Target or event</th><th>Field note</th><th>Rating</th></tr></thead>
+      <tbody>
+      {% for item in guide.other_opportunities %}
+        <tr><td>{{ format_local_date(item.date_local, include_year=True) }}</td><td>{{ item.category }}</td><td><strong>{{ item.title }}</strong></td><td>{{ item.reason }}</td><td class="rating">{{ item.rating|upper }}</td></tr>
+      {% else %}<tr><td colspan="5">No additional high-priority event is listed for this month.</td></tr>{% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endfor %}
+
+  <section class="page notes-page">
+    <header class="running-head"><span>{{ year }} FIELD EDITION</span><span>{{ site_name }}</span></header>
+    <p class="eyebrow">REFERENCE</p>
+    <h1>Using this field edition</h1>
+    <div class="notes-grid">
+      <div>
+        <h2>Time and place</h2>
+        <p>All displayed dates and times are local to {{ site_name }}. Overnight intervals begin on the printed date and may end after midnight on the following civil date.</p>
+      </div>
+      <div>
+        <h2>Ratings</h2>
+        <p>Ratings combine the edition's established visibility thresholds. The text label is authoritative in monochrome printing; colour is never required to interpret a rating.</p>
+      </div>
+      <div>
+        <h2>Low-Moon darkness</h2>
+        <p>Intervals occur within astronomical darkness and apply the edition's Moon constraint. They are not interchangeable with Galactic Centre visibility, which additionally requires the core to clear the altitude threshold.</p>
+      </div>
+      <div>
+        <h2>Complete reference data</h2>
+        <p>The web edition contains complete CSV tables for twilight, Moon, Galactic Centre, planets, satellites, minor planets, comets and events. This PDF intentionally keeps only field-useful summaries.</p>
+      </div>
+    </div>
+
+    <h2>Sources and scope</h2>
+    <ul class="source-list">
+      <li>Solar, lunar, planetary and Galactic Centre circumstances are calculated for the named observing horizon.</li>
+      <li>Jupiter and Saturn satellite positions use cached NASA JPL Horizons results in the corresponding web edition.</li>
+      <li>Meteor and event entries retain the edition's source notes and validation state in the downloadable data.</li>
+      <li>Weather, cloud, smoke, local obstruction and artificial sky brightness are outside the scope of this almanac.</li>
+    </ul>
+    <p class="web-pointer">Web data index: <strong>{{ data_page }}</strong></p>
+  </section>
+</body>
+</html>

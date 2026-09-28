@@ -75,10 +75,14 @@ Outputs:
 - `output/<site>/<year>/data/*.csv`
 - `output/<site>/<year>/charts/*`
 - `output/<site>/<year>/almanac.html`
-- `output/<site>/<year>/almanac.pdf`
+- `output/pdf/nabhastala-<year>-<site-slug>-field-edition.pdf`
 - `output/<site>/<year>/months/*.html`
 - `output/<site>/<year>/logs/validation_report.md`
 - `output/<site>/<year>/logs/run_manifest.json`
+
+The PDF is a dedicated A4 field edition. It contains annual priorities, a
+technical Galactic Centre time chart and concise monthly planning sheets; full
+daily and satellite tables remain in the HTML and CSV edition.
 
 Existing `output/<year>/` trees are supported as read-only legacy inputs. New
 commands never write to the legacy layout.

@@ -24,7 +24,7 @@ from paa.io.provenance import write_run_manifest
 from paa.logging_config import configure_logging
 from paa.paths import occult_cache_dir, resolve_site_year_dir, site_year_dir
 from paa.render.html import render_annual_html
-from paa.render.pdf import render_pdf_from_html
+from paa.render.pdf import render_field_pdf
 from paa.sources.occult_import import import_latest_occult_cache
 from paa.validate.reports import generate_validation_report, validation_failures
 
@@ -446,8 +446,7 @@ def cmd_render(args: argparse.Namespace) -> int:
         print(f"Rendered HTML: {html_path}")
         return 0
     if args.format == "pdf":
-        pdf_path = site_year_dir(Path("output"), args.site, args.year) / "almanac.pdf"
-        render_pdf_from_html(html_path, pdf_path)
+        pdf_path = render_field_pdf(args.year, args.site, Path("output"))
         print(f"Rendered PDF: {pdf_path}")
         return 0
     raise SystemExit("format must be one of: html, pdf")
