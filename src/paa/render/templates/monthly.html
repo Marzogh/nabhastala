@@ -15,10 +15,23 @@
     </section>
 
     <nav class="guide-nav" aria-label="Sections in {{ guide.month_name }}">
-      <a href="#night-plan">Night plan</a><a href="#highlights">Highlights</a><a href="#deep-sky">Deep sky</a><a href="#planets">Planets</a><a href="#downloads">Data</a>
+      <a href="#conditions">Conditions</a><a href="#sky-chart">Sky chart</a><a href="#night-plan">Night plan</a><a href="#highlights">Highlights</a><a href="#deep-sky">Deep sky</a><a href="#planets">Planets</a><a href="#downloads">Data</a>
     </nav>
 
+    <section class="conditions-panel" id="conditions" aria-labelledby="conditions-title" data-conditions data-latitude="{{ site_latitude }}" data-longitude="{{ site_longitude }}">
+      <header class="section-heading"><p class="eyebrow">Conditions now</p><h2 id="conditions-title">Is the sky likely to cooperate?</h2></header>
+      <p data-conditions-status>Checking cloud, rain, wind and haze near {{ site_name }}…</p>
+      <dl class="conditions-grid" data-conditions-values hidden></dl>
+      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Forecast by Open-Meteo</a></small>
+    </section>
+
+    <section class="sky-chart-panel" id="sky-chart" aria-labelledby="sky-chart-title">
+      <header class="section-heading"><p class="eyebrow">Find your bearings</p><h2 id="sky-chart-title">The mid-month sky at 10 pm.</h2><p>Face the matching compass direction and read outward from the centre toward the horizon.</p></header>
+      <figure class="monthly-sky-chart"><img src="../charts/sky/month-{{ '%02d'|format(guide.month) }}.svg" alt="All-sky chart for {{ guide.month_name }} {{ guide.year }} at {{ site_name }}"><figcaption>North is at the top; east is at the left. Planets shown are above the horizon at chart time.</figcaption></figure>
+    </section>
+
     <div class="monthly-editorial-grid">
+
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
           <p class="eyebrow">Night planner</p><h2 id="night-plan-title">Plan the sky for your date.</h2>

@@ -505,6 +505,49 @@ body { background-image: var(--paper-wash); }
 .monthly-editorial-grid > section { gap: 1.1rem; }
 .monthly-editorial-grid h2 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); }
 
+.conditions-panel,
+.sky-chart-panel {
+  grid-column: 1 / -1;
+  scroll-margin-top: 10rem;
+}
+
+.conditions-panel {
+  padding: 1rem 1.15rem;
+  border-left: 2px solid var(--olive-deep);
+  background: color-mix(in srgb, var(--surface) 84%, var(--sage) 8%);
+}
+
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  border-block: 1px solid var(--border);
+}
+
+.conditions-grid > div {
+  padding: 0.75rem;
+  border-left: 1px solid var(--border);
+}
+
+.conditions-grid > div:first-child { border-left: 0; }
+.conditions-grid dt { color: var(--accent); font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; }
+.conditions-grid dd { margin: 0.2rem 0; font-family: var(--font-editorial); font-size: 1.25rem; font-weight: 700; }
+.conditions-grid small,
+.conditions-credit { color: var(--ink-soft); font-size: 0.68rem; }
+.conditions-credit a { color: inherit; }
+
+.sky-chart-panel {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.52fr) minmax(22rem, 1fr);
+  align-items: start;
+  gap: 1.5rem;
+  border-block: 1px solid var(--border-strong);
+}
+
+.monthly-sky-chart { margin: 0; }
+.monthly-sky-chart img { display: block; width: 100%; max-height: 42rem; }
+.monthly-sky-chart figcaption { margin-top: 0.35rem; color: var(--ink-soft); font-size: 0.7rem; }
+
 .twilight-band {
   min-height: 5.2rem;
   border: 0;
@@ -721,6 +764,9 @@ body { background-image: var(--paper-wash); }
   .illustrated-callout > a { grid-column: 1 / -1; justify-self: start; }
   .guide-nav { top: 0; }
   .monthly-editorial-grid { grid-template-columns: 1fr; }
+  .conditions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .conditions-grid > div:nth-child(odd) { border-left: 0; }
+  .sky-chart-panel { grid-template-columns: 1fr; }
   .night-plan,
   .deep-sky-panel,
   .other-opportunities,

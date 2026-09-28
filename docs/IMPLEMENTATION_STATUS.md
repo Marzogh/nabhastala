@@ -5,11 +5,62 @@ until the previous stage is committed, tagged, and marked complete here.
 
 ## Current stage
 
-- Stage: 5B, eclipses and planetary phenomena
+- Stage: 5C, monthly sky charts and observing conditions
 - State: complete
-- Objective: add locally generated, site-aware eclipse circumstances and
-  annual planetary elongation, opposition and stationary-date tables
+- Objective: add locally generated monthly sky charts and concise live
+  observing conditions from free public sources
 - Started: 2026-09-29
+
+## Stage 5C: Monthly sky charts and observing conditions
+
+Affected files:
+
+- `src/paa/render/sky_charts.py`
+- `src/paa/render/html.py`
+- `src/paa/render/templates/monthly.html`
+- `src/paa/render/static/conditions.js`
+- `src/paa/render/static/editorial.css`
+- focused chart and renderer tests under `tests/`
+- `docs/IMPLEMENTATION_STATUS.md`
+
+Acceptance checks:
+
+- Each site and month receives an all-sky orientation chart calculated locally
+  for 10 pm on the middle night of the month.
+- Bright stars, constellation lines, cardinal directions and visible planets
+  remain legible in light and dark themes and when printed.
+- The monthly page shows current cloud, rain, wind, visibility and air-quality
+  measurements when the free source is reachable, without blocking the static
+  almanac when it is not.
+- Public copy describes observing conditions directly and contains no source,
+  build-pipeline or implementation commentary.
+- All three editions render and the focused and regression tests pass.
+
+Exact resume command:
+
+```bash
+git status --short
+PYTHONPATH=src .venv/bin/pytest -q tests/test_sky_charts.py tests/test_html_render.py
+PYTHONPATH=src .venv/bin/astro-almanac render --year 2026 --site se_qld --format html
+```
+
+Results:
+
+- Generated 36 site-specific all-sky SVG charts from the cached Hipparcos
+  catalogue, JPL ephemeris and constellation figures. Each chart shows the sky
+  at 10 pm on the middle night of its month with cardinal directions, bright
+  stars, constellation lines, labels, the Moon and visible planets.
+- Charts respond to light and dark themes, remain readable in print, and are
+  generated entirely on the Mac after the one-time constellation-file download.
+- Added a concise current-conditions panel using Open-Meteo weather and air
+  quality feeds. It reports cloud, rain, wind, visibility and fine particles,
+  and fails quietly without hiding any almanac content.
+- Verified the live panel and chart visually in light and dark themes. All 36
+  production charts contain real constellation geometry rather than fixture
+  placeholders.
+- Focused renderer and chart tests: 16 passed. Full regression suite: 77 passed.
+  Ruff, JavaScript syntax checking and `git diff --check` passed.
+- Checkpoint tag: `stage-5c-sky-charts-conditions`.
 
 ## Stage 5B: Eclipses and planetary phenomena
 

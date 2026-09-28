@@ -17,6 +17,10 @@ from paa.render.almanac_views import (
     build_month_guide,
     build_observing_instruments,
 )
+from paa.render.sky_charts import (
+    generate_monthly_sky_charts,
+    generate_placeholder_sky_charts,
+)
 from paa.render.view_models import (
     format_display_value,
     format_duration_minutes,
@@ -62,6 +66,9 @@ SITE_CATALOG = (
         "slug": public_site_slug("se_qld"),
         "name": SITE_NAMES["se_qld"],
         "timezone": "Australia/Brisbane",
+        "latitude": -27.5,
+        "longitude": 153.0,
+        "elevation": 50,
         "horizon": "27.5° S · 153.0° E",
     },
     {
@@ -69,6 +76,9 @@ SITE_CATALOG = (
         "slug": public_site_slug("southern_tasmania"),
         "name": SITE_NAMES["southern_tasmania"],
         "timezone": "Australia/Hobart",
+        "latitude": -42.75,
+        "longitude": 146.98,
+        "elevation": 120,
         "horizon": "42.75° S · 146.98° E",
     },
     {
@@ -76,6 +86,9 @@ SITE_CATALOG = (
         "slug": public_site_slug("malabar_coast"),
         "name": SITE_NAMES["malabar_coast"],
         "timezone": "Asia/Kolkata",
+        "latitude": 11.2588,
+        "longitude": 75.7804,
+        "elevation": 5,
         "horizon": "11.26° N · 75.78° E",
     },
 )
@@ -418,6 +431,22 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     months_dir.mkdir(parents=True, exist_ok=True)
     _copy_static_assets(year_dir)
     _copy_data_files(data_dir, year_dir / "data")
+    site_record = next(site for site in SITE_CATALOG if site["id"] == site_id)
+    sky_destination = year_dir / "charts" / "sky"
+    source_root = output_dir / "_sources"
+    if (source_root / "occultations" / "hip_main.dat").exists():
+        generate_monthly_sky_charts(
+            year=year,
+            site_name=str(site_record["name"]),
+            latitude_deg=float(site_record["latitude"]),
+            longitude_deg=float(site_record["longitude"]),
+            elevation_m=float(site_record["elevation"]),
+            timezone_name=str(site_record["timezone"]),
+            destination=sky_destination,
+            source_root=source_root,
+        )
+    else:
+        generate_placeholder_sky_charts(year=year, destination=sky_destination)
 
     month_links = [
         {
@@ -434,6 +463,8 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         "site_timezone": next(
             (site["timezone"] for site in SITE_CATALOG if site["id"] == site_id), "UTC"
         ),
+        "site_latitude": site_record["latitude"],
+        "site_longitude": site_record["longitude"],
         **_identity_context(),
     }
     environment = _environment()

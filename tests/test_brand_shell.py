@@ -72,11 +72,16 @@ def test_monthly_pages_use_relative_assets_and_work_without_javascript(tmp_path:
     assert "../assets/styles.css" in html
     assert "../assets/editorial.css" in html
     assert "../assets/theme.js" in html
+    assert "../assets/conditions.js" in html
     assert 'href="../almanac.html"' in html
     assert 'href="../data/index.html"' in html
     assert "The date selector requires JavaScript" in html
     assert "Plan the sky for your date." in html
     assert "Top picks for January." in html
+    assert "Is the sky likely to cooperate?" in html
+    assert "The mid-month sky at 10 pm." in html
+    assert 'src="../charts/sky/month-01.svg"' in html
+    assert (annual.parent / "charts" / "sky" / "month-01.svg").exists()
     assert "1 Jan" in html
     assert "<table" not in html
     assert len(list((annual.parent / "months").glob("*.html"))) == 12
