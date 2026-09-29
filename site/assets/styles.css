@@ -1392,8 +1392,9 @@ tbody tr:hover {
 .night-planner__facts dd { margin: var(--space-1) 0 0; font-size: 0.82rem; }
 .night-planner__planets { grid-column: 1 / -1; }
 .night-planner__planets h3 { margin-bottom: var(--space-2); font-size: 1rem; }
-.night-planner__planets ul { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
-.night-planner__planets li { display: grid; grid-template-columns: 2.4rem minmax(7rem, 1fr); gap: 0 var(--space-2); align-items: center; min-width: 11rem; padding: var(--space-2) var(--space-3); border-left: 3px solid var(--accent); background: var(--accent-soft); }
+.night-planner__planets ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin: 0; padding: 0; border-block: 1px solid var(--border); list-style: none; }
+.night-planner__planets li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0 var(--space-2); align-items: center; min-width: 0; padding: var(--space-2); border-right: 1px solid var(--border); }
+.night-planner__planets li:last-child { border-right: 0; }
 .night-planner__planets .planet-icon { grid-row: 1 / span 2; }
 .night-planner__planets strong,
 .night-planner__planets span { grid-column: 2; }
@@ -1643,11 +1644,18 @@ tbody tr:hover {
 .monthly-editorial-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
-  gap: var(--space-7) var(--space-6);
+  gap: var(--space-6);
   align-items: start;
 }
 
-.monthly-editorial-grid > section {
+.monthly-column {
+  display: grid;
+  gap: var(--space-7);
+  align-content: start;
+  min-width: 0;
+}
+
+.monthly-column > section {
   min-width: 0;
   display: grid;
   gap: var(--space-5);
@@ -1655,22 +1663,6 @@ tbody tr:hover {
   border-top: 1px solid var(--border-strong);
   scroll-margin-top: 4rem;
 }
-
-.night-plan,
-.deep-sky-panel,
-.other-opportunities {
-  grid-column: 1;
-}
-
-.month-highlights,
-.moon-panel,
-.planet-panel {
-  grid-column: 2;
-}
-
-.month-highlights { grid-row: 1 / span 2; }
-.moon-panel { grid-row: 3; }
-.planet-panel { grid-row: 4 / span 2; }
 
 .twilight-band {
   display: grid;
@@ -1745,10 +1737,6 @@ tbody tr:hover {
   text-transform: uppercase;
 }
 
-.compact-highlights {
-  counter-reset: month-highlight;
-}
-
 .compact-highlights li {
   position: relative;
   display: grid;
@@ -1756,7 +1744,6 @@ tbody tr:hover {
   gap: var(--space-3);
   padding: var(--space-4) 0 var(--space-4) var(--space-3);
   border-top: 1px solid var(--border);
-  counter-increment: month-highlight;
 }
 
 .compact-highlights li::before {
@@ -1765,12 +1752,6 @@ tbody tr:hover {
   width: 3px;
   background: var(--tone, var(--border-strong));
   content: "";
-}
-
-.compact-highlights time::before {
-  display: block;
-  color: var(--accent);
-  content: counter(month-highlight, decimal-leading-zero);
 }
 
 .compact-highlights h3 { margin-top: var(--space-1); }
@@ -2018,6 +1999,8 @@ figcaption {
     grid-template-columns: 1fr;
   }
 
+  .monthly-column { display: contents; }
+
   .night-plan,
   .deep-sky-panel,
   .other-opportunities,
@@ -2027,6 +2010,13 @@ figcaption {
     grid-column: 1;
     grid-row: auto;
   }
+
+  .night-plan { order: 1; }
+  .month-highlights { order: 2; }
+  .moon-panel { order: 3; }
+  .deep-sky-panel { order: 4; }
+  .planet-panel { order: 5; }
+  .other-opportunities { order: 6; }
 }
 
 @media (max-width: 36rem) {

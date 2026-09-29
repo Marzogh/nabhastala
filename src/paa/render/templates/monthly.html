@@ -10,7 +10,7 @@
       <dl>
         <div><span class="phase-symbol phase-symbol--new" aria-hidden="true"></span><dt>New Moon</dt><dd>{{ format_local_date(guide.new_moon_date) if guide.new_moon_date else "Unavailable" }}</dd><small>Darkest skies</small></div>
         <div><span class="phase-symbol phase-symbol--full" aria-hidden="true"></span><dt>Full Moon</dt><dd>{{ format_local_date(guide.full_moon_date) if guide.full_moon_date else "Unavailable" }}</dd><small>Brightest skies</small></div>
-        <div><span class="phase-symbol phase-symbol--half" aria-hidden="true"></span><dt>Best dark window</dt><dd>{% if guide.dark_windows %}{{ format_local_date(guide.dark_windows[0].date) }}{% else %}Unavailable{% endif %}</dd><small>{% if guide.dark_windows %}{{ format_duration_minutes(guide.dark_windows[0].duration_minutes) }}{% else %}Unavailable{% endif %}</small></div>
+        <div>{% if guide.best_dark_moon %}<svg class="phase-symbol phase-symbol--calculated" viewBox="0 0 100 100" aria-hidden="true"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/>{% if guide.best_dark_moon.illuminated_path %}<path class="moon-disc__light" d="{{ guide.best_dark_moon.illuminated_path }}"/>{% endif %}<circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg>{% else %}<span class="phase-symbol phase-symbol--unknown" aria-hidden="true"></span>{% endif %}<dt>Best dark window</dt><dd>{% if guide.dark_windows %}{{ format_local_date(guide.dark_windows[0].date) }}{% else %}Unavailable{% endif %}</dd><small>{% if guide.dark_windows %}{{ format_duration_minutes(guide.dark_windows[0].duration_minutes) }}{% else %}Unavailable{% endif %}</small></div>
       </dl>
     </section>
 
@@ -24,7 +24,7 @@
       <p class="conditions-verdict" data-conditions-verdict>Checking the sky near {{ site_name }}…</p>
       <p class="conditions-updated" data-conditions-status></p>
       <dl class="conditions-grid" data-conditions-values hidden></dl>
-      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather data: Open-Meteo</a></small>
+      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather: Open-Meteo</a><span>Forecast point: {{ "%.3f"|format(site_latitude|abs) }}° {{ "N" if site_latitude >= 0 else "S" }}, {{ "%.3f"|format(site_longitude|abs) }}° {{ "E" if site_longitude >= 0 else "W" }}</span></small>
     </section>
 
     <section class="sky-chart-summary" id="sky-chart" aria-labelledby="sky-chart-title">
@@ -37,7 +37,7 @@
     </section>
 
     <div class="monthly-editorial-grid">
-
+      <div class="monthly-column monthly-column--primary">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
           <h2 id="night-plan-title">Night planner</h2>
@@ -69,6 +69,24 @@
         <a class="context-link" href="../data/moon_dark_windows.csv" download>Download night-planning CSV →</a>
       </section>
 
+      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/galaxy-dark.webp" alt=""></span>
+        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
+        {% if guide.milky_way_sessions %}<ol class="session-list milky-sessions">
+          {% for session in guide.milky_way_sessions %}
+            <li class="tone-{{ rating_tone(session.rating) }}"><time datetime="{{ session.date }}">{{ format_local_date(session.date) }}</time><strong>{{ format_local_time(session.start_local) }}–{{ format_local_time(session.end_local) }}</strong><span>{{ format_duration_minutes(session.duration_minutes) }} · core to {{ session.max_altitude_deg|round|int }}°</span></li>
+          {% endfor %}
+        </ol>{% else %}<p class="empty-state">No Galactic Centre session available this month.</p>{% endif %}
+        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
+      </section>
+
+      {% if guide.other_opportunities %}<section class="other-opportunities" aria-labelledby="other-opportunities-title">
+        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
+        <ul>{% for item in guide.other_opportunities %}<li><time>{{ format_local_date(item.date_local) }}</time><div><strong>{{ item.title }}</strong><span>{{ item.reason }}</span></div></li>{% endfor %}</ul>
+      </section>{% endif %}
+      </div>
+
+      <div class="monthly-column monthly-column--secondary">
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
         <header class="section-heading"><h2 id="month-highlights-title">{{ guide.month_name }} highlights</h2></header>
         {% if guide.highlights %}<ol class="compact-highlights">
@@ -86,19 +104,8 @@
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="{{ (sample.illumination * 100)|round|int }}% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/>{% if sample.illuminated_path %}<path class="moon-disc__light" d="{{ sample.illuminated_path }}"/>{% endif %}<circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="{{ sample.date }}">{{ format_local_date(sample.date) }}</time><small>{{ (sample.illumination * 100)|round|int }}%</small></div>
           {% endfor %}
         </div>{% else %}<p class="empty-state">Moon phase data is unavailable.</p>{% endif %}
-        <p class="field-note">Low illumination favours faint targets. Bright lunar targets are best near full Moon.</p>
+        <p class="field-note">For faint deep-sky objects, observe when the Moon is below the horizon or weakly illuminated. For lunar relief, observe near the terminator; full Moon is best suited to ray systems and albedo features.</p>
         <a class="context-link" href="../data/moon_phase.csv" download>Download Moon phase CSV →</a>
-      </section>
-
-      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
-        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="{{ asset_prefix }}art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="{{ asset_prefix }}art/galaxy-dark.webp" alt=""></span>
-        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
-        {% if guide.milky_way_sessions %}<ol class="session-list milky-sessions">
-          {% for session in guide.milky_way_sessions %}
-            <li class="tone-{{ rating_tone(session.rating) }}"><time datetime="{{ session.date }}">{{ format_local_date(session.date) }}</time><strong>{{ format_local_time(session.start_local) }}–{{ format_local_time(session.end_local) }}</strong><span>{{ format_duration_minutes(session.duration_minutes) }} · core to {{ session.max_altitude_deg|round|int }}°</span></li>
-          {% endfor %}
-        </ol>{% else %}<p class="empty-state">No Galactic Centre session available this month.</p>{% endif %}
-        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </section>
 
       <section class="planet-panel illustrated-panel" id="planets" aria-labelledby="planet-panel-title">
@@ -111,11 +118,7 @@
         </div>{% else %}<p class="empty-state">No planet visibility result available.</p>{% endif %}
         <a class="context-link" href="../data/planet_visibility_daily.csv" download>Download planet CSV →</a>
       </section>
-
-      {% if guide.other_opportunities %}<section class="other-opportunities" aria-labelledby="other-opportunities-title">
-        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
-        <ul>{% for item in guide.other_opportunities %}<li><time>{{ format_local_date(item.date_local) }}</time><div><strong>{{ item.title }}</strong><span>{{ item.reason }}</span></div></li>{% endfor %}</ul>
-      </section>{% endif %}
+      </div>
     </div>
 
     <section class="monthly-data illustrated-callout" id="downloads" aria-labelledby="monthly-data-title">

@@ -1099,3 +1099,30 @@ monthly, and data-library pages at 200% browser zoom before applying the final
 - GitHub CLI and SSH authentication both succeed for `Marzogh`.
 - Public repository created: `https://github.com/Marzogh/nabhastala`
 - `origin` uses SSH and `main` tracks `origin/main`.
+
+## Monthly UI correction checkpoint, 29 September 2026
+
+- Current conditions now identifies the exact Open-Meteo forecast coordinates.
+- The monthly page uses independent primary and secondary content stacks, so Moon
+  phases and planet visibility follow highlights without inheriting the height of
+  the night-planning column.
+- Monthly highlights retain a five-item maximum, select one item per category,
+  display chronologically, and no longer use artificial ordinal numbers.
+- The Events list excludes highlighted records and remains limited to three
+  additional category-diverse entries.
+- The selected-night planet list is a compact roster rather than a card grid.
+- Lunar guidance now distinguishes deep-sky, terminator, ray-system, and albedo
+  observing. Lunar symbols preserve their meaning between themes, and the best
+  dark-window symbol uses the calculated phase for that date.
+- All three 2026 HTML editions and the 320-file reviewed Pages tree were rebuilt.
+- Per user direction, no scientific regression suite was run because this pass
+  changes presentation and view selection only. Focused browser inspection passed
+  for light- and dark-mode lunar rendering, chronological highlights, forecast
+  coordinates, responsive section order, and the compact planet roster.
+
+Resume with:
+
+```bash
+git status --short
+python3 -m http.server 8767 --directory site
+```

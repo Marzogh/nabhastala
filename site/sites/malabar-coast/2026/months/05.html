@@ -130,7 +130,7 @@
       <dl>
         <div><span class="phase-symbol phase-symbol--new" aria-hidden="true"></span><dt>New Moon</dt><dd>17 May</dd><small>Darkest skies</small></div>
         <div><span class="phase-symbol phase-symbol--full" aria-hidden="true"></span><dt>Full Moon</dt><dd>2 May</dd><small>Brightest skies</small></div>
-        <div><span class="phase-symbol phase-symbol--half" aria-hidden="true"></span><dt>Best dark window</dt><dd>14 May</dd><small>10h 36m</small></div>
+        <div><svg class="phase-symbol phase-symbol--calculated" viewBox="0 0 100 100" aria-hidden="true"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 41.47 94.08 L 38.07 92.17 L 35.55 90.25 L 33.50 88.33 L 31.76 86.42 L 30.26 84.50 L 28.93 82.58 L 27.75 80.67 L 26.70 78.75 L 25.76 76.83 L 24.91 74.92 L 24.15 73.00 L 23.47 71.08 L 22.86 69.17 L 22.33 67.25 L 21.86 65.33 L 21.45 63.42 L 21.10 61.50 L 20.81 59.58 L 20.57 57.67 L 20.38 55.75 L 20.25 53.83 L 20.18 51.92 L 20.15 50.00 L 20.18 48.08 L 20.25 46.17 L 20.38 44.25 L 20.57 42.33 L 20.81 40.42 L 21.10 38.50 L 21.45 36.58 L 21.86 34.67 L 22.33 32.75 L 22.86 30.83 L 23.47 28.92 L 24.15 27.00 L 24.91 25.08 L 25.76 23.17 L 26.70 21.25 L 27.75 19.33 L 28.93 17.42 L 30.26 15.50 L 31.76 13.58 L 33.50 11.67 L 35.55 9.75 L 38.07 7.83 L 41.47 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><dt>Best dark window</dt><dd>14 May</dd><small>10h 36m</small></div>
       </dl>
     </section>
 
@@ -143,7 +143,7 @@
       <p class="conditions-verdict" data-conditions-verdict>Checking the sky near Malabar Coast, India…</p>
       <p class="conditions-updated" data-conditions-status></p>
       <dl class="conditions-grid" data-conditions-values hidden></dl>
-      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather data: Open-Meteo</a></small>
+      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather: Open-Meteo</a><span>Forecast point: 11.259° N, 75.780° E</span></small>
     </section>
 
     <section class="sky-chart-summary" id="sky-chart" aria-labelledby="sky-chart-title">
@@ -156,7 +156,7 @@
     </section>
 
     <div class="monthly-editorial-grid">
-
+      <div class="monthly-column monthly-column--primary">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
           <h2 id="night-plan-title">Night planner</h2>
@@ -184,14 +184,29 @@
         <a class="context-link" href="../data/moon_dark_windows.csv" download>Download night-planning CSV →</a>
       </section>
 
+      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
+        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
+<ol class="session-list milky-sessions">
+            <li class="tone-excellent"><time datetime="2026-05-20">20 May</time><strong>10:26 pm–5:40 am</strong><span>7h 13m · core to 50°</span></li>
+            <li class="tone-excellent"><time datetime="2026-05-17">17 May</time><strong>10:36 pm–5:40 am</strong><span>7h 05m · core to 50°</span></li>
+            <li class="tone-excellent"><time datetime="2026-05-18">18 May</time><strong>10:36 pm–5:40 am</strong><span>7h 04m · core to 50°</span></li>
+        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
+      </section>
+
+<section class="other-opportunities" aria-labelledby="other-opportunities-title">
+        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
+        <ul><li><time>1 May</time><div><strong>HIP 67328 lunar occultation</strong><span>3:31 am to 4:43 am; Moon at 27° altitude for the first listed contact.</span></div></li><li><time>2 May</time><div><strong>HIP 71295 lunar occultation</strong><span>2:52 am to 3:54 am; Moon at 41° altitude for the first listed contact.</span></div></li><li><time>3 May</time><div><strong>HIP 79050 lunar occultation</strong><span>9:43 pm; Moon at 19° altitude for the first listed contact.</span></div></li></ul>
+      </section>      </div>
+
+      <div class="monthly-column monthly-column--secondary">
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
         <header class="section-heading"><h2 id="month-highlights-title">May highlights</h2></header>
 <ol class="compact-highlights">
-            <li class="tone-excellent"><time datetime="2026-05-12T22:54:45.246914+05:30">12 May</time><div><small>Milky Way</small><h3>Milky Way core window</h3><p>4h 00m with 50° altitude.</p></div></li>
             <li class="tone-excellent"><time datetime="2026-05-01">1 May</time><div><small>Planets</small><h3>Jupiter</h3><p>Best monthly date at 62° altitude.</p></div></li>
             <li class="tone-fair"><time datetime="2026-05-01T01:36:24.301758+05:30">1 May</time><div><small>Occultations</small><h3>HIP 67139 lunar occultation</h3><p>1:36 am to 3:02 am; Moon at 50° altitude for the first listed contact.</p></div></li>
             <li class="tone-poor"><time datetime="2026-05-06">6 May</time><div><small>Meteor showers</small><h3>Eta Aquariids</h3><p>Peak conditions: 88% Moon illumination; 28° altitude predawn.</p></div></li>
-            <li class="tone-excellent"><time datetime="2026-05-13T22:55:00.317913+05:30">13 May</time><div><small>Milky Way</small><h3>Milky Way core window</h3><p>4h 42m with 50° altitude.</p></div></li>
+            <li class="tone-excellent"><time datetime="2026-05-12T22:54:45.246914+05:30">12 May</time><div><small>Milky Way</small><h3>Milky Way core window</h3><p>4h 00m with 50° altitude.</p></div></li>
         </ol>      </section>
 
       <section class="moon-panel illustrated-panel" aria-labelledby="moon-panel-title">
@@ -203,18 +218,8 @@
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="10% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 39.54 94.08 L 35.36 92.17 L 32.27 90.25 L 29.75 88.33 L 27.62 86.42 L 25.77 84.50 L 24.14 82.58 L 22.70 80.67 L 21.40 78.75 L 20.25 76.83 L 19.21 74.92 L 18.27 73.00 L 17.44 71.08 L 16.70 69.17 L 16.04 67.25 L 15.46 65.33 L 14.96 63.42 L 14.53 61.50 L 14.17 59.58 L 13.88 57.67 L 13.65 55.75 L 13.49 53.83 L 13.40 51.92 L 13.37 50.00 L 13.40 48.08 L 13.49 46.17 L 13.65 44.25 L 13.88 42.33 L 14.17 40.42 L 14.53 38.50 L 14.96 36.58 L 15.46 34.67 L 16.04 32.75 L 16.70 30.83 L 17.44 28.92 L 18.27 27.00 L 19.21 25.08 L 20.25 23.17 L 21.40 21.25 L 22.70 19.33 L 24.14 17.42 L 25.77 15.50 L 27.62 13.58 L 29.75 11.67 L 32.27 9.75 L 35.36 7.83 L 39.54 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-05-15">15 May</time><small>10%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="36% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 53.75 94.08 L 55.25 92.17 L 56.36 90.25 L 57.26 88.33 L 58.02 86.42 L 58.68 84.50 L 59.27 82.58 L 59.79 80.67 L 60.25 78.75 L 60.66 76.83 L 61.04 74.92 L 61.37 73.00 L 61.67 71.08 L 61.93 69.17 L 62.17 67.25 L 62.38 65.33 L 62.56 63.42 L 62.71 61.50 L 62.84 59.58 L 62.95 57.67 L 63.03 55.75 L 63.08 53.83 L 63.12 51.92 L 63.13 50.00 L 63.12 48.08 L 63.08 46.17 L 63.03 44.25 L 62.95 42.33 L 62.84 40.42 L 62.71 38.50 L 62.56 36.58 L 62.38 34.67 L 62.17 32.75 L 61.93 30.83 L 61.67 28.92 L 61.37 27.00 L 61.04 25.08 L 60.66 23.17 L 60.25 21.25 L 59.79 19.33 L 59.27 17.42 L 58.68 15.50 L 58.02 13.58 L 57.26 11.67 L 56.36 9.75 L 55.25 7.83 L 53.75 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-05-22">22 May</time><small>36%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="94% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 38.39 94.08 L 33.75 92.17 L 30.32 90.25 L 27.53 88.33 L 25.16 86.42 L 23.11 84.50 L 21.30 82.58 L 19.69 80.67 L 18.26 78.75 L 16.98 76.83 L 15.82 74.92 L 14.79 73.00 L 13.86 71.08 L 13.04 69.17 L 12.31 67.25 L 11.67 65.33 L 11.11 63.42 L 10.63 61.50 L 10.23 59.58 L 9.91 57.67 L 9.66 55.75 L 9.48 53.83 L 9.38 51.92 L 9.34 50.00 L 9.38 48.08 L 9.48 46.17 L 9.66 44.25 L 9.91 42.33 L 10.23 40.42 L 10.63 38.50 L 11.11 36.58 L 11.67 34.67 L 12.31 32.75 L 13.04 30.83 L 13.86 28.92 L 14.79 27.00 L 15.82 25.08 L 16.98 23.17 L 18.26 21.25 L 19.69 19.33 L 21.30 17.42 L 23.11 15.50 L 25.16 13.58 L 27.53 11.67 L 30.32 9.75 L 33.75 7.83 L 38.39 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-05-29">29 May</time><small>94%</small></div>
-        </div>        <p class="field-note">Low illumination favours faint targets. Bright lunar targets are best near full Moon.</p>
+        </div>        <p class="field-note">For faint deep-sky objects, observe when the Moon is below the horizon or weakly illuminated. For lunar relief, observe near the terminator; full Moon is best suited to ray systems and albedo features.</p>
         <a class="context-link" href="../data/moon_phase.csv" download>Download Moon phase CSV →</a>
-      </section>
-
-      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
-        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
-        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
-<ol class="session-list milky-sessions">
-            <li class="tone-excellent"><time datetime="2026-05-20">20 May</time><strong>10:26 pm–5:40 am</strong><span>7h 13m · core to 50°</span></li>
-            <li class="tone-excellent"><time datetime="2026-05-17">17 May</time><strong>10:36 pm–5:40 am</strong><span>7h 05m · core to 50°</span></li>
-            <li class="tone-excellent"><time datetime="2026-05-18">18 May</time><strong>10:36 pm–5:40 am</strong><span>7h 04m · core to 50°</span></li>
-        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </section>
 
       <section class="planet-panel illustrated-panel" id="planets" aria-labelledby="planet-panel-title">
@@ -225,11 +230,8 @@
 <li class="tone-excellent"><img class="planet-icon" src="../assets/art/planet-jupiter.png" alt="" aria-hidden="true"><strong>Jupiter</strong><span>1 May · 7:00 pm</span><small>62° · Excellent</small></li><li class="tone-good"><img class="planet-icon" src="../assets/art/planet-venus.png" alt="" aria-hidden="true"><strong>Venus</strong><span>28 May · 7:00 pm</span><small>30° · Good</small></li><li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-uranus.png" alt="" aria-hidden="true"><strong>Uranus</strong><span>1 May · 7:00 pm</span><small>13° · Poor</small></li><li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-mercury.png" alt="" aria-hidden="true"><strong>Mercury</strong><span>28 May · 7:00 pm</span><small>12° · Poor</small></li>          </ul></section><section><h3>Predawn</h3><ul>
 <li class="tone-excellent"><img class="planet-icon" src="../assets/art/planet-neptune.png" alt="" aria-hidden="true"><strong>Neptune</strong><span>31 May · 5:30 am</span><small>49° · Excellent</small></li><li class="tone-good"><img class="planet-icon" src="../assets/art/planet-saturn.png" alt="" aria-hidden="true"><strong>Saturn</strong><span>31 May · 5:30 am</span><small>42° · Good</small></li><li class="tone-fair"><img class="planet-icon" src="../assets/art/planet-mars.png" alt="" aria-hidden="true"><strong>Mars</strong><span>31 May · 5:30 am</span><small>19° · Fair</small></li>          </ul></section>        </div>        <a class="context-link" href="../data/planet_visibility_daily.csv" download>Download planet CSV →</a>
       </section>
-
-<section class="other-opportunities" aria-labelledby="other-opportunities-title">
-        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
-        <ul><li><time>1 May</time><div><strong>HIP 67139 lunar occultation</strong><span>1:36 am to 3:02 am; Moon at 50° altitude for the first listed contact.</span></div></li><li><time>6 May</time><div><strong>Eta Aquariids</strong><span>Peak conditions: 88% Moon illumination; 28° altitude predawn.</span></div></li><li><time>1 May</time><div><strong>HIP 67328 lunar occultation</strong><span>3:31 am to 4:43 am; Moon at 27° altitude for the first listed contact.</span></div></li></ul>
-      </section>    </div>
+      </div>
+    </div>
 
     <section class="monthly-data illustrated-callout" id="downloads" aria-labelledby="monthly-data-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/telescope-dark.webp" alt=""></span>

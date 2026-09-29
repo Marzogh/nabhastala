@@ -130,7 +130,7 @@
       <dl>
         <div><span class="phase-symbol phase-symbol--new" aria-hidden="true"></span><dt>New Moon</dt><dd>19 Jan</dd><small>Darkest skies</small></div>
         <div><span class="phase-symbol phase-symbol--full" aria-hidden="true"></span><dt>Full Moon</dt><dd>4 Jan</dd><small>Brightest skies</small></div>
-        <div><span class="phase-symbol phase-symbol--half" aria-hidden="true"></span><dt>Best dark window</dt><dd>15 Jan</dd><small>11h 42m</small></div>
+        <div><svg class="phase-symbol phase-symbol--calculated" viewBox="0 0 100 100" aria-hidden="true"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 42.15 94.08 L 39.02 92.17 L 36.70 90.25 L 34.82 88.33 L 33.22 86.42 L 31.83 84.50 L 30.61 82.58 L 29.53 80.67 L 28.56 78.75 L 27.69 76.83 L 26.91 74.92 L 26.21 73.00 L 25.59 71.08 L 25.03 69.17 L 24.54 67.25 L 24.10 65.33 L 23.73 63.42 L 23.40 61.50 L 23.13 59.58 L 22.92 57.67 L 22.75 55.75 L 22.63 53.83 L 22.55 51.92 L 22.53 50.00 L 22.55 48.08 L 22.63 46.17 L 22.75 44.25 L 22.92 42.33 L 23.13 40.42 L 23.40 38.50 L 23.73 36.58 L 24.10 34.67 L 24.54 32.75 L 25.03 30.83 L 25.59 28.92 L 26.21 27.00 L 26.91 25.08 L 27.69 23.17 L 28.56 21.25 L 29.53 19.33 L 30.61 17.42 L 31.83 15.50 L 33.22 13.58 L 34.82 11.67 L 36.70 9.75 L 39.02 7.83 L 42.15 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><dt>Best dark window</dt><dd>15 Jan</dd><small>11h 42m</small></div>
       </dl>
     </section>
 
@@ -143,7 +143,7 @@
       <p class="conditions-verdict" data-conditions-verdict>Checking the sky near Malabar Coast, India…</p>
       <p class="conditions-updated" data-conditions-status></p>
       <dl class="conditions-grid" data-conditions-values hidden></dl>
-      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather data: Open-Meteo</a></small>
+      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather: Open-Meteo</a><span>Forecast point: 11.259° N, 75.780° E</span></small>
     </section>
 
     <section class="sky-chart-summary" id="sky-chart" aria-labelledby="sky-chart-title">
@@ -156,7 +156,7 @@
     </section>
 
     <div class="monthly-editorial-grid">
-
+      <div class="monthly-column monthly-column--primary">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
           <h2 id="night-plan-title">Night planner</h2>
@@ -184,13 +184,29 @@
         <a class="context-link" href="../data/moon_dark_windows.csv" download>Download night-planning CSV →</a>
       </section>
 
+      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
+        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
+<ol class="session-list milky-sessions">
+            <li class="tone-excellent"><time datetime="2026-01-29">29 Jan</time><strong>5:44 am–6:28 am</strong><span>44m · core to 28°</span></li>
+            <li class="tone-excellent"><time datetime="2026-01-28">28 Jan</time><strong>5:49 am–6:28 am</strong><span>40m · core to 27°</span></li>
+            <li class="tone-excellent"><time datetime="2026-01-26">26 Jan</time><strong>5:53 am–6:28 am</strong><span>36m · core to 26°</span></li>
+        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
+      </section>
+
+<section class="other-opportunities" aria-labelledby="other-opportunities-title">
+        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
+        <ul><li><time>2 Jan</time><div><strong>HIP 24019 lunar occultation</strong><span>2:21 am to 3:26 am; Moon at 38° altitude for the first listed contact.</span></div></li><li><time>2 Jan</time><div><strong>HIP 29198 lunar occultation</strong><span>9:47 pm to 9:57 pm; Moon at 57° altitude for the first listed contact.</span></div></li><li><time>3 Jan</time><div><strong>HIP 29927 lunar occultation</strong><span>2:11 am to 3:15 am; Moon at 54° altitude for the first listed contact.</span></div></li></ul>
+      </section>      </div>
+
+      <div class="monthly-column monthly-column--secondary">
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
         <header class="section-heading"><h2 id="month-highlights-title">January highlights</h2></header>
 <ol class="compact-highlights">
-            <li class="tone-excellent"><time datetime="2026-01-30T05:44:00+05:30">30 Jan</time><div><small>Milky Way</small><h3>Milky Way core window</h3><p>44m with 28° altitude.</p></div></li>
             <li class="tone-excellent"><time datetime="2026-01-01T05:30:00+05:30">1 Jan</time><div><small>Minor planets</small><h3>7 Iris</h3><p>74° altitude; magnitude 9.9.</p></div></li>
-            <li class="tone-excellent"><time datetime="2026-01-01">1 Jan</time><div><small>Planets</small><h3>Neptune</h3><p>Best monthly date at 73° altitude.</p></div></li>
             <li class="tone-good"><time datetime="2026-01-01T05:30:00+05:30">1 Jan</time><div><small>Comets</small><h3>Comet 29P</h3><p>75° altitude; magnitude 17.6.</p></div></li>
+            <li class="tone-fair"><time datetime="2026-01-02T01:50:32.680664+05:30">2 Jan</time><div><small>Occultations</small><h3>HIP 23933 lunar occultation</h3><p>1:50 am to 2:48 am; Moon at 45° altitude for the first listed contact.</p></div></li>
+            <li class="tone-poor"><time datetime="2026-01-03">3 Jan</time><div><small>Meteor showers</small><h3>Quadrantids</h3><p>Peak conditions: 99% Moon illumination; 19° altitude predawn.</p></div></li>
             <li class="tone-good"><time datetime="2026-01-10T14:12:09.453497+05:30">10 Jan</time><div><small>Planetary events</small><h3>Jupiter opposition</h3><p>Visible for most of the night.</p></div></li>
         </ol>      </section>
 
@@ -203,18 +219,8 @@
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="20% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 42.15 94.08 L 39.02 92.17 L 36.70 90.25 L 34.82 88.33 L 33.22 86.42 L 31.83 84.50 L 30.61 82.58 L 29.53 80.67 L 28.56 78.75 L 27.69 76.83 L 26.91 74.92 L 26.21 73.00 L 25.59 71.08 L 25.03 69.17 L 24.54 67.25 L 24.10 65.33 L 23.73 63.42 L 23.40 61.50 L 23.13 59.58 L 22.92 57.67 L 22.75 55.75 L 22.63 53.83 L 22.55 51.92 L 22.53 50.00 L 22.55 48.08 L 22.63 46.17 L 22.75 44.25 L 22.92 42.33 L 23.13 40.42 L 23.40 38.50 L 23.73 36.58 L 24.10 34.67 L 24.54 32.75 L 25.03 30.83 L 25.59 28.92 L 26.21 27.00 L 26.91 25.08 L 27.69 23.17 L 28.56 21.25 L 29.53 19.33 L 30.61 17.42 L 31.83 15.50 L 33.22 13.58 L 34.82 11.67 L 36.70 9.75 L 39.02 7.83 L 42.15 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-01-15">15 Jan</time><small>20%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="12% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 59.89 94.08 L 63.84 92.17 L 66.76 90.25 L 69.14 88.33 L 71.15 86.42 L 72.90 84.50 L 74.44 82.58 L 75.81 80.67 L 77.03 78.75 L 78.12 76.83 L 79.10 74.92 L 79.98 73.00 L 80.77 71.08 L 81.47 69.17 L 82.10 67.25 L 82.64 65.33 L 83.12 63.42 L 83.52 61.50 L 83.86 59.58 L 84.14 57.67 L 84.35 55.75 L 84.50 53.83 L 84.59 51.92 L 84.62 50.00 L 84.59 48.08 L 84.50 46.17 L 84.35 44.25 L 84.14 42.33 L 83.86 40.42 L 83.52 38.50 L 83.12 36.58 L 82.64 34.67 L 82.10 32.75 L 81.47 30.83 L 80.77 28.92 L 79.98 27.00 L 79.10 25.08 L 78.12 23.17 L 77.03 21.25 L 75.81 19.33 L 74.44 17.42 L 72.90 15.50 L 71.15 13.58 L 69.14 11.67 L 66.76 9.75 L 63.84 7.83 L 59.89 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-01-22">22 Jan</time><small>12%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="80% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 42.18 94.08 L 39.06 92.17 L 36.75 90.25 L 34.87 88.33 L 33.28 86.42 L 31.90 84.50 L 30.68 82.58 L 29.60 80.67 L 28.63 78.75 L 27.77 76.83 L 26.99 74.92 L 26.30 73.00 L 25.67 71.08 L 25.12 69.17 L 24.63 67.25 L 24.19 65.33 L 23.82 63.42 L 23.50 61.50 L 23.23 59.58 L 23.01 57.67 L 22.84 55.75 L 22.72 53.83 L 22.65 51.92 L 22.63 50.00 L 22.65 48.08 L 22.72 46.17 L 22.84 44.25 L 23.01 42.33 L 23.23 40.42 L 23.50 38.50 L 23.82 36.58 L 24.19 34.67 L 24.63 32.75 L 25.12 30.83 L 25.67 28.92 L 26.30 27.00 L 26.99 25.08 L 27.77 23.17 L 28.63 21.25 L 29.60 19.33 L 30.68 17.42 L 31.90 15.50 L 33.28 13.58 L 34.87 11.67 L 36.75 9.75 L 39.06 7.83 L 42.18 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-01-29">29 Jan</time><small>80%</small></div>
-        </div>        <p class="field-note">Low illumination favours faint targets. Bright lunar targets are best near full Moon.</p>
+        </div>        <p class="field-note">For faint deep-sky objects, observe when the Moon is below the horizon or weakly illuminated. For lunar relief, observe near the terminator; full Moon is best suited to ray systems and albedo features.</p>
         <a class="context-link" href="../data/moon_phase.csv" download>Download Moon phase CSV →</a>
-      </section>
-
-      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
-        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
-        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
-<ol class="session-list milky-sessions">
-            <li class="tone-excellent"><time datetime="2026-01-29">29 Jan</time><strong>5:44 am–6:28 am</strong><span>44m · core to 28°</span></li>
-            <li class="tone-excellent"><time datetime="2026-01-28">28 Jan</time><strong>5:49 am–6:28 am</strong><span>40m · core to 27°</span></li>
-            <li class="tone-excellent"><time datetime="2026-01-26">26 Jan</time><strong>5:53 am–6:28 am</strong><span>36m · core to 26°</span></li>
-        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </section>
 
       <section class="planet-panel illustrated-panel" id="planets" aria-labelledby="planet-panel-title">
@@ -226,11 +232,8 @@
 <li class="tone-excellent"><img class="planet-icon" src="../assets/art/planet-jupiter.png" alt="" aria-hidden="true"><strong>Jupiter</strong><span>5 Jan · 1:00 am</span><small>79° · Excellent</small></li>          </ul></section><section><h3>Predawn</h3><ul>
 <li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-mercury.png" alt="" aria-hidden="true"><strong>Mercury</strong><span>1 Jan · 6:30 am</span><small>7° · Poor</small></li>          </ul></section>        </div>        <a class="context-link" href="../data/planet_visibility_daily.csv" download>Download planet CSV →</a>
       </section>
-
-<section class="other-opportunities" aria-labelledby="other-opportunities-title">
-        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
-        <ul><li><time>1 Jan</time><div><strong>7 Iris</strong><span>74° altitude; magnitude 9.9.</span></div></li><li><time>1 Jan</time><div><strong>Comet 29P</strong><span>75° altitude; magnitude 17.6.</span></div></li><li><time>10 Jan</time><div><strong>Jupiter opposition</strong><span>Visible for most of the night.</span></div></li></ul>
-      </section>    </div>
+      </div>
+    </div>
 
     <section class="monthly-data illustrated-callout" id="downloads" aria-labelledby="monthly-data-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/telescope-dark.webp" alt=""></span>

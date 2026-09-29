@@ -130,7 +130,7 @@
       <dl>
         <div><span class="phase-symbol phase-symbol--new" aria-hidden="true"></span><dt>New Moon</dt><dd>11 Oct</dd><small>Darkest skies</small></div>
         <div><span class="phase-symbol phase-symbol--full" aria-hidden="true"></span><dt>Full Moon</dt><dd>26 Oct</dd><small>Brightest skies</small></div>
-        <div><span class="phase-symbol phase-symbol--half" aria-hidden="true"></span><dt>Best dark window</dt><dd>7 Oct</dd><small>10h 09m</small></div>
+        <div><svg class="phase-symbol phase-symbol--calculated" viewBox="0 0 100 100" aria-hidden="true"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 42.69 94.08 L 39.77 92.17 L 37.60 90.25 L 35.85 88.33 L 34.36 86.42 L 33.06 84.50 L 31.93 82.58 L 30.92 80.67 L 30.01 78.75 L 29.20 76.83 L 28.48 74.92 L 27.83 73.00 L 27.24 71.08 L 26.72 69.17 L 26.26 67.25 L 25.86 65.33 L 25.51 63.42 L 25.21 61.50 L 24.96 59.58 L 24.75 57.67 L 24.60 55.75 L 24.48 53.83 L 24.42 51.92 L 24.40 50.00 L 24.42 48.08 L 24.48 46.17 L 24.60 44.25 L 24.75 42.33 L 24.96 40.42 L 25.21 38.50 L 25.51 36.58 L 25.86 34.67 L 26.26 32.75 L 26.72 30.83 L 27.24 28.92 L 27.83 27.00 L 28.48 25.08 L 29.20 23.17 L 30.01 21.25 L 30.92 19.33 L 31.93 17.42 L 33.06 15.50 L 34.36 13.58 L 35.85 11.67 L 37.60 9.75 L 39.77 7.83 L 42.69 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><dt>Best dark window</dt><dd>7 Oct</dd><small>10h 09m</small></div>
       </dl>
     </section>
 
@@ -143,7 +143,7 @@
       <p class="conditions-verdict" data-conditions-verdict>Checking the sky near Southern Tasmania, Australia…</p>
       <p class="conditions-updated" data-conditions-status></p>
       <dl class="conditions-grid" data-conditions-values hidden></dl>
-      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather data: Open-Meteo</a></small>
+      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather: Open-Meteo</a><span>Forecast point: 42.750° S, 146.980° E</span></small>
     </section>
 
     <section class="sky-chart-summary" id="sky-chart" aria-labelledby="sky-chart-title">
@@ -156,7 +156,7 @@
     </section>
 
     <div class="monthly-editorial-grid">
-
+      <div class="monthly-column monthly-column--primary">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
           <h2 id="night-plan-title">Night planner</h2>
@@ -184,14 +184,30 @@
         <a class="context-link" href="../data/moon_dark_windows.csv" download>Download night-planning CSV →</a>
       </section>
 
+      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
+        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
+<ol class="session-list milky-sessions">
+            <li class="tone-excellent"><time datetime="2026-10-01">1 Oct</time><strong>6:49 pm–11:19 pm</strong><span>4h 30m · core to 67°</span></li>
+            <li class="tone-excellent"><time datetime="2026-10-02">2 Oct</time><strong>6:50 pm–11:10 pm</strong><span>4h 20m · core to 66°</span></li>
+            <li class="tone-excellent"><time datetime="2026-10-04">4 Oct</time><strong>7:52 pm–12:02 am</strong><span>4h 10m · core to 65°</span></li>
+        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
+      </section>
+
+<section class="other-opportunities" aria-labelledby="other-opportunities-title">
+        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
+        <ul><li><time>2 Oct</time><div><strong>HIP 22527 lunar occultation</strong><span>4:13 am; Moon at 19° altitude for the first listed contact.</span></div></li><li><time>12 Oct</time><div><strong>Mercury greatest eastern elongation</strong><span>Evening sky; 25.2° from the Sun.</span></div></li><li><time>25 Oct</time><div><strong>Comet 34D</strong><span>35° altitude; magnitude 14.5.</span></div></li></ul>
+      </section>      </div>
+
+      <div class="monthly-column monthly-column--secondary">
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
         <header class="section-heading"><h2 id="month-highlights-title">October highlights</h2></header>
 <ol class="compact-highlights">
             <li class="tone-excellent"><time datetime="2026-10-01T18:49:01.943057+10:00">1 Oct</time><div><small>Milky Way</small><h3>Milky Way core window</h3><p>4h 30m with 67° altitude.</p></div></li>
-            <li class="tone-excellent"><time datetime="2026-10-27">27 Oct</time><div><small>Planets</small><h3>Neptune</h3><p>Best monthly date at 48° altitude.</p></div></li>
+            <li class="tone-fair"><time datetime="2026-10-02T03:19:22.397461+10:00">2 Oct</time><div><small>Occultations</small><h3>HIP 22400 lunar occultation</h3><p>3:19 am to 4:38 am; Moon at 18° altitude for the first listed contact.</p></div></li>
             <li class="tone-good"><time datetime="2026-10-03T22:00:00+10:00">3 Oct</time><div><small>Comets</small><h3>Comet 10P</h3><p>80° altitude; magnitude 13.9.</p></div></li>
             <li class="tone-good"><time datetime="2026-10-04T23:29:13.160893+11:00">4 Oct</time><div><small>Planetary events</small><h3>Saturn opposition</h3><p>Visible for most of the night.</p></div></li>
-            <li class="tone-fair"><time datetime="2026-10-02T03:19:22.397461+10:00">2 Oct</time><div><small>Occultations</small><h3>HIP 22400 lunar occultation</h3><p>3:19 am to 4:38 am; Moon at 18° altitude for the first listed contact.</p></div></li>
+            <li class="tone-poor"><time datetime="2026-10-21">21 Oct</time><div><small>Meteor showers</small><h3>Orionids</h3><p>Peak conditions: 71% Moon illumination; 28° altitude predawn.</p></div></li>
         </ol>      </section>
 
       <section class="moon-panel illustrated-panel" aria-labelledby="moon-panel-title">
@@ -203,18 +219,8 @@
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="20% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 57.82 94.08 L 60.93 92.17 L 63.24 90.25 L 65.12 88.33 L 66.71 86.42 L 68.10 84.50 L 69.31 82.58 L 70.39 80.67 L 71.36 78.75 L 72.22 76.83 L 73.00 74.92 L 73.69 73.00 L 74.32 71.08 L 74.87 69.17 L 75.36 67.25 L 75.79 65.33 L 76.17 63.42 L 76.49 61.50 L 76.76 59.58 L 76.98 57.67 L 77.14 55.75 L 77.26 53.83 L 77.33 51.92 L 77.36 50.00 L 77.33 48.08 L 77.26 46.17 L 77.14 44.25 L 76.98 42.33 L 76.76 40.42 L 76.49 38.50 L 76.17 36.58 L 75.79 34.67 L 75.36 32.75 L 74.87 30.83 L 74.32 28.92 L 73.69 27.00 L 73.00 25.08 L 72.22 23.17 L 71.36 21.25 L 70.39 19.33 L 69.31 17.42 L 68.10 15.50 L 66.71 13.58 L 65.12 11.67 L 63.24 9.75 L 60.93 7.83 L 57.82 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-10-15">15 Oct</time><small>20%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="80% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 42.18 94.08 L 39.06 92.17 L 36.75 90.25 L 34.87 88.33 L 33.28 86.42 L 31.90 84.50 L 30.68 82.58 L 29.60 80.67 L 28.63 78.75 L 27.77 76.83 L 26.99 74.92 L 26.30 73.00 L 25.67 71.08 L 25.12 69.17 L 24.63 67.25 L 24.19 65.33 L 23.82 63.42 L 23.50 61.50 L 23.23 59.58 L 23.01 57.67 L 22.84 55.75 L 22.72 53.83 L 22.65 51.92 L 22.63 50.00 L 22.65 48.08 L 22.72 46.17 L 22.84 44.25 L 23.01 42.33 L 23.23 40.42 L 23.50 38.50 L 23.82 36.58 L 24.19 34.67 L 24.63 32.75 L 25.12 30.83 L 25.67 28.92 L 26.30 27.00 L 26.99 25.08 L 27.77 23.17 L 28.63 21.25 L 29.60 19.33 L 30.68 17.42 L 31.90 15.50 L 33.28 13.58 L 34.87 11.67 L 36.75 9.75 L 39.06 7.83 L 42.18 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-10-22">22 Oct</time><small>80%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="92% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 61.05 94.08 L 65.45 92.17 L 68.72 90.25 L 71.37 88.33 L 73.62 86.42 L 75.58 84.50 L 77.29 82.58 L 78.82 80.67 L 80.18 78.75 L 81.41 76.83 L 82.50 74.92 L 83.49 73.00 L 84.37 71.08 L 85.15 69.17 L 85.85 67.25 L 86.46 65.33 L 86.99 63.42 L 87.44 61.50 L 87.82 59.58 L 88.13 57.67 L 88.36 55.75 L 88.53 53.83 L 88.63 51.92 L 88.67 50.00 L 88.63 48.08 L 88.53 46.17 L 88.36 44.25 L 88.13 42.33 L 87.82 40.42 L 87.44 38.50 L 86.99 36.58 L 86.46 34.67 L 85.85 32.75 L 85.15 30.83 L 84.37 28.92 L 83.49 27.00 L 82.50 25.08 L 81.41 23.17 L 80.18 21.25 L 78.82 19.33 L 77.29 17.42 L 75.58 15.50 L 73.62 13.58 L 71.37 11.67 L 68.72 9.75 L 65.45 7.83 L 61.05 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-10-29">29 Oct</time><small>92%</small></div>
-        </div>        <p class="field-note">Low illumination favours faint targets. Bright lunar targets are best near full Moon.</p>
+        </div>        <p class="field-note">For faint deep-sky objects, observe when the Moon is below the horizon or weakly illuminated. For lunar relief, observe near the terminator; full Moon is best suited to ray systems and albedo features.</p>
         <a class="context-link" href="../data/moon_phase.csv" download>Download Moon phase CSV →</a>
-      </section>
-
-      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
-        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
-        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
-<ol class="session-list milky-sessions">
-            <li class="tone-excellent"><time datetime="2026-10-01">1 Oct</time><strong>6:49 pm–11:19 pm</strong><span>4h 30m · core to 67°</span></li>
-            <li class="tone-excellent"><time datetime="2026-10-02">2 Oct</time><strong>6:50 pm–11:10 pm</strong><span>4h 20m · core to 66°</span></li>
-            <li class="tone-excellent"><time datetime="2026-10-04">4 Oct</time><strong>7:52 pm–12:02 am</strong><span>4h 10m · core to 65°</span></li>
-        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </section>
 
       <section class="planet-panel illustrated-panel" id="planets" aria-labelledby="planet-panel-title">
@@ -226,11 +232,8 @@
 <li class="tone-excellent"><img class="planet-icon" src="../assets/art/planet-neptune.png" alt="" aria-hidden="true"><strong>Neptune</strong><span>27 Oct · 11:00 pm</span><small>48° · Excellent</small></li><li class="tone-excellent"><img class="planet-icon" src="../assets/art/planet-saturn.png" alt="" aria-hidden="true"><strong>Saturn</strong><span>31 Oct · 11:00 pm</span><small>46° · Excellent</small></li><li class="tone-good"><img class="planet-icon" src="../assets/art/planet-uranus.png" alt="" aria-hidden="true"><strong>Uranus</strong><span>28 Oct · 3:00 am</span><small>26° · Good</small></li>          </ul></section><section><h3>Predawn</h3><ul>
 <li class="tone-fair"><img class="planet-icon" src="../assets/art/planet-mars.png" alt="" aria-hidden="true"><strong>Mars</strong><span>31 Oct · 5:30 am</span><small>21° · Fair</small></li><li class="tone-fair"><img class="planet-icon" src="../assets/art/planet-jupiter.png" alt="" aria-hidden="true"><strong>Jupiter</strong><span>31 Oct · 5:30 am</span><small>21° · Fair</small></li>          </ul></section>        </div>        <a class="context-link" href="../data/planet_visibility_daily.csv" download>Download planet CSV →</a>
       </section>
-
-<section class="other-opportunities" aria-labelledby="other-opportunities-title">
-        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
-        <ul><li><time>3 Oct</time><div><strong>Comet 10P</strong><span>80° altitude; magnitude 13.9.</span></div></li><li><time>4 Oct</time><div><strong>Saturn opposition</strong><span>Visible for most of the night.</span></div></li><li><time>2 Oct</time><div><strong>HIP 22400 lunar occultation</strong><span>3:19 am to 4:38 am; Moon at 18° altitude for the first listed contact.</span></div></li></ul>
-      </section>    </div>
+      </div>
+    </div>
 
     <section class="monthly-data illustrated-callout" id="downloads" aria-labelledby="monthly-data-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/telescope-dark.webp" alt=""></span>

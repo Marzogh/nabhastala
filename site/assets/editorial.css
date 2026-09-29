@@ -485,15 +485,17 @@ body { background-image: var(--paper-wash); }
 .monthly-verdict dl small { color: var(--ink-soft); font-size: 0.68rem; }
 
 .phase-symbol {
+  display: block;
   width: 2.35rem;
   aspect-ratio: 1;
   border: 1px solid var(--ink-soft);
   border-radius: 50%;
 }
 
-.phase-symbol--new { background: var(--ink); }
-.phase-symbol--full { background: var(--surface-raised); }
-.phase-symbol--half { background: linear-gradient(90deg, var(--ink) 50%, var(--surface-raised) 50%); }
+.phase-symbol--new { background: var(--moon-shadow); }
+.phase-symbol--full { background: var(--moon-light); }
+.phase-symbol--unknown { background: linear-gradient(90deg, var(--moon-shadow) 50%, var(--moon-light) 50%); }
+.phase-symbol--calculated { overflow: visible; background: transparent; }
 
 .guide-nav { top: 4.65rem; }
 
@@ -502,7 +504,7 @@ body { background-image: var(--paper-wash); }
   gap: 2rem 1.5rem;
 }
 
-.monthly-editorial-grid > section { gap: 1.1rem; }
+.monthly-column > section { gap: 1.1rem; }
 .monthly-editorial-grid h2 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); }
 
 .conditions-panel,
@@ -541,8 +543,8 @@ body { background-image: var(--paper-wash); }
 .conditions-grid > div:first-child { border-left: 0; }
 .conditions-grid dt { color: var(--accent); font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; }
 .conditions-grid dd { margin: 0.2rem 0; font-family: var(--font-editorial); font-size: 1.25rem; font-weight: 700; }
-.conditions-grid small,
-.conditions-credit { color: var(--ink-soft); font-size: 0.68rem; }
+.conditions-grid small { color: var(--ink-soft); font-size: 0.68rem; }
+.conditions-credit { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.68rem; }
 .conditions-credit a { color: inherit; }
 
 .sky-chart-summary {
@@ -614,12 +616,6 @@ body { background-image: var(--paper-wash); }
 .compact-highlights li {
   grid-template-columns: 2.8rem 1fr;
   padding-left: 0.6rem;
-}
-
-.compact-highlights time::before {
-  font-family: var(--font-editorial);
-  font-size: 1.7rem;
-  line-height: 1;
 }
 
 .compact-highlights h3 {
@@ -883,7 +879,8 @@ body { background-image: var(--paper-wash); }
   .illustrated-callout { grid-template-columns: 5rem 1fr; }
   .illustrated-callout > a { grid-column: 1 / -1; justify-self: start; }
   .guide-nav { top: 0; }
-  .monthly-editorial-grid { grid-template-columns: 1fr; }
+  .monthly-editorial-grid { display: grid; grid-template-columns: 1fr; }
+  .monthly-column { display: contents; }
   .conditions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .conditions-grid > div:nth-child(odd) { border-left: 0; }
   .sky-chart-summary { grid-template-columns: 1fr; }
@@ -896,6 +893,12 @@ body { background-image: var(--paper-wash); }
   .month-highlights,
   .moon-panel,
   .planet-panel { grid-column: 1; grid-row: auto; }
+  .night-plan { order: 1; }
+  .month-highlights { order: 2; }
+  .moon-panel { order: 3; }
+  .deep-sky-panel { order: 4; }
+  .planet-panel { order: 5; }
+  .other-opportunities { order: 6; }
   .monthly-data.illustrated-callout { grid-template-columns: 5rem 1fr; }
   .monthly-data .monthly-downloads { grid-column: 1 / -1; }
   .dataset-group-nav { top: 0; }

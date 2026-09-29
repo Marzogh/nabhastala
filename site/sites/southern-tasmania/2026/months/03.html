@@ -130,7 +130,7 @@
       <dl>
         <div><span class="phase-symbol phase-symbol--new" aria-hidden="true"></span><dt>New Moon</dt><dd>19 Mar</dd><small>Darkest skies</small></div>
         <div><span class="phase-symbol phase-symbol--full" aria-hidden="true"></span><dt>Full Moon</dt><dd>4 Mar</dd><small>Brightest skies</small></div>
-        <div><span class="phase-symbol phase-symbol--half" aria-hidden="true"></span><dt>Best dark window</dt><dd>23 Mar</dd><small>10h 58m</small></div>
+        <div><svg class="phase-symbol phase-symbol--calculated" viewBox="0 0 100 100" aria-hidden="true"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 57.46 94.08 L 60.44 92.17 L 62.65 90.25 L 64.44 88.33 L 65.96 86.42 L 67.28 84.50 L 68.44 82.58 L 69.47 80.67 L 70.39 78.75 L 71.22 76.83 L 71.96 74.92 L 72.62 73.00 L 73.21 71.08 L 73.74 69.17 L 74.21 67.25 L 74.63 65.33 L 74.98 63.42 L 75.29 61.50 L 75.55 59.58 L 75.75 57.67 L 75.91 55.75 L 76.03 53.83 L 76.10 51.92 L 76.12 50.00 L 76.10 48.08 L 76.03 46.17 L 75.91 44.25 L 75.75 42.33 L 75.55 40.42 L 75.29 38.50 L 74.98 36.58 L 74.63 34.67 L 74.21 32.75 L 73.74 30.83 L 73.21 28.92 L 72.62 27.00 L 71.96 25.08 L 71.22 23.17 L 70.39 21.25 L 69.47 19.33 L 68.44 17.42 L 67.28 15.50 L 65.96 13.58 L 64.44 11.67 L 62.65 9.75 L 60.44 7.83 L 57.46 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><dt>Best dark window</dt><dd>23 Mar</dd><small>10h 58m</small></div>
       </dl>
     </section>
 
@@ -143,7 +143,7 @@
       <p class="conditions-verdict" data-conditions-verdict>Checking the sky near Southern Tasmania, Australia…</p>
       <p class="conditions-updated" data-conditions-status></p>
       <dl class="conditions-grid" data-conditions-values hidden></dl>
-      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather data: Open-Meteo</a></small>
+      <small class="conditions-credit"><a href="https://open-meteo.com/" rel="external">Weather: Open-Meteo</a><span>Forecast point: 42.750° S, 146.980° E</span></small>
     </section>
 
     <section class="sky-chart-summary" id="sky-chart" aria-labelledby="sky-chart-title">
@@ -156,7 +156,7 @@
     </section>
 
     <div class="monthly-editorial-grid">
-
+      <div class="monthly-column monthly-column--primary">
       <section class="night-plan" id="night-plan" aria-labelledby="night-plan-title">
         <header class="section-heading">
           <h2 id="night-plan-title">Night planner</h2>
@@ -184,14 +184,30 @@
         <a class="context-link" href="../data/moon_dark_windows.csv" download>Download night-planning CSV →</a>
       </section>
 
+      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
+        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
+        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
+<ol class="session-list milky-sessions">
+            <li class="tone-excellent"><time datetime="2026-03-26">26 Mar</time><strong>12:54 am–6:50 am</strong><span>5h 57m · core to 76°</span></li>
+            <li class="tone-excellent"><time datetime="2026-03-25">25 Mar</time><strong>12:54 am–6:49 am</strong><span>5h 56m · core to 76°</span></li>
+            <li class="tone-excellent"><time datetime="2026-03-24">24 Mar</time><strong>1:03 am–6:48 am</strong><span>5h 45m · core to 76°</span></li>
+        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
+      </section>
+
+<section class="other-opportunities" aria-labelledby="other-opportunities-title">
+        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
+        <ul><li><time>1 Mar</time><div><strong>HIP 45648 lunar occultation</strong><span>11:59 pm; Moon at 29° altitude for the first listed contact.</span></div></li><li><time>2 Mar</time><div><strong>HIP 45510 lunar occultation</strong><span>12:12 am; Moon at 29° altitude for the first listed contact.</span></div></li><li><time>21 Mar</time><div><strong>Mercury stationary point</strong><span>Apparent motion changes direction.</span></div></li></ul>
+      </section>      </div>
+
+      <div class="monthly-column monthly-column--secondary">
       <section class="month-highlights" id="highlights" aria-labelledby="month-highlights-title">
         <header class="section-heading"><h2 id="month-highlights-title">March highlights</h2></header>
 <ol class="compact-highlights">
-            <li class="tone-excellent"><time datetime="2026-03-28T01:29:00+11:00">28 Mar</time><div><small>Milky Way</small><h3>Milky Way core window</h3><p>5h 23m with 76° altitude.</p></div></li>
+            <li class="tone-fair"><time datetime="2026-03-01T22:54:57.553711+11:00">1 Mar</time><div><small>Occultations</small><h3>HIP 45510 lunar occultation</h3><p>10:54 pm; Moon at 27° altitude for the first listed contact.</p></div></li>
             <li class="tone-excellent"><time datetime="2026-03-03T22:33:41.847399+11:00">3 Mar</time><div><small>Eclipses</small><h3>Total lunar eclipse</h3><p>Visible at maximum; umbral magnitude 1.15.</p></div></li>
+            <li class="tone-fair"><time datetime="2026-03-12T11:00:00+11:00">12 Mar</time><div><small>Planetary events</small><h3>Jupiter stationary point</h3><p>Apparent motion changes direction.</p></div></li>
             <li class="tone-good"><time datetime="2026-03-23T23:00:00+11:00">23 Mar</time><div><small>Minor planets</small><h3>7 Iris</h3><p>45° altitude; magnitude 9.5.</p></div></li>
             <li class="tone-good"><time datetime="2026-03-31T23:00:00+11:00">31 Mar</time><div><small>Comets</small><h3>Comet 43P</h3><p>53° altitude; magnitude 17.2.</p></div></li>
-            <li class="tone-fair"><time datetime="2026-03-01">1 Mar</time><div><small>Planets</small><h3>Uranus</h3><p>Best monthly date at 21° altitude.</p></div></li>
         </ol>      </section>
 
       <section class="moon-panel illustrated-panel" aria-labelledby="moon-panel-title">
@@ -203,18 +219,8 @@
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="26% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 36.86 5.92 L 31.62 7.83 L 27.73 9.75 L 24.57 11.67 L 21.90 13.58 L 19.57 15.50 L 17.53 17.42 L 15.71 19.33 L 14.09 21.25 L 12.64 23.17 L 11.33 25.08 L 10.16 27.00 L 9.12 28.92 L 8.18 30.83 L 7.36 32.75 L 6.63 34.67 L 6.00 36.58 L 5.46 38.50 L 5.01 40.42 L 4.64 42.33 L 4.36 44.25 L 4.16 46.17 L 4.04 48.08 L 4.00 50.00 L 4.04 51.92 L 4.16 53.83 L 4.36 55.75 L 4.64 57.67 L 5.01 59.58 L 5.46 61.50 L 6.00 63.42 L 6.63 65.33 L 7.36 67.25 L 8.18 69.17 L 9.12 71.08 L 10.16 73.00 L 11.33 74.92 L 12.64 76.83 L 14.09 78.75 L 15.71 80.67 L 17.53 82.58 L 19.57 84.50 L 21.90 86.42 L 24.57 88.33 L 27.73 90.25 L 31.62 92.17 L 36.86 94.08 L 50.00 96.00 L 50.00 96.00 L 43.61 94.08 L 41.06 92.17 L 39.18 90.25 L 37.64 88.33 L 36.34 86.42 L 35.21 84.50 L 34.22 82.58 L 33.34 80.67 L 32.55 78.75 L 31.84 76.83 L 31.21 74.92 L 30.64 73.00 L 30.13 71.08 L 29.68 69.17 L 29.27 67.25 L 28.92 65.33 L 28.61 63.42 L 28.35 61.50 L 28.13 59.58 L 27.95 57.67 L 27.82 55.75 L 27.72 53.83 L 27.66 51.92 L 27.64 50.00 L 27.66 48.08 L 27.72 46.17 L 27.82 44.25 L 27.95 42.33 L 28.13 40.42 L 28.35 38.50 L 28.61 36.58 L 28.92 34.67 L 29.27 32.75 L 29.68 30.83 L 30.13 28.92 L 30.64 27.00 L 31.21 25.08 L 31.84 23.17 L 32.55 21.25 L 33.34 19.33 L 34.22 17.42 L 35.21 15.50 L 36.34 13.58 L 37.64 11.67 L 39.18 9.75 L 41.06 7.83 L 43.61 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-03-15">15 Mar</time><small>26%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="13% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 59.60 94.08 L 63.43 92.17 L 66.27 90.25 L 68.57 88.33 L 70.53 86.42 L 72.22 84.50 L 73.72 82.58 L 75.04 80.67 L 76.23 78.75 L 77.29 76.83 L 78.24 74.92 L 79.10 73.00 L 79.86 71.08 L 80.55 69.17 L 81.15 67.25 L 81.68 65.33 L 82.14 63.42 L 82.53 61.50 L 82.86 59.58 L 83.13 57.67 L 83.34 55.75 L 83.48 53.83 L 83.57 51.92 L 83.60 50.00 L 83.57 48.08 L 83.48 46.17 L 83.34 44.25 L 83.13 42.33 L 82.86 40.42 L 82.53 38.50 L 82.14 36.58 L 81.68 34.67 L 81.15 32.75 L 80.55 30.83 L 79.86 28.92 L 79.10 27.00 L 78.24 25.08 L 77.29 23.17 L 76.23 21.25 L 75.04 19.33 L 73.72 17.42 L 72.22 15.50 L 70.53 13.58 L 68.57 11.67 L 66.27 9.75 L 63.43 7.83 L 59.60 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-03-22">22 Mar</time><small>13%</small></div>
             <div><svg class="moon-disc" viewBox="0 0 100 100" role="img" aria-label="82% illuminated"><circle class="moon-disc__shadow" cx="50" cy="50" r="46"/><path class="moon-disc__light" d="M 50.00 4.00 L 63.14 5.92 L 68.38 7.83 L 72.27 9.75 L 75.43 11.67 L 78.10 13.58 L 80.43 15.50 L 82.47 17.42 L 84.29 19.33 L 85.91 21.25 L 87.36 23.17 L 88.67 25.08 L 89.84 27.00 L 90.88 28.92 L 91.82 30.83 L 92.64 32.75 L 93.37 34.67 L 94.00 36.58 L 94.54 38.50 L 94.99 40.42 L 95.36 42.33 L 95.64 44.25 L 95.84 46.17 L 95.96 48.08 L 96.00 50.00 L 95.96 51.92 L 95.84 53.83 L 95.64 55.75 L 95.36 57.67 L 94.99 59.58 L 94.54 61.50 L 94.00 63.42 L 93.37 65.33 L 92.64 67.25 L 91.82 69.17 L 90.88 71.08 L 89.84 73.00 L 88.67 74.92 L 87.36 76.83 L 85.91 78.75 L 84.29 80.67 L 82.47 82.58 L 80.43 84.50 L 78.10 86.42 L 75.43 88.33 L 72.27 90.25 L 68.38 92.17 L 63.14 94.08 L 50.00 96.00 L 50.00 96.00 L 41.67 94.08 L 38.34 92.17 L 35.88 90.25 L 33.87 88.33 L 32.18 86.42 L 30.70 84.50 L 29.41 82.58 L 28.26 80.67 L 27.23 78.75 L 26.31 76.83 L 25.48 74.92 L 24.74 73.00 L 24.07 71.08 L 23.48 69.17 L 22.96 67.25 L 22.50 65.33 L 22.10 63.42 L 21.75 61.50 L 21.47 59.58 L 21.24 57.67 L 21.06 55.75 L 20.93 53.83 L 20.85 51.92 L 20.83 50.00 L 20.85 48.08 L 20.93 46.17 L 21.06 44.25 L 21.24 42.33 L 21.47 40.42 L 21.75 38.50 L 22.10 36.58 L 22.50 34.67 L 22.96 32.75 L 23.48 30.83 L 24.07 28.92 L 24.74 27.00 L 25.48 25.08 L 26.31 23.17 L 27.23 21.25 L 28.26 19.33 L 29.41 17.42 L 30.70 15.50 L 32.18 13.58 L 33.87 11.67 L 35.88 9.75 L 38.34 7.83 L 41.67 5.92 L 50.00 4.00 Z"/><circle class="moon-disc__rim" cx="50" cy="50" r="46"/></svg><time datetime="2026-03-29">29 Mar</time><small>82%</small></div>
-        </div>        <p class="field-note">Low illumination favours faint targets. Bright lunar targets are best near full Moon.</p>
+        </div>        <p class="field-note">For faint deep-sky objects, observe when the Moon is below the horizon or weakly illuminated. For lunar relief, observe near the terminator; full Moon is best suited to ray systems and albedo features.</p>
         <a class="context-link" href="../data/moon_phase.csv" download>Download Moon phase CSV →</a>
-      </section>
-
-      <section class="deep-sky-panel illustrated-panel" id="deep-sky" aria-labelledby="deep-sky-title">
-        <span class="panel-art panel-art--watermark" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/galaxy-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/galaxy-dark.webp" alt=""></span>
-        <header class="section-heading"><h2 id="deep-sky-title">Galactic Centre sessions</h2></header>
-<ol class="session-list milky-sessions">
-            <li class="tone-excellent"><time datetime="2026-03-26">26 Mar</time><strong>12:54 am–6:50 am</strong><span>5h 57m · core to 76°</span></li>
-            <li class="tone-excellent"><time datetime="2026-03-25">25 Mar</time><strong>12:54 am–6:49 am</strong><span>5h 56m · core to 76°</span></li>
-            <li class="tone-excellent"><time datetime="2026-03-24">24 Mar</time><strong>1:03 am–6:48 am</strong><span>5h 45m · core to 76°</span></li>
-        </ol>        <a class="context-link" href="../data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </section>
 
       <section class="planet-panel illustrated-panel" id="planets" aria-labelledby="planet-panel-title">
@@ -225,11 +231,8 @@
 <li class="tone-fair"><img class="planet-icon" src="../assets/art/planet-jupiter.png" alt="" aria-hidden="true"><strong>Jupiter</strong><span>27 Mar · 8:00 pm</span><small>24° · Fair</small></li><li class="tone-fair"><img class="planet-icon" src="../assets/art/planet-uranus.png" alt="" aria-hidden="true"><strong>Uranus</strong><span>1 Mar · 8:30 pm</span><small>21° · Fair</small></li><li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-venus.png" alt="" aria-hidden="true"><strong>Venus</strong><span>27 Mar · 7:30 pm</span><small>4° · Poor</small></li><li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-saturn.png" alt="" aria-hidden="true"><strong>Saturn</strong><span>1 Mar · 8:30 pm</span><small>4° · Poor</small></li><li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-neptune.png" alt="" aria-hidden="true"><strong>Neptune</strong><span>1 Mar · 8:30 pm</span><small>3° · Poor</small></li>          </ul></section><section><h3>Predawn</h3><ul>
 <li class="tone-fair"><img class="planet-icon" src="../assets/art/planet-mercury.png" alt="" aria-hidden="true"><strong>Mercury</strong><span>31 Mar · 7:00 am</span><small>20° · Fair</small></li><li class="tone-poor"><img class="planet-icon" src="../assets/art/planet-mars.png" alt="" aria-hidden="true"><strong>Mars</strong><span>23 Mar · 7:00 am</span><small>12° · Poor</small></li>          </ul></section>        </div>        <a class="context-link" href="../data/planet_visibility_daily.csv" download>Download planet CSV →</a>
       </section>
-
-<section class="other-opportunities" aria-labelledby="other-opportunities-title">
-        <header class="section-heading"><h2 id="other-opportunities-title">Events</h2></header>
-        <ul><li><time>3 Mar</time><div><strong>Total lunar eclipse</strong><span>Visible at maximum; umbral magnitude 1.15.</span></div></li><li><time>23 Mar</time><div><strong>7 Iris</strong><span>45° altitude; magnitude 9.5.</span></div></li><li><time>31 Mar</time><div><strong>Comet 43P</strong><span>53° altitude; magnitude 17.2.</span></div></li></ul>
-      </section>    </div>
+      </div>
+    </div>
 
     <section class="monthly-data illustrated-callout" id="downloads" aria-labelledby="monthly-data-title">
       <span class="callout-art" aria-hidden="true"><img class="theme-art theme-art--light" src="../assets/art/telescope-light.webp" alt=""><img class="theme-art theme-art--dark" src="../assets/art/telescope-dark.webp" alt=""></span>

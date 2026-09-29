@@ -542,6 +542,40 @@ def rank_diverse_opportunities(
     return tuple(chosen)
 
 
+def select_month_highlights(
+    candidates: list[OpportunityView],
+    *,
+    limit: int = 5,
+) -> tuple[OpportunityView, ...]:
+    """Choose one useful item per category, then present the result by local date."""
+    category_priority = {
+        "Eclipses": 0,
+        "Planetary events": 1,
+        "Meteor showers": 2,
+        "Occultations": 3,
+        "Comets": 4,
+        "Minor planets": 5,
+        "Milky Way": 6,
+        "Planets": 7,
+    }
+    ranked = rank_opportunities(candidates, limit=len(candidates))
+    best_by_category: dict[str, OpportunityView] = {}
+    for candidate in ranked:
+        best_by_category.setdefault(candidate.category, candidate)
+    chosen = sorted(
+        best_by_category.values(),
+        key=lambda candidate: (
+            category_priority.get(candidate.category, 99),
+            -RATING_PRIORITY[candidate.rating.strip().lower()],
+            candidate.date_local,
+            candidate.source_order,
+        ),
+    )[:limit]
+    return tuple(
+        sorted(chosen, key=lambda candidate: (candidate.date_local, candidate.source_order))
+    )
+
+
 def _planet_seasons(data_dir: Path) -> tuple[PlanetSeasonView, ...]:
     grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in _read_rows(data_dir, "planet_visibility_monthly_summary.csv"):
@@ -724,7 +758,7 @@ def build_month_guide(
     month_candidates = [
         candidate for candidate in candidates if candidate.date_local[5:7] == f"{month:02d}"
     ]
-    highlights = rank_diverse_opportunities(month_candidates, limit=5)
+    highlights = select_month_highlights(month_candidates, limit=5)
 
     moon_rows = _month_rows(data_dir, "moon_phase.csv", year, month)
     moon_values = [(row, _number(row.get("moon_illumination_fraction"))) for row in moon_rows]
@@ -825,6 +859,25 @@ def build_month_guide(
         )
         for row in dark_rows[:3]
     )
+    best_dark_moon = None
+    if dark_windows:
+        best_dark_phase = phase_by_date.get(dark_windows[0].date)
+        if best_dark_phase:
+            illumination = _number(best_dark_phase.get("moon_illumination_fraction"))
+            phase_index = _number(best_dark_phase.get("moon_phase_index"))
+            if illumination is not None:
+                if phase_index is None:
+                    phase_index = (
+                        math.acos(max(-1.0, min(1.0, 1 - 2 * illumination)))
+                        * 29.53058867
+                        / math.pi
+                    )
+                best_dark_moon = MoonSampleView(
+                    date=dark_windows[0].date,
+                    illumination=illumination,
+                    phase_index=phase_index,
+                    illuminated_path=_moon_illuminated_path(phase_index, illumination),
+                )
 
     milky_rows = _month_rows(data_dir, "milky_way_windows.csv", year, month)
     milky_rows = [
@@ -897,13 +950,20 @@ def build_month_guide(
         if planet_buckets[period]
     )
 
-    other = rank_diverse_opportunities(
-        [
-            candidate
-            for candidate in month_candidates
-            if candidate.category not in {"Milky Way", "Planets"}
-        ],
-        limit=3,
+    highlighted_keys = {candidate.key for candidate in highlights}
+    other = tuple(
+        sorted(
+            rank_diverse_opportunities(
+                [
+                    candidate
+                    for candidate in month_candidates
+                    if candidate.category not in {"Milky Way", "Planets"}
+                    and candidate.key not in highlighted_keys
+                ],
+                limit=3,
+            ),
+            key=lambda candidate: (candidate.date_local, candidate.source_order),
+        )
     )
     data_notes: list[str] = []
     failed_comets = sum(
@@ -963,6 +1023,7 @@ def build_month_guide(
         ),
         night_plans=night_plans,
         moon_samples=moon_samples,
+        best_dark_moon=best_dark_moon,
         dark_windows=dark_windows,
         milky_way_sessions=milky_sessions,
         planet_groups=planet_groups,
