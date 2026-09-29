@@ -820,7 +820,6 @@ tbody tr:hover {
 }
 
 .glance-month::before,
-.month-card::before,
 .highlight-list > li::before {
   position: absolute;
   inset: 0 auto 0 0;
@@ -835,7 +834,6 @@ tbody tr:hover {
 }
 
 .glance-month__number,
-.month-card__number,
 .highlight-list__date,
 .rating-label {
   font-family: var(--font-mono);
@@ -1099,6 +1097,9 @@ tbody tr:hover {
   cursor: help;
 }
 
+.milky-window--poor { background: #a96752; }
+.milky-window--fair { background: #b38a4e; }
+.milky-window--good { background: #71805a; }
 .milky-window--excellent { background: var(--sage); }
 
 .milky-window i {
@@ -1132,7 +1133,10 @@ tbody tr:hover {
   text-transform: uppercase;
 }
 
-.instrument-legend span::before {
+.instrument-legend .legend-limited::before,
+.instrument-legend .legend-fair::before,
+.instrument-legend .legend-good::before,
+.instrument-legend .legend-excellent::before {
   display: inline-block;
   width: 0.75rem;
   height: 0.75rem;
@@ -1142,7 +1146,9 @@ tbody tr:hover {
   vertical-align: -0.1rem;
 }
 
-.legend-useful::before { background: #9b7b4f; }
+.legend-limited::before { background: #a96752; }
+.legend-fair::before { background: #b38a4e; }
+.legend-good::before { background: #71805a; }
 .legend-excellent::before { background: var(--sage); }
 
 .milky-month-summary {
@@ -1446,91 +1452,71 @@ tbody tr:hover {
   .night-planner__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-.month-card-grid {
+.month-ledger-heading,
+.month-ledger-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--border-strong);
-  border-left: 1px solid var(--border);
+  grid-template-columns: minmax(8rem, 0.65fr) minmax(0, 2fr) minmax(12rem, 0.9fr) 2rem;
+  gap: var(--space-5);
+  align-items: center;
 }
 
-.month-card {
-  position: relative;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-5);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.month-card header {
-  display: flex;
-  gap: var(--space-4);
-  align-items: start;
-}
-
-.month-card__number {
-  color: var(--accent);
-  font-size: 0.75rem;
-}
-
-.month-card header p {
-  margin: 0 0 var(--space-1);
+.month-ledger-heading {
+  padding: var(--space-2) var(--space-3);
+  border-block: 1px solid var(--border-strong);
   color: var(--ink-soft);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.month-card__verdict {
-  min-height: 4.8em;
-  margin: 0;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.month-card dl,
-.month-card ul {
-  margin: 0;
-  padding: 0;
-}
-
-.month-card dl > div {
-  padding-block: var(--space-2);
-  border-top: 1px solid var(--border);
-}
-
-.month-card dt {
-  color: var(--ink-soft);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.64rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.month-card dd {
-  margin: var(--space-1) 0 0;
-  font-size: 0.85rem;
+.month-ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.month-card ul {
-  padding-left: var(--space-4);
-  color: var(--ink-soft);
-  font-size: 0.82rem;
-}
+.month-ledger li { border-bottom: 1px solid var(--border); }
 
-.month-card > a {
-  margin-top: auto;
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--border-strong);
+.month-ledger-row {
+  min-width: 0;
+  padding: var(--space-3);
   color: var(--ink);
-  font-weight: 700;
   text-decoration: none;
 }
 
-.month-card > a:hover { color: var(--accent); }
+.month-ledger-row:hover { background: var(--accent-soft); }
+.month-ledger-row:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+
+.month-ledger-row__month,
+.month-ledger-row__opportunity,
+.month-ledger-row__dark {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.month-ledger-row__month { grid-template-columns: 2rem minmax(0, 1fr); align-items: baseline; }
+.month-ledger-row__month small { color: var(--accent); }
+.month-ledger-row__month strong { font-family: var(--font-editorial); font-size: 1.05rem; }
+
+.month-ledger-row small {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.month-ledger-row__opportunity > span,
+.month-ledger-row__dark > span {
+  overflow-wrap: anywhere;
+  font-size: 0.82rem;
+}
+
+.month-ledger-row__opportunity > span { font-weight: 700; }
+.month-ledger-row__dark small { display: none; }
+.month-ledger-row__arrow { color: var(--accent); font-size: 1.1rem; text-align: right; }
 
 .data-callout {
   display: grid;
@@ -1709,10 +1695,10 @@ tbody tr:hover {
 .session-list li {
   position: relative;
   display: grid;
-  grid-template-columns: 5rem minmax(10rem, 1fr) auto;
-  gap: var(--space-4);
+  grid-template-columns: 4.25rem minmax(9rem, 1fr) auto;
+  gap: var(--space-3);
   align-items: baseline;
-  padding: var(--space-3) var(--space-3);
+  padding: var(--space-3) var(--space-2);
   border-bottom: 1px solid var(--border);
 }
 
@@ -1726,7 +1712,8 @@ tbody tr:hover {
   font-size: 0.7rem;
 }
 
-.session-list span { text-align: right; }
+.session-list time { white-space: nowrap; }
+.session-list span { text-align: right; white-space: nowrap; }
 
 .context-link {
   justify-self: start;
@@ -1988,10 +1975,6 @@ figcaption {
     grid-template-columns: 1fr;
   }
 
-  .month-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .monthly-verdict,
   .monthly-editorial-grid,
   .monthly-data,
@@ -2075,10 +2058,7 @@ figcaption {
     gap: 4rem;
   }
 
-  .glance-grid,
-  .month-card-grid {
-    grid-template-columns: 1fr;
-  }
+  .glance-grid { grid-template-columns: 1fr; }
 
   .glance-month {
     min-height: 8.5rem;
@@ -2093,9 +2073,17 @@ figcaption {
     justify-self: start;
   }
 
-  .month-card__verdict {
-    min-height: 0;
+  .month-ledger-heading { display: none; }
+  .month-ledger-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2) var(--space-4);
+    padding-block: var(--space-4);
   }
+  .month-ledger-row__month { grid-column: 1; }
+  .month-ledger-row__arrow { grid-column: 2; grid-row: 1; }
+  .month-ledger-row__opportunity,
+  .month-ledger-row__dark { grid-column: 1 / -1; padding-left: 2rem; }
+  .month-ledger-row__dark small { display: block; }
 
   .data-callout,
   .planet-seasons,
@@ -2190,7 +2178,7 @@ figcaption {
   .data-section,
   .glance-month,
   .highlight-list > li,
-  .month-card,
+  .month-ledger-row,
   .seasonal-grid,
   figure,
   table {

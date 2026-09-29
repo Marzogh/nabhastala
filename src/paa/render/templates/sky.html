@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% block page_head %}<script defer src="{{ asset_prefix }}sky.js?v=monthly-sky-summary-1"></script>{% endblock %}
+{% block page_head %}<script defer src="{{ asset_prefix }}sky.js?v=print-chart-1"></script>{% endblock %}
 {% block content %}
   <div class="page-shell sky-tool-page editorial-page">
     <a class="back-link" href="{{ annual_href }}">← Annual almanac</a>
     {% include "_page_header.html" %}
 
     <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-year="{{ year }}" data-timezone="{{ site_timezone }}" aria-label="Sky chart controls and chart">
+      <header class="sky-print-heading"><h1>Sky chart</h1><p>{{ site_name }}</p><p data-sky-print-status>Selected local date and time</p></header>
       <form class="sky-controls" data-sky-controls>
         <label>Date <input type="date" min="{{ year }}-01-01" max="{{ year }}-12-31" data-sky-date></label>
         <label>Local time <input type="time" step="60" data-sky-time></label>

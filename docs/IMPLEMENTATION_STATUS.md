@@ -1126,3 +1126,31 @@ Resume with:
 git status --short
 python3 -m http.server 8767 --directory site
 ```
+
+## Annual and monthly UI refinement checkpoint, 29 September 2026
+
+- The annual monthly guide is now a compact ledger with one row per month.
+- Galactic Centre periods now use four documented grades: Limited, Fair, Good,
+  and Excellent. Duration and maximum altitude determine both the label and graph
+  colour, so short or low periods no longer appear equivalent to long, high ones.
+- The graph introduction now defines the observing periods in plain language
+  before giving the 20-degree altitude threshold.
+- Moonrise and moonset values outside astronomical darkness now read `Before dusk`
+  or `After dawn` instead of `Unavailable`.
+- Low-Moon and Galactic Centre session rows were compacted, and public-facing
+  generator and computation notes were removed from the monthly download panel.
+- The planet visibility legend no longer displays empty decorative squares.
+- Interactive sky-chart printing now contains the chart, observing location, and
+  selected local date and time without the website header or controls.
+- All three 2026 HTML editions and the 320-file reviewed Pages tree were rebuilt.
+- Per user direction, no scientific regression suite was run. Focused browser
+  inspection confirmed the four Galactic Centre grades, night-relative Moon event
+  labels, compact session presentation, forecast coordinates, and revised copy.
+- `git diff --check` passed.
+
+Resume with:
+
+```bash
+git status --short
+python3 -m http.server 8767 --directory site
+```

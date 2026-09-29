@@ -238,9 +238,11 @@
     });
     bodies.forEach((body) => drawBody(context, body, colours, printing));
 
-    tool.querySelector("[data-sky-status]").textContent = new Intl.DateTimeFormat("en-AU", {
+    const selectedLabel = new Intl.DateTimeFormat("en-AU", {
       dateStyle: "long", timeStyle: "short", timeZone: data.timezone,
     }).format(selected);
+    tool.querySelector("[data-sky-status]").textContent = selectedLabel;
+    tool.querySelector("[data-sky-print-status]").textContent = `${selectedLabel} local time`;
     const objects = tool.querySelector("[data-sky-objects]");
     objects.replaceChildren();
     bodies.filter((body) => body.name !== "Sun")

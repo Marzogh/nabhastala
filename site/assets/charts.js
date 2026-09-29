@@ -102,8 +102,8 @@
       };
       facts.replaceChildren(
         fact("Moon illumination", plan.illumination == null ? "Unavailable" : `${Math.round(plan.illumination * 100)}%`),
-        fact("Moonrise", localTime(plan.moonrise)),
-        fact("Moonset", localTime(plan.moonset)),
+        fact("Moonrise", plan.moonrise_label || "Unavailable"),
+        fact("Moonset", plan.moonset_label || "Unavailable"),
         fact("Usable core window", plan.milky.length ? plan.milky.map((item) => `${localTime(item.start)}–${localTime(item.end)}`).join(", ") : "None"),
       );
       planetBox.replaceChildren();

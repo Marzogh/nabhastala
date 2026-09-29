@@ -28,19 +28,19 @@
       <header class="section-heading"><h2 id="seasonal-sky-title">Annual visibility</h2></header>
 
       <article class="instrument-card" aria-labelledby="milky-instrument-title">
-        <header class="instrument-heading"><div><h3 id="milky-instrument-title">Galactic Centre visibility</h3><p>Windows require astronomical darkness, acceptable Moon interference, and the Galactic Centre at least 20° above the horizon. Wider marks indicate longer windows.</p></div><div class="chart-controls" aria-label="Milky Way chart controls"><button type="button" data-chart-scroll="back" data-chart-target="milky-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="milky-year-chart" aria-label="Scroll chart forward">→</button></div></header>
+        <header class="instrument-heading"><div><h3 id="milky-instrument-title">Galactic Centre visibility</h3><p>These are times when the Galactic Centre is visible in a dark sky, at least 20° above the horizon, with limited moonlight. Wider marks show longer periods.</p></div><div class="chart-controls" aria-label="Milky Way chart controls"><button type="button" data-chart-scroll="back" data-chart-target="milky-year-chart" aria-label="Scroll chart back">←</button><button type="button" data-chart-scroll="forward" data-chart-target="milky-year-chart" aria-label="Scroll chart forward">→</button></div></header>
         {% if instruments.milky_way.windows %}
           <div class="scroll-instrument" id="milky-year-chart" tabindex="0" aria-label="Scrollable Milky Way observing windows for {{ year }}">
             <div class="milky-year-chart" style="--year-days: {{ instruments.milky_way.year_days }}">
               <div class="milky-year-chart__months" aria-hidden="true">{% for tick in instruments.milky_way.month_ticks %}<span style="--day: {{ tick.day }}">{{ tick.label }}</span>{% endfor %}</div>
               <div class="milky-year-chart__axis" aria-hidden="true"><span>6 pm</span><span>midnight</span><span>6 am</span></div>
               <div class="milky-year-chart__plot">
-                {% for window in instruments.milky_way.windows %}<span class="milky-window milky-window--{{ window.quality }}" style="--day: {{ window.day }}; --start: {{ window.start_pct }}%; --height: {{ window.height_pct }}%" aria-hidden="true"><i>{{ format_local_date(window.date) }}<br>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}<br>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ window.quality|title }}</i></span>{% endfor %}
+                {% for window in instruments.milky_way.windows %}<span class="milky-window milky-window--{{ window.rating }}" style="--day: {{ window.day }}; --start: {{ window.start_pct }}%; --height: {{ window.height_pct }}%" aria-hidden="true"><i>{{ format_local_date(window.date) }}<br>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}<br>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ "Limited" if window.rating == "poor" else window.rating|title }}</i></span>{% endfor %}
               </div>
             </div>
           </div>
-          <div class="instrument-legend"><span class="legend-useful">Useful, at least 20°</span><span class="legend-excellent">Excellent, at least 25°</span></div>
-          <ol class="milky-month-summary" aria-label="Best Milky Way window in each available month">{% for window in instruments.milky_way.summaries %}<li class="tone-{{ rating_tone('excellent' if window.quality == 'excellent' else 'good') }}"><strong>{{ window.month_name }}</strong><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><span>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</span><small>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ window.quality|title }}</small></li>{% endfor %}</ol>
+          <div class="instrument-legend"><span class="legend-limited">Limited: under 2h or below 30°</span><span class="legend-fair">Fair: at least 2h and 30°</span><span class="legend-good">Good: at least 4h and 45°</span><span class="legend-excellent">Excellent: at least 7h and 60°</span></div>
+          <ol class="milky-month-summary" aria-label="Best Milky Way window in each available month">{% for window in instruments.milky_way.summaries %}<li class="tone-{{ rating_tone(window.rating) }}"><strong>{{ window.month_name }}</strong><time datetime="{{ window.date }}">{{ format_local_date(window.date) }}</time><span>{{ format_local_time(window.start_local) }}–{{ format_local_time(window.end_local) }}</span><small>{{ format_duration_minutes(window.duration_minutes) }} · {{ window.max_altitude_deg|round|int }}° · {{ "Limited" if window.rating == "poor" else window.rating|title }}</small></li>{% endfor %}</ol>
         {% else %}<p class="empty-state">No Galactic Centre window available.</p>{% endif %}
         <a class="context-link" href="data/milky_way_windows.csv" download>Download Galactic Centre CSV →</a>
       </article>
@@ -67,16 +67,17 @@
 
     <section class="month-index" id="monthly-guides" aria-labelledby="month-index-title">
       <header class="section-heading"><h2 id="month-index-title">Monthly guides</h2></header>
-      <div class="month-card-grid">
+      <div class="month-ledger-heading" aria-hidden="true"><span>Month</span><span>Main opportunity</span><span>Best low-Moon period</span><span></span></div>
+      <ol class="month-ledger">
         {% for month in overview.months %}
-          <article class="month-card tone-{{ rating_tone(month.rating) }}">
-            <header><span class="month-card__number">{{ "%02d"|format(month.month) }}</span><div><p>{{ month.lead_category }}</p><h3>{{ month.month_name }}</h3></div></header>
-            <p class="month-card__verdict">{{ month.verdict }}</p>
-            <dl><div><dt>Best low-Moon period</dt><dd>{{ month.best_dark_window or "Not available" }}</dd></div></dl>
-            <a href="{{ month.href }}">Open {{ month.month_name }} field guide <span aria-hidden="true">→</span></a>
-          </article>
+          <li><a class="month-ledger-row" href="{{ month.href }}" aria-label="Open {{ month.month_name }} field guide">
+            <span class="month-ledger-row__month"><small>{{ "%02d"|format(month.month) }}</small><strong>{{ month.month_name }}</strong></span>
+            <span class="month-ledger-row__opportunity"><small>{{ month.lead_category }}</small><span>{{ month.index_summary }}</span></span>
+            <span class="month-ledger-row__dark"><small>Best low-Moon period</small><span>{{ month.index_dark_window or "Not available" }}</span></span>
+            <span class="month-ledger-row__arrow" aria-hidden="true">→</span>
+          </a></li>
         {% endfor %}
-      </div>
+      </ol>
     </section>
 
     <aside class="data-callout illustrated-callout" aria-labelledby="data-callout-title">

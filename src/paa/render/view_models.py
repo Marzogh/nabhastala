@@ -58,6 +58,8 @@ class MonthSummaryView:
     month_name: str = ""
     href: str = ""
     lead_category: str = "General observing"
+    index_summary: str = ""
+    index_dark_window: str | None = None
     moon_illumination: float | None = None
 
     def __post_init__(self) -> None:

@@ -4,7 +4,7 @@ import calendar
 import csv
 import math
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from paa.paths import public_site_slug
@@ -106,6 +106,14 @@ def _short_date(value: str) -> str:
         return value
 
 
+def _index_date(value: str) -> str:
+    try:
+        _, month, day = value[:10].split("-")
+        return f"{int(day)} {calendar.month_abbr[int(month)]}"
+    except (ValueError, IndexError):
+        return value
+
+
 def _short_time(value: str) -> str:
     try:
         moment = datetime.fromisoformat(value)
@@ -194,6 +202,17 @@ def _night_minute(value: datetime) -> float:
     return max(0.0, min(720.0, minutes - 18 * 60))
 
 
+def _milky_window_rating(duration_minutes: float, max_altitude_deg: float | None) -> str:
+    altitude = max_altitude_deg if max_altitude_deg is not None else -90
+    if duration_minutes >= 420 and altitude >= 60:
+        return "excellent"
+    if duration_minutes >= 240 and altitude >= 45:
+        return "good"
+    if duration_minutes >= 120 and altitude >= 30:
+        return "fair"
+    return "poor"
+
+
 def _milky_way_instrument(year: int, data_dir: Path) -> dict[str, object]:
     year_start = date(year, 1, 1)
     year_days = (date(year + 1, 1, 1) - year_start).days
@@ -211,6 +230,8 @@ def _milky_way_instrument(year: int, data_dir: Path) -> dict[str, object]:
         end_minute = _night_minute(end)
         if end_minute <= start_minute:
             end_minute = min(720.0, start_minute + (_number(row.get("duration_minutes")) or 0))
+        duration_minutes = _number(row.get("duration_minutes")) or 0
+        max_altitude_deg = _number(row.get("max_altitude_deg"))
         windows.append(
             {
                 "date": row["date"],
@@ -219,9 +240,9 @@ def _milky_way_instrument(year: int, data_dir: Path) -> dict[str, object]:
                 "end_local": row["end_local"],
                 "start_pct": start_minute / 720 * 100,
                 "height_pct": max(1.5, (end_minute - start_minute) / 720 * 100),
-                "duration_minutes": _number(row.get("duration_minutes")) or 0,
-                "max_altitude_deg": _number(row.get("max_altitude_deg")),
-                "quality": row.get("quality", "useful"),
+                "duration_minutes": duration_minutes,
+                "max_altitude_deg": max_altitude_deg,
+                "rating": _milky_window_rating(duration_minutes, max_altitude_deg),
             }
         )
     month_ticks = [
@@ -357,9 +378,9 @@ def _candidate_rows(data_dir: Path) -> list[OpportunityView]:
     source_order = 0
 
     for row in _read_rows(data_dir, "milky_way_windows.csv"):
-        quality = row.get("quality", "").lower()
-        rating = (
-            "excellent" if quality == "excellent" else "good" if quality == "useful" else quality
+        rating = _milky_window_rating(
+            _number(row.get("duration_minutes")) or 0,
+            _number(row.get("max_altitude_deg")),
         )
         candidates.append(
             OpportunityView(
@@ -645,8 +666,10 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
 
         dark = dark_by_month.get(month)
         best_dark = None
+        index_dark = None
         if dark:
             best_dark = f"{_short_date(dark['date'])} · {_duration(dark.get('duration_minutes'))}"
+            index_dark = f"{_index_date(dark['date'])} · {_duration(dark.get('duration_minutes'))}"
 
         month_candidates = [
             candidate for candidate in candidates if candidate.date_local[5:7] == f"{month:02d}"
@@ -664,6 +687,9 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
             lead_category = "Planet opposition"
             verdict = f"{planet} reaches opposition on {_short_date(opposition['date'])}"
             verdict += f" and is highest around {_short_time(best_time)}." if best_time else "."
+            index_summary = f"{planet} · {_index_date(opposition['date'])}"
+            if best_time:
+                index_summary += f" · highest {_short_time(best_time)}"
         elif meteor:
             name = meteor.get("name") or meteor.get("id", "Meteor shower").replace("_", " ").title()
             illumination = _number(meteor.get("moon_illumination_fraction"))
@@ -679,8 +705,16 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
                 verdict += f", with the radiant reaching about {radiant:.0f}° before dawn."
             else:
                 verdict += "."
+            index_summary = f"{name} · {_index_date(meteor['peak_date_local'])}"
+            if illumination is not None:
+                index_summary += f" · {illumination:.0%} Moon"
+            if radiant is not None:
+                index_summary += f" · radiant {radiant:.0f}° predawn"
         elif milky:
-            rating = "excellent" if milky.get("quality", "").lower() == "excellent" else "good"
+            rating = _milky_window_rating(
+                _number(milky.get("duration_minutes")) or 0,
+                _number(milky.get("max_altitude_deg")),
+            )
             lead_category = "Galactic Centre"
             verdict = (
                 f"Galactic Centre viewing is best on {_short_date(milky['date'])}, "
@@ -689,18 +723,31 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
             )
             altitude = _number(milky.get("max_altitude_deg"))
             verdict += f", reaching {altitude:.0f}°." if altitude is not None else "."
+            index_summary = (
+                f"{_index_date(milky['date'])} · "
+                f"{_short_time(milky.get('start_local', ''))}–"
+                f"{_short_time(milky.get('end_local', ''))}"
+            )
+            if altitude is not None:
+                index_summary += f" · max {altitude:.0f}°"
         elif month_highlights:
             rating = month_highlights[0].rating.lower()
             lead_category = month_highlights[0].category
             verdict = f"{month_highlights[0].title}: {month_highlights[0].reason}"
+            index_summary = (
+                f"{month_highlights[0].title} · "
+                f"{month_highlights[0].reason.rstrip('.')}"
+            )
         elif best_dark:
             rating = "fair"
             lead_category = "Dark sky"
             verdict = f"Longest low-Moon dark period: {best_dark}."
+            index_summary = best_dark
         else:
             rating = "unavailable"
             lead_category = "No recommendation"
             verdict = "No major event listed."
+            index_summary = "No major event listed"
 
         months.append(
             MonthSummaryView(
@@ -713,6 +760,8 @@ def build_annual_overview(year: int, site_id: str, data_dir: Path) -> AnnualOver
                 month_name=calendar.month_name[month],
                 href=f"months/{month:02d}.html",
                 lead_category=lead_category,
+                index_summary=index_summary,
+                index_dark_window=index_dark,
                 moon_illumination=illumination,
             )
         )
@@ -746,6 +795,33 @@ def _observation_period(value: str) -> str:
     if hour >= 22 or hour < 4:
         return "Overnight"
     return "Predawn"
+
+
+def _night_event_label(
+    dusk_value: str,
+    dawn_value: str,
+    event_values: list[datetime],
+) -> str:
+    """Describe a rise or set event relative to one astronomical night."""
+    try:
+        dusk = datetime.fromisoformat(dusk_value)
+        dawn = datetime.fromisoformat(dawn_value)
+    except (TypeError, ValueError):
+        return "Unavailable"
+    if dawn <= dusk:
+        dawn += timedelta(days=1)
+    during = next((event for event in event_values if dusk <= event <= dawn), None)
+    if during is not None:
+        return _short_time(during.isoformat())
+    before = next((event for event in reversed(event_values) if event < dusk), None)
+    after = next((event for event in event_values if event > dawn), None)
+    if before is not None and after is not None:
+        return "Before dusk" if dusk - before <= after - dawn else "After dawn"
+    if before is not None:
+        return "Before dusk"
+    if after is not None:
+        return "After dawn"
+    return "Unavailable"
 
 
 def build_month_guide(
@@ -791,10 +867,17 @@ def build_month_guide(
     )
 
     phase_by_date = {row.get("date", ""): row for row in moon_rows}
-    rise_set_by_date = {
-        row.get("date", ""): row
-        for row in _month_rows(data_dir, "moonrise_moonset.csv", year, month)
-    }
+    rise_set_rows = _read_rows(data_dir, "moonrise_moonset.csv")
+    moonrise_events = sorted(
+        datetime.fromisoformat(row["moonrise_local"])
+        for row in rise_set_rows
+        if row.get("moonrise_local")
+    )
+    moonset_events = sorted(
+        datetime.fromisoformat(row["moonset_local"])
+        for row in rise_set_rows
+        if row.get("moonset_local")
+    )
     dark_by_date: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in _month_rows(data_dir, "moon_dark_windows.csv", year, month):
         dark_by_date[row.get("date", "")].append(row)
@@ -822,8 +905,16 @@ def build_month_guide(
             "illumination": _number(
                 phase_by_date.get(row.get("date", ""), {}).get("moon_illumination_fraction")
             ),
-            "moonrise": rise_set_by_date.get(row.get("date", ""), {}).get("moonrise_local", ""),
-            "moonset": rise_set_by_date.get(row.get("date", ""), {}).get("moonset_local", ""),
+            "moonrise_label": _night_event_label(
+                row.get("dusk_astronomical_local", ""),
+                row.get("dawn_astronomical_local", ""),
+                moonrise_events,
+            ),
+            "moonset_label": _night_event_label(
+                row.get("dusk_astronomical_local", ""),
+                row.get("dawn_astronomical_local", ""),
+                moonset_events,
+            ),
             "dark": [
                 {"start": item.get("start_local", ""), "end": item.get("end_local", "")}
                 for item in dark_by_date.get(row.get("date", ""), [])
@@ -902,7 +993,10 @@ def build_month_guide(
             end_local=row.get("end_local", ""),
             duration_minutes=_number(row.get("duration_minutes")) or 0,
             max_altitude_deg=_number(row.get("max_altitude_deg")) or 0,
-            rating="excellent" if row["quality"].lower() == "excellent" else "good",
+            rating=_milky_window_rating(
+                _number(row.get("duration_minutes")) or 0,
+                _number(row.get("max_altitude_deg")),
+            ),
         )
         for row in milky_rows[:3]
     )
