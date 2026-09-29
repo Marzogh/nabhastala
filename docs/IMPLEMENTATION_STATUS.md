@@ -1127,6 +1127,17 @@ git status --short
 python3 -m http.server 8767 --directory site
 ```
 
+## Identity footnotes and sharing image, 29 September 2026
+
+- The site header now follows the Chips’nCode Nabhastala project treatment: the
+  Sanskrit identity remains primary, English remains explanatory, and `*` and `†`
+  link to concise translation notes in the footer.
+- The footer title is now `नभस्तल` in the bundled Devanagari typeface.
+- Open Graph and Twitter card metadata use the Nabhastala Milky Way photograph
+  from the Chips’nCode project page rather than a generic planet image.
+- All three 2026 HTML editions and the 320-file reviewed Pages tree were rebuilt.
+- Focused browser inspection passed in dark mode; `git diff --check` passed.
+
 ## Annual and monthly UI refinement checkpoint, 29 September 2026
 
 - The annual monthly guide is now a compact ledger with one row per month.

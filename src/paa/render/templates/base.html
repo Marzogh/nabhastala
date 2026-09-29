@@ -7,6 +7,16 @@
     <meta name="author" content="Prajwal Bhattaram">
     <meta name="generator" content="Nabhastala">
     {% if page_description|default %}<meta name="description" content="{{ page_description }}">{% endif %}
+    <meta property="og:site_name" content="Nabhastala">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ document_title }}">
+    {% if page_description|default %}<meta property="og:description" content="{{ page_description }}">{% endif %}
+    <meta property="og:image" content="https://chipsncode.com/images/projects/nabhastala/nabhastala-milky-way.jpg">
+    <meta property="og:image:alt" content="The Milky Way above Dili Village on K’gari">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ document_title }}">
+    {% if page_description|default %}<meta name="twitter:description" content="{{ page_description }}">{% endif %}
+    <meta name="twitter:image" content="https://chipsncode.com/images/projects/nabhastala/nabhastala-milky-way.jpg">
     <title>{{ document_title }}</title>
     <script>
       try {
@@ -17,8 +27,8 @@
         document.documentElement.classList.add("js");
       } catch (_) {}
     </script>
-    <link rel="stylesheet" href="{{ asset_prefix }}styles.css?v=ui-refine-1">
-    <link rel="stylesheet" href="{{ asset_prefix }}editorial.css?v=ui-refine-1">
+    <link rel="stylesheet" href="{{ asset_prefix }}styles.css?v=identity-footnotes-1">
+    <link rel="stylesheet" href="{{ asset_prefix }}editorial.css?v=identity-footnotes-1">
     <script defer src="{{ asset_prefix }}theme.js?v=stage-4a"></script>
     <script defer src="{{ asset_prefix }}charts.js?v=ui-refine-1"></script>
     <script defer src="{{ asset_prefix }}conditions.js?v=stage-5c"></script>

@@ -1,15 +1,15 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="identity" href="{{ identity_href }}" aria-label="Nabhastala home">
+    <div class="identity">
       <span class="identity__primary">
-        <span class="identity__devanagari" lang="sa-Deva">{{ identity_devanagari }}</span>
-        <span class="identity__sanskrit" lang="sa-Latn">{{ motto_sanskrit }}</span>
+        <span class="identity__line"><a class="identity__home identity__devanagari" href="{{ identity_href }}" lang="sa-Deva" aria-label="Nabhastala home">{{ identity_devanagari }}</a><sup><a class="identity__note" href="#identity-title-note" aria-label="See the meaning of Nabhastala">*</a></sup></span>
+        <span class="identity__line"><span class="identity__sanskrit" lang="sa-Deva">{{ motto_sanskrit }}</span><sup><a class="identity__note" href="#identity-motto-note" aria-label="See the translation of the Nabhastala motto">†</a></sup></span>
       </span>
       <span class="identity__translation" aria-label="English translation">
-        <span class="identity__english">{{ identity_english }}</span>
-        <span class="identity__motto">{{ motto_english }}</span>
+        <span class="identity__line"><span class="identity__english">{{ identity_english }}</span><sup><a class="identity__note" href="#identity-title-note" aria-label="See the meaning of Nabhastala">*</a></sup></span>
+        <span class="identity__line"><span class="identity__motto" lang="sa-Latn">{{ motto_transliteration }}</span><sup><a class="identity__note" href="#identity-motto-note" aria-label="See the translation of the Nabhastala motto">†</a></sup></span>
       </span>
-    </a>
+    </div>
     <nav class="site-nav" aria-label="Primary navigation">
       {% for item in nav_items %}
         <a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}>{{ item.label }}</a>

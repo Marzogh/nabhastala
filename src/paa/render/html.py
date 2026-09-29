@@ -260,7 +260,8 @@ def _identity_context() -> dict[str, str]:
     return {
         "identity_devanagari": "नभस्तल",
         "identity_english": "Nabhastala",
-        "motto_sanskrit": "त्रिषु दिगन्तेष्वेकं नभः (Triṣu diganteṣv ekaṃ nabhaḥ)",
+        "motto_sanskrit": "त्रिषु दिगन्तेष्वेकं नभः",
+        "motto_transliteration": "Triṣu diganteṣv ekaṃ nabhaḥ",
         "motto_english": "One sky at three horizons.",
     }
 
