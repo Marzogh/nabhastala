@@ -389,6 +389,7 @@ def _render_data_library(
             page_description=f"CSV astronomy data for {site_name}, {year}.",
             site_id=site_id,
             site_name=site_name,
+            hero_slug=public_site_slug(site_id),
             year=year,
             horizon_links=_horizon_links(
                 year=year,
@@ -432,6 +433,7 @@ def _render_sky_tool(
             page_description=f"Interactive sky chart for {site_name}, {year}.",
             site_id=site_id,
             site_name=site_name,
+            hero_slug=public_site_slug(site_id),
             site_timezone=site_record["timezone"],
             year=year,
             horizon_links=_horizon_links(
@@ -545,6 +547,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         "year": year,
         "site_id": site_id,
         "site_name": SITE_NAMES.get(site_id, humanize_label(site_id)),
+        "hero_slug": public_site_slug(site_id),
         "site_timezone": next(
             (site["timezone"] for site in SITE_CATALOG if site["id"] == site_id), "UTC"
         ),

@@ -144,18 +144,20 @@ body { background-image: var(--paper-wash); }
 }
 
 .editorial-hero__art {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-self: center;
+  display: block;
+  width: 100%;
   margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .editorial-hero__art img {
   width: 100%;
-  max-height: 15rem;
-  object-fit: contain;
-  object-position: right center;
+  aspect-ratio: 3 / 1;
+  border: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
 .editorial-hero__art figcaption {

@@ -1138,6 +1138,20 @@ python3 -m http.server 8767 --directory site
 - All three 2026 HTML editions and the 320-file reviewed Pages tree were rebuilt.
 - Focused browser inspection passed in dark mode; `git diff --check` passed.
 
+## Location hero images, 29 September 2026
+
+- Replaced the generic header illustration with separate South East Queensland,
+  Southern Tasmania, and Malabar Coast panoramas in light and dark variants.
+- Optimized the supplied 2172 by 724 PNG files locally to 1440 by 480 WebP files.
+  The six published assets total about 1.1 MB instead of 17 MB.
+- The shared page header selects the correct pair from the site ID, so annual,
+  monthly, sky, and data pages retain the same location identity.
+- Theme switching swaps the image pair immediately. Print continues to use the
+  light variant.
+- All three 2026 HTML editions and the 344-file reviewed Pages tree were rebuilt.
+- Focused browser inspection passed for all three dark-mode location heroes and
+  the Southern Tasmania light-mode hero. `git diff --check` passed.
+
 ## Annual and monthly UI refinement checkpoint, 29 September 2026
 
 - The annual monthly guide is now a compact ledger with one row per month.
