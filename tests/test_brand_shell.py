@@ -33,8 +33,9 @@ def test_exact_identity_and_semantic_landmarks_are_rendered(tmp_path: Path) -> N
 
     assert "नभस्तल" in html
     assert "Nabhastala" in html
-    assert "त्रिषु दिगन्तेष्वेकं नभः (Triṣu diganteṣv ekaṃ nabhaḥ)" in html
-    assert "One sky at three horizons." in html
+    assert "त्रिषु दिगन्तेष्वेकं नभः" in html
+    assert "Triṣu diganteṣv ekaṃ nabhaḥ" in html
+    assert "one sky at three horizons." in html
     assert 'lang="sa-Deva"' in html
     assert 'href="#main-content"' in html
 
@@ -43,7 +44,7 @@ def test_exact_identity_and_semantic_landmarks_are_rendered(tmp_path: Path) -> N
     assert {"header", "nav", "main", "footer"}.issubset(parser.tags)
     assert "main-content" in parser.ids
 
-    devanagari = html.index('<span class="identity__devanagari"')
+    devanagari = html.index('class="identity__home identity__devanagari"')
     sanskrit = html.index('<span class="identity__sanskrit"')
     translation = html.index('<span class="identity__translation"')
     english = html.index('<span class="identity__english"')
@@ -58,8 +59,9 @@ def test_annual_page_is_an_editorial_overview_not_a_dataset_dump(tmp_path: Path)
     assert "Best observing opportunities in 2027" in html
     assert "Monthly guides" in html
     assert 'href="data/index.html"' in html
-    assert html.count('class="month-card ') == 12
-    assert 'src="assets/art/landscape-light.webp"' in html
+    assert html.count('class="month-ledger-row"') == 12
+    assert 'src="assets/art/heroes/se-qld-light.webp"' in html
+    assert 'src="assets/art/heroes/se-qld-dark.webp"' in html
     assert 'src="assets/art/planet-jupiter.png"' in html
     assert "<table" not in html
     assert "dataset-list" not in html
@@ -107,7 +109,7 @@ def test_sky_finder_is_linked_and_has_a_static_fallback(tmp_path: Path) -> None:
     assert ">Night sky chart<" in html
     assert 'data-sky-date' in html
     assert 'data-sky-time' in html
-    assert 'src="../assets/sky.js?v=monthly-sky-summary-1"' in html
+    assert 'src="../assets/sky.js?v=print-chart-1"' in html
     assert 'data-source="../assets/data/sky-data.json"' in html
     assert "URLSearchParams" in (annual.parent / "assets" / "sky.js").read_text(
         encoding="utf-8"

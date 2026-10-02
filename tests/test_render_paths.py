@@ -50,14 +50,15 @@ def test_renderer_reads_legacy_data_but_only_writes_canonical_tree(tmp_path: Pat
     html = rendered.read_text(encoding="utf-8")
     assert "Best observing opportunities" in html
     assert "Galactic Centre visibility" in html
-    assert "astronomical darkness, acceptable Moon interference" in html
+    assert "times when the Galactic Centre is visible in a dark sky" in html
+    assert "at least 20° above the horizon" in html
     assert "Planet visibility by month" in html
     assert "Jupiter and Saturn moons" in html
     assert 'data-site-timezone="Australia/Brisbane"' in (
         rendered.parent / "months" / "01.html"
     ).read_text(encoding="utf-8")
     assert 'data-chart-target="milky-year-chart"' in html
-    assert 'src="assets/charts.js?v=planet-icons-1"' in html
+    assert 'src="assets/charts.js?v=ui-refine-1"' in html
     assert "Monthly guides" in html
     assert "Browse data and downloads" in html
     assert "<table" not in html
