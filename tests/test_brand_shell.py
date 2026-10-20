@@ -163,9 +163,38 @@ def test_landing_page_lists_horizons_and_available_local_editions(tmp_path: Path
     assert "Southern Tasmania, Australia" in html
     assert "Malabar Coast, India" in html
     assert 'href="se_qld/2027/almanac.html"' in html
+    for slug in ("se-qld", "southern-tasmania", "malabar-coast"):
+        assert f'src="assets/art/heroes/{slug}-light.webp"' in html
+        assert f'src="assets/art/heroes/{slug}-dark.webp"' in html
     assert "No edition is available yet." in html
     assert "<table" not in html
     assert 'href="#horizons"' in html
+
+
+def test_brand_icons_and_social_preview_are_rendered(tmp_path: Path) -> None:
+    annual = _render_fixture(tmp_path)
+    html = annual.read_text(encoding="utf-8")
+
+    assert 'href="assets/brand/favicon-32.png"' in html
+    assert 'href="assets/brand/apple-touch-icon.png"' in html
+    assert 'href="assets/brand/site.webmanifest"' in html
+    assert (
+        'content="https://chipsncode.com/nabhastala/assets/social/'
+        'nabhastala-social-preview.png"'
+    ) in html
+    assert 'property="og:image:width" content="1731"' in html
+    assert 'property="og:image:height" content="909"' in html
+
+    assets = annual.parent / "assets"
+    for path in (
+        "brand/favicon-32.png",
+        "brand/apple-touch-icon.png",
+        "brand/icon-192.png",
+        "brand/icon-512.png",
+        "brand/site.webmanifest",
+        "social/nabhastala-social-preview.png",
+    ):
+        assert (assets / path).exists()
 
 
 def test_data_library_links_complete_csv_without_rendering_its_rows(tmp_path: Path) -> None:

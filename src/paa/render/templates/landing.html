@@ -8,6 +8,10 @@
       <div class="horizon-grid">
         {% for edition in editions %}
           <article class="horizon-card">
+            <figure class="horizon-card__art">
+              <img class="theme-art theme-art--light" src="assets/art/heroes/{{ edition.slug }}-light.webp" width="1440" height="480" alt="" loading="lazy">
+              <img class="theme-art theme-art--dark" src="assets/art/heroes/{{ edition.slug }}-dark.webp" width="1440" height="480" alt="" loading="lazy">
+            </figure>
             <p class="horizon-card__number" aria-hidden="true">0{{ loop.index }}</p>
             <h3>{{ edition.name }}</h3>
             <p class="horizon-card__coordinates">{{ edition.horizon }}</p>

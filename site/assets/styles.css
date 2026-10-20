@@ -604,6 +604,19 @@ tbody tr:hover {
   border-inline-end: 0;
 }
 
+.horizon-card__art {
+  width: calc(100% + (2 * var(--space-6)));
+  margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-5);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.horizon-card__art img {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+}
+
 .horizon-card__number,
 .horizon-card__coordinates,
 .availability-note {
@@ -613,7 +626,7 @@ tbody tr:hover {
 }
 
 .horizon-card__number {
-  margin: 0 0 var(--space-7);
+  margin: 0 0 var(--space-5);
   color: var(--accent);
 }
 
@@ -2105,6 +2118,11 @@ figcaption {
   .horizon-card,
   .landing-about {
     padding: var(--space-5);
+  }
+
+  .horizon-card__art {
+    width: calc(100% + (2 * var(--space-5)));
+    margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-5);
   }
 
   .dataset-card-grid {
