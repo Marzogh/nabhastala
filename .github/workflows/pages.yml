@@ -31,9 +31,9 @@ jobs:
           validate_release_tree; errors = validate_release_tree(Path('site'));
           assert not errors, '\n'.join(errors)"
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload reviewed site
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -46,4 +46,4 @@ jobs:
     steps:
       - name: Deploy reviewed bytes
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
