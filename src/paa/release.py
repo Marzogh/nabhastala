@@ -11,7 +11,6 @@ from pathlib import Path, PurePosixPath
 from urllib.parse import urlsplit, urlunsplit
 
 from paa.paths import public_site_slug, site_year_dir
-from paa.render.html import render_release_landing_html
 from paa.validate.reports import validation_failures
 
 PUBLIC_BASE_URL = "https://chipsncode.com/nabhastala"
@@ -271,6 +270,8 @@ def assemble_release(
     base_url: str = PUBLIC_BASE_URL,
 ) -> Path:
     """Assemble validated local artifacts without recalculating astronomy."""
+    from paa.render.html import render_release_landing_html
+
     if not years or not site_ids:
         raise ValueError("At least one year and site are required")
     for year in years:
