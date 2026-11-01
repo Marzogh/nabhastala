@@ -13,7 +13,11 @@ restart-safe implementation stage.
 
 ## What it does
 
-Generates a full-year observing/imaging dataset for a configured site, persists all results to PostgreSQL, and renders annual + monthly HTML and PDF outputs.
+Generates a full-year observing and imaging dataset for a configured site,
+persists the established datasets to PostgreSQL, and renders annual, monthly,
+interactive sky-chart and PDF outputs. The local annual build includes rise,
+upper-transit and set events for the Sun, Moon, seven planets and 177
+Hipparcos stars of magnitude 3 or brighter.
 
 ## Milestone status
 
@@ -63,6 +67,7 @@ docker compose up -d postgres
 
 ```bash
 astro-almanac init-config --output config
+astro-almanac fetch --year 2027 --site se_qld --config-dir config
 astro-almanac import-occult --year 2027 --site se_qld --file /path/to/occult_export.csv
 astro-almanac build --year 2027 --site se_qld --config-dir config
 astro-almanac render --year 2027 --site se_qld --format html
@@ -73,12 +78,18 @@ astro-almanac view --2027
 Outputs:
 
 - `output/<site>/<year>/data/*.csv`
+- `output/<site>/<year>/data/daily_ephemeris.csv.gz`
 - `output/<site>/<year>/charts/*`
 - `output/<site>/<year>/almanac.html`
 - `output/pdf/nabhastala-<year>-<site-slug>-field-edition.pdf`
 - `output/<site>/<year>/months/*.html`
 - `output/<site>/<year>/logs/validation_report.md`
 - `output/<site>/<year>/logs/run_manifest.json`
+
+The fetch command downloads DE440s and the Hipparcos catalogue once into
+`output/_sources/occultations/`. Later annual builds use those cached files and
+do not contact an astronomy service. The full `daily_ephemeris.csv` remains in
+the local edition. Public releases contain only its deterministic gzip copy.
 
 The PDF is a dedicated A4 field edition. It contains annual priorities, a
 technical Galactic Centre time chart and concise monthly planning sheets; full

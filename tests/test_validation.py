@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import gzip
 from pathlib import Path
 
 from paa.validate.reports import generate_validation_report, validation_failures
@@ -21,7 +22,11 @@ def _touch_other_datasets(data_dir: Path) -> None:
     for name in EXPECTED_DATASETS:
         if name == "comets.csv":
             continue
-        (data_dir / name).write_text("value\n1\n", encoding="utf-8")
+        if name.endswith(".gz"):
+            with gzip.open(data_dir / name, "wt", encoding="utf-8") as handle:
+                handle.write("value\n1\n")
+        else:
+            (data_dir / name).write_text("value\n1\n", encoding="utf-8")
 
 
 def test_validation_rejects_widespread_comet_query_failure(tmp_path: Path) -> None:

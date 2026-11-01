@@ -1127,6 +1127,47 @@ git status --short
 python3 -m http.server 8767 --directory site
 ```
 
+## Rise, transit and set engine, 1 November 2026
+
+- Added a Skyfield annual event stage before the existing Sun, Moon and planet
+  stages. It uses cached DE440s and Hipparcos inputs and calculates apparent
+  rise, upper-transit and set events for the Sun, Moon, seven planets and all
+  177 Hipparcos stars with visual magnitude 3 or brighter.
+- Added civil, nautical and astronomical twilight events, local civil-year
+  boundaries, offset-aware local and UTC timestamps, circumpolar states and
+  deterministic source fingerprints.
+- Existing Sun, Moon and planet CSV schemas remain valid. Their event fields now
+  come from the Skyfield table, and planet all-day maxima use exact upper
+  transits instead of 30-minute samples.
+- Local editions retain `daily_ephemeris.csv`. Reviewed public releases include
+  only `daily_ephemeris.csv.gz` and reject raw ephemeris CSV publication.
+- The interactive sky chart now provides searchable Sun, Moon, planet, common
+  star-name and HIP selection. It reports current altitude and azimuth plus the
+  next rise, upper transit and set. Magnitude-3 stars and Solar System objects
+  can also be selected from the plotted chart.
+- The event payload is fetched only when object lookup is used. The three 2026
+  payloads are 3.4 to 4.3 MiB.
+- Measured event-engine runtime on this Mac was 10 minutes 49 seconds for all
+  three sites. It produced 558,036 events, 94.4 MiB of local CSV and 11.0 MiB of
+  deterministic gzip output. Performance is recorded for planning and is not a
+  CI pass condition.
+- Scientific checks cover horizon thresholds, local and UTC equivalence, DST,
+  leap dates, local-midnight boundaries, Canopus, Polaris, ordinary rising and
+  setting stars, missing Moon events, duplicate local-date event types, Astral
+  Sun agreement and Astroplan Saturn-transit agreement.
+- Full test result: 97 passed. The only warnings are 14 upstream Skyfield and
+  NumPy deprecation warnings. The reviewed three-site release passed link and
+  publication validation with 378 files.
+
+Annual source and build commands:
+
+```bash
+astro-almanac fetch --year 2026 --site se_qld --config-dir config
+astro-almanac annual-release --year 2026 --sites all --sections all --force
+astro-almanac release --years 2026 --sites all --dest site
+astro-almanac release-check --dest site
+```
+
 ## Identity footnotes and sharing image, 29 September 2026
 
 - The site header now follows the Chips’nCode Nabhastala project treatment: the

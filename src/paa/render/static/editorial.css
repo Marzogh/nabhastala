@@ -753,9 +753,9 @@ body { background-image: var(--paper-wash); }
 
 .sky-controls {
   display: grid;
-  grid-template-columns: repeat(4, minmax(9rem, 1fr)) auto auto;
+  grid-template-columns: minmax(9rem, 1fr) minmax(8rem, 0.8fr) minmax(16rem, 1.8fr) minmax(10rem, 1fr) auto auto;
   gap: 0.75rem;
-  align-items: end;
+  align-items: start;
   padding: 0.9rem;
   border-block: 1px solid var(--border-strong);
 }
@@ -770,13 +770,21 @@ body { background-image: var(--paper-wash); }
 }
 
 .sky-controls input[type="date"],
-.sky-controls input[type="time"] {
+.sky-controls input[type="time"],
+.sky-controls input[type="search"] {
   min-height: 2.5rem;
   padding: 0.45rem 0.55rem;
   border: 1px solid var(--border-strong);
   background: var(--surface-raised);
   color: var(--ink);
   font: 0.9rem var(--font-mono);
+}
+
+.sky-controls small {
+  max-width: 34ch;
+  color: var(--ink-soft);
+  font: 0.68rem/1.35 var(--font-sans);
+  text-transform: none;
 }
 
 .sky-controls input[type="range"] { width: 100%; accent-color: var(--accent); }
@@ -807,6 +815,7 @@ body { background-image: var(--paper-wash); }
 }
 
 .sky-canvas-wrap canvas { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+.sky-chart-help { margin: 0; padding: 0.65rem 0.8rem; border-top: 1px solid var(--border); color: var(--ink-soft); font-size: 0.76rem; }
 
 .sky-readout {
   display: grid;
@@ -816,6 +825,14 @@ body { background-image: var(--paper-wash); }
 }
 
 .sky-readout > p:first-child { font-family: var(--font-editorial); font-size: 1.1rem; font-weight: 700; }
+.sky-object-details { display: grid; gap: 0.6rem; padding-block: 0.25rem 1rem; border-bottom: 1px solid var(--border-strong); }
+.sky-object-details[hidden] { display: none; }
+.sky-object-details h2 { margin: 0; font-size: 1.45rem; }
+.sky-object-details p { margin: 0; }
+.sky-event-list { display: grid; gap: 0.45rem; margin: 0; }
+.sky-event-list > div { display: grid; grid-template-columns: minmax(7.5rem, 0.8fr) 1fr; gap: 0.7rem; align-items: baseline; }
+.sky-event-list dt { color: var(--ink-soft); font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; }
+.sky-event-list dd { margin: 0; font-variant-numeric: tabular-nums; }
 .sky-readout ul { display: grid; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
 .sky-readout li { display: flex; justify-content: space-between; gap: 0.7rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
 .sky-readout li span { color: var(--ink-soft); font-size: 0.75rem; text-align: right; }

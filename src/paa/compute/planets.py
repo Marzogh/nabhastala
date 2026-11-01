@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from datetime import date, datetime, timedelta
+from time import perf_counter
 from zoneinfo import ZoneInfo
 
 
@@ -10,10 +11,13 @@ def _imports():
         from astropy import units as u  # type: ignore
         from astropy.coordinates import AltAz, EarthLocation, get_body, get_sun  # type: ignore
         from astropy.time import Time  # type: ignore
+        from astropy.utils import iers  # type: ignore
     except ImportError as exc:
         raise RuntimeError(
             "Planet visibility requires astropy. Install dependencies first."
         ) from exc
+    iers.conf.auto_download = False
+    iers.conf.auto_max_age = None
     return u, AltAz, EarthLocation, get_body, get_sun, Time
 
 
@@ -67,6 +71,8 @@ def compute_planet_visibility(
     timezone: str,
     min_alt_deg: float,
     excellent_alt_deg: float,
+    ephemeris_rows: list[dict] | None = None,
+    progress: Callable[[str], None] = print,
 ) -> tuple[list[dict], list[dict]]:
     u, AltAz, EarthLocation, get_body, get_sun, Time = _imports()
     loc = EarthLocation(
@@ -76,12 +82,25 @@ def compute_planet_visibility(
 
     daily_rows: list[dict] = []
     monthly_best: dict[tuple[str, str], dict] = {}
+    transits = {
+        (str(row.get("local_date", "")), str(row.get("object_id", ""))): row
+        for row in (ephemeris_rows or [])
+        if row.get("object_class") == "planet" and row.get("event_type") == "upper_transit"
+    }
 
     d = date(year, 1, 1)
     end = date(year + 1, 1, 1)
     step = timedelta(minutes=30)
+    started = perf_counter()
+    active_month = ""
 
     while d < end:
+        month = d.strftime("%Y-%m")
+        if month != active_month:
+            active_month = month
+            progress(
+                f"[planets] {active_month}: start; elapsed {perf_counter() - started:.1f}s"
+            )
         day_start = datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=tz)
         times = []
         t = day_start
@@ -98,6 +117,7 @@ def compute_planet_visibility(
             altitudes = altaz.alt.deg
             sun_alts = sun.transform_to(altaz_frame).alt.deg
             all_day_idx = int(altitudes.argmax())
+            transit = transits.get((d.isoformat(), planet))
             observable_idx = _best_observable_index(altitudes, sun_alts)
             if observable_idx is None:
                 best_alt = -90.0
@@ -124,12 +144,19 @@ def compute_planet_visibility(
                 "visibility_rating": rating,
                 "observation_period": period,
                 "sun_altitude_deg": round(sun_alt, 2) if sun_alt is not None else "",
-                "all_day_best_time_local": times[all_day_idx].isoformat(),
-                "all_day_max_altitude_deg": round(float(altitudes[all_day_idx]), 2),
+                "all_day_best_time_local": (
+                    str(transit["event_time_local"])
+                    if transit is not None
+                    else times[all_day_idx].isoformat()
+                ),
+                "all_day_max_altitude_deg": (
+                    round(float(transit["altitude_deg"]), 2)
+                    if transit is not None
+                    else round(float(altitudes[all_day_idx]), 2)
+                ),
             }
             daily_rows.append(row)
 
-            month = d.strftime("%Y-%m")
             key = (month, planet)
             current = monthly_best.get(key)
             if current is None or best_alt > float(current["best_altitude_deg"]):
@@ -147,4 +174,8 @@ def compute_planet_visibility(
         d += timedelta(days=1)
 
     monthly_rows = [monthly_best[k] for k in sorted(monthly_best.keys())]
+    progress(
+        f"[planets] complete; {len(daily_rows)} daily rows in "
+        f"{perf_counter() - started:.1f}s"
+    )
     return daily_rows, monthly_rows

@@ -11,6 +11,14 @@ from pathlib import Path
 import yaml
 
 from paa.compute.conjunctions import compute_conjunctions
+from paa.compute.ephemeris import (
+    ENGINE_VERSION,
+    compute_daily_ephemeris,
+    fetch_sources,
+    source_fingerprint,
+    validate_ephemeris_rows,
+    write_deterministic_gzip,
+)
 from paa.compute.meteors import compute_meteor_showers
 from paa.compute.milky_way import compute_milky_way_outputs
 from paa.compute.minor_planets import compute_minor_planets_and_comets
@@ -65,6 +73,13 @@ DEFAULT_SITES = {
 
 DEFAULT_ALMANAC = {
     "year": 2027,
+    "ephemeris": {
+        "ephemeris": "de440s.bsp",
+        "star_magnitude_limit": 3.0,
+        "sun_horizon_deg": -0.8333,
+        "moon_horizon_deg": -0.8392,
+        "point_horizon_deg": -0.5667,
+    },
     "darkness": {
         "twilight": "astronomical",
         "sun_altitude_deg": -18,
@@ -76,6 +91,7 @@ DEFAULT_ALMANAC = {
 }
 
 SECTION_ORDER = [
+    "ephemeris",
     "sun_moon",
     "milky_way",
     "planets",
@@ -96,9 +112,10 @@ SECTION_ORDER = [
 ]
 
 SECTION_DEPS = {
-    "sun_moon": set(),
+    "ephemeris": set(),
+    "sun_moon": {"ephemeris"},
     "milky_way": {"sun_moon"},
-    "planets": set(),
+    "planets": {"ephemeris"},
     "moons": {"planets"},
     "minor_planets": set(),
     "comets": set(),
@@ -164,12 +181,21 @@ def cmd_init_config(args: argparse.Namespace) -> int:
 
 
 def cmd_fetch(args: argparse.Namespace) -> int:
-    sites = load_sites(Path(args.config_dir) / "sites.yaml")
+    config_dir = Path(args.config_dir)
+    sites = load_sites(config_dir / "sites.yaml")
     selected = get_site(sites, args.site)
+    almanac = yaml.safe_load((config_dir / "almanac.yaml").read_text(encoding="utf-8")) or {}
+    ephemeris_name = str(
+        almanac.get("ephemeris", {}).get("ephemeris", "de440s.bsp")
+    )
+    print("[fetch] shared annual ephemeris sources", flush=True)
+    fetch_sources(Path("output") / "_sources", ephemeris_name)
     out = site_year_dir(Path("output"), selected.id, args.year) / "cache" / "_run"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "fetch_stub.txt").write_text(f"fetch prepared for {selected.id}\n", encoding="utf-8")
-    print(f"Fetch complete for {selected.id} ({args.year})")
+    (out / "fetch_sources.txt").write_text(
+        f"cached sources prepared for {selected.id} {args.year}\n", encoding="utf-8"
+    )
+    print(f"[fetch] complete for {selected.id} ({args.year})")
     return 0
 
 
@@ -214,10 +240,49 @@ def cmd_build(args: argparse.Namespace) -> int:
             print(f"[build] {section}: unchanged; skip", flush=True)
             continue
 
-        if section == "sun_moon":
+        if section == "ephemeris":
+            ephemeris_cfg = almanac.get("ephemeris", {})
+            print(f"[build] ephemeris: start for {site.id}", flush=True)
+            event_rows = compute_daily_ephemeris(
+                year=args.year,
+                site=site,
+                source_root=Path("output") / "_sources",
+                ephemeris_name=str(ephemeris_cfg.get("ephemeris", "de440s.bsp")),
+                star_magnitude_limit=float(
+                    ephemeris_cfg.get("star_magnitude_limit", 3.0)
+                ),
+                sun_horizon_deg=float(ephemeris_cfg.get("sun_horizon_deg", -0.8333)),
+                moon_horizon_deg=float(ephemeris_cfg.get("moon_horizon_deg", -0.8392)),
+                point_horizon_deg=float(ephemeris_cfg.get("point_horizon_deg", -0.5667)),
+            )
+            event_path = out / "daily_ephemeris.csv"
+            compressed_path = out / "daily_ephemeris.csv.gz"
+            _write_csv(event_path, event_rows)
+            write_deterministic_gzip(event_path, compressed_path)
+            ephemeris_failures = validate_ephemeris_rows(
+                event_rows,
+                expected_year=args.year,
+                expected_star_count=(
+                    177
+                    if float(ephemeris_cfg.get("star_magnitude_limit", 3.0)) == 3.0
+                    else None
+                ),
+            )
+            if ephemeris_failures:
+                raise RuntimeError(
+                    "Ephemeris validation failed: " + "; ".join(ephemeris_failures)
+                )
+            print(
+                f"[build] ephemeris: validated {len(event_rows)} rows; "
+                f"CSV {event_path.stat().st_size / 1024 / 1024:.1f} MiB; "
+                f"gzip {compressed_path.stat().st_size / 1024 / 1024:.1f} MiB",
+                flush=True,
+            )
+            ctx["daily_ephemeris"] = event_rows
+        elif section == "sun_moon":
             print("[build] sun/moon tables...", flush=True)
             twilight_rows, moon_phase_rows, moonrise_rows = generate_sun_moon_tables(
-                args.year, site
+                args.year, site, load_csv("daily_ephemeris")
             )
             dark_rows = build_dark_windows(
                 twilight_rows,
@@ -262,6 +327,7 @@ def cmd_build(args: argparse.Namespace) -> int:
                 timezone=site.timezone,
                 min_alt_deg=float(planets_cfg.get("min_altitude_deg", 25)),
                 excellent_alt_deg=float(planets_cfg.get("excellent_altitude_deg", 45)),
+                ephemeris_rows=load_csv("daily_ephemeris"),
             )
             _write_csv(out / "planet_visibility_daily.csv", planet_daily)
             _write_csv(out / "planet_visibility_monthly_summary.csv", planet_monthly)
@@ -673,7 +739,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--sections",
         default="all",
-        help="Comma list: sun_moon,milky_way,planets,moons,minor_planets,comets,occultations,phenomena,meteors,conjunctions,ui_notes_context,ui_notes_tonight,ui_notes_milky_way,ui_notes_events,ui_notes_validation,ui_notes_recommendations,ui_notes_bundle,ui_notes_all or 'all'",
+        help="Comma list: ephemeris,sun_moon,milky_way,planets,moons,minor_planets,comets,occultations,phenomena,meteors,conjunctions,ui_notes_context,ui_notes_tonight,ui_notes_milky_way,ui_notes_events,ui_notes_validation,ui_notes_recommendations,ui_notes_bundle,ui_notes_all or 'all'",
     )
     p.add_argument(
         "--force",
@@ -893,6 +959,7 @@ def _parse_explicit_sections(raw: str) -> set[str]:
 
 def _section_outputs_exist(section: str, out: Path) -> bool:
     req = {
+        "ephemeris": ["daily_ephemeris.csv", "daily_ephemeris.csv.gz"],
         "sun_moon": [
             "sun_twilight.csv",
             "moon_phase.csv",
@@ -925,7 +992,25 @@ def _section_fingerprint(section: str, year: int, site: str, config_dir: Path, o
     for p in [config_dir / "sites.yaml", config_dir / "almanac.yaml"]:
         if p.exists():
             h.update(p.read_bytes())
+    if section == "ephemeris":
+        h.update(f"engine={ENGINE_VERSION}".encode())
+        almanac = yaml.safe_load((config_dir / "almanac.yaml").read_text(encoding="utf-8")) or {}
+        ephemeris_name = str(
+            almanac.get("ephemeris", {}).get("ephemeris", "de440s.bsp")
+        )
+        try:
+            source_hash = source_fingerprint(
+                Path("output") / "_sources", ephemeris_name
+            )
+        except RuntimeError as error:
+            raise RuntimeError(
+                f"{error}\nRun: astro-almanac fetch --year {year} --site {site} "
+                f"--config-dir {config_dir}"
+            ) from error
+        h.update(source_hash.encode())
     upstream = {
+        "sun_moon": ["daily_ephemeris.csv"],
+        "planets": ["daily_ephemeris.csv"],
         "milky_way": ["moon_dark_windows.csv"],
         "moons": ["planet_visibility_daily.csv"],
         "ui_notes_context": [

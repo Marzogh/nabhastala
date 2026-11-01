@@ -11,6 +11,7 @@ from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, StrictUndefined, select_autoescape
 
+from paa.compute.ephemeris import write_compact_sky_events
 from paa.paths import public_site_slug, resolve_site_year_dir, site_year_dir
 from paa.render.almanac_views import (
     build_annual_overview,
@@ -32,6 +33,7 @@ from paa.render.view_models import (
 )
 
 SECTIONS = [
+    ("daily_ephemeris.csv.gz", "Rise, transit and set events"),
     ("sun_twilight.csv", "Sun and twilight"),
     ("moon_phase.csv", "Moon phase and illumination"),
     ("moonrise_moonset.csv", "Moonrise and moonset"),
@@ -95,6 +97,9 @@ SITE_CATALOG = (
 )
 
 DATASET_DESCRIPTIONS = {
+    "daily_ephemeris.csv.gz": (
+        "Sun, Moon, planet and bright-star rise, upper-transit and set events."
+    ),
     "sun_twilight.csv": "Astronomical dusk and dawn for every local date.",
     "moon_phase.csv": "Daily lunar phase index and illuminated fraction.",
     "moonrise_moonset.csv": "Local Moon rise and set times.",
@@ -114,6 +119,7 @@ DATASET_DESCRIPTIONS = {
 }
 
 DATASET_GROUPS = {
+    "daily_ephemeris.csv.gz": "Night planning",
     "sun_twilight.csv": "Night planning",
     "moon_phase.csv": "Night planning",
     "moonrise_moonset.csv": "Night planning",
@@ -167,6 +173,7 @@ class DatasetView:
     record_count: int
     columns: tuple[str, ...]
     category: str
+    download_label: str
 
 
 def _read_csv(path: Path) -> tuple[list[str], list[list[str]]]:
@@ -177,6 +184,15 @@ def _read_csv(path: Path) -> tuple[list[str], list[list[str]]]:
     if not rows:
         return [], []
     return rows[0], rows[1:]
+
+
+def _csv_metadata(path: Path) -> tuple[list[str], int]:
+    if not path.exists():
+        return [], 0
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.reader(handle)
+        headers = next(reader, [])
+        return headers, sum(1 for _row in reader)
 
 
 def _month_filter(headers: list[str], rows: list[list[str]], month: int) -> list[list[str]]:
@@ -252,7 +268,7 @@ def _copy_data_files(source_data_dir: Path, target_data_dir: Path) -> None:
     target_data_dir.mkdir(parents=True, exist_ok=True)
     if source_data_dir == target_data_dir:
         return
-    for source in source_data_dir.glob("*.csv"):
+    for source in (*source_data_dir.glob("*.csv"), *source_data_dir.glob("*.csv.gz")):
         shutil.copy2(source, target_data_dir / source.name)
 
 
@@ -340,6 +356,58 @@ def render_landing_html(output_dir: Path) -> Path:
     return output
 
 
+def render_release_landing_html(
+    destination: Path,
+    *,
+    years: tuple[int, ...],
+    site_ids: tuple[str, ...],
+) -> Path:
+    """Render a release homepage that only links to included editions."""
+    selected = set(site_ids)
+    editions = [
+        {
+            **site,
+            "years": [
+                {
+                    "year": year,
+                    "href": f"sites/{site['slug']}/{year}/",
+                }
+                for year in sorted(years, reverse=True)
+            ]
+            if site["id"] in selected
+            else [],
+        }
+        for site in SITE_CATALOG
+    ]
+    page = (
+        _environment()
+        .get_template("landing.html")
+        .render(
+            **_identity_context(),
+            document_title="Nabhastala astronomy almanacs",
+            page_description=(
+                "Astronomy almanacs for South East Queensland, Southern Tasmania and the Malabar Coast."
+            ),
+            asset_prefix="assets/",
+            identity_href="index.html",
+            nav_items=(
+                {"href": "#horizons", "label": "Locations", "current": True},
+                {
+                    "href": "https://chipsncode.com/",
+                    "label": "Chips’nCode",
+                    "current": False,
+                },
+            ),
+            editions=editions,
+            site_name=None,
+            year=None,
+        )
+    )
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(page, encoding="utf-8")
+    return destination
+
+
 def _render_data_library(
     *,
     year_dir: Path,
@@ -350,10 +418,18 @@ def _render_data_library(
     data_dir = year_dir / "data"
     datasets: list[DatasetView] = []
     titles = dict(SECTIONS)
-    for path in sorted(data_dir.glob("*.csv")):
+    paths = sorted((*data_dir.glob("*.csv"), *data_dir.glob("*.csv.gz")))
+    for path in paths:
         if path.name.startswith("ui_notes"):
             continue
-        headers, rows = _read_csv(path)
+        if path.name == "daily_ephemeris.csv":
+            continue
+        metadata_path = (
+            data_dir / "daily_ephemeris.csv"
+            if path.name == "daily_ephemeris.csv.gz"
+            else path
+        )
+        headers, record_count = _csv_metadata(metadata_path)
         datasets.append(
             DatasetView(
                 title=titles.get(path.name, humanize_label(path.stem)),
@@ -362,9 +438,12 @@ def _render_data_library(
                     path.name,
                     f"Supporting data with {len(headers)} columns.",
                 ),
-                record_count=len(rows),
+                record_count=record_count,
                 columns=tuple(humanize_label(header) for header in headers),
                 category=DATASET_GROUPS.get(path.name, "Supporting and provenance"),
+                download_label=(
+                    "Download gzip" if path.suffix == ".gz" else "Download CSV"
+                ),
             )
         )
 
@@ -485,6 +564,7 @@ def _copy_charts(source_year_dir: Path, year_dir: Path) -> list[dict[str, str]]:
 
 
 def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
+    print(f"[render] {site_id} {year}: assets and data", flush=True)
     year_dir = site_year_dir(output_dir, site_id, year)
     source_year_dir = resolve_site_year_dir(output_dir, site_id, year, required="data")
     data_dir = source_year_dir / "data"
@@ -496,6 +576,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     sky_destination = year_dir / "charts" / "sky"
     source_root = output_dir / "_sources"
     if (source_root / "occultations" / "hip_main.dat").exists():
+        print(f"[render] {site_id} {year}: monthly and interactive sky charts", flush=True)
         generate_monthly_sky_charts(
             year=year,
             site_name=str(site_record["name"]),
@@ -534,6 +615,30 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
             ),
             encoding="utf-8",
         )
+    ephemeris_csv = data_dir / "daily_ephemeris.csv"
+    sky_events = year_dir / "assets" / "data" / "sky-events.json"
+    if ephemeris_csv.is_file():
+        print(f"[render] {site_id} {year}: compact object events", flush=True)
+        write_compact_sky_events(
+            ephemeris_csv,
+            sky_events,
+            year,
+            str(site_record["timezone"]),
+        )
+    else:
+        sky_events.parent.mkdir(parents=True, exist_ok=True)
+        sky_events.write_text(
+            json.dumps(
+                {
+                    "year": year,
+                    "timezone": site_record["timezone"],
+                    "event_types": {},
+                    "objects": {},
+                },
+                separators=(",", ":"),
+            ),
+            encoding="utf-8",
+        )
 
     month_links = [
         {
@@ -558,6 +663,8 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
     environment = _environment()
 
     for month in range(1, 13):
+        if month in {1, 4, 7, 10}:
+            print(f"[render] {site_id} {year}: month {month}/12", flush=True)
         guide = build_month_guide(year, month, site_id, data_dir)
         page = environment.get_template("monthly.html").render(
             **common,
@@ -661,6 +768,7 @@ def render_annual_html(year: int, site_id: str, output_dir: Path) -> Path:
         year=year,
     )
     render_landing_html(output_dir)
+    print(f"[render] {site_id} {year}: complete", flush=True)
     return output
 
 

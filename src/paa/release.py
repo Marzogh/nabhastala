@@ -11,6 +11,7 @@ from pathlib import Path, PurePosixPath
 from urllib.parse import urlsplit, urlunsplit
 
 from paa.paths import public_site_slug, site_year_dir
+from paa.render.html import render_release_landing_html
 from paa.validate.reports import validation_failures
 
 PUBLIC_BASE_URL = "https://chipsncode.com/nabhastala"
@@ -137,6 +138,8 @@ def _copy_directory(
         if not path.is_file():
             continue
         relative = path.relative_to(source)
+        if source_virtual_root.name == "data" and relative.name == "daily_ephemeris.csv":
+            continue
         target = destination / relative
         if path.suffix.lower() == ".html":
             _copy_html(
@@ -308,13 +311,18 @@ def assemble_release(
         site_ids=site_ids,
         base_url=base_url,
     )
-    _copy_html(
-        output_dir / "index.html",
-        staging / "index.html",
-        source_virtual=PurePosixPath("index.html"),
-        destination_virtual=PurePosixPath("index.html"),
-        site_ids=site_ids,
-        base_url=base_url,
+    landing = render_release_landing_html(
+        staging / "index.html", years=years, site_ids=site_ids
+    )
+    landing.write_text(
+        _prepare_html(
+            landing.read_text(encoding="utf-8"),
+            source_file=PurePosixPath("index.html"),
+            destination_file=PurePosixPath("index.html"),
+            site_ids=site_ids,
+            base_url=base_url,
+        ),
+        encoding="utf-8",
     )
 
     for year in years:

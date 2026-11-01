@@ -8,16 +8,24 @@ does not use a language model and does not publish anything.
 From the repository root, with the project environment active:
 
 ```bash
+astro-almanac fetch --year 2028 --site se_qld --config-dir config
 astro-almanac annual-release --year 2028 --sites all --force
 ```
 
+The fetch command checks the shared local DE440s and Hipparcos cache. It
+downloads a missing file with byte progress and reuses existing files.
+
 The command performs these steps for each configured observing site:
 
-1. Calculates Sun, Moon, Milky Way, planet, event, and satellite datasets.
-2. Writes additive audit fields and chart-ready values to CSV files.
-3. Validates that every required dataset exists.
-4. Renders the annual page, twelve monthly guides, and data library.
-5. Hashes every produced file into `output/releases/2028/annual_release.json`.
+1. Calculates rise, upper-transit and set events for the Sun, Moon, planets and
+   177 bright stars.
+2. Calculates Milky Way, planet, event and satellite datasets.
+3. Writes the full event table and established compatible CSV files.
+4. Validates the event thresholds, timestamps, stellar catalogue and required
+   datasets.
+5. Renders the annual page, twelve monthly guides, interactive sky tool and data
+   library.
+6. Hashes every produced file into `output/releases/2028/annual_release.json`.
 
 The generated manifest records `published: false`. Publishing remains a separate,
 deliberate release step.
@@ -52,3 +60,8 @@ download is cached under the uncommitted edition cache, so an unchanged rebuild
 does not request the same source response again. All filtering, observing-night
 assignment, chart modelling, date selection, rendering, validation, and hashing
 run locally without model calls.
+
+The 2026 three-site rise, transit and set calculation took about 11 minutes on
+the development Mac. The measured time is a planning guide, not a validation
+threshold. Local editions retain the full uncompressed event table. The
+reviewed website publishes only `daily_ephemeris.csv.gz`.

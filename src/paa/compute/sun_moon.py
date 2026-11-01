@@ -19,7 +19,11 @@ def _astral_imports():
     return Observer, sun, phase, moonrise, moonset
 
 
-def generate_sun_moon_tables(year: int, site: Site) -> tuple[list[dict], list[dict], list[dict]]:
+def generate_sun_moon_tables(
+    year: int,
+    site: Site,
+    ephemeris_rows: list[dict] | None = None,
+) -> tuple[list[dict], list[dict], list[dict]]:
     Observer, sun, moon_phase, moonrise, moonset = _astral_imports()
     tz = ZoneInfo(site.timezone)
     observer = Observer(
@@ -34,22 +38,52 @@ def generate_sun_moon_tables(year: int, site: Site) -> tuple[list[dict], list[di
     end = date(year + 1, 1, 1)
     one_day = timedelta(days=1)
 
+    events_by_date: dict[str, dict[str, str]] = {}
+    if ephemeris_rows is not None:
+        for row in ephemeris_rows:
+            event_type = str(row.get("event_type", ""))
+            if event_type not in {
+                "astronomical_dawn",
+                "astronomical_dusk",
+                "rise",
+                "set",
+            }:
+                continue
+            object_id = str(row.get("object_id", ""))
+            if object_id not in {"sun", "moon"}:
+                continue
+            key = event_type if object_id == "sun" else f"moon_{event_type}"
+            events_by_date.setdefault(str(row["local_date"]), {}).setdefault(
+                key, str(row["event_time_local"])
+            )
+
     while day < end:
-        s = sun(observer, date=day, tzinfo=tz)
-        try:
-            moon_rise = moonrise(observer, date=day, tzinfo=tz)
-        except ValueError:
-            moon_rise = None
-        try:
-            moon_set = moonset(observer, date=day, tzinfo=tz)
-        except ValueError:
-            moon_set = None
+        day_events = events_by_date.get(day.isoformat(), {})
+        if ephemeris_rows is None:
+            s = sun(observer, date=day, tzinfo=tz)
+            dusk = s["dusk"].isoformat()
+            dawn = s["dawn"].isoformat()
+            try:
+                moon_rise = moonrise(observer, date=day, tzinfo=tz)
+            except ValueError:
+                moon_rise = None
+            try:
+                moon_set = moonset(observer, date=day, tzinfo=tz)
+            except ValueError:
+                moon_set = None
+            moon_rise_value = moon_rise.isoformat() if moon_rise else ""
+            moon_set_value = moon_set.isoformat() if moon_set else ""
+        else:
+            dusk = day_events.get("astronomical_dusk", "")
+            dawn = day_events.get("astronomical_dawn", "")
+            moon_rise_value = day_events.get("moon_rise", "")
+            moon_set_value = day_events.get("moon_set", "")
 
         twilight_rows.append(
             {
                 "date": day.isoformat(),
-                "dusk_astronomical_local": s["dusk"].isoformat(),
-                "dawn_astronomical_local": s["dawn"].isoformat(),
+                "dusk_astronomical_local": dusk,
+                "dawn_astronomical_local": dawn,
             }
         )
         moon_phase_rows.append(
@@ -64,8 +98,8 @@ def generate_sun_moon_tables(year: int, site: Site) -> tuple[list[dict], list[di
         moonrise_rows.append(
             {
                 "date": day.isoformat(),
-                "moonrise_local": moon_rise.isoformat() if moon_rise else "",
-                "moonset_local": moon_set.isoformat() if moon_set else "",
+                "moonrise_local": moon_rise_value,
+                "moonset_local": moon_set_value,
             }
         )
         day += one_day

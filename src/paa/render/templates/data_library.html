@@ -20,7 +20,7 @@
               <article class="dataset-row">
                 <p class="row-count">{{ dataset.record_count }} records</p>
                 <div><h3>{{ dataset.title }}</h3><p>{{ dataset.description }}</p><details><summary>File details</summary><dl><div><dt>Filename</dt><dd><code>{{ dataset.filename }}</code></dd></div><div><dt>Columns</dt><dd>{{ dataset.columns|join(", ") if dataset.columns else "No column header available" }}</dd></div></dl></details></div>
-                <a class="download-link" href="{{ dataset.filename }}" download>Download CSV <span aria-hidden="true">↓</span></a>
+                <a class="download-link" href="{{ dataset.filename }}" download>{{ dataset.download_label }} <span aria-hidden="true">↓</span></a>
               </article>
             {% endfor %}
           </div>

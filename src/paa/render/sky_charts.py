@@ -10,6 +10,7 @@ import numpy as np
 import requests
 from skyfield.api import Loader, Star, load_constellation_names, wgs84
 from skyfield.data import hipparcos
+from skyfield.named_stars import named_star_dict
 
 CONSTELLATION_URL = (
     "https://raw.githubusercontent.com/astronoray/constellation_figures/"
@@ -49,6 +50,8 @@ BRIGHT_STAR_NAMES = {
     102098: "Deneb",
     113368: "Fomalhaut",
 }
+COMMON_STAR_NAMES = {int(hip): name for name, hip in named_star_dict.items()}
+COMMON_STAR_NAMES.update(BRIGHT_STAR_NAMES)
 
 
 def project_altaz(
@@ -402,7 +405,7 @@ def generate_interactive_sky_data(
             round(float(row["ra_degrees"]), 5),
             round(float(row["dec_degrees"]), 5),
             round(float(row["magnitude"]), 2),
-            BRIGHT_STAR_NAMES.get(int(hip), ""),
+            COMMON_STAR_NAMES.get(int(hip), ""),
         ]
         for hip, row in stars.iterrows()
     ]

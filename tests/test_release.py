@@ -1,3 +1,5 @@
+import shutil
+from importlib import resources
 from pathlib import Path
 
 import pytest
@@ -13,6 +15,9 @@ def _write(path: Path, content: str = "fixture") -> None:
 
 def _release_fixture(tmp_path: Path) -> Path:
     output = tmp_path / "output"
+    static = resources.files("paa.render").joinpath("static")
+    with resources.as_file(static) as static_path:
+        shutil.copytree(static_path, output / "assets")
     _write(
         output / "index.html",
         '<html><head>  </head><body><a href="se_qld/2026/almanac.html">Edition</a>'
@@ -34,6 +39,8 @@ def _release_fixture(tmp_path: Path) -> Path:
     )
     _write(edition / "data" / "index.html", '<html><head>  </head><body></body></html>')
     _write(edition / "data" / "sun_twilight.csv", "date\n2026-01-01\n")
+    _write(edition / "data" / "daily_ephemeris.csv", "event_type\nrise\n")
+    _write(edition / "data" / "daily_ephemeris.csv.gz", "compressed fixture")
     _write(edition / "sky" / "index.html", '<html><head>  </head><body></body></html>')
     _write(edition / "assets" / "site.js", "void 0;")
     _write(edition / "charts" / "sky" / "month-01.svg", "<svg></svg>")
@@ -64,7 +71,7 @@ def test_release_assembles_stable_routes_without_private_build_files(
         encoding="utf-8"
     )
     assert '../index.html' in month.read_text(encoding="utf-8")
-    assert 'href="sites/se-qld/2026/index.html"' in (
+    assert 'href="sites/se-qld/2026/"' in (
         destination / "index.html"
     ).read_text(encoding="utf-8")
     assert 'rel="canonical"' in annual.read_text(encoding="utf-8")
@@ -74,6 +81,9 @@ def test_release_assembles_stable_routes_without_private_build_files(
     )
     assert not list(destination.rglob("cache"))
     assert not list(destination.rglob("logs"))
+    published_data = destination / "sites" / "se-qld" / "2026" / "data"
+    assert not (published_data / "daily_ephemeris.csv").exists()
+    assert (published_data / "daily_ephemeris.csv.gz").exists()
     assert validate_release_tree(destination) == []
 
 

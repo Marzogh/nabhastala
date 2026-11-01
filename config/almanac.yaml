@@ -1,5 +1,12 @@
 year: 2027
 
+ephemeris:
+  ephemeris: de440s.bsp
+  star_magnitude_limit: 3.0
+  sun_horizon_deg: -0.8333
+  moon_horizon_deg: -0.8392
+  point_horizon_deg: -0.5667
+
 darkness:
   twilight: astronomical
   sun_altitude_deg: -18
