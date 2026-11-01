@@ -11,7 +11,6 @@ from pathlib import Path, PurePosixPath
 from urllib.parse import urlsplit, urlunsplit
 
 from paa.paths import public_site_slug, site_year_dir
-from paa.validate.reports import validation_failures
 
 PUBLIC_BASE_URL = "https://chipsncode.com/nabhastala"
 PUBLISH_DIRECTORIES = ("assets", "charts", "data", "months", "sky")
@@ -22,6 +21,13 @@ LINK_ATTRIBUTE = re.compile(
 CSS_URL = re.compile(r"url\((?P<quote>['\"]?)(?P<url>[^)'\"]+)(?P=quote)\)")
 FORBIDDEN_PARTS = {"cache", "logs", "_sources", ".git", ".env"}
 FORBIDDEN_NAMES = {"id_rsa", "id_ed25519", "credentials", "secrets"}
+
+
+def validation_failures(year: int, site_id: str, output_dir: Path) -> list[str]:
+    """Load annual data validation only when assembling a release."""
+    from paa.validate.reports import validation_failures as validate
+
+    return validate(year, site_id, output_dir)
 
 
 def _sha256(path: Path) -> str:
