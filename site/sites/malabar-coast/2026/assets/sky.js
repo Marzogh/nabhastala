@@ -409,20 +409,6 @@
   };
 
   const setInitialTime = (tool, data) => {
-    const dateInput = tool.querySelector("[data-sky-date]");
-    const timeInput = tool.querySelector("[data-sky-time]");
-    const params = new URLSearchParams(window.location.search);
-    const dateValue = params.get("date") || "";
-    const timeValue = params.get("time") || "";
-    const dateIsValid = /^\d{4}-\d{2}-\d{2}$/.test(dateValue)
-      && dateValue >= dateInput.min
-      && dateValue <= dateInput.max;
-    const timeIsValid = /^(?:[01]\d|2[0-3]):[0-5]\d$/.test(timeValue);
-    if (dateIsValid && timeIsValid) {
-      dateInput.value = dateValue;
-      timeInput.value = timeValue;
-      return;
-    }
     setCurrentTime(tool, data);
   };
 

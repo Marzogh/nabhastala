@@ -6,6 +6,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from paa.compute.ephemeris import (
+    MAX_EVENT_SEARCH_STEP_DAYS,
+    _stellar_search_step_days,
     compact_sky_events,
     validate_ephemeris_rows,
     write_deterministic_gzip,
@@ -86,6 +88,36 @@ def test_validation_keeps_two_same_type_events_on_one_local_date() -> None:
     ]
 
     assert validate_ephemeris_rows(rows, expected_star_count=1) == []
+
+
+def test_stellar_search_step_is_fine_enough_for_achernar() -> None:
+    step = _stellar_search_step_days(-27.5, -57.2367, -0.5667)
+
+    assert 0 < step <= MAX_EVENT_SEARCH_STEP_DAYS
+
+
+def test_validation_rejects_missing_daily_stellar_crossings() -> None:
+    rows = [
+        _row(
+            utc="2026-01-01T00:00:00+00:00",
+            local="2026-01-01T10:00:00+10:00",
+            event_type="rise",
+        ),
+        _row(
+            utc="2026-01-01T04:00:00+00:00",
+            local="2026-01-01T14:00:00+10:00",
+            event_type="set",
+        ),
+    ]
+
+    failures = validate_ephemeris_rows(
+        rows,
+        expected_star_count=1,
+        expected_year=2026,
+    )
+
+    assert any("only 1 rise" in failure for failure in failures)
+    assert any("only 1 set" in failure for failure in failures)
 
 
 def test_compact_events_use_indexed_minute_offsets() -> None:

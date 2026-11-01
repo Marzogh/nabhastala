@@ -114,9 +114,10 @@ def test_sky_finder_is_linked_and_has_a_static_fallback(tmp_path: Path) -> None:
     assert 'data-events="../assets/data/sky-events.json"' in html
     assert "data-sky-search" in html
     assert "data-sky-next-transit" in html
-    assert "URLSearchParams" in (annual.parent / "assets" / "sky.js").read_text(
-        encoding="utf-8"
-    )
+    sky_script = (annual.parent / "assets" / "sky.js").read_text(encoding="utf-8")
+    assert "URLSearchParams" not in sky_script
+    assert "setInitialTime = (tool, data) =>" in sky_script
+    assert "setCurrentTime(tool, data);" in sky_script
     assert "<noscript>" in html
     assert (annual.parent / "assets" / "data" / "sky-data.json").exists()
     assert (annual.parent / "assets" / "data" / "sky-events.json").exists()

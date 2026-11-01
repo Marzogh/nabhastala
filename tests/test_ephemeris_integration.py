@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import UTC, date, datetime
+from itertools import pairwise
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -118,6 +119,29 @@ def test_sirius_has_rise_transit_and_set_events(context) -> None:
         local_sidereal_deg - float(right_ascension.hours) * 15 + 180
     ) % 360 - 180
     assert abs(hour_angle_deg) <= 0.02
+
+
+def test_achernar_has_daily_rise_and_set_events(context) -> None:
+    _almanac, Star, _ephemeris, _timescale, _wgs84, stars, _sites = context
+    rows = _events(
+        context,
+        site_id="se_qld",
+        target=Star.from_dataframe(stars.loc[7588]),
+        object_id="HIP 7588",
+        object_class="star",
+        horizon=POINT_HORIZON_DEG,
+    )
+
+    for event_type in ("rise", "set"):
+        moments = sorted(
+            datetime.fromisoformat(str(row["event_time_utc"]))
+            for row in rows
+            if row["event_type"] == event_type
+        )
+        assert len(moments) >= 365
+        assert max(
+            later - earlier for earlier, later in pairwise(moments)
+        ).total_seconds() < 26 * 3600
 
 
 def test_some_civil_dates_have_no_moon_rise_or_set(context) -> None:

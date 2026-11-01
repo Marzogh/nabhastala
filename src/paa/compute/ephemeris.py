@@ -4,8 +4,10 @@ import csv
 import gzip
 import hashlib
 import json
+import math
 from collections.abc import Callable, Iterable
 from datetime import UTC, datetime, timedelta
+from itertools import pairwise
 from pathlib import Path
 from time import perf_counter
 from zoneinfo import ZoneInfo
@@ -27,7 +29,8 @@ PLANETS = {
     "neptune": "neptune barycenter",
 }
 CALCULATION_BASIS = "Skyfield DE440s; standard apparent astronomical horizon"
-ENGINE_VERSION = "1"
+ENGINE_VERSION = "2"
+MAX_EVENT_SEARCH_STEP_DAYS = 1 / 48
 SOURCE_URLS = {
     "de440s.bsp": "https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/de440s.bsp",
     "hip_main.dat": "https://cdsarc.cds.unistra.fr/ftp/cats/I/239/hip_main.dat",
@@ -137,6 +140,29 @@ def _rounded_datetime(value: datetime) -> datetime:
     return value.replace(microsecond=0)
 
 
+def _stellar_search_step_days(
+    latitude_deg: float,
+    declination_deg: float,
+    horizon_deg: float,
+) -> float:
+    """Choose a step that cannot skip a star's shorter horizon interval."""
+    latitude = math.radians(latitude_deg)
+    declination = math.radians(declination_deg)
+    horizon = math.radians(horizon_deg)
+    denominator = math.cos(latitude) * math.cos(declination)
+    if abs(denominator) < 1e-12:
+        return MAX_EVENT_SEARCH_STEP_DAYS
+    crossing = (
+        math.sin(horizon) - math.sin(latitude) * math.sin(declination)
+    ) / denominator
+    if crossing <= -1 or crossing >= 1:
+        return MAX_EVENT_SEARCH_STEP_DAYS
+    hour_angle = math.acos(crossing)
+    fraction_above = hour_angle / math.pi
+    shorter_interval_days = min(fraction_above, 1 - fraction_above) * 0.9972695663
+    return min(MAX_EVENT_SEARCH_STEP_DAYS, shorter_interval_days / 4)
+
+
 def _event_row(
     *,
     moment,
@@ -183,11 +209,13 @@ def _body_events(
     object_name: str,
     horizon_degrees: float,
     magnitude: float | None = None,
+    search_step_days: float = MAX_EVENT_SEARCH_STEP_DAYS,
 ) -> list[dict[str, object]]:
     observer = ephemeris["earth"] + topos
     up_function = almanac.risings_and_settings(
         ephemeris, target, topos, horizon_degrees=horizon_degrees
     )
+    up_function.step_days = search_step_days
     rise_times, rise_kinds = almanac.find_discrete(start, stop, up_function)
     state = "normal"
     if not len(rise_times):
@@ -375,6 +403,11 @@ def compute_daily_ephemeris(
                 object_name=names.get(hip_id, f"HIP {hip_id}"),
                 magnitude=float(star_row["magnitude"]),
                 horizon_degrees=point_horizon_deg,
+                search_step_days=_stellar_search_step_days(
+                    site.latitude_deg,
+                    float(star_row["dec_degrees"]),
+                    point_horizon_deg,
+                ),
             )
         )
         if number % 10 == 0 or number == total:
@@ -415,6 +448,8 @@ def validate_ephemeris_rows(
     failures: list[str] = []
     seen: set[tuple[str, str, str]] = set()
     star_ids: set[str] = set()
+    star_states: dict[str, set[str]] = {}
+    star_events: dict[str, dict[str, list[datetime]]] = {}
     previous_utc: datetime | None = None
     valid_states = {"normal", "always_above", "always_below"}
     threshold_events = {"rise", "set", "sunrise", "sunset"}
@@ -446,6 +481,10 @@ def validate_ephemeris_rows(
         seen.add(key)
         if row.get("object_class") == "star":
             star_ids.add(object_id)
+            star_states.setdefault(object_id, set()).add(
+                str(row.get("horizon_state", ""))
+            )
+            star_events.setdefault(object_id, {}).setdefault(event_type, []).append(utc)
         if row.get("horizon_state") not in valid_states:
             failures.append(f"row {index} has invalid horizon_state")
 
@@ -467,6 +506,25 @@ def validate_ephemeris_rows(
         failures.append(
             f"expected {expected_star_count} stellar identifiers, found {len(star_ids)}"
         )
+    if expected_year is not None:
+        for object_id in sorted(star_ids):
+            if star_states.get(object_id) != {"normal"}:
+                continue
+            events = star_events.get(object_id, {})
+            for event_type in ("rise", "set"):
+                moments = sorted(events.get(event_type, []))
+                if len(moments) < 360:
+                    failures.append(
+                        f"{object_id} has only {len(moments)} {event_type} events in {expected_year}"
+                    )
+                    continue
+                gaps = [
+                    later - earlier for earlier, later in pairwise(moments)
+                ]
+                if gaps and max(gaps) > timedelta(hours=26):
+                    failures.append(
+                        f"{object_id} has a gap longer than 26 hours between {event_type} events"
+                    )
     if not rows:
         failures.append("no ephemeris rows")
     return failures
