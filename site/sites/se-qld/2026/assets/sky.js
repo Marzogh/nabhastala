@@ -107,6 +107,130 @@
     return names[Math.round(azimuth / 45) % 8];
   };
 
+  const selectedDate = (tool, data) => localToUtc(
+    tool.querySelector("[data-sky-date]").value,
+    tool.querySelector("[data-sky-time]").value,
+    data.timezone,
+  );
+
+  const positionForObject = (data, objectId, date) => {
+    if (objectId.startsWith("HIP ")) {
+      const star = data.starById.get(objectId);
+      return star ? horizontalPosition(star[1], star[2], date, data.latitude, data.longitude) : null;
+    }
+    const bodyName = objectId === "sun" || objectId === "moon"
+      ? objectId[0].toUpperCase() + objectId.slice(1)
+      : objectId[0].toUpperCase() + objectId.slice(1);
+    const coordinates = bodyCoordinates(data.bodies?.[bodyName], data, date);
+    return coordinates
+      ? horizontalPosition(coordinates.ra, coordinates.dec, date, data.latitude, data.longitude)
+      : null;
+  };
+
+  const eventLabel = (event, selected, timezone, year, includeAltitude = false) => {
+    const moment = new Date(Date.UTC(year, 0, 1) + event[1] * 60000);
+    const selectedParts = localParts(selected, timezone);
+    const eventParts = localParts(moment, timezone);
+    const sameDate = selectedParts.year === eventParts.year
+      && selectedParts.month === eventParts.month
+      && selectedParts.day === eventParts.day;
+    const formatted = new Intl.DateTimeFormat("en-AU", {
+      timeZone: timezone,
+      ...(sameDate
+        ? { hour: "numeric", minute: "2-digit" }
+        : { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }),
+    }).format(moment);
+    return includeAltitude ? `${formatted}, ${Math.round(event[3])}° altitude` : formatted;
+  };
+
+  const renderObjectDetails = (tool, data) => {
+    const events = tool.skyEvents;
+    const objectId = tool.selectedObjectId;
+    if (!events || !objectId || !events.objects[objectId]) return;
+    const item = events.objects[objectId];
+    const selected = selectedDate(tool, data);
+    const position = positionForObject(data, objectId, selected);
+    const section = tool.querySelector("[data-sky-selection]");
+    section.hidden = false;
+    tool.querySelector("[data-sky-selected-name]").textContent = item.name;
+    tool.querySelector("[data-sky-position]").textContent = position
+      ? `${Math.round(position.altitude)}° altitude, ${Math.round(position.azimuth)}° azimuth (${direction(position.azimuth)})`
+      : "Position unavailable for this time.";
+
+    const state = tool.querySelector("[data-sky-horizon-state]");
+    if (item.state === "always_above") {
+      state.textContent = "Always above the horizon at this location.";
+      state.hidden = false;
+    } else if (item.state === "always_below") {
+      state.textContent = "Does not rise at this location.";
+      state.hidden = false;
+    } else {
+      state.hidden = true;
+    }
+
+    const typeNames = events.eventTypeNames;
+    const selectedMinute = (selected.getTime() - Date.UTC(events.year, 0, 1)) / 60000;
+    const next = (names) => item.events.find(
+      (event) => names.includes(typeNames[event[0]]) && event[1] >= selectedMinute,
+    );
+    const unavailable = `No later event in ${events.year}.`;
+    const rise = next(objectId === "sun" ? ["sunrise"] : ["rise"]);
+    const transit = next(["upper_transit"]);
+    const set = next(objectId === "sun" ? ["sunset"] : ["set"]);
+    const fixedState = item.state === "always_above" || item.state === "always_below";
+    tool.querySelector("[data-sky-next-rise]").textContent = fixedState
+      ? "Not applicable" : rise ? eventLabel(rise, selected, data.timezone, events.year) : unavailable;
+    tool.querySelector("[data-sky-next-transit]").textContent = transit
+      ? eventLabel(transit, selected, data.timezone, events.year, true) : unavailable;
+    tool.querySelector("[data-sky-next-set]").textContent = fixedState
+      ? "Not applicable" : set ? eventLabel(set, selected, data.timezone, events.year) : unavailable;
+  };
+
+  const populateObjectSearch = (tool, events) => {
+    const options = tool.querySelector("[data-sky-options]");
+    const searchMap = new Map();
+    Object.entries(events.objects)
+      .sort(([, first], [, second]) => first.name.localeCompare(second.name))
+      .forEach(([objectId, item]) => {
+        const value = item.class === "star" && item.name !== objectId
+          ? `${item.name} (${objectId})` : item.name;
+        const option = document.createElement("option");
+        option.value = value;
+        options.append(option);
+        searchMap.set(value.toLowerCase(), objectId);
+        searchMap.set(item.name.toLowerCase(), objectId);
+        searchMap.set(objectId.toLowerCase(), objectId);
+      });
+    tool.skySearchMap = searchMap;
+  };
+
+  const loadObjectEvents = async (tool) => {
+    if (!tool.skyEventsPromise) {
+      tool.skyEventsPromise = fetch(tool.dataset.events).then(async (response) => {
+        if (!response.ok) throw new Error("Object event data unavailable");
+        const events = await response.json();
+        events.eventTypeNames = Object.fromEntries(
+          Object.entries(events.event_types).map(([name, code]) => [code, name]),
+        );
+        tool.skyEvents = events;
+        populateObjectSearch(tool, events);
+        return events;
+      });
+    }
+    return tool.skyEventsPromise;
+  };
+
+  const selectObject = async (tool, data, objectId) => {
+    const events = await loadObjectEvents(tool);
+    const item = events.objects[objectId];
+    if (!item) return;
+    tool.selectedObjectId = objectId;
+    tool.querySelector("[data-sky-search]").value = (
+      item.class === "star" && item.name !== objectId ? `${item.name} (${objectId})` : item.name
+    );
+    renderObjectDetails(tool, data);
+  };
+
   const drawCompass = (context, centre, radius, colours) => {
     context.strokeStyle = colours.soft;
     context.fillStyle = colours.ink;
@@ -183,7 +307,11 @@
       if (horizontal.altitude < 0) return;
       const point = project(horizontal.altitude, horizontal.azimuth, centre, radius);
       positions.set(hip, point);
-      stars.push({ point, magnitude: starMagnitude, name, constellation: constellationStars.has(hip) });
+      stars.push({
+        id: `HIP ${hip}`, point, magnitude: starMagnitude, name,
+        altitude: horizontal.altitude, azimuth: horizontal.azimuth,
+        constellation: constellationStars.has(hip),
+      });
     });
 
     const bodies = [];
@@ -192,7 +320,10 @@
       if (!coordinates) return;
       const horizontal = horizontalPosition(coordinates.ra, coordinates.dec, selected, data.latitude, data.longitude);
       if (horizontal.altitude < 0) return;
-      bodies.push({ name, ...horizontal, point: project(horizontal.altitude, horizontal.azimuth, centre, radius) });
+      bodies.push({
+        id: name.toLowerCase(), name, ...horizontal,
+        point: project(horizontal.altitude, horizontal.azimuth, centre, radius),
+      });
     });
 
     const sun = bodies.find((body) => body.name === "Sun");
@@ -237,6 +368,10 @@
       }
     });
     bodies.forEach((body) => drawBody(context, body, colours, printing));
+    tool.skyHitTargets = [
+      ...stars.filter((star) => star.magnitude <= 3),
+      ...bodies,
+    ];
 
     const selectedLabel = new Intl.DateTimeFormat("en-AU", {
       dateStyle: "long", timeStyle: "short", timeZone: data.timezone,
@@ -261,6 +396,7 @@
       item.textContent = "No Moon or planet is above the horizon.";
       objects.append(item);
     }
+    if (tool.selectedObjectId && tool.skyEvents) renderObjectDetails(tool, data);
   };
 
   const setCurrentTime = (tool, data) => {
@@ -295,9 +431,12 @@
     if (!response.ok) throw new Error("Sky chart data unavailable");
     const data = await response.json();
     if (!data.stars?.length) throw new Error("Sky chart data unavailable");
+    data.starById = new Map(data.stars.map((star) => [`HIP ${star[0]}`, star]));
     setInitialTime(tool, data);
     const redraw = () => drawChart(tool, data);
-    tool.querySelectorAll("input").forEach((input) => input.addEventListener("input", redraw));
+    tool.querySelectorAll(
+      "[data-sky-date], [data-sky-time], [data-sky-magnitude], [data-sky-constellations]",
+    ).forEach((input) => input.addEventListener("input", redraw));
     tool.querySelector("[data-sky-magnitude]").addEventListener("input", (event) => {
       tool.querySelector("[data-sky-magnitude-value]").value = event.target.value;
     });
@@ -306,6 +445,29 @@
       redraw();
     });
     tool.querySelector("[data-sky-print]").addEventListener("click", () => window.print());
+    const search = tool.querySelector("[data-sky-search]");
+    search.addEventListener("focus", () => loadObjectEvents(tool));
+    search.addEventListener("input", async () => {
+      await loadObjectEvents(tool);
+      const objectId = tool.skySearchMap.get(search.value.trim().toLowerCase());
+      if (objectId) selectObject(tool, data, objectId);
+    });
+    tool.querySelector("[data-sky-controls]").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const objectId = tool.skySearchMap?.get(search.value.trim().toLowerCase());
+      if (objectId) selectObject(tool, data, objectId);
+    });
+    const canvas = tool.querySelector("[data-sky-canvas]");
+    canvas.addEventListener("click", (event) => {
+      const bounds = canvas.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) * (canvas.width / bounds.width);
+      const y = (event.clientY - bounds.top) * (canvas.height / bounds.height);
+      const target = (tool.skyHitTargets || [])
+        .map((item) => ({ item, distance: Math.hypot(item.point.x - x, item.point.y - y) }))
+        .filter(({ distance }) => distance <= 16)
+        .sort((first, second) => first.distance - second.distance)[0]?.item;
+      if (target) selectObject(tool, data, target.id);
+    });
     new MutationObserver(redraw).observe(document.documentElement, {
       attributes: true, attributeFilter: ["data-theme"],
     });

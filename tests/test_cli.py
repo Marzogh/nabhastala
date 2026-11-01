@@ -1,4 +1,6 @@
-from paa.cli import build_parser
+from pathlib import Path
+
+from paa.cli import _write_csv, build_parser
 
 
 def test_help() -> None:
@@ -28,3 +30,11 @@ def test_annual_release_defaults_to_all_configured_sites() -> None:
     assert args.year == 2028
     assert args.sites == "all"
     assert args.sections == "all"
+
+
+def test_write_csv_uses_lf_line_endings(tmp_path: Path) -> None:
+    output = tmp_path / "rows.csv"
+
+    _write_csv(output, [{"name": "Sun", "event": "rise"}])
+
+    assert output.read_bytes() == b"name,event\nSun,rise\n"

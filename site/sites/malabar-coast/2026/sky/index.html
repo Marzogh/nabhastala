@@ -37,7 +37,7 @@
     <script defer src="../assets/theme.js?v=stage-4a"></script>
     <script defer src="../assets/charts.js?v=ui-refine-1"></script>
     <script defer src="../assets/conditions.js?v=stage-5c"></script>
-<script defer src="../assets/sky.js?v=print-chart-1"></script>    <link rel="canonical" href="https://chipsncode.com/nabhastala/sites/malabar-coast/2026/sky/">
+<script defer src="../assets/sky.js?v=object-events-1"></script>    <link rel="canonical" href="https://chipsncode.com/nabhastala/sites/malabar-coast/2026/sky/">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to almanac</a>
@@ -92,11 +92,13 @@
     <img class="theme-art theme-art--dark" src="../assets/art/heroes/malabar-coast-dark.webp" width="1440" height="480" alt="" fetchpriority="high">
   </figure>
 </header>
-    <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-year="2026" data-timezone="Asia/Kolkata" aria-label="Sky chart controls and chart">
+    <section class="sky-tool" data-sky-tool data-source="../assets/data/sky-data.json" data-events="../assets/data/sky-events.json" data-year="2026" data-timezone="Asia/Kolkata" aria-label="Sky chart controls and chart">
       <header class="sky-print-heading"><h1>Sky chart</h1><p>Malabar Coast, India</p><p data-sky-print-status>Selected local date and time</p></header>
       <form class="sky-controls" data-sky-controls>
         <label>Date <input type="date" min="2026-01-01" max="2026-12-31" data-sky-date></label>
         <label>Local time <input type="time" step="60" data-sky-time></label>
+        <label class="sky-object-search">Object <input type="search" list="sky-object-options" autocomplete="off" placeholder="Name or HIP number" data-sky-search aria-describedby="sky-search-help"><small id="sky-search-help">Choose a result, or select an object on the chart.</small></label>
+        <datalist id="sky-object-options" data-sky-options></datalist>
         <label>Faintest stars <input type="range" min="3" max="6.5" step="0.5" value="5.5" data-sky-magnitude><output data-sky-magnitude-value>5.5</output></label>
         <label class="sky-check"><input type="checkbox" checked data-sky-constellations> Constellation lines</label>
         <button type="button" data-sky-now>Use current time</button>
@@ -104,9 +106,19 @@
       </form>
 
       <div class="sky-stage">
-        <div class="sky-canvas-wrap"><canvas width="900" height="900" data-sky-canvas aria-label="Interactive all-sky chart"></canvas></div>
+        <div class="sky-canvas-wrap"><canvas width="900" height="900" tabindex="0" data-sky-canvas aria-label="Interactive all-sky chart. Use the object search for keyboard selection." aria-describedby="sky-chart-help"></canvas><p id="sky-chart-help" class="sky-chart-help">Select the Sun, Moon, a planet, or a star of magnitude 3 or brighter to see its position and events.</p></div>
         <aside class="sky-readout" aria-live="polite">
           <p data-sky-status>Loading the sky chart…</p>
+          <section class="sky-object-details" data-sky-selection hidden>
+            <h2 data-sky-selected-name>Selected object</h2>
+            <p data-sky-position></p>
+            <p data-sky-horizon-state hidden></p>
+            <dl class="sky-event-list">
+              <div><dt>Next rise</dt><dd data-sky-next-rise></dd></div>
+              <div><dt>Next upper transit</dt><dd data-sky-next-transit></dd></div>
+              <div><dt>Next set</dt><dd data-sky-next-set></dd></div>
+            </dl>
+          </section>
           <h3>Above the horizon</h3>
           <ul data-sky-objects></ul>
           <p class="sky-legend"><span class="sky-legend__star">●</span> Star <span class="sky-legend__body">●</span> Solar System object</p>
